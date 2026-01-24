@@ -943,103 +943,146 @@ body {
 }
 
 /* ========================================
-   Key - Continuous Journey Mode
-   After hero, key becomes fixed centered, rotates with scroll
+   Unlock Button - Lock → Unlock on hover
 ======================================== */
-.key-container.journey-mode {
-  position: fixed !important;
-  top: 50% !important;
-  left: 50% !important;
-  z-index: 50;
-  pointer-events: none;
-  will-change: transform;
-}
-
-/* Key element itself for rotation */
-.key-container.journey-mode .key {
-  will-change: transform;
-}
-
-/* Reduced glow in journey mode - controlled by JS */
-.key-container.journey-mode .key-glow,
-.key-container.journey-mode .key-glow-outer,
-.key-container.journey-mode .key-shadow {
-  will-change: opacity, transform;
-}
-
-/* ========================================
-   CTA Button with Keyhole
-======================================== */
-.cta-lock-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-}
-
-.btn-with-keyhole {
+.btn-unlock {
   position: relative;
   display: inline-flex;
   align-items: center;
-  gap: 12px;
-  padding-left: 20px;
+  gap: 14px;
+  padding: 0.9rem 1.8rem 0.9rem 1.4rem;
+  background: rgba(28, 24, 21, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(201, 162, 39, 0.15);
+  border-radius: 10px;
+  color: var(--text-primary);
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  overflow: hidden;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Subtle gold inner glow */
+.btn-unlock::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 10px;
+  background: radial-gradient(
+    ellipse at 30% 50%,
+    rgba(201, 162, 39, 0.06) 0%,
+    transparent 60%
+  );
+  pointer-events: none;
+}
+
+.btn-unlock:hover {
+  border-color: rgba(201, 162, 39, 0.35);
+  box-shadow: 
+    0 0 20px rgba(201, 162, 39, 0.1),
+    inset 0 0 20px rgba(201, 162, 39, 0.03);
+}
+
+/* Lock icon container */
+.lock-icon {
+  position: relative;
+  width: 18px;
+  height: 22px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Lock shackle (the U-shaped top) */
+.lock-shackle {
+  position: absolute;
+  top: 0;
+  width: 12px;
+  height: 9px;
+  border: 2px solid rgba(201, 162, 39, 0.5);
+  border-bottom: none;
+  border-radius: 6px 6px 0 0;
+  transform-origin: right bottom;
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+/* Lock body */
+.lock-body {
+  position: absolute;
+  bottom: 0;
+  width: 16px;
+  height: 12px;
+  background: rgba(201, 162, 39, 0.4);
+  border-radius: 2px;
+  transition: background 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* Keyhole in lock body */
+.lock-body::before {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 4px;
+  background: rgba(20, 18, 16, 0.8);
+  border-radius: 50%;
+}
+
+.lock-body::after {
+  content: '';
+  position: absolute;
+  top: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 4px;
+  background: rgba(20, 18, 16, 0.8);
+  border-radius: 0 0 1px 1px;
+}
+
+/* Gold shine sweep */
+.btn-shine {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    105deg,
+    transparent 0%,
+    transparent 40%,
+    rgba(201, 162, 39, 0.08) 45%,
+    rgba(232, 212, 139, 0.15) 50%,
+    rgba(201, 162, 39, 0.08) 55%,
+    transparent 60%,
+    transparent 100%
+  );
+  pointer-events: none;
+  transition: left 0.5s ease;
+}
+
+/* Hover state - unlock */
+.btn-unlock:hover .lock-shackle {
+  transform: rotate(-25deg) translateY(-2px);
+  border-color: var(--gold);
+}
+
+.btn-unlock:hover .lock-body {
+  background: var(--gold);
+  box-shadow: 0 0 8px rgba(201, 162, 39, 0.4);
+}
+
+.btn-unlock:hover .btn-shine {
+  left: 100%;
 }
 
 .btn-label {
   position: relative;
   z-index: 1;
-}
-
-.keyhole {
-  position: relative;
-  width: 14px;
-  height: 22px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  opacity: 0.5;
-  transition: opacity 0.4s ease, transform 0.4s ease;
-}
-
-.keyhole::before {
-  content: '';
-  width: 10px;
-  height: 10px;
-  background: rgba(201, 162, 39, 0.35);
-  border-radius: 50%;
-  box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.3);
-  transition: all 0.4s ease;
-}
-
-.keyhole::after {
-  content: '';
-  width: 5px;
-  height: 10px;
-  background: rgba(201, 162, 39, 0.35);
-  border-radius: 0 0 2px 2px;
-  margin-top: -2px;
-  box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.3);
-  transition: all 0.4s ease;
-}
-
-.btn-with-keyhole:hover .keyhole {
-  opacity: 0.8;
-}
-
-.btn-with-keyhole:hover .keyhole::before,
-.btn-with-keyhole:hover .keyhole::after {
-  background: rgba(201, 162, 39, 0.6);
-}
-
-/* Keyhole activated state - when key arrives */
-.keyhole.active::before,
-.keyhole.active::after {
-  background: var(--gold);
-  box-shadow: 0 0 12px rgba(201, 162, 39, 0.5);
-}
-
-.keyhole.active {
-  opacity: 1;
 }
 
 /* ========================================
