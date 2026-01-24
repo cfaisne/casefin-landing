@@ -1,0 +1,733 @@
+/* ========================================
+   CSS Variables & Reset
+======================================== */
+:root {
+  /* Colors */
+  --bg-dark: #1a1614;
+  --bg-section: #141210;
+  --gold: #c9a227;
+  --gold-light: #e8d48b;
+  --gold-glow: rgba(201, 162, 39, 0.4);
+  --text-primary: #ffffff;
+  --text-secondary: rgba(255, 255, 255, 0.7);
+  --text-muted: rgba(255, 255, 255, 0.4);
+  --card-bg: rgba(255, 255, 255, 0.05);
+  --card-border: rgba(255, 255, 255, 0.1);
+  
+  /* Typography */
+  --font-main: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  
+  /* Transitions */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: auto; /* GSAP handles smooth scroll */
+}
+
+body {
+  font-family: var(--font-main);
+  background: var(--bg-dark);
+  color: var(--text-primary);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ========================================
+   Navigation
+======================================== */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 3rem;
+  background: rgba(26, 22, 20, 0.8);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.nav-logo {
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+}
+
+.nav-links {
+  display: flex;
+  gap: 2.5rem;
+}
+
+.nav-links a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: color 0.2s ease;
+}
+
+.nav-links a:hover {
+  color: var(--text-primary);
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.btn-text {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.95rem;
+  padding: 0.5rem 1rem;
+  transition: color 0.2s ease;
+}
+
+.btn-text:hover {
+  color: var(--text-primary);
+}
+
+.btn-primary {
+  background: var(--text-primary);
+  color: var(--bg-dark);
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  padding: 0.65rem 1.25rem;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.btn-primary:hover {
+  background: var(--gold-light);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--text-primary);
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  padding: 0.65rem 1.25rem;
+  border-radius: 6px;
+  border: 1px solid var(--card-border);
+  transition: all 0.2s ease;
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* ========================================
+   Unlock Section (Pinned Hero)
+======================================== */
+.unlock-section {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: var(--bg-dark);
+}
+
+.unlock-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ========================================
+   Abstract UI Environment
+======================================== */
+.ui-environment {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* Base element styles */
+.ui-element {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+  transition: none; /* GSAP handles transitions */
+}
+
+/* Locked state: scattered, blurred, dim */
+.ui-element[data-depth="3"] {
+  filter: blur(8px);
+  opacity: 0.3;
+}
+
+.ui-element[data-depth="2"] {
+  filter: blur(4px);
+  opacity: 0.4;
+}
+
+.ui-element[data-depth="1"] {
+  filter: blur(2px);
+  opacity: 0.5;
+}
+
+/* Individual element positions and sizes (locked state) */
+.el-1 {
+  width: 180px;
+  height: 120px;
+  top: 8%;
+  left: 5%;
+  transform: rotate(-15deg);
+}
+
+.el-2 {
+  width: 140px;
+  height: 80px;
+  top: 15%;
+  right: 8%;
+  transform: rotate(20deg);
+}
+
+.el-3 {
+  width: 200px;
+  height: 60px;
+  bottom: 20%;
+  left: 10%;
+  transform: rotate(10deg);
+}
+
+.el-4 {
+  width: 160px;
+  height: 100px;
+  top: 25%;
+  left: 15%;
+  transform: rotate(-8deg);
+}
+
+.el-5 {
+  width: 120px;
+  height: 140px;
+  top: 30%;
+  right: 12%;
+  transform: rotate(12deg);
+}
+
+.el-6 {
+  width: 100px;
+  height: 70px;
+  bottom: 35%;
+  left: 20%;
+  transform: rotate(-5deg);
+}
+
+.el-7 {
+  width: 180px;
+  height: 50px;
+  bottom: 25%;
+  right: 15%;
+  transform: rotate(8deg);
+}
+
+.el-8 {
+  width: 140px;
+  height: 90px;
+  top: 20%;
+  left: 25%;
+  transform: rotate(-3deg);
+}
+
+.el-9 {
+  width: 110px;
+  height: 110px;
+  top: 35%;
+  right: 22%;
+  border-radius: 50%;
+  transform: rotate(0deg);
+}
+
+.el-10 {
+  width: 160px;
+  height: 45px;
+  bottom: 30%;
+  left: 28%;
+  transform: rotate(5deg);
+}
+
+.el-11 {
+  width: 130px;
+  height: 80px;
+  bottom: 40%;
+  right: 25%;
+  transform: rotate(-10deg);
+}
+
+/* Accent elements (lines and small circles) */
+.ui-accent {
+  position: absolute;
+  background: rgba(201, 162, 39, 0.1);
+  opacity: 0.3;
+  transition: none;
+}
+
+.acc-1 {
+  width: 80px;
+  height: 3px;
+  top: 40%;
+  left: 8%;
+  transform: rotate(45deg);
+  border-radius: 2px;
+}
+
+.acc-2 {
+  width: 60px;
+  height: 3px;
+  top: 55%;
+  right: 10%;
+  transform: rotate(-30deg);
+  border-radius: 2px;
+}
+
+.acc-3 {
+  width: 20px;
+  height: 20px;
+  top: 65%;
+  left: 18%;
+  border-radius: 50%;
+}
+
+.acc-4 {
+  width: 15px;
+  height: 15px;
+  top: 25%;
+  right: 28%;
+  border-radius: 50%;
+}
+
+/* ========================================
+   The Key
+======================================== */
+.key-container {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.key {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform-origin: center center;
+  /* Locked state: darker, smaller, no glow */
+}
+
+/* Key bow (the round top part with scales) */
+.key-bow {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #8b7355 0%, #6b5a47 50%, #4a3f35 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 
+    inset 0 2px 4px rgba(255, 255, 255, 0.1),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.3),
+    0 4px 20px rgba(0, 0, 0, 0.5);
+  border: 2px solid rgba(139, 115, 85, 0.3);
+}
+
+.key-bow-inner {
+  width: 70px;
+  height: 50px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 20px;
+  padding-bottom: 5px;
+}
+
+/* Scale pans */
+.scale-left,
+.scale-right {
+  width: 18px;
+  height: 12px;
+  background: linear-gradient(to bottom, #9a8672 0%, #7a6a5a 100%);
+  border-radius: 0 0 50% 50%;
+  position: relative;
+}
+
+.scale-left::before,
+.scale-right::before {
+  content: '';
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1px;
+  height: 20px;
+  background: #7a6a5a;
+}
+
+/* Key shaft */
+.key-shaft {
+  width: 16px;
+  height: 100px;
+  background: linear-gradient(90deg, #6b5a47 0%, #8b7355 30%, #9a8672 50%, #8b7355 70%, #6b5a47 100%);
+  border-radius: 2px;
+  box-shadow: 
+    inset 2px 0 4px rgba(255, 255, 255, 0.1),
+    inset -2px 0 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Key bit (the teeth at the bottom) */
+.key-bit {
+  width: 50px;
+  height: 30px;
+  background: linear-gradient(90deg, #6b5a47 0%, #8b7355 30%, #9a8672 50%, #8b7355 70%, #6b5a47 100%);
+  border-radius: 0 0 4px 4px;
+  position: relative;
+  box-shadow: 
+    inset 2px 0 4px rgba(255, 255, 255, 0.1),
+    inset -2px 0 4px rgba(0, 0, 0, 0.2);
+}
+
+.key-bit-notch {
+  position: absolute;
+  top: 8px;
+  right: 0;
+  width: 20px;
+  height: 14px;
+  background: var(--bg-dark);
+  border-radius: 2px 0 0 2px;
+}
+
+/* Key glow (hidden in locked state) */
+.key-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, var(--gold-glow) 0%, transparent 70%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ========================================
+   Unlock Text
+======================================== */
+.unlock-text {
+  position: absolute;
+  bottom: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  opacity: 0;
+  z-index: 20;
+}
+
+.unlock-headline {
+  font-size: 3.5rem;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  margin-bottom: 1rem;
+  line-height: 1.1;
+}
+
+.unlock-subhead {
+  font-size: 1.15rem;
+  color: var(--text-secondary);
+  max-width: 500px;
+  margin: 0 auto 2rem;
+  line-height: 1.6;
+}
+
+.unlock-cta {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+/* ========================================
+   Scroll Indicator
+======================================== */
+.scroll-indicator {
+  position: absolute;
+  bottom: 3rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  opacity: 0.6;
+  z-index: 20;
+}
+
+.scroll-indicator span {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.scroll-arrow {
+  width: 20px;
+  height: 20px;
+  border-right: 2px solid var(--text-muted);
+  border-bottom: 2px solid var(--text-muted);
+  transform: rotate(45deg);
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: rotate(45deg) translateY(0);
+  }
+  50% {
+    transform: rotate(45deg) translateY(5px);
+  }
+}
+
+/* ========================================
+   Post-Unlock Content Sections
+======================================== */
+.content-section {
+  padding: 8rem 3rem;
+  background: var(--bg-section);
+}
+
+.content-section:nth-child(odd) {
+  background: var(--bg-dark);
+}
+
+.section-inner {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.content-section h2 {
+  font-size: 2.5rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin-bottom: 1rem;
+}
+
+.content-section > .section-inner > p {
+  font-size: 1.15rem;
+  color: var(--text-secondary);
+  margin-bottom: 3rem;
+  max-width: 600px;
+}
+
+/* Cards */
+.card-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  padding: 2rem;
+  transition: all 0.3s var(--ease-out);
+}
+
+.card:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+}
+
+.card-icon {
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+  opacity: 0.8;
+}
+
+.card h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.card p {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* Steps */
+.steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.step {
+  text-align: center;
+  padding: 2rem;
+}
+
+.step-num {
+  width: 56px;
+  height: 56px;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0 auto 1.5rem;
+  color: var(--gold);
+}
+
+.step h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.step p {
+  font-size: 1rem;
+  color: var(--text-secondary);
+}
+
+/* CTA Section */
+.section-cta {
+  text-align: center;
+  padding: 10rem 3rem;
+  background: linear-gradient(180deg, var(--bg-section) 0%, var(--bg-dark) 100%);
+}
+
+.cta-inner h2 {
+  margin-bottom: 1rem;
+}
+
+.cta-inner p {
+  margin-bottom: 2rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.btn-large {
+  font-size: 1.1rem;
+  padding: 1rem 2.5rem;
+}
+
+/* ========================================
+   Footer
+======================================== */
+.footer {
+  padding: 3rem;
+  background: var(--bg-dark);
+  border-top: 1px solid var(--card-border);
+}
+
+.footer-inner {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footer-logo {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.footer-links {
+  display: flex;
+  gap: 2rem;
+}
+
+.footer-links a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.2s ease;
+}
+
+.footer-links a:hover {
+  color: var(--text-primary);
+}
+
+.footer-legal {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+/* ========================================
+   Responsive
+======================================== */
+@media (max-width: 768px) {
+  .nav {
+    padding: 1rem 1.5rem;
+  }
+  
+  .nav-links {
+    display: none;
+  }
+  
+  .unlock-headline {
+    font-size: 2.25rem;
+  }
+  
+  .unlock-subhead {
+    font-size: 1rem;
+    padding: 0 1rem;
+  }
+  
+  .content-section {
+    padding: 5rem 1.5rem;
+  }
+  
+  .content-section h2 {
+    font-size: 2rem;
+  }
+  
+  .card-row {
+    grid-template-columns: 1fr;
+  }
+  
+  .steps {
+    grid-template-columns: 1fr;
+  }
+  
+  .footer-inner {
+    flex-direction: column;
+    gap: 1.5rem;
+    text-align: center;
+  }
+}
