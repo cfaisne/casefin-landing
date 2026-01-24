@@ -3,22 +3,35 @@
 ======================================== */
 :root {
   /* Colors */
-  --bg-dark: #1a1614;
-  --bg-section: #141210;
+  --bg-dark: #0a0908;
+  --bg-locked: #050504;
+  --bg-section: #0d0c0a;
   --gold: #c9a227;
   --gold-light: #e8d48b;
+  --gold-warm: #d4a845;
   --gold-glow: rgba(201, 162, 39, 0.4);
+  --gold-intense: rgba(212, 168, 69, 0.8);
   --text-primary: #ffffff;
   --text-secondary: rgba(255, 255, 255, 0.7);
   --text-muted: rgba(255, 255, 255, 0.4);
-  --card-bg: rgba(255, 255, 255, 0.05);
-  --card-border: rgba(255, 255, 255, 0.1);
+  
+  /* Frosted Glass */
+  --glass-bg: rgba(20, 18, 16, 0.6);
+  --glass-bg-strong: rgba(20, 18, 16, 0.85);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-border-gold: rgba(201, 162, 39, 0.15);
+  --glass-blur: 20px;
+  
+  /* Card styling */
+  --card-bg: rgba(255, 255, 255, 0.03);
+  --card-border: rgba(255, 255, 255, 0.06);
   
   /* Typography */
   --font-main: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   
   /* Transitions */
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-dramatic: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 * {
@@ -28,19 +41,19 @@
 }
 
 html {
-  scroll-behavior: auto; /* GSAP handles smooth scroll */
+  scroll-behavior: auto;
 }
 
 body {
   font-family: var(--font-main);
-  background: var(--bg-dark);
+  background: var(--bg-locked);
   color: var(--text-primary);
   line-height: 1.6;
   overflow-x: hidden;
 }
 
 /* ========================================
-   Navigation
+   Navigation - Hidden initially, frosted glass
 ======================================== */
 .nav {
   position: fixed;
@@ -52,15 +65,42 @@ body {
   align-items: center;
   justify-content: space-between;
   padding: 1.25rem 3rem;
-  background: rgba(26, 22, 20, 0.8);
-  backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border-bottom: 1px solid var(--glass-border);
+  /* Hidden in locked state - GSAP will animate */
+  opacity: 0;
+  transform: translateY(-12px);
+  pointer-events: none;
+}
+
+/* Gold underglow beneath navbar */
+.nav::after {
+  content: '';
+  position: absolute;
+  bottom: -20px;
+  left: 10%;
+  right: 10%;
+  height: 20px;
+  background: radial-gradient(ellipse at center, rgba(201, 162, 39, 0.15) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+
+.nav.revealed::after {
+  opacity: 1;
+}
+
+.nav.revealed {
+  border-bottom-color: var(--glass-border-gold);
 }
 
 .nav-logo {
   font-size: 1.5rem;
   font-weight: 600;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.03em;
   color: var(--text-primary);
 }
 
@@ -98,36 +138,68 @@ body {
   color: var(--text-primary);
 }
 
+/* Premium frosted button */
 .btn-primary {
-  background: var(--text-primary);
-  color: var(--bg-dark);
+  position: relative;
+  background: var(--glass-bg-strong);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  color: var(--text-primary);
   text-decoration: none;
   font-size: 0.95rem;
   font-weight: 500;
   padding: 0.65rem 1.25rem;
-  border-radius: 6px;
-  transition: all 0.2s ease;
+  border-radius: 8px;
+  border: 1px solid var(--glass-border);
+  overflow: hidden;
+  transition: all 0.3s var(--ease-out);
+}
+
+/* Gold sheen overlay */
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    105deg,
+    transparent 20%,
+    rgba(201, 162, 39, 0.1) 40%,
+    rgba(232, 212, 139, 0.15) 50%,
+    rgba(201, 162, 39, 0.1) 60%,
+    transparent 80%
+  );
+  transition: left 0.5s var(--ease-out);
 }
 
 .btn-primary:hover {
-  background: var(--gold-light);
+  border-color: var(--glass-border-gold);
+  box-shadow: 0 0 20px rgba(201, 162, 39, 0.15);
+}
+
+.btn-primary:hover::before {
+  left: 100%;
 }
 
 .btn-secondary {
+  position: relative;
   background: transparent;
   color: var(--text-primary);
   text-decoration: none;
   font-size: 0.95rem;
   font-weight: 500;
   padding: 0.65rem 1.25rem;
-  border-radius: 6px;
-  border: 1px solid var(--card-border);
-  transition: all 0.2s ease;
+  border-radius: 8px;
+  border: 1px solid var(--glass-border);
+  overflow: hidden;
+  transition: all 0.3s var(--ease-out);
 }
 
 .btn-secondary:hover {
-  background: rgba(255, 255, 255, 0.05);
-  border-color: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.03);
+  border-color: rgba(255, 255, 255, 0.15);
 }
 
 /* ========================================
@@ -141,7 +213,7 @@ body {
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  background: var(--bg-dark);
+  background: var(--bg-locked);
 }
 
 .unlock-container {
@@ -154,7 +226,61 @@ body {
 }
 
 /* ========================================
-   Abstract UI Environment
+   Environment Layers (Vignette, Grain, Glow)
+======================================== */
+
+/* Strong vignette - locked state */
+.env-vignette {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    ellipse 50% 50% at 50% 50%,
+    transparent 0%,
+    rgba(5, 5, 4, 0.3) 40%,
+    rgba(5, 5, 4, 0.7) 70%,
+    rgba(5, 5, 4, 0.95) 100%
+  );
+  pointer-events: none;
+  z-index: 5;
+}
+
+/* Grain/noise overlay */
+.env-grain {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.4;
+  pointer-events: none;
+  z-index: 6;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+}
+
+/* Global ambient glow - grows during transition */
+.env-ambient {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 150%;
+  height: 150%;
+  background: radial-gradient(
+    ellipse 40% 40% at 50% 50%,
+    rgba(201, 162, 39, 0.0) 0%,
+    transparent 60%
+  );
+  opacity: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ========================================
+   Abstract UI Environment - Literal UI Fragments
 ======================================== */
 .ui-environment {
   position: absolute;
@@ -163,167 +289,197 @@ body {
   width: 100%;
   height: 100%;
   pointer-events: none;
+  z-index: 2;
 }
 
-/* Base element styles */
-.ui-element {
+/* Base fragment styles */
+.ui-fragment {
   position: absolute;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: 12px;
-  transition: none; /* GSAP handles transitions */
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: 8px;
+  overflow: hidden;
 }
 
-/* Locked state: scattered, blurred, dim */
-.ui-element[data-depth="3"] {
+/* Locked state - all fragments very dim */
+.ui-fragment[data-depth="far"] {
+  filter: blur(12px);
+  opacity: 0.15;
+}
+
+.ui-fragment[data-depth="mid"] {
   filter: blur(8px);
-  opacity: 0.3;
+  opacity: 0.2;
 }
 
-.ui-element[data-depth="2"] {
-  filter: blur(4px);
-  opacity: 0.4;
+.ui-fragment[data-depth="near"] {
+  filter: blur(5px);
+  opacity: 0.25;
 }
 
-.ui-element[data-depth="1"] {
-  filter: blur(2px);
-  opacity: 0.5;
+/* Fragment types - Mini Cards */
+.frag-card {
+  border-radius: 10px;
+  padding: 8px;
 }
 
-/* Individual element positions and sizes (locked state) */
-.el-1 {
-  width: 180px;
-  height: 120px;
-  top: 8%;
-  left: 5%;
-  transform: rotate(-15deg);
+.frag-card::before {
+  content: '';
+  display: block;
+  width: 60%;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+  margin-bottom: 6px;
 }
 
-.el-2 {
-  width: 140px;
-  height: 80px;
-  top: 15%;
-  right: 8%;
-  transform: rotate(20deg);
+.frag-card::after {
+  content: '';
+  display: block;
+  width: 85%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 2px;
 }
 
-.el-3 {
-  width: 200px;
-  height: 60px;
-  bottom: 20%;
-  left: 10%;
-  transform: rotate(10deg);
+/* Fragment types - Pills/Tags */
+.frag-pill {
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.el-4 {
-  width: 160px;
-  height: 100px;
-  top: 25%;
-  left: 15%;
-  transform: rotate(-8deg);
+.frag-pill::before {
+  content: '';
+  width: 60%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 2px;
 }
 
-.el-5 {
-  width: 120px;
-  height: 140px;
-  top: 30%;
-  right: 12%;
-  transform: rotate(12deg);
+/* Fragment types - Table Rows */
+.frag-row {
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
 }
 
-.el-6 {
-  width: 100px;
-  height: 70px;
-  bottom: 35%;
-  left: 20%;
-  transform: rotate(-5deg);
-}
-
-.el-7 {
-  width: 180px;
-  height: 50px;
-  bottom: 25%;
-  right: 15%;
-  transform: rotate(8deg);
-}
-
-.el-8 {
-  width: 140px;
-  height: 90px;
-  top: 20%;
-  left: 25%;
-  transform: rotate(-3deg);
-}
-
-.el-9 {
-  width: 110px;
-  height: 110px;
-  top: 35%;
-  right: 22%;
+.frag-row::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  background: rgba(201, 162, 39, 0.15);
   border-radius: 50%;
-  transform: rotate(0deg);
+  flex-shrink: 0;
 }
 
-.el-10 {
-  width: 160px;
-  height: 45px;
-  bottom: 30%;
-  left: 28%;
-  transform: rotate(5deg);
+.frag-row::after {
+  content: '';
+  flex: 1;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 2px;
 }
 
-.el-11 {
-  width: 130px;
-  height: 80px;
-  bottom: 40%;
-  right: 25%;
-  transform: rotate(-10deg);
+/* Fragment types - Badges */
+.frag-badge {
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-color: rgba(201, 162, 39, 0.1);
 }
 
-/* Accent elements (lines and small circles) */
-.ui-accent {
+.frag-badge::before {
+  content: '';
+  width: 50%;
+  height: 5px;
+  background: rgba(201, 162, 39, 0.12);
+  border-radius: 3px;
+}
+
+/* Fragment types - Input Fields */
+.frag-input {
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+}
+
+.frag-input::before {
+  content: '';
+  width: 70%;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 2px;
+}
+
+/* Fragment types - Toggles */
+.frag-toggle {
+  border-radius: 20px;
+  position: relative;
+}
+
+.frag-toggle::before {
+  content: '';
   position: absolute;
-  background: rgba(201, 162, 39, 0.1);
-  opacity: 0.3;
-  transition: none;
-}
-
-.acc-1 {
-  width: 80px;
-  height: 3px;
-  top: 40%;
-  left: 8%;
-  transform: rotate(45deg);
-  border-radius: 2px;
-}
-
-.acc-2 {
-  width: 60px;
-  height: 3px;
-  top: 55%;
-  right: 10%;
-  transform: rotate(-30deg);
-  border-radius: 2px;
-}
-
-.acc-3 {
-  width: 20px;
-  height: 20px;
-  top: 65%;
-  left: 18%;
+  left: 4px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40%;
+  height: 70%;
+  background: rgba(255, 255, 255, 0.1);
   border-radius: 50%;
 }
 
-.acc-4 {
-  width: 15px;
-  height: 15px;
-  top: 25%;
-  right: 28%;
-  border-radius: 50%;
+/* Fragment types - Mini Charts */
+.frag-chart {
+  border-radius: 8px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 3px;
+  padding: 8px;
 }
+
+.frag-chart .bar {
+  width: 6px;
+  background: rgba(201, 162, 39, 0.15);
+  border-radius: 2px 2px 0 0;
+}
+
+/* Individual fragment positions and sizes */
+/* Far layer (6 fragments) */
+.frag-1 { width: 140px; height: 90px; top: 5%; left: 3%; transform: rotate(-12deg); }
+.frag-2 { width: 100px; height: 35px; top: 12%; right: 5%; transform: rotate(8deg); }
+.frag-3 { width: 160px; height: 45px; bottom: 15%; left: 5%; transform: rotate(6deg); }
+.frag-4 { width: 120px; height: 70px; bottom: 8%; right: 8%; transform: rotate(-8deg); }
+.frag-5 { width: 80px; height: 28px; top: 35%; left: 2%; transform: rotate(-5deg); }
+.frag-6 { width: 90px; height: 60px; top: 8%; left: 22%; transform: rotate(10deg); }
+
+/* Mid layer (7 fragments) */
+.frag-7 { width: 130px; height: 80px; top: 18%; left: 12%; transform: rotate(-6deg); }
+.frag-8 { width: 110px; height: 32px; top: 22%; right: 15%; transform: rotate(4deg); }
+.frag-9 { width: 70px; height: 26px; top: 45%; left: 8%; transform: rotate(-3deg); }
+.frag-10 { width: 150px; height: 38px; bottom: 28%; left: 15%; transform: rotate(5deg); }
+.frag-11 { width: 100px; height: 65px; bottom: 22%; right: 12%; transform: rotate(-7deg); }
+.frag-12 { width: 60px; height: 24px; top: 55%; right: 8%; transform: rotate(6deg); }
+.frag-13 { width: 85px; height: 50px; bottom: 35%; right: 20%; transform: rotate(-4deg); }
+
+/* Near layer (7 fragments) */
+.frag-14 { width: 120px; height: 75px; top: 25%; left: 20%; transform: rotate(-3deg); }
+.frag-15 { width: 90px; height: 30px; top: 30%; right: 22%; transform: rotate(2deg); }
+.frag-16 { width: 55px; height: 22px; top: 50%; left: 18%; transform: rotate(-2deg); }
+.frag-17 { width: 140px; height: 35px; bottom: 32%; left: 22%; transform: rotate(3deg); }
+.frag-18 { width: 80px; height: 55px; bottom: 28%; right: 18%; transform: rotate(-5deg); }
+.frag-19 { width: 65px; height: 25px; top: 60%; right: 25%; transform: rotate(4deg); }
+.frag-20 { width: 95px; height: 40px; bottom: 40%; right: 28%; transform: rotate(-2deg); }
 
 /* ========================================
-   The Key
+   The Key - Dramatic Material Transformation
 ======================================== */
 .key-container {
   position: relative;
@@ -339,41 +495,98 @@ body {
   flex-direction: column;
   align-items: center;
   transform-origin: center center;
-  /* Locked state: darker, smaller, no glow */
+  filter: brightness(0.4) saturate(0.3);
 }
 
-/* Key bow (the round top part with scales) */
+/* Key bow (the round top part with scales) - LOCKED: matte, dark */
 .key-bow {
-  width: 120px;
-  height: 120px;
+  width: 130px;
+  height: 130px;
   border-radius: 50%;
-  background: linear-gradient(145deg, #8b7355 0%, #6b5a47 50%, #4a3f35 100%);
+  background: linear-gradient(
+    155deg,
+    #4a4035 0%,
+    #3a332c 40%,
+    #2a2520 70%,
+    #1a1815 100%
+  );
   display: flex;
   align-items: center;
   justify-content: center;
   box-shadow: 
-    inset 0 2px 4px rgba(255, 255, 255, 0.1),
-    inset 0 -2px 4px rgba(0, 0, 0, 0.3),
-    0 4px 20px rgba(0, 0, 0, 0.5);
-  border: 2px solid rgba(139, 115, 85, 0.3);
+    inset 0 3px 6px rgba(255, 255, 255, 0.03),
+    inset 0 -4px 8px rgba(0, 0, 0, 0.5),
+    0 8px 32px rgba(0, 0, 0, 0.8);
+  border: 1px solid rgba(80, 70, 60, 0.2);
+  position: relative;
+}
+
+/* Rim light - invisible in locked state */
+.key-bow::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border-radius: 50%;
+  background: linear-gradient(
+    135deg,
+    transparent 40%,
+    rgba(232, 212, 139, 0) 50%,
+    transparent 60%
+  );
+  opacity: 0;
+  z-index: 1;
+}
+
+/* Specular highlight */
+.key-bow::after {
+  content: '';
+  position: absolute;
+  top: 8%;
+  left: 15%;
+  width: 35%;
+  height: 20%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(255, 255, 255, 0.0) 0%,
+    transparent 70%
+  );
+  border-radius: 50%;
+  opacity: 0;
 }
 
 .key-bow-inner {
-  width: 70px;
-  height: 50px;
+  width: 75px;
+  height: 55px;
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  gap: 20px;
+  gap: 22px;
   padding-bottom: 5px;
+  position: relative;
+  z-index: 2;
+}
+
+/* Scale beam */
+.key-bow-inner::before {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 65px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent 0%, #5a4a3a 20%, #6a5a4a 50%, #5a4a3a 80%, transparent 100%);
 }
 
 /* Scale pans */
 .scale-left,
 .scale-right {
-  width: 18px;
-  height: 12px;
-  background: linear-gradient(to bottom, #9a8672 0%, #7a6a5a 100%);
+  width: 20px;
+  height: 14px;
+  background: linear-gradient(to bottom, #5a4a3a 0%, #4a3a2a 100%);
   border-radius: 0 0 50% 50%;
   position: relative;
 }
@@ -382,66 +595,147 @@ body {
 .scale-right::before {
   content: '';
   position: absolute;
-  top: -20px;
+  top: -22px;
   left: 50%;
   transform: translateX(-50%);
   width: 1px;
-  height: 20px;
-  background: #7a6a5a;
+  height: 22px;
+  background: linear-gradient(to bottom, #6a5a4a 0%, #5a4a3a 100%);
 }
 
-/* Key shaft */
+/* Key shaft - LOCKED: dark matte */
 .key-shaft {
-  width: 16px;
-  height: 100px;
-  background: linear-gradient(90deg, #6b5a47 0%, #8b7355 30%, #9a8672 50%, #8b7355 70%, #6b5a47 100%);
+  width: 18px;
+  height: 110px;
+  background: linear-gradient(
+    90deg,
+    #3a332c 0%,
+    #4a4035 20%,
+    #5a4a3a 50%,
+    #4a4035 80%,
+    #3a332c 100%
+  );
   border-radius: 2px;
   box-shadow: 
-    inset 2px 0 4px rgba(255, 255, 255, 0.1),
-    inset -2px 0 4px rgba(0, 0, 0, 0.2);
+    inset 3px 0 6px rgba(255, 255, 255, 0.02),
+    inset -3px 0 6px rgba(0, 0, 0, 0.3),
+    4px 0 12px rgba(0, 0, 0, 0.4);
+  position: relative;
 }
 
-/* Key bit (the teeth at the bottom) */
+/* Shaft detail line */
+.key-shaft::before {
+  content: '';
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 60%;
+  background: linear-gradient(to bottom, transparent 0%, rgba(90, 74, 58, 0.3) 50%, transparent 100%);
+}
+
+/* Key bit (the teeth at the bottom) - LOCKED: dark matte */
 .key-bit {
-  width: 50px;
-  height: 30px;
-  background: linear-gradient(90deg, #6b5a47 0%, #8b7355 30%, #9a8672 50%, #8b7355 70%, #6b5a47 100%);
-  border-radius: 0 0 4px 4px;
+  width: 55px;
+  height: 35px;
+  background: linear-gradient(
+    90deg,
+    #3a332c 0%,
+    #4a4035 20%,
+    #5a4a3a 50%,
+    #4a4035 80%,
+    #3a332c 100%
+  );
+  border-radius: 0 0 6px 6px;
   position: relative;
   box-shadow: 
-    inset 2px 0 4px rgba(255, 255, 255, 0.1),
-    inset -2px 0 4px rgba(0, 0, 0, 0.2);
+    inset 3px 0 6px rgba(255, 255, 255, 0.02),
+    inset -3px 0 6px rgba(0, 0, 0, 0.3),
+    0 6px 16px rgba(0, 0, 0, 0.5);
 }
 
 .key-bit-notch {
   position: absolute;
-  top: 8px;
+  top: 10px;
   right: 0;
-  width: 20px;
-  height: 14px;
-  background: var(--bg-dark);
+  width: 22px;
+  height: 16px;
+  background: var(--bg-locked);
+  border-radius: 3px 0 0 3px;
+}
+
+/* Secondary notch */
+.key-bit::before {
+  content: '';
+  position: absolute;
+  bottom: 6px;
+  right: 0;
+  width: 12px;
+  height: 8px;
+  background: var(--bg-locked);
   border-radius: 2px 0 0 2px;
 }
 
-/* Key glow (hidden in locked state) */
+/* Key glow layers */
 .key-glow {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 200px;
-  height: 200px;
-  background: radial-gradient(circle, var(--gold-glow) 0%, transparent 70%);
+  width: 280px;
+  height: 280px;
+  background: radial-gradient(
+    circle,
+    rgba(201, 162, 39, 0.5) 0%,
+    rgba(201, 162, 39, 0.2) 30%,
+    transparent 60%
+  );
   opacity: 0;
   pointer-events: none;
 }
 
+/* Outer glow */
+.key-glow-outer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 450px;
+  height: 450px;
+  background: radial-gradient(
+    circle,
+    rgba(201, 162, 39, 0.15) 0%,
+    rgba(201, 162, 39, 0.05) 40%,
+    transparent 70%
+  );
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Key shadow on ground */
+.key-shadow {
+  position: absolute;
+  bottom: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 30px;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(0, 0, 0, 0.4) 0%,
+    transparent 70%
+  );
+  opacity: 0.3;
+  filter: blur(8px);
+}
+
 /* ========================================
-   Unlock Text
+   Unlock Text - Appears at end
 ======================================== */
 .unlock-text {
   position: absolute;
-  bottom: 15%;
+  bottom: 12%;
   left: 50%;
   transform: translateX(-50%);
   text-align: center;
@@ -450,19 +744,23 @@ body {
 }
 
 .unlock-headline {
-  font-size: 3.5rem;
+  font-size: 3.75rem;
   font-weight: 600;
-  letter-spacing: -0.03em;
-  margin-bottom: 1rem;
-  line-height: 1.1;
+  letter-spacing: -0.035em;
+  margin-bottom: 1.25rem;
+  line-height: 1.05;
+  background: linear-gradient(180deg, #ffffff 0%, rgba(255, 255, 255, 0.85) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .unlock-subhead {
-  font-size: 1.15rem;
+  font-size: 1.2rem;
   color: var(--text-secondary);
-  max-width: 500px;
-  margin: 0 auto 2rem;
-  line-height: 1.6;
+  max-width: 520px;
+  margin: 0 auto 2.5rem;
+  line-height: 1.65;
 }
 
 .unlock-cta {
@@ -476,29 +774,30 @@ body {
 ======================================== */
 .scroll-indicator {
   position: absolute;
-  bottom: 3rem;
+  bottom: 3.5rem;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0.75rem;
-  opacity: 0.6;
+  opacity: 0.5;
   z-index: 20;
 }
 
 .scroll-indicator span {
-  font-size: 0.85rem;
+  font-size: 0.75rem;
   color: var(--text-muted);
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.15em;
+  font-weight: 500;
 }
 
 .scroll-arrow {
-  width: 20px;
-  height: 20px;
-  border-right: 2px solid var(--text-muted);
-  border-bottom: 2px solid var(--text-muted);
+  width: 18px;
+  height: 18px;
+  border-right: 1.5px solid var(--text-muted);
+  border-bottom: 1.5px solid var(--text-muted);
   transform: rotate(45deg);
   animation: bounce 2s infinite;
 }
@@ -506,9 +805,11 @@ body {
 @keyframes bounce {
   0%, 100% {
     transform: rotate(45deg) translateY(0);
+    opacity: 0.5;
   }
   50% {
-    transform: rotate(45deg) translateY(5px);
+    transform: rotate(45deg) translateY(6px);
+    opacity: 1;
   }
 }
 
@@ -532,7 +833,7 @@ body {
 .content-section h2 {
   font-size: 2.5rem;
   font-weight: 600;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.025em;
   margin-bottom: 1rem;
 }
 
@@ -543,7 +844,7 @@ body {
   max-width: 600px;
 }
 
-/* Cards */
+/* Frosted Glass Cards */
 .card-row {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -551,17 +852,76 @@ body {
 }
 
 .card {
-  background: var(--card-bg);
-  border: 1px solid var(--card-border);
+  position: relative;
+  background: var(--glass-bg);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid var(--glass-border);
   border-radius: 16px;
   padding: 2rem;
-  transition: all 0.3s var(--ease-out);
+  overflow: hidden;
+  transition: all 0.4s var(--ease-out);
+}
+
+/* Gold edge highlight */
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(201, 162, 39, 0.0) 20%,
+    rgba(201, 162, 39, 0.0) 80%,
+    transparent 100%
+  );
+  transition: all 0.4s var(--ease-out);
+}
+
+/* Gold sheen overlay */
+.card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    105deg,
+    transparent 30%,
+    rgba(201, 162, 39, 0.03) 45%,
+    rgba(232, 212, 139, 0.05) 50%,
+    rgba(201, 162, 39, 0.03) 55%,
+    transparent 70%
+  );
+  transition: left 0.6s var(--ease-out);
+  pointer-events: none;
 }
 
 .card:hover {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.15);
-  transform: translateY(-2px);
+  border-color: var(--glass-border-gold);
+  transform: translateY(-3px);
+  box-shadow: 
+    0 12px 40px rgba(0, 0, 0, 0.3),
+    0 0 30px rgba(201, 162, 39, 0.08);
+}
+
+.card:hover::before {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(201, 162, 39, 0.3) 20%,
+    rgba(232, 212, 139, 0.4) 50%,
+    rgba(201, 162, 39, 0.3) 80%,
+    transparent 100%
+  );
+}
+
+.card:hover::after {
+  left: 100%;
 }
 
 .card-icon {
@@ -570,7 +930,8 @@ body {
   background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
   border-radius: 12px;
   margin-bottom: 1.5rem;
-  opacity: 0.8;
+  opacity: 0.85;
+  box-shadow: 0 4px 16px rgba(201, 162, 39, 0.2);
 }
 
 .card h3 {
@@ -582,7 +943,7 @@ body {
 .card p {
   font-size: 1rem;
   color: var(--text-secondary);
-  line-height: 1.6;
+  line-height: 1.65;
 }
 
 /* Steps */
@@ -600,8 +961,10 @@ body {
 .step-num {
   width: 56px;
   height: 56px;
-  background: var(--card-bg);
-  border: 1px solid var(--card-border);
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border-gold);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -610,6 +973,7 @@ body {
   font-weight: 600;
   margin: 0 auto 1.5rem;
   color: var(--gold);
+  box-shadow: 0 0 20px rgba(201, 162, 39, 0.1);
 }
 
 .step h3 {

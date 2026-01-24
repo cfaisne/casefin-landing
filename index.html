@@ -23,36 +23,47 @@
 
   <!-- Hero / Unlock Section (Pinned) -->
   <section class="unlock-section">
+    
+    <!-- Environment Layers -->
+    <div class="env-ambient"></div>
+    <div class="env-vignette"></div>
+    <div class="env-grain"></div>
+    
     <div class="unlock-container">
       
-      <!-- Abstract UI Environment -->
+      <!-- UI Fragment Cloud - Literal UI pieces -->
       <div class="ui-environment">
-        <!-- Layer 1: Far background elements (most blur, slowest movement) -->
-        <div class="ui-element el-1" data-depth="3"></div>
-        <div class="ui-element el-2" data-depth="3"></div>
-        <div class="ui-element el-3" data-depth="3"></div>
+        <!-- Far layer (6 fragments) -->
+        <div class="ui-fragment frag-card frag-1" data-depth="far"></div>
+        <div class="ui-fragment frag-pill frag-2" data-depth="far"></div>
+        <div class="ui-fragment frag-row frag-3" data-depth="far"></div>
+        <div class="ui-fragment frag-card frag-4" data-depth="far"></div>
+        <div class="ui-fragment frag-badge frag-5" data-depth="far"></div>
+        <div class="ui-fragment frag-card frag-6" data-depth="far"></div>
         
-        <!-- Layer 2: Mid elements -->
-        <div class="ui-element el-4" data-depth="2"></div>
-        <div class="ui-element el-5" data-depth="2"></div>
-        <div class="ui-element el-6" data-depth="2"></div>
-        <div class="ui-element el-7" data-depth="2"></div>
+        <!-- Mid layer (7 fragments) -->
+        <div class="ui-fragment frag-card frag-7" data-depth="mid"></div>
+        <div class="ui-fragment frag-input frag-8" data-depth="mid"></div>
+        <div class="ui-fragment frag-pill frag-9" data-depth="mid"></div>
+        <div class="ui-fragment frag-row frag-10" data-depth="mid"></div>
+        <div class="ui-fragment frag-card frag-11" data-depth="mid"></div>
+        <div class="ui-fragment frag-badge frag-12" data-depth="mid"></div>
+        <div class="ui-fragment frag-toggle frag-13" data-depth="mid"></div>
         
-        <!-- Layer 3: Near elements (less blur, faster movement) -->
-        <div class="ui-element el-8" data-depth="1"></div>
-        <div class="ui-element el-9" data-depth="1"></div>
-        <div class="ui-element el-10" data-depth="1"></div>
-        <div class="ui-element el-11" data-depth="1"></div>
-        
-        <!-- Accent elements (lines, circles) -->
-        <div class="ui-accent acc-1"></div>
-        <div class="ui-accent acc-2"></div>
-        <div class="ui-accent acc-3"></div>
-        <div class="ui-accent acc-4"></div>
+        <!-- Near layer (7 fragments) -->
+        <div class="ui-fragment frag-card frag-14" data-depth="near"></div>
+        <div class="ui-fragment frag-input frag-15" data-depth="near"></div>
+        <div class="ui-fragment frag-pill frag-16" data-depth="near"></div>
+        <div class="ui-fragment frag-row frag-17" data-depth="near"></div>
+        <div class="ui-fragment frag-card frag-18" data-depth="near"></div>
+        <div class="ui-fragment frag-badge frag-19" data-depth="near"></div>
+        <div class="ui-fragment frag-toggle frag-20" data-depth="near"></div>
       </div>
       
       <!-- The Key -->
       <div class="key-container">
+        <div class="key-glow-outer"></div>
+        <div class="key-glow"></div>
         <div class="key">
           <div class="key-bow">
             <div class="key-bow-inner">
@@ -64,8 +75,8 @@
           <div class="key-bit">
             <div class="key-bit-notch"></div>
           </div>
-          <div class="key-glow"></div>
         </div>
+        <div class="key-shadow"></div>
       </div>
       
       <!-- Text that appears on unlock -->
