@@ -944,29 +944,27 @@ body {
 
 /* ========================================
    Key - Continuous Journey Mode
-   After hero, key becomes fixed and escorts user
+   After hero, key becomes fixed centered, rotates with scroll
 ======================================== */
 .key-container.journey-mode {
-  position: fixed;
+  position: fixed !important;
+  top: 50% !important;
+  left: 50% !important;
   z-index: 50;
   pointer-events: none;
-  will-change: transform, opacity;
+  will-change: transform;
 }
 
-/* Reduced glow in journey mode */
-.key-container.journey-mode .key-glow {
-  opacity: 0.3 !important;
-  transform: scale(0.6) !important;
+/* Key element itself for rotation */
+.key-container.journey-mode .key {
+  will-change: transform;
 }
 
-.key-container.journey-mode .key-glow-outer {
-  opacity: 0.15 !important;
-  transform: scale(0.5) !important;
-}
-
+/* Reduced glow in journey mode - controlled by JS */
+.key-container.journey-mode .key-glow,
+.key-container.journey-mode .key-glow-outer,
 .key-container.journey-mode .key-shadow {
-  opacity: 0.2 !important;
-  transform: scale(0.7) !important;
+  will-change: opacity, transform;
 }
 
 /* ========================================

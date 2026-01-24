@@ -504,7 +504,8 @@ function initCinematicUnlock() {
   });
   
   // ========================================
-  // Key Journey - Single key escorts user through page
+  // Key Journey - Scroll-driven, centered, rotating
+  // Everything tied to scroll position - reversible
   // ========================================
   initKeyJourney(keyContainer, key, keyGlow, keyGlowOuter, keyShadow);
 }
@@ -513,192 +514,146 @@ function initKeyJourney(keyContainer, key, keyGlow, keyGlowOuter, keyShadow) {
   const unlockSection = document.querySelector('.unlock-section');
   const keyhole = document.querySelector('.keyhole');
   const ctaSection = document.querySelector('.section-cta');
+  const contentStart = document.querySelector('.section-law-firms');
   
-  if (!keyContainer || !unlockSection) return;
+  if (!keyContainer || !unlockSection || !contentStart) return;
   
-  // Store original parent for reference
-  const originalParent = keyContainer.parentElement;
+  // Calculate total scroll distance for content sections
+  const footer = document.querySelector('.footer');
   
-  // Track if we're in journey mode
-  let inJourneyMode = false;
+  // ========================================
+  // Phase 1: Hero exit → Journey mode
+  // Key shrinks and becomes fixed centered
+  // ========================================
   
-  // Key positions along the journey (left side, subtle presence)
-  const journeyPositions = [
-    { section: '.section-law-firms', top: '25%', left: '8%', scale: 0.22 },
-    { section: '.section-funders', top: '25%', left: '8%', scale: 0.20 },
-    { section: '.section-how', top: '30%', left: '8%', scale: 0.18 },
-    { section: '.section-cta', top: '40%', left: '50%', scale: 0.16, centerX: true }
-  ];
-  
-  // Transition from hero to journey mode
   ScrollTrigger.create({
     trigger: unlockSection,
-    start: 'bottom 60%',
+    start: 'bottom 80%',
     end: 'bottom 20%',
-    onEnter: () => {
-      if (inJourneyMode) return;
-      inJourneyMode = true;
+    scrub: true,
+    onUpdate: (self) => {
+      const progress = self.progress;
       
-      // Get current position of key
-      const rect = keyContainer.getBoundingClientRect();
+      if (progress > 0 && !keyContainer.classList.contains('journey-mode')) {
+        // Switch to fixed positioning
+        const rect = keyContainer.getBoundingClientRect();
+        document.body.appendChild(keyContainer);
+        keyContainer.classList.add('journey-mode');
+        
+        gsap.set(keyContainer, {
+          position: 'fixed',
+          top: '50%',
+          left: '50%',
+          xPercent: -50,
+          yPercent: -50,
+          margin: 0
+        });
+      }
       
-      // Move to body and make fixed
-      document.body.appendChild(keyContainer);
-      keyContainer.classList.add('journey-mode');
+      if (progress === 0 && keyContainer.classList.contains('journey-mode')) {
+        // Return to hero
+        keyContainer.classList.remove('journey-mode');
+        const unlockContainer = document.querySelector('.unlock-container');
+        if (unlockContainer) {
+          unlockContainer.appendChild(keyContainer);
+        }
+        
+        gsap.set(keyContainer, {
+          position: 'relative',
+          top: 'auto',
+          left: 'auto',
+          xPercent: 0,
+          yPercent: 0,
+          scale: 1,
+          rotation: 0,
+          y: -50
+        });
+        
+        // Restore glow
+        gsap.set(keyGlow, { opacity: CONFIG.GLOW_INNER_MAX, scale: 1.2 });
+        gsap.set(keyGlowOuter, { opacity: CONFIG.GLOW_OUTER_MAX, scale: 1 });
+        gsap.set(keyShadow, { opacity: 0.55, scale: 1.15 });
+      }
       
-      // Set initial fixed position matching current visual position
-      gsap.set(keyContainer, {
-        position: 'fixed',
-        top: rect.top,
-        left: rect.left,
-        transform: 'none',
-        margin: 0
-      });
+      // Scale and glow reduction during transition
+      const scale = gsap.utils.interpolate(1, 0.18, progress);
+      const glowOpacity = gsap.utils.interpolate(CONFIG.GLOW_INNER_MAX, 0.2, progress);
+      const glowOuterOpacity = gsap.utils.interpolate(CONFIG.GLOW_OUTER_MAX, 0.08, progress);
       
-      // Animate to first journey position
-      const firstPos = journeyPositions[0];
-      gsap.to(keyContainer, {
-        top: firstPos.top,
-        left: firstPos.left,
-        scale: firstPos.scale,
-        duration: 1.5,
-        ease: 'power2.inOut'
-      });
-      
-      // Reduce glow
-      gsap.to(keyGlow, {
-        opacity: 0.25,
-        scale: 0.5,
-        duration: 1.5
-      });
-      
-      gsap.to(keyGlowOuter, {
-        opacity: 0.1,
-        scale: 0.4,
-        duration: 1.5
-      });
-      
-      gsap.to(keyShadow, {
-        opacity: 0.15,
-        scale: 0.6,
-        duration: 1.5
-      });
-    },
-    onLeaveBack: () => {
-      if (!inJourneyMode) return;
-      inJourneyMode = false;
-      
-      // Return key to hero section
-      keyContainer.classList.remove('journey-mode');
-      originalParent.appendChild(keyContainer);
-      
-      // Reset to hero state
-      gsap.set(keyContainer, {
-        position: 'relative',
-        top: 'auto',
-        left: 'auto',
-        scale: 1,
-        transform: '',
-        margin: ''
-      });
-      
-      // Restore glow
-      gsap.to(keyGlow, {
-        opacity: CONFIG.GLOW_INNER_MAX,
-        scale: 1.2,
-        duration: 0.8
-      });
-      
-      gsap.to(keyGlowOuter, {
-        opacity: CONFIG.GLOW_OUTER_MAX,
-        scale: 1,
-        duration: 0.8
-      });
-      
-      gsap.to(keyShadow, {
-        opacity: 0.55,
-        scale: 1.15,
-        duration: 0.8
-      });
+      if (keyContainer.classList.contains('journey-mode')) {
+        gsap.set(keyContainer, { scale: scale });
+        gsap.set(keyGlow, { opacity: glowOpacity, scale: gsap.utils.interpolate(1.2, 0.6, progress) });
+        gsap.set(keyGlowOuter, { opacity: glowOuterOpacity, scale: gsap.utils.interpolate(1, 0.5, progress) });
+        gsap.set(keyShadow, { opacity: gsap.utils.interpolate(0.55, 0.15, progress), scale: gsap.utils.interpolate(1.15, 0.6, progress) });
+      }
     }
   });
   
-  // Position updates as user scrolls through sections
-  journeyPositions.forEach((pos, index) => {
-    const section = document.querySelector(pos.section);
-    if (!section) return;
-    
-    ScrollTrigger.create({
-      trigger: section,
-      start: 'top 70%',
-      end: 'bottom 30%',
-      onEnter: () => {
-        if (!inJourneyMode) return;
-        
-        gsap.to(keyContainer, {
-          top: pos.top,
-          left: pos.left,
-          scale: pos.scale,
-          xPercent: pos.centerX ? -50 : 0,
-          duration: 1.2,
-          ease: 'power2.inOut'
-        });
-      },
-      onEnterBack: () => {
-        if (!inJourneyMode) return;
-        
-        gsap.to(keyContainer, {
-          top: pos.top,
-          left: pos.left,
-          scale: pos.scale,
-          xPercent: pos.centerX ? -50 : 0,
-          duration: 1.2,
-          ease: 'power2.inOut'
-        });
-      }
-    });
+  // ========================================
+  // Phase 2: Content sections - scroll-driven rotation
+  // Key spins slowly as user scrolls, shimmer effect
+  // ========================================
+  
+  ScrollTrigger.create({
+    trigger: contentStart,
+    start: 'top 80%',
+    end: () => ctaSection ? `${ctaSection.offsetTop - 200}px top` : '+=2000',
+    scrub: 1,
+    onUpdate: (self) => {
+      if (!keyContainer.classList.contains('journey-mode')) return;
+      
+      const progress = self.progress;
+      
+      // Scroll-driven rotation - full 360° over the content
+      const rotation = progress * 360;
+      gsap.set(key, { rotation: rotation });
+      
+      // Scroll-driven shimmer - pulse the glow based on rotation
+      // Creates a "shine" effect as it rotates
+      const shimmerPhase = Math.sin(progress * Math.PI * 6); // 3 full shimmer cycles
+      const shimmerGlow = 0.2 + (shimmerPhase * 0.15); // 0.05 to 0.35
+      
+      gsap.set(keyGlow, { opacity: shimmerGlow });
+    }
   });
   
-  // Final CTA interaction - key aligns with keyhole
+  // ========================================
+  // Phase 3: CTA section - key aligns for unlock
+  // Stops rotating, tilts, moves above button
+  // ========================================
+  
   if (ctaSection && keyhole) {
     ScrollTrigger.create({
       trigger: ctaSection,
-      start: 'top 50%',
-      end: 'bottom bottom',
-      onEnter: () => {
-        if (!inJourneyMode) return;
+      start: 'top 60%',
+      end: 'top 20%',
+      scrub: true,
+      onUpdate: (self) => {
+        if (!keyContainer.classList.contains('journey-mode')) return;
+        
+        const progress = self.progress;
+        
+        // Stop rotation, settle to tilted position
+        const finalRotation = 360 - (progress * 18); // Ends at -18° tilt
+        gsap.set(key, { rotation: finalRotation });
+        
+        // Move up slightly toward button area
+        const yOffset = progress * -15; // Move up 15% of viewport
+        gsap.set(keyContainer, { 
+          top: `${50 + yOffset}%`,
+          yPercent: -50
+        });
+        
+        // Increase glow as approaching keyhole
+        const approachGlow = 0.2 + (progress * 0.25);
+        gsap.set(keyGlow, { opacity: approachGlow });
         
         // Activate keyhole
-        keyhole.classList.add('active');
-        
-        // Subtle rotation to suggest "ready to unlock"
-        gsap.to(key, {
-          rotation: -8,
-          duration: 0.8,
-          ease: 'power2.out'
-        });
-        
-        // Slight glow increase
-        gsap.to(keyGlow, {
-          opacity: 0.4,
-          duration: 0.8
-        });
-      },
-      onLeaveBack: () => {
-        if (!inJourneyMode) return;
-        
-        keyhole.classList.remove('active');
-        
-        gsap.to(key, {
-          rotation: 0,
-          duration: 0.6,
-          ease: 'power2.inOut'
-        });
-        
-        gsap.to(keyGlow, {
-          opacity: 0.25,
-          duration: 0.6
-        });
+        if (progress > 0.5) {
+          keyhole.classList.add('active');
+        } else {
+          keyhole.classList.remove('active');
+        }
       }
     });
   }
