@@ -33,14 +33,14 @@ const CONFIG = {
   AMBIENT_MAX: 0.4,
   
   // UI Fragment blur (when fully visible)
-  BLUR_FAR: 20,
-  BLUR_MID: 12,
-  BLUR_NEAR: 8,
+  BLUR_FAR: 4,
+  BLUR_MID: 2,
+  BLUR_NEAR: 1,
   
-  // UI Element opacity targets (subtle, 4-8% range)
-  FRAG_OPACITY_FAR: 0.05,
-  FRAG_OPACITY_MID: 0.06,
-  FRAG_OPACITY_NEAR: 0.08,
+  // UI Element opacity targets (more visible now)
+  FRAG_OPACITY_FAR: 0.35,
+  FRAG_OPACITY_MID: 0.45,
+  FRAG_OPACITY_NEAR: 0.55,
   
   // Timing breakpoints (0-1 scale)
   BEAT_1: 0,      // Start - clean, just key

@@ -250,7 +250,7 @@ body {
 }
 
 /* ========================================
-   UI Environment - Data Room Elements
+   UI Environment - Simple shapes (performant)
    Starts invisible, fades in during scroll
 ======================================== */
 .ui-environment {
@@ -270,217 +270,72 @@ body {
   opacity: 0; /* Start invisible - GSAP fades in */
 }
 
-/* Depth layers define blur and opacity when visible */
+/* Depth layers - LIGHT blur for performance */
 .ui-element[data-depth="far"] {
-  filter: blur(20px);
+  filter: blur(4px);
 }
 
 .ui-element[data-depth="mid"] {
-  filter: blur(12px);
+  filter: blur(2px);
 }
 
 .ui-element[data-depth="near"] {
-  filter: blur(8px);
+  filter: blur(1px);
 }
 
 /* ========================================
-   Data Room UI Elements
+   Simple Shape Types - Performant
 ======================================== */
 
-/* Case Cards - Main element */
-.case-card {
-  width: 180px;
-  height: 120px;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: 8px;
-  padding: 12px;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.case-card-header {
-  width: 40%;
-  height: 4px;
-  background: rgba(196, 185, 152, 0.15);
-  border-radius: 2px;
-}
-
-.case-card-title {
-  width: 75%;
-  height: 6px;
-  background: rgba(255, 255, 255, 0.08);
-  border-radius: 3px;
-}
-
-.case-card-meta {
-  width: 55%;
-  height: 4px;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 2px;
-  margin-top: auto;
-}
-
-.case-card-score {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  font-size: 11px;
-  font-weight: 600;
-  color: rgba(196, 185, 152, 0.25);
-  font-family: var(--font-main);
-}
-
-/* Score Pills */
-.score-pill {
-  padding: 4px 10px;
-  background: rgba(196, 185, 152, 0.08);
-  border: 1px solid rgba(196, 185, 152, 0.1);
-  border-radius: 12px;
-  font-size: 10px;
-  font-weight: 500;
-  color: rgba(196, 185, 152, 0.3);
-  white-space: nowrap;
-}
-
-/* Filter Chips */
-.filter-chip {
-  padding: 4px 10px;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 4px;
-  font-size: 10px;
-  color: rgba(255, 255, 255, 0.25);
-  white-space: nowrap;
-}
-
-/* Search Bars */
-.search-bar {
-  width: 160px;
-  height: 32px;
+/* Card shapes - suggest case cards */
+.card-shape {
   background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: 6px;
-  display: flex;
-  align-items: center;
-  padding: 0 10px;
-  gap: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: 8px;
 }
 
-.search-icon {
-  width: 12px;
-  height: 12px;
-  border: 1.5px solid rgba(255, 255, 255, 0.15);
-  border-radius: 50%;
-  position: relative;
-}
-
-.search-icon::after {
+/* Pseudo-element for header bar */
+.card-shape::before {
   content: '';
   position: absolute;
-  bottom: -3px;
-  right: -3px;
-  width: 4px;
-  height: 1.5px;
-  background: rgba(255, 255, 255, 0.15);
-  transform: rotate(45deg);
-}
-
-.search-placeholder {
-  width: 60%;
+  top: 10px;
+  left: 12px;
+  width: 35%;
   height: 4px;
-  background: rgba(255, 255, 255, 0.06);
+  background: rgba(196, 185, 152, 0.08);
   border-radius: 2px;
 }
 
-/* Table Headers */
-.table-header {
-  display: flex;
-  gap: 16px;
-  padding: 8px 12px;
-  background: rgba(255, 255, 255, 0.025);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.th-cell {
-  font-size: 9px;
-  font-weight: 500;
-  color: rgba(255, 255, 255, 0.2);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-/* Progress Rows */
-.progress-row {
-  width: 140px;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.progress-label {
-  width: 50%;
-  height: 4px;
-  background: rgba(255, 255, 255, 0.06);
-  border-radius: 2px;
-}
-
-.progress-bar {
-  width: 100%;
-  height: 6px;
+/* Pseudo-element for content line */
+.card-shape::after {
+  content: '';
+  position: absolute;
+  top: 22px;
+  left: 12px;
+  width: 55%;
+  height: 3px;
   background: rgba(255, 255, 255, 0.04);
-  border-radius: 3px;
-  overflow: hidden;
-}
-
-.progress-fill {
-  height: 100%;
-  background: rgba(196, 185, 152, 0.2);
-  border-radius: 3px;
-}
-
-/* Metadata Rows */
-.meta-row {
-  display: flex;
-  gap: 12px;
-  align-items: center;
-}
-
-.meta-label {
-  width: 50px;
-  height: 4px;
-  background: rgba(255, 255, 255, 0.08);
   border-radius: 2px;
 }
 
-.meta-value {
-  width: 70px;
-  height: 4px;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 2px;
+/* Row shapes - suggest table rows */
+.row-shape {
+  background: rgba(255, 255, 255, 0.02);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
 }
 
-/* Status Tags */
-.status-tag {
-  width: 48px;
-  height: 18px;
+/* Pill shapes - suggest score pills */
+.pill-shape {
+  background: rgba(196, 185, 152, 0.05);
+  border: 1px solid rgba(196, 185, 152, 0.06);
+  border-radius: 12px;
+}
+
+/* Chip shapes - suggest filter chips */
+.chip-shape {
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(255, 255, 255, 0.04);
   border-radius: 4px;
-}
-
-.tag-active {
-  background: rgba(76, 175, 80, 0.12);
-  border: 1px solid rgba(76, 175, 80, 0.15);
-}
-
-.tag-pending {
-  background: rgba(255, 193, 7, 0.1);
-  border: 1px solid rgba(255, 193, 7, 0.12);
-}
-
-.tag-review {
-  background: rgba(33, 150, 243, 0.1);
-  border: 1px solid rgba(33, 150, 243, 0.12);
 }
 
 /* ========================================
