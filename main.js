@@ -33,14 +33,14 @@ const CONFIG = {
   AMBIENT_MAX: 0.4,
   
   // UI Fragment blur (when fully visible)
-  BLUR_FAR: 4,
-  BLUR_MID: 2,
-  BLUR_NEAR: 1,
+  BLUR_FAR: 3,
+  BLUR_MID: 1.5,
+  BLUR_NEAR: 0.5,
   
-  // UI Element opacity targets (more visible now)
-  FRAG_OPACITY_FAR: 0.35,
-  FRAG_OPACITY_MID: 0.45,
-  FRAG_OPACITY_NEAR: 0.55,
+  // Data fragment opacity targets
+  FRAG_OPACITY_FAR: 0.5,
+  FRAG_OPACITY_MID: 0.65,
+  FRAG_OPACITY_NEAR: 0.8,
   
   // Timing breakpoints (0-1 scale)
   BEAT_1: 0,      // Start - clean, just key
@@ -86,10 +86,10 @@ function initCinematicUnlock() {
   const scaleRight = document.querySelector('.scale-right');
   
   // UI Fragments by depth
-  const fragsFar = document.querySelectorAll('.ui-element[data-depth="far"]');
-  const fragsMid = document.querySelectorAll('.ui-element[data-depth="mid"]');
-  const fragsNear = document.querySelectorAll('.ui-element[data-depth="near"]');
-  const allFrags = document.querySelectorAll('.ui-element');
+  const fragsFar = document.querySelectorAll('.data-frag[data-depth="far"]');
+  const fragsMid = document.querySelectorAll('.data-frag[data-depth="mid"]');
+  const fragsNear = document.querySelectorAll('.data-frag[data-depth="near"]');
+  const allFrags = document.querySelectorAll('.data-frag');
   
   // ========================================
   // Set Initial States

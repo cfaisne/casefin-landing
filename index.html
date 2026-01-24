@@ -30,72 +30,123 @@
     
     <div class="unlock-container">
       
-      <!-- Data Room Environment - Simple shapes suggesting UI artifacts -->
+      <!-- Data Room Fragments - Dense, clustered around key -->
       <div class="ui-environment">
         
-        <!-- FAR LAYER - Deep background, subtle blur -->
-        <div class="ui-element card-shape" data-depth="far" style="width:160px;height:100px;top:3%;left:2%"></div>
-        <div class="ui-element card-shape" data-depth="far" style="width:140px;height:90px;top:5%;left:18%"></div>
-        <div class="ui-element card-shape" data-depth="far" style="width:150px;height:95px;top:2%;right:15%"></div>
-        <div class="ui-element card-shape" data-depth="far" style="width:165px;height:105px;top:8%;right:1%"></div>
-        <div class="ui-element card-shape" data-depth="far" style="width:145px;height:92px;bottom:25%;left:1%"></div>
-        <div class="ui-element card-shape" data-depth="far" style="width:155px;height:98px;bottom:20%;right:2%"></div>
-        <div class="ui-element card-shape" data-depth="far" style="width:135px;height:88px;bottom:5%;left:12%"></div>
-        <div class="ui-element card-shape" data-depth="far" style="width:148px;height:94px;bottom:8%;right:10%"></div>
-        <div class="ui-element row-shape" data-depth="far" style="width:180px;height:28px;top:22%;left:0%"></div>
-        <div class="ui-element row-shape" data-depth="far" style="width:170px;height:26px;top:35%;right:0%"></div>
-        <div class="ui-element row-shape" data-depth="far" style="width:165px;height:24px;bottom:35%;left:3%"></div>
-        <div class="ui-element row-shape" data-depth="far" style="width:175px;height:28px;bottom:15%;right:5%"></div>
-        <div class="ui-element pill-shape" data-depth="far" style="width:70px;height:24px;top:45%;left:1%"></div>
-        <div class="ui-element pill-shape" data-depth="far" style="width:65px;height:22px;top:50%;right:2%"></div>
-        <div class="ui-element pill-shape" data-depth="far" style="width:72px;height:24px;bottom:45%;left:2%"></div>
-        <div class="ui-element pill-shape" data-depth="far" style="width:68px;height:22px;bottom:50%;right:1%"></div>
+        <!-- LAYER 1: Far/Deep - largest blur, lowest opacity -->
+        <!-- Dollar amounts floating -->
+        <div class="data-frag amount-frag" data-depth="far" style="top:8%;left:22%">$2.5M</div>
+        <div class="data-frag amount-frag" data-depth="far" style="top:12%;right:20%">$18.7M</div>
+        <div class="data-frag amount-frag" data-depth="far" style="bottom:18%;left:18%">$4.2M</div>
+        <div class="data-frag amount-frag" data-depth="far" style="bottom:12%;right:25%">$8.9M</div>
+        <div class="data-frag amount-frag lg" data-depth="far" style="top:25%;left:8%">$188.7M</div>
+        <div class="data-frag amount-frag lg" data-depth="far" style="bottom:28%;right:10%">$12.4M</div>
         
-        <!-- MID LAYER - Middle depth -->
-        <div class="ui-element card-shape" data-depth="mid" style="width:130px;height:85px;top:10%;left:5%"></div>
-        <div class="ui-element card-shape" data-depth="mid" style="width:120px;height:80px;top:6%;left:25%"></div>
-        <div class="ui-element card-shape" data-depth="mid" style="width:125px;height:82px;top:12%;right:22%"></div>
-        <div class="ui-element card-shape" data-depth="mid" style="width:135px;height:88px;top:4%;right:6%"></div>
-        <div class="ui-element card-shape" data-depth="mid" style="width:128px;height:84px;bottom:30%;left:4%"></div>
-        <div class="ui-element card-shape" data-depth="mid" style="width:132px;height:86px;bottom:28%;right:5%"></div>
-        <div class="ui-element card-shape" data-depth="mid" style="width:118px;height:78px;bottom:12%;left:8%"></div>
-        <div class="ui-element card-shape" data-depth="mid" style="width:138px;height:90px;bottom:15%;right:7%"></div>
-        <div class="ui-element pill-shape" data-depth="mid" style="width:80px;height:26px;top:18%;left:8%"></div>
-        <div class="ui-element pill-shape" data-depth="mid" style="width:75px;height:24px;top:25%;right:10%"></div>
-        <div class="ui-element pill-shape" data-depth="mid" style="width:82px;height:26px;bottom:22%;left:10%"></div>
-        <div class="ui-element pill-shape" data-depth="mid" style="width:78px;height:24px;bottom:18%;right:8%"></div>
-        <div class="ui-element chip-shape" data-depth="mid" style="width:55px;height:22px;top:32%;left:6%"></div>
-        <div class="ui-element chip-shape" data-depth="mid" style="width:50px;height:20px;top:35%;left:14%"></div>
-        <div class="ui-element chip-shape" data-depth="mid" style="width:52px;height:22px;top:30%;right:8%"></div>
-        <div class="ui-element chip-shape" data-depth="mid" style="width:48px;height:20px;top:33%;right:16%"></div>
-        <div class="ui-element chip-shape" data-depth="mid" style="width:54px;height:22px;bottom:32%;left:8%"></div>
-        <div class="ui-element chip-shape" data-depth="mid" style="width:58px;height:22px;bottom:35%;right:6%"></div>
-        <div class="ui-element row-shape" data-depth="mid" style="width:150px;height:24px;top:55%;left:3%"></div>
-        <div class="ui-element row-shape" data-depth="mid" style="width:145px;height:22px;top:60%;right:4%"></div>
-        <div class="ui-element row-shape" data-depth="mid" style="width:155px;height:26px;bottom:55%;left:5%"></div>
-        <div class="ui-element row-shape" data-depth="mid" style="width:148px;height:24px;bottom:60%;right:3%"></div>
+        <!-- Partial case cards (cropped) -->
+        <div class="data-frag card-frag" data-depth="far" style="top:5%;left:5%;width:180px">
+          <div class="card-label">Case Name</div>
+          <div class="card-type">Commercial Litigation</div>
+        </div>
+        <div class="data-frag card-frag" data-depth="far" style="top:6%;right:8%;width:160px">
+          <div class="card-amount">$2.5M</div>
+          <div class="card-label">Evergreen Capital</div>
+        </div>
+        <div class="data-frag card-frag" data-depth="far" style="bottom:8%;left:10%;width:170px">
+          <div class="card-label">Under Review</div>
+          <div class="card-meta">28m ago</div>
+        </div>
+        <div class="data-frag card-frag" data-depth="far" style="bottom:5%;right:5%;width:150px">
+          <div class="card-amount">$500K-$5M</div>
+        </div>
         
-        <!-- NEAR LAYER - Closest -->
-        <div class="ui-element card-shape" data-depth="near" style="width:110px;height:72px;top:15%;left:10%"></div>
-        <div class="ui-element card-shape" data-depth="near" style="width:105px;height:70px;top:12%;left:28%"></div>
-        <div class="ui-element card-shape" data-depth="near" style="width:115px;height:75px;top:18%;right:25%"></div>
-        <div class="ui-element card-shape" data-depth="near" style="width:108px;height:68px;top:10%;right:8%"></div>
-        <div class="ui-element card-shape" data-depth="near" style="width:112px;height:74px;bottom:35%;left:8%"></div>
-        <div class="ui-element card-shape" data-depth="near" style="width:118px;height:76px;bottom:32%;right:10%"></div>
-        <div class="ui-element card-shape" data-depth="near" style="width:100px;height:66px;bottom:12%;left:15%"></div>
-        <div class="ui-element card-shape" data-depth="near" style="width:114px;height:72px;bottom:15%;right:12%"></div>
-        <div class="ui-element pill-shape" data-depth="near" style="width:65px;height:22px;top:28%;left:12%"></div>
-        <div class="ui-element pill-shape" data-depth="near" style="width:60px;height:20px;top:32%;right:15%"></div>
-        <div class="ui-element pill-shape" data-depth="near" style="width:68px;height:22px;bottom:25%;left:18%"></div>
-        <div class="ui-element pill-shape" data-depth="near" style="width:62px;height:20px;bottom:28%;right:12%"></div>
-        <div class="ui-element chip-shape" data-depth="near" style="width:45px;height:18px;top:38%;left:15%"></div>
-        <div class="ui-element chip-shape" data-depth="near" style="width:42px;height:18px;top:42%;right:18%"></div>
-        <div class="ui-element chip-shape" data-depth="near" style="width:48px;height:18px;bottom:38%;left:20%"></div>
-        <div class="ui-element chip-shape" data-depth="near" style="width:44px;height:18px;bottom:42%;right:15%"></div>
-        <div class="ui-element row-shape" data-depth="near" style="width:120px;height:20px;top:48%;left:10%"></div>
-        <div class="ui-element row-shape" data-depth="near" style="width:115px;height:18px;top:52%;right:12%"></div>
-        <div class="ui-element row-shape" data-depth="near" style="width:125px;height:20px;bottom:48%;left:12%"></div>
-        <div class="ui-element row-shape" data-depth="near" style="width:118px;height:18px;bottom:52%;right:10%"></div>
+        <!-- LAYER 2: Mid - medium blur, medium opacity -->
+        <!-- Score pills -->
+        <div class="data-frag pill-frag score" data-depth="mid" style="top:18%;left:28%">85% Score</div>
+        <div class="data-frag pill-frag score" data-depth="mid" style="top:22%;right:26%">Match: 82%</div>
+        <div class="data-frag pill-frag score" data-depth="mid" style="bottom:25%;left:30%">92% Match</div>
+        <div class="data-frag pill-frag score" data-depth="mid" style="bottom:20%;right:28%">78%</div>
+        
+        <!-- Status badges -->
+        <div class="data-frag pill-frag status" data-depth="mid" style="top:28%;left:20%">Under Review</div>
+        <div class="data-frag pill-frag status" data-depth="mid" style="top:15%;right:32%">Matched</div>
+        <div class="data-frag pill-frag status" data-depth="mid" style="bottom:30%;left:25%">Funded</div>
+        <div class="data-frag pill-frag status" data-depth="mid" style="bottom:15%;right:22%">Intake</div>
+        
+        <!-- Case type tags -->
+        <div class="data-frag pill-frag type" data-depth="mid" style="top:35%;left:15%">Commercial</div>
+        <div class="data-frag pill-frag type" data-depth="mid" style="top:32%;right:18%">Personal Injury</div>
+        <div class="data-frag pill-frag type" data-depth="mid" style="bottom:35%;right:20%">IP Litigation</div>
+        
+        <!-- Dollar amounts closer -->
+        <div class="data-frag amount-frag" data-depth="mid" style="top:38%;left:25%">$2.1M</div>
+        <div class="data-frag amount-frag" data-depth="mid" style="top:42%;right:28%">$3.8M</div>
+        <div class="data-frag amount-frag" data-depth="mid" style="bottom:38%;left:28%">$1.4M</div>
+        <div class="data-frag amount-frag" data-depth="mid" style="bottom:42%;right:25%">$6.2M</div>
+        
+        <!-- Partial cards mid-layer -->
+        <div class="data-frag card-frag" data-depth="mid" style="top:12%;left:15%;width:140px">
+          <div class="card-label">Case Name</div>
+          <div class="card-amount">$12.4M</div>
+        </div>
+        <div class="data-frag card-frag" data-depth="mid" style="top:18%;right:12%;width:150px">
+          <div class="card-score">85% Score</div>
+          <div class="card-label">Case Name</div>
+        </div>
+        <div class="data-frag card-frag" data-depth="mid" style="bottom:15%;left:12%;width:130px">
+          <div class="card-type">Under Review</div>
+        </div>
+        <div class="data-frag card-frag" data-depth="mid" style="bottom:18%;right:15%;width:145px">
+          <div class="card-label">Evergreen Capital</div>
+          <div class="card-amount">$2.7M</div>
+        </div>
+        
+        <!-- Document fragments -->
+        <div class="data-frag doc-frag" data-depth="mid" style="top:48%;left:12%">
+          <span class="doc-icon">📄</span>Complaint.pdf
+        </div>
+        <div class="data-frag doc-frag" data-depth="mid" style="bottom:48%;left:15%">
+          <span class="doc-icon">📄</span>Retainer_Agreement.pdf
+        </div>
+        <div class="data-frag doc-frag" data-depth="mid" style="bottom:52%;right:12%">
+          <span class="doc-icon">📄</span>Damages_Report.xlsx
+        </div>
+        
+        <!-- Progress bars -->
+        <div class="data-frag progress-frag" data-depth="mid" style="top:55%;right:15%">
+          <div class="progress-track"><div class="progress-fill" style="width:65%"></div></div>
+        </div>
+        <div class="data-frag progress-frag" data-depth="mid" style="bottom:55%;left:18%">
+          <div class="progress-track"><div class="progress-fill" style="width:40%"></div></div>
+        </div>
+        
+        <!-- LAYER 3: Near - least blur, highest opacity, closest to key -->
+        <!-- Floating amounts very close -->
+        <div class="data-frag amount-frag" data-depth="near" style="top:32%;left:32%">$2.5M</div>
+        <div class="data-frag amount-frag" data-depth="near" style="top:35%;right:32%">$4.1M</div>
+        <div class="data-frag amount-frag" data-depth="near" style="bottom:32%;left:35%">$1.8M</div>
+        <div class="data-frag amount-frag" data-depth="near" style="bottom:35%;right:34%">$3.2M</div>
+        
+        <!-- Pills close to key -->
+        <div class="data-frag pill-frag score" data-depth="near" style="top:28%;left:35%">91%</div>
+        <div class="data-frag pill-frag status" data-depth="near" style="top:30%;right:35%">Bid</div>
+        <div class="data-frag pill-frag score" data-depth="near" style="bottom:28%;left:38%">87%</div>
+        <div class="data-frag pill-frag status" data-depth="near" style="bottom:30%;right:36%">Offer</div>
+        
+        <!-- Tiny fragments / labels -->
+        <div class="data-frag label-frag" data-depth="near" style="top:40%;left:30%">Intake</div>
+        <div class="data-frag label-frag" data-depth="near" style="top:42%;right:30%">Review</div>
+        <div class="data-frag label-frag" data-depth="near" style="bottom:40%;left:32%">Match</div>
+        <div class="data-frag label-frag" data-depth="near" style="bottom:42%;right:32%">Fund</div>
+        
+        <!-- Funder names -->
+        <div class="data-frag funder-frag" data-depth="near" style="top:45%;left:28%">Burford</div>
+        <div class="data-frag funder-frag" data-depth="near" style="bottom:45%;right:28%">Longford</div>
+        
+        <!-- Small connecting lines suggesting flow -->
+        <div class="data-frag line-frag" data-depth="near" style="top:38%;left:40%;width:40px"></div>
+        <div class="data-frag line-frag" data-depth="near" style="top:38%;right:40%;width:40px"></div>
+        <div class="data-frag line-frag" data-depth="near" style="bottom:38%;left:42%;width:35px"></div>
+        <div class="data-frag line-frag" data-depth="near" style="bottom:38%;right:42%;width:35px"></div>
         
       </div>
       

@@ -2,15 +2,15 @@
    CSS Variables & Reset
 ======================================== */
 :root {
-  /* Colors - Clean charcoal base */
-  --bg-base: #2F2E2C;
-  --bg-dark: #2F2E2C;
-  --bg-section: #28272A;
-  --gold: #c9a227;
-  --gold-light: #e8d48b;
-  --gold-warm: #d4a845;
-  --gold-glow: rgba(201, 162, 39, 0.4);
-  --gold-intense: rgba(212, 168, 69, 0.8);
+  /* Colors - Warm neutral graphite */
+  --bg-base: #36332F;
+  --bg-dark: #2E2B28;
+  --bg-section: #2E2B28;
+  --gold: #B8A67A;
+  --gold-light: #D4C9A8;
+  --gold-warm: #C4B592;
+  --gold-glow: rgba(184, 166, 122, 0.3);
+  --gold-intense: rgba(196, 181, 146, 0.6);
   --champagne: #C4B998;
   --brass: #A89968;
   --text-primary: #ffffff;
@@ -18,10 +18,10 @@
   --text-muted: rgba(255, 255, 255, 0.4);
   
   /* Frosted Glass */
-  --glass-bg: rgba(47, 46, 44, 0.7);
-  --glass-bg-strong: rgba(47, 46, 44, 0.9);
+  --glass-bg: rgba(54, 51, 47, 0.7);
+  --glass-bg-strong: rgba(54, 51, 47, 0.9);
   --glass-border: rgba(255, 255, 255, 0.08);
-  --glass-border-gold: rgba(201, 162, 39, 0.15);
+  --glass-border-gold: rgba(184, 166, 122, 0.15);
   --glass-blur: 20px;
   
   /* Card styling */
@@ -75,7 +75,7 @@ body {
 
 /* Nav bar appears on scroll - added via JS */
 .nav.scrolled {
-  background: rgba(47, 46, 44, 0.85);
+  background: rgba(54, 51, 47, 0.9);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
 }
@@ -250,8 +250,8 @@ body {
 }
 
 /* ========================================
-   UI Environment - Simple shapes (performant)
-   Starts invisible, fades in during scroll
+   UI Environment - Data Room Fragments
+   Dense, clustered around key, real content
 ======================================== */
 .ui-environment {
   position: absolute;
@@ -264,78 +264,162 @@ body {
   overflow: hidden;
 }
 
-/* Base element styles - START INVISIBLE */
-.ui-element {
+/* Base fragment styles */
+.data-frag {
   position: absolute;
-  opacity: 0; /* Start invisible - GSAP fades in */
+  font-family: var(--font-main);
+  opacity: 0; /* GSAP fades in */
 }
 
-/* Depth layers - LIGHT blur for performance */
-.ui-element[data-depth="far"] {
-  filter: blur(4px);
+/* Depth layers */
+.data-frag[data-depth="far"] {
+  filter: blur(3px);
 }
 
-.ui-element[data-depth="mid"] {
-  filter: blur(2px);
+.data-frag[data-depth="mid"] {
+  filter: blur(1.5px);
 }
 
-.ui-element[data-depth="near"] {
-  filter: blur(1px);
+.data-frag[data-depth="near"] {
+  filter: blur(0.5px);
 }
 
 /* ========================================
-   Simple Shape Types - Performant
+   Fragment Types - Real data room content
 ======================================== */
 
-/* Card shapes - suggest case cards */
-.card-shape {
+/* Dollar amounts - floating figures */
+.amount-frag {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: rgba(196, 185, 146, 0.5);
+  letter-spacing: -0.02em;
+}
+
+.amount-frag.lg {
+  font-size: 1.6rem;
+  color: rgba(196, 185, 146, 0.4);
+}
+
+/* Score/Status pills */
+.pill-frag {
+  padding: 4px 10px;
+  border-radius: 10px;
+  font-size: 0.7rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.pill-frag.score {
+  background: rgba(184, 166, 122, 0.12);
+  border: 1px solid rgba(184, 166, 122, 0.15);
+  color: rgba(196, 185, 146, 0.7);
+}
+
+.pill-frag.status {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.pill-frag.type {
   background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 0.65rem;
+}
+
+/* Partial case cards */
+.card-frag {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: 8px;
+  padding: 10px 12px;
 }
 
-/* Pseudo-element for header bar */
-.card-shape::before {
-  content: '';
-  position: absolute;
-  top: 10px;
-  left: 12px;
-  width: 35%;
+.card-frag .card-label {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 4px;
+}
+
+.card-frag .card-amount {
+  font-size: 1rem;
+  font-weight: 600;
+  color: rgba(196, 185, 146, 0.6);
+  margin-bottom: 2px;
+}
+
+.card-frag .card-type {
+  font-size: 0.65rem;
+  color: rgba(255, 255, 255, 0.35);
+}
+
+.card-frag .card-meta {
+  font-size: 0.6rem;
+  color: rgba(255, 255, 255, 0.25);
+}
+
+.card-frag .card-score {
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: rgba(184, 166, 122, 0.6);
+  margin-bottom: 4px;
+}
+
+/* Document list fragments */
+.doc-frag {
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.4);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.doc-frag .doc-icon {
+  font-size: 0.8rem;
+  opacity: 0.6;
+}
+
+/* Funder names */
+.funder-frag {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: rgba(196, 185, 146, 0.45);
+}
+
+/* Small labels */
+.label-frag {
+  font-size: 0.6rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.3);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Progress bars */
+.progress-frag {
+  width: 80px;
+}
+
+.progress-track {
   height: 4px;
-  background: rgba(196, 185, 152, 0.08);
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: rgba(184, 166, 122, 0.35);
   border-radius: 2px;
 }
 
-/* Pseudo-element for content line */
-.card-shape::after {
-  content: '';
-  position: absolute;
-  top: 22px;
-  left: 12px;
-  width: 55%;
-  height: 3px;
-  background: rgba(255, 255, 255, 0.04);
-  border-radius: 2px;
-}
-
-/* Row shapes - suggest table rows */
-.row-shape {
-  background: rgba(255, 255, 255, 0.02);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
-}
-
-/* Pill shapes - suggest score pills */
-.pill-shape {
-  background: rgba(196, 185, 152, 0.05);
-  border: 1px solid rgba(196, 185, 152, 0.06);
-  border-radius: 12px;
-}
-
-/* Chip shapes - suggest filter chips */
-.chip-shape {
-  background: rgba(255, 255, 255, 0.025);
-  border: 1px solid rgba(255, 255, 255, 0.04);
-  border-radius: 4px;
+/* Connecting lines */
+.line-frag {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(184, 166, 122, 0.2), transparent);
 }
 
 /* ========================================
