@@ -943,116 +943,30 @@ body {
 }
 
 /* ========================================
-   Floating Mini Key (follows user through page)
+   Key - Continuous Journey Mode
+   After hero, key becomes fixed and escorts user
 ======================================== */
-.floating-key {
+.key-container.journey-mode {
   position: fixed;
-  width: 45px;
-  height: 45px;
-  z-index: 90;
+  z-index: 50;
   pointer-events: none;
-  opacity: 0;
-  transform: scale(0);
-  will-change: transform, opacity, left, top;
+  will-change: transform, opacity;
 }
 
-.floating-key-glow {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 80px;
-  height: 80px;
-  background: radial-gradient(
-    circle,
-    rgba(201, 162, 39, 0.3) 0%,
-    rgba(201, 162, 39, 0.1) 40%,
-    transparent 70%
-  );
-  animation: floatingKeyPulse 3s ease-in-out infinite;
+/* Reduced glow in journey mode */
+.key-container.journey-mode .key-glow {
+  opacity: 0.3 !important;
+  transform: scale(0.6) !important;
 }
 
-@keyframes floatingKeyPulse {
-  0%, 100% {
-    opacity: 0.6;
-    transform: translate(-50%, -50%) scale(1);
-  }
-  50% {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1.15);
-  }
+.key-container.journey-mode .key-glow-outer {
+  opacity: 0.15 !important;
+  transform: scale(0.5) !important;
 }
 
-.floating-key-icon {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.mini-key-bow {
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
-  background: linear-gradient(155deg, #e8d48b 0%, #c9a227 40%, #a08020 100%);
-  box-shadow: 
-    inset 0 2px 4px rgba(255, 255, 255, 0.3),
-    0 2px 8px rgba(0, 0, 0, 0.3),
-    0 0 15px rgba(201, 162, 39, 0.4);
-  position: relative;
-}
-
-/* Scale icon inside bow */
-.mini-key-bow::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 12px;
-  height: 1px;
-  background: rgba(0, 0, 0, 0.3);
-}
-
-.mini-key-bow::after {
-  content: '';
-  position: absolute;
-  bottom: 4px;
-  left: 5px;
-  width: 4px;
-  height: 4px;
-  background: linear-gradient(to bottom, #c9a227, #a08020);
-  border-radius: 0 0 2px 2px;
-  box-shadow: 8px 0 0 linear-gradient(to bottom, #c9a227, #a08020);
-}
-
-.mini-key-shaft {
-  width: 4px;
-  height: 14px;
-  background: linear-gradient(90deg, #a08020, #c9a227, #e8d48b, #c9a227, #a08020);
-  box-shadow: 0 0 6px rgba(201, 162, 39, 0.3);
-}
-
-.mini-key-bit {
-  width: 10px;
-  height: 6px;
-  background: linear-gradient(90deg, #a08020, #c9a227, #e8d48b, #c9a227, #a08020);
-  border-radius: 0 0 2px 2px;
-  position: relative;
-}
-
-.mini-key-bit::before {
-  content: '';
-  position: absolute;
-  top: 1px;
-  right: 0;
-  width: 4px;
-  height: 3px;
-  background: var(--bg-dark);
-  border-radius: 1px 0 0 1px;
+.key-container.journey-mode .key-shadow {
+  opacity: 0.2 !important;
+  transform: scale(0.7) !important;
 }
 
 /* ========================================
@@ -1073,6 +987,11 @@ body {
   padding-left: 20px;
 }
 
+.btn-label {
+  position: relative;
+  z-index: 1;
+}
+
 .keyhole {
   position: relative;
   width: 14px;
@@ -1080,43 +999,49 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  opacity: 0.6;
-  transition: opacity 0.3s ease;
+  opacity: 0.5;
+  transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
 .keyhole::before {
   content: '';
   width: 10px;
   height: 10px;
-  background: rgba(201, 162, 39, 0.4);
+  background: rgba(201, 162, 39, 0.35);
   border-radius: 50%;
   box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.3);
+  transition: all 0.4s ease;
 }
 
 .keyhole::after {
   content: '';
   width: 5px;
   height: 10px;
-  background: rgba(201, 162, 39, 0.4);
+  background: rgba(201, 162, 39, 0.35);
   border-radius: 0 0 2px 2px;
   margin-top: -2px;
   box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.3);
+  transition: all 0.4s ease;
 }
 
 .btn-with-keyhole:hover .keyhole {
-  opacity: 1;
+  opacity: 0.8;
 }
 
 .btn-with-keyhole:hover .keyhole::before,
 .btn-with-keyhole:hover .keyhole::after {
-  background: rgba(201, 162, 39, 0.7);
+  background: rgba(201, 162, 39, 0.6);
 }
 
-/* Keyhole glow when key approaches */
-.keyhole.key-near::before,
-.keyhole.key-near::after {
+/* Keyhole activated state - when key arrives */
+.keyhole.active::before,
+.keyhole.active::after {
   background: var(--gold);
-  box-shadow: 0 0 12px rgba(201, 162, 39, 0.6);
+  box-shadow: 0 0 12px rgba(201, 162, 39, 0.5);
+}
+
+.keyhole.active {
+  opacity: 1;
 }
 
 /* ========================================
@@ -1162,7 +1087,8 @@ body {
     text-align: center;
   }
   
-  .floating-key {
+  /* Hide journey key on mobile - too small */
+  .key-container.journey-mode {
     display: none;
   }
 }

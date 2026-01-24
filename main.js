@@ -504,61 +504,127 @@ function initCinematicUnlock() {
   });
   
   // ========================================
-  // Floating Key - Guides through page
+  // Key Journey - Single key escorts user through page
   // ========================================
-  initFloatingKey();
+  initKeyJourney(keyContainer, key, keyGlow, keyGlowOuter, keyShadow);
 }
 
-function initFloatingKey() {
-  const floatingKey = document.querySelector('.floating-key');
-  const keyhole = document.querySelector('.keyhole');
+function initKeyJourney(keyContainer, key, keyGlow, keyGlowOuter, keyShadow) {
   const unlockSection = document.querySelector('.unlock-section');
+  const keyhole = document.querySelector('.keyhole');
+  const ctaSection = document.querySelector('.section-cta');
   
-  if (!floatingKey) return;
+  if (!keyContainer || !unlockSection) return;
   
-  // Initial state - hidden
-  gsap.set(floatingKey, { 
-    opacity: 0, 
-    scale: 0,
-    left: '50%',
-    top: '50%',
-    xPercent: -50,
-    yPercent: -50
-  });
+  // Store original parent for reference
+  const originalParent = keyContainer.parentElement;
   
-  // Define key positions for each section
-  // These are viewport-relative positions the key will float to
-  const keyPositions = [
-    { section: '.section-law-firms', x: '15%', y: '35%' },
-    { section: '.section-funders', x: '85%', y: '40%' },
-    { section: '.section-how', x: '12%', y: '50%' },
-    { section: '.section-cta', x: '50%', y: '60%' }  // Approaches keyhole
+  // Track if we're in journey mode
+  let inJourneyMode = false;
+  
+  // Key positions along the journey (left side, subtle presence)
+  const journeyPositions = [
+    { section: '.section-law-firms', top: '25%', left: '8%', scale: 0.22 },
+    { section: '.section-funders', top: '25%', left: '8%', scale: 0.20 },
+    { section: '.section-how', top: '30%', left: '8%', scale: 0.18 },
+    { section: '.section-cta', top: '40%', left: '50%', scale: 0.16, centerX: true }
   ];
   
-  // Show floating key after hero section completes
+  // Transition from hero to journey mode
   ScrollTrigger.create({
     trigger: unlockSection,
-    start: 'bottom 20%',
+    start: 'bottom 60%',
+    end: 'bottom 20%',
     onEnter: () => {
-      gsap.to(floatingKey, {
-        opacity: 1,
-        scale: 1,
-        duration: 0.6,
-        ease: 'back.out(1.5)'
+      if (inJourneyMode) return;
+      inJourneyMode = true;
+      
+      // Get current position of key
+      const rect = keyContainer.getBoundingClientRect();
+      
+      // Move to body and make fixed
+      document.body.appendChild(keyContainer);
+      keyContainer.classList.add('journey-mode');
+      
+      // Set initial fixed position matching current visual position
+      gsap.set(keyContainer, {
+        position: 'fixed',
+        top: rect.top,
+        left: rect.left,
+        transform: 'none',
+        margin: 0
+      });
+      
+      // Animate to first journey position
+      const firstPos = journeyPositions[0];
+      gsap.to(keyContainer, {
+        top: firstPos.top,
+        left: firstPos.left,
+        scale: firstPos.scale,
+        duration: 1.5,
+        ease: 'power2.inOut'
+      });
+      
+      // Reduce glow
+      gsap.to(keyGlow, {
+        opacity: 0.25,
+        scale: 0.5,
+        duration: 1.5
+      });
+      
+      gsap.to(keyGlowOuter, {
+        opacity: 0.1,
+        scale: 0.4,
+        duration: 1.5
+      });
+      
+      gsap.to(keyShadow, {
+        opacity: 0.15,
+        scale: 0.6,
+        duration: 1.5
       });
     },
     onLeaveBack: () => {
-      gsap.to(floatingKey, {
-        opacity: 0,
-        scale: 0,
-        duration: 0.3,
-        ease: 'power2.in'
+      if (!inJourneyMode) return;
+      inJourneyMode = false;
+      
+      // Return key to hero section
+      keyContainer.classList.remove('journey-mode');
+      originalParent.appendChild(keyContainer);
+      
+      // Reset to hero state
+      gsap.set(keyContainer, {
+        position: 'relative',
+        top: 'auto',
+        left: 'auto',
+        scale: 1,
+        transform: '',
+        margin: ''
+      });
+      
+      // Restore glow
+      gsap.to(keyGlow, {
+        opacity: CONFIG.GLOW_INNER_MAX,
+        scale: 1.2,
+        duration: 0.8
+      });
+      
+      gsap.to(keyGlowOuter, {
+        opacity: CONFIG.GLOW_OUTER_MAX,
+        scale: 1,
+        duration: 0.8
+      });
+      
+      gsap.to(keyShadow, {
+        opacity: 0.55,
+        scale: 1.15,
+        duration: 0.8
       });
     }
   });
   
-  // Animate key position for each section
-  keyPositions.forEach((pos, index) => {
+  // Position updates as user scrolls through sections
+  journeyPositions.forEach((pos, index) => {
     const section = document.querySelector(pos.section);
     if (!section) return;
     
@@ -567,57 +633,71 @@ function initFloatingKey() {
       start: 'top 70%',
       end: 'bottom 30%',
       onEnter: () => {
-        gsap.to(floatingKey, {
-          left: pos.x,
-          top: pos.y,
+        if (!inJourneyMode) return;
+        
+        gsap.to(keyContainer, {
+          top: pos.top,
+          left: pos.left,
+          scale: pos.scale,
+          xPercent: pos.centerX ? -50 : 0,
           duration: 1.2,
           ease: 'power2.inOut'
         });
-        
-        // Special handling for CTA section - key approaches keyhole
-        if (pos.section === '.section-cta' && keyhole) {
-          keyhole.classList.add('key-near');
-        }
       },
-      onLeaveBack: () => {
-        // Move to previous position
-        if (index > 0) {
-          const prevPos = keyPositions[index - 1];
-          gsap.to(floatingKey, {
-            left: prevPos.x,
-            top: prevPos.y,
-            duration: 1.2,
-            ease: 'power2.inOut'
-          });
-        }
+      onEnterBack: () => {
+        if (!inJourneyMode) return;
         
-        if (pos.section === '.section-cta' && keyhole) {
-          keyhole.classList.remove('key-near');
-        }
+        gsap.to(keyContainer, {
+          top: pos.top,
+          left: pos.left,
+          scale: pos.scale,
+          xPercent: pos.centerX ? -50 : 0,
+          duration: 1.2,
+          ease: 'power2.inOut'
+        });
       }
     });
   });
   
-  // Final animation - key moves to keyhole on CTA
-  const ctaSection = document.querySelector('.section-cta');
+  // Final CTA interaction - key aligns with keyhole
   if (ctaSection && keyhole) {
     ScrollTrigger.create({
       trigger: ctaSection,
-      start: 'center center',
+      start: 'top 50%',
+      end: 'bottom bottom',
       onEnter: () => {
-        // Get keyhole position
-        const keyholeRect = keyhole.getBoundingClientRect();
-        const targetX = keyholeRect.left + keyholeRect.width / 2;
-        const targetY = keyholeRect.top - 30; // Position just above keyhole
+        if (!inJourneyMode) return;
         
-        gsap.to(floatingKey, {
-          left: targetX,
-          top: targetY,
-          xPercent: -50,
-          yPercent: -50,
-          scale: 0.8,
-          duration: 1,
+        // Activate keyhole
+        keyhole.classList.add('active');
+        
+        // Subtle rotation to suggest "ready to unlock"
+        gsap.to(key, {
+          rotation: -8,
+          duration: 0.8,
+          ease: 'power2.out'
+        });
+        
+        // Slight glow increase
+        gsap.to(keyGlow, {
+          opacity: 0.4,
+          duration: 0.8
+        });
+      },
+      onLeaveBack: () => {
+        if (!inJourneyMode) return;
+        
+        keyhole.classList.remove('active');
+        
+        gsap.to(key, {
+          rotation: 0,
+          duration: 0.6,
           ease: 'power2.inOut'
+        });
+        
+        gsap.to(keyGlow, {
+          opacity: 0.25,
+          duration: 0.6
         });
       }
     });
