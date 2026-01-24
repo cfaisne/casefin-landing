@@ -3,21 +3,23 @@
 ======================================== */
 :root {
   /* Colors - Clean charcoal base */
-  --bg-base: #2B2A28;
-  --bg-dark: #2B2A28;
-  --bg-section: #242321;
+  --bg-base: #2F2E2C;
+  --bg-dark: #2F2E2C;
+  --bg-section: #28272A;
   --gold: #c9a227;
   --gold-light: #e8d48b;
   --gold-warm: #d4a845;
   --gold-glow: rgba(201, 162, 39, 0.4);
   --gold-intense: rgba(212, 168, 69, 0.8);
+  --champagne: #C4B998;
+  --brass: #A89968;
   --text-primary: #ffffff;
   --text-secondary: rgba(255, 255, 255, 0.7);
   --text-muted: rgba(255, 255, 255, 0.4);
   
   /* Frosted Glass */
-  --glass-bg: rgba(43, 42, 40, 0.7);
-  --glass-bg-strong: rgba(43, 42, 40, 0.9);
+  --glass-bg: rgba(47, 46, 44, 0.7);
+  --glass-bg-strong: rgba(47, 46, 44, 0.9);
   --glass-border: rgba(255, 255, 255, 0.08);
   --glass-border-gold: rgba(201, 162, 39, 0.15);
   --glass-blur: 20px;
@@ -73,7 +75,7 @@ body {
 
 /* Nav bar appears on scroll - added via JS */
 .nav.scrolled {
-  background: rgba(43, 42, 40, 0.85);
+  background: rgba(47, 46, 44, 0.85);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
 }
@@ -248,7 +250,7 @@ body {
 }
 
 /* ========================================
-   UI Environment - Dense Cloud of Fragments
+   UI Environment - Data Room Elements
    Starts invisible, fades in during scroll
 ======================================== */
 .ui-environment {
@@ -262,114 +264,224 @@ body {
   overflow: hidden;
 }
 
-/* Base fragment styles - START INVISIBLE */
-.ui-fragment {
+/* Base element styles - START INVISIBLE */
+.ui-element {
   position: absolute;
-  background: rgba(45, 40, 35, 0.5);
-  border: 1px solid rgba(201, 162, 39, 0.06);
-  border-radius: 6px;
   opacity: 0; /* Start invisible - GSAP fades in */
 }
 
-/* Depth layers define blur when visible */
-.ui-fragment[data-depth="far"] {
-  filter: blur(6px);
+/* Depth layers define blur and opacity when visible */
+.ui-element[data-depth="far"] {
+  filter: blur(20px);
 }
 
-.ui-fragment[data-depth="mid"] {
-  filter: blur(3px);
+.ui-element[data-depth="mid"] {
+  filter: blur(12px);
 }
 
-.ui-fragment[data-depth="near"] {
-  filter: blur(1px);
+.ui-element[data-depth="near"] {
+  filter: blur(8px);
 }
 
 /* ========================================
-   Fragment Types - Subtle, atmospheric
+   Data Room UI Elements
 ======================================== */
 
-/* Cards */
-.frag-card {
+/* Case Cards - Main element */
+.case-card {
+  width: 180px;
+  height: 120px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: 8px;
-  background: linear-gradient(180deg, rgba(55, 48, 40, 0.5) 0%, rgba(40, 35, 30, 0.4) 100%);
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
 
-.frag-card::before {
-  content: '';
-  position: absolute;
-  top: 10px;
-  left: 12px;
-  right: 35%;
-  height: 5px;
-  background: rgba(201, 162, 39, 0.12);
+.case-card-header {
+  width: 40%;
+  height: 4px;
+  background: rgba(196, 185, 152, 0.15);
+  border-radius: 2px;
+}
+
+.case-card-title {
+  width: 75%;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.08);
   border-radius: 3px;
 }
 
-.frag-card::after {
+.case-card-meta {
+  width: 55%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 2px;
+  margin-top: auto;
+}
+
+.case-card-score {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 11px;
+  font-weight: 600;
+  color: rgba(196, 185, 152, 0.25);
+  font-family: var(--font-main);
+}
+
+/* Score Pills */
+.score-pill {
+  padding: 4px 10px;
+  background: rgba(196, 185, 152, 0.08);
+  border: 1px solid rgba(196, 185, 152, 0.1);
+  border-radius: 12px;
+  font-size: 10px;
+  font-weight: 500;
+  color: rgba(196, 185, 152, 0.3);
+  white-space: nowrap;
+}
+
+/* Filter Chips */
+.filter-chip {
+  padding: 4px 10px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 4px;
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.25);
+  white-space: nowrap;
+}
+
+/* Search Bars */
+.search-bar {
+  width: 160px;
+  height: 32px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  gap: 8px;
+}
+
+.search-icon {
+  width: 12px;
+  height: 12px;
+  border: 1.5px solid rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+  position: relative;
+}
+
+.search-icon::after {
   content: '';
   position: absolute;
-  top: 22px;
-  left: 12px;
-  right: 20%;
-  height: 3px;
+  bottom: -3px;
+  right: -3px;
+  width: 4px;
+  height: 1.5px;
+  background: rgba(255, 255, 255, 0.15);
+  transform: rotate(45deg);
+}
+
+.search-placeholder {
+  width: 60%;
+  height: 4px;
   background: rgba(255, 255, 255, 0.06);
   border-radius: 2px;
 }
 
-/* Small cards */
-.frag-card-sm {
-  border-radius: 6px;
-  background: rgba(50, 44, 38, 0.45);
+/* Table Headers */
+.table-header {
+  display: flex;
+  gap: 16px;
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.025);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-/* Buttons */
-.frag-btn {
-  border-radius: 5px;
-  background: rgba(201, 162, 39, 0.1);
-  border-color: rgba(201, 162, 39, 0.12);
+.th-cell {
+  font-size: 9px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.2);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
-/* Table rows */
-.frag-table {
+/* Progress Rows */
+.progress-row {
+  width: 140px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.progress-label {
+  width: 50%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 2px;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: rgba(196, 185, 152, 0.2);
+  border-radius: 3px;
+}
+
+/* Metadata Rows */
+.meta-row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.meta-label {
+  width: 50px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 2px;
+}
+
+.meta-value {
+  width: 70px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 2px;
+}
+
+/* Status Tags */
+.status-tag {
+  width: 48px;
+  height: 18px;
   border-radius: 4px;
-  background: rgba(40, 36, 32, 0.5);
 }
 
-/* Files */
-.frag-file {
-  border-radius: 4px;
-  background: linear-gradient(180deg, rgba(60, 52, 44, 0.5) 0%, rgba(45, 40, 35, 0.4) 100%);
+.tag-active {
+  background: rgba(76, 175, 80, 0.12);
+  border: 1px solid rgba(76, 175, 80, 0.15);
 }
 
-/* Badges */
-.frag-badge {
-  border-radius: 10px;
-  background: rgba(201, 162, 39, 0.08);
-  border-color: rgba(201, 162, 39, 0.1);
+.tag-pending {
+  background: rgba(255, 193, 7, 0.1);
+  border: 1px solid rgba(255, 193, 7, 0.12);
 }
 
-/* Inputs */
-.frag-input {
-  border-radius: 5px;
-  background: rgba(30, 28, 25, 0.6);
-  border-color: rgba(255, 255, 255, 0.08);
+.tag-review {
+  background: rgba(33, 150, 243, 0.1);
+  border: 1px solid rgba(33, 150, 243, 0.12);
 }
-
-/* Dots */
-.frag-dot {
-  border-radius: 50%;
-  background: rgba(201, 162, 39, 0.25);
-  border: none;
-}
-
-/* Lines */
-.frag-line {
-  border-radius: 1px;
-  background: rgba(201, 162, 39, 0.1);
-  border: none;
-}
-
-/* Fragment positions now inline in HTML for flexibility */
 
 /* ========================================
    The Key - Dramatic Material Transformation
