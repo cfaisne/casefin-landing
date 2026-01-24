@@ -439,11 +439,6 @@ function initCinematicUnlock() {
     duration: 0.15
   }, CONFIG.BEAT_5);
   
-  masterTL.to(envGrain, {
-    opacity: CONFIG.GRAIN_UNLOCKED,
-    duration: 0.15
-  }, CONFIG.BEAT_5);
-  
   // ========================================
   // Post-Unlock Content Animations
   // ========================================
@@ -507,4 +502,124 @@ function initCinematicUnlock() {
       }, 0.2);
     }
   });
+  
+  // ========================================
+  // Floating Key - Guides through page
+  // ========================================
+  initFloatingKey();
+}
+
+function initFloatingKey() {
+  const floatingKey = document.querySelector('.floating-key');
+  const keyhole = document.querySelector('.keyhole');
+  const unlockSection = document.querySelector('.unlock-section');
+  
+  if (!floatingKey) return;
+  
+  // Initial state - hidden
+  gsap.set(floatingKey, { 
+    opacity: 0, 
+    scale: 0,
+    left: '50%',
+    top: '50%',
+    xPercent: -50,
+    yPercent: -50
+  });
+  
+  // Define key positions for each section
+  // These are viewport-relative positions the key will float to
+  const keyPositions = [
+    { section: '.section-law-firms', x: '15%', y: '35%' },
+    { section: '.section-funders', x: '85%', y: '40%' },
+    { section: '.section-how', x: '12%', y: '50%' },
+    { section: '.section-cta', x: '50%', y: '60%' }  // Approaches keyhole
+  ];
+  
+  // Show floating key after hero section completes
+  ScrollTrigger.create({
+    trigger: unlockSection,
+    start: 'bottom 20%',
+    onEnter: () => {
+      gsap.to(floatingKey, {
+        opacity: 1,
+        scale: 1,
+        duration: 0.6,
+        ease: 'back.out(1.5)'
+      });
+    },
+    onLeaveBack: () => {
+      gsap.to(floatingKey, {
+        opacity: 0,
+        scale: 0,
+        duration: 0.3,
+        ease: 'power2.in'
+      });
+    }
+  });
+  
+  // Animate key position for each section
+  keyPositions.forEach((pos, index) => {
+    const section = document.querySelector(pos.section);
+    if (!section) return;
+    
+    ScrollTrigger.create({
+      trigger: section,
+      start: 'top 70%',
+      end: 'bottom 30%',
+      onEnter: () => {
+        gsap.to(floatingKey, {
+          left: pos.x,
+          top: pos.y,
+          duration: 1.2,
+          ease: 'power2.inOut'
+        });
+        
+        // Special handling for CTA section - key approaches keyhole
+        if (pos.section === '.section-cta' && keyhole) {
+          keyhole.classList.add('key-near');
+        }
+      },
+      onLeaveBack: () => {
+        // Move to previous position
+        if (index > 0) {
+          const prevPos = keyPositions[index - 1];
+          gsap.to(floatingKey, {
+            left: prevPos.x,
+            top: prevPos.y,
+            duration: 1.2,
+            ease: 'power2.inOut'
+          });
+        }
+        
+        if (pos.section === '.section-cta' && keyhole) {
+          keyhole.classList.remove('key-near');
+        }
+      }
+    });
+  });
+  
+  // Final animation - key moves to keyhole on CTA
+  const ctaSection = document.querySelector('.section-cta');
+  if (ctaSection && keyhole) {
+    ScrollTrigger.create({
+      trigger: ctaSection,
+      start: 'center center',
+      onEnter: () => {
+        // Get keyhole position
+        const keyholeRect = keyhole.getBoundingClientRect();
+        const targetX = keyholeRect.left + keyholeRect.width / 2;
+        const targetY = keyholeRect.top - 30; // Position just above keyhole
+        
+        gsap.to(floatingKey, {
+          left: targetX,
+          top: targetY,
+          xPercent: -50,
+          yPercent: -50,
+          scale: 0.8,
+          duration: 1,
+          ease: 'power2.inOut'
+        });
+      }
+    });
+  }
 }

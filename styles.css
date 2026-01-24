@@ -943,6 +943,183 @@ body {
 }
 
 /* ========================================
+   Floating Mini Key (follows user through page)
+======================================== */
+.floating-key {
+  position: fixed;
+  width: 45px;
+  height: 45px;
+  z-index: 90;
+  pointer-events: none;
+  opacity: 0;
+  transform: scale(0);
+  will-change: transform, opacity, left, top;
+}
+
+.floating-key-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80px;
+  height: 80px;
+  background: radial-gradient(
+    circle,
+    rgba(201, 162, 39, 0.3) 0%,
+    rgba(201, 162, 39, 0.1) 40%,
+    transparent 70%
+  );
+  animation: floatingKeyPulse 3s ease-in-out infinite;
+}
+
+@keyframes floatingKeyPulse {
+  0%, 100% {
+    opacity: 0.6;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.15);
+  }
+}
+
+.floating-key-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.mini-key-bow {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: linear-gradient(155deg, #e8d48b 0%, #c9a227 40%, #a08020 100%);
+  box-shadow: 
+    inset 0 2px 4px rgba(255, 255, 255, 0.3),
+    0 2px 8px rgba(0, 0, 0, 0.3),
+    0 0 15px rgba(201, 162, 39, 0.4);
+  position: relative;
+}
+
+/* Scale icon inside bow */
+.mini-key-bow::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 12px;
+  height: 1px;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.mini-key-bow::after {
+  content: '';
+  position: absolute;
+  bottom: 4px;
+  left: 5px;
+  width: 4px;
+  height: 4px;
+  background: linear-gradient(to bottom, #c9a227, #a08020);
+  border-radius: 0 0 2px 2px;
+  box-shadow: 8px 0 0 linear-gradient(to bottom, #c9a227, #a08020);
+}
+
+.mini-key-shaft {
+  width: 4px;
+  height: 14px;
+  background: linear-gradient(90deg, #a08020, #c9a227, #e8d48b, #c9a227, #a08020);
+  box-shadow: 0 0 6px rgba(201, 162, 39, 0.3);
+}
+
+.mini-key-bit {
+  width: 10px;
+  height: 6px;
+  background: linear-gradient(90deg, #a08020, #c9a227, #e8d48b, #c9a227, #a08020);
+  border-radius: 0 0 2px 2px;
+  position: relative;
+}
+
+.mini-key-bit::before {
+  content: '';
+  position: absolute;
+  top: 1px;
+  right: 0;
+  width: 4px;
+  height: 3px;
+  background: var(--bg-dark);
+  border-radius: 1px 0 0 1px;
+}
+
+/* ========================================
+   CTA Button with Keyhole
+======================================== */
+.cta-lock-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.btn-with-keyhole {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding-left: 20px;
+}
+
+.keyhole {
+  position: relative;
+  width: 14px;
+  height: 22px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+}
+
+.keyhole::before {
+  content: '';
+  width: 10px;
+  height: 10px;
+  background: rgba(201, 162, 39, 0.4);
+  border-radius: 50%;
+  box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.3);
+}
+
+.keyhole::after {
+  content: '';
+  width: 5px;
+  height: 10px;
+  background: rgba(201, 162, 39, 0.4);
+  border-radius: 0 0 2px 2px;
+  margin-top: -2px;
+  box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.3);
+}
+
+.btn-with-keyhole:hover .keyhole {
+  opacity: 1;
+}
+
+.btn-with-keyhole:hover .keyhole::before,
+.btn-with-keyhole:hover .keyhole::after {
+  background: rgba(201, 162, 39, 0.7);
+}
+
+/* Keyhole glow when key approaches */
+.keyhole.key-near::before,
+.keyhole.key-near::after {
+  background: var(--gold);
+  box-shadow: 0 0 12px rgba(201, 162, 39, 0.6);
+}
+
+/* ========================================
    Responsive
 ======================================== */
 @media (max-width: 768px) {
@@ -983,5 +1160,9 @@ body {
     flex-direction: column;
     gap: 1.5rem;
     text-align: center;
+  }
+  
+  .floating-key {
+    display: none;
   }
 }
