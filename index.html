@@ -7,8 +7,7 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  
-  <!-- Navigation - exists but invisible initially -->
+  <!-- Navigation -->
   <nav class="nav">
     <div class="nav-logo">CaseFin</div>
     <div class="nav-links">
@@ -22,104 +21,164 @@
     </div>
   </nav>
 
-  <!-- Hero Section -->
-  <section class="hero-section">
+  <!-- Hero / Unlock Section (Pinned) -->
+  <section class="unlock-section">
     
-    <!-- The UI Environment - cloud-like depth layers -->
-    <div class="ui-environment">
+    <!-- Environment Layers -->
+    <div class="env-ambient"></div>
+    <div class="env-vignette"></div>
+    
+    <div class="unlock-container">
       
-      <!-- Deep layer - furthest back -->
-      <div class="ui-layer layer-deep">
-        <div class="ui-cloud" style="width:280px;height:180px;top:5%;left:-5%"></div>
-        <div class="ui-cloud" style="width:320px;height:200px;top:0%;left:25%"></div>
-        <div class="ui-cloud" style="width:260px;height:170px;top:8%;right:20%"></div>
-        <div class="ui-cloud" style="width:300px;height:190px;top:2%;right:-8%"></div>
-        <div class="ui-cloud" style="width:270px;height:175px;top:30%;left:-8%"></div>
-        <div class="ui-cloud" style="width:290px;height:185px;top:35%;right:-5%"></div>
-        <div class="ui-cloud" style="width:310px;height:195px;bottom:30%;left:-6%"></div>
-        <div class="ui-cloud" style="width:280px;height:180px;bottom:25%;right:-7%"></div>
-        <div class="ui-cloud" style="width:300px;height:190px;bottom:5%;left:15%"></div>
-        <div class="ui-cloud" style="width:290px;height:185px;bottom:0%;right:18%"></div>
-        <div class="ui-cloud" style="width:260px;height:170px;bottom:8%;left:-4%"></div>
-        <div class="ui-cloud" style="width:275px;height:178px;bottom:3%;right:-5%"></div>
+      <!-- UI Fragment Cloud - 100+ elements, starts invisible -->
+      <div class="ui-environment">
+        <!-- FAR LAYER - Deep background, most blur -->
+        <div class="ui-fragment frag-card" data-depth="far" style="width:180px;height:110px;top:2%;left:1%;transform:rotate(-12deg)"></div>
+        <div class="ui-fragment frag-card" data-depth="far" style="width:160px;height:95px;top:5%;left:15%;transform:rotate(8deg)"></div>
+        <div class="ui-fragment frag-card" data-depth="far" style="width:150px;height:90px;top:3%;right:18%;transform:rotate(-6deg)"></div>
+        <div class="ui-fragment frag-card" data-depth="far" style="width:170px;height:100px;top:1%;right:2%;transform:rotate(10deg)"></div>
+        <div class="ui-fragment frag-card" data-depth="far" style="width:140px;height:85px;top:18%;left:0%;transform:rotate(-4deg)"></div>
+        <div class="ui-fragment frag-card" data-depth="far" style="width:165px;height:98px;top:22%;right:0%;transform:rotate(7deg)"></div>
+        <div class="ui-fragment frag-card" data-depth="far" style="width:155px;height:92px;bottom:25%;left:2%;transform:rotate(5deg)"></div>
+        <div class="ui-fragment frag-card" data-depth="far" style="width:175px;height:105px;bottom:20%;right:1%;transform:rotate(-8deg)"></div>
+        <div class="ui-fragment frag-card" data-depth="far" style="width:145px;height:88px;bottom:5%;left:12%;transform:rotate(-3deg)"></div>
+        <div class="ui-fragment frag-card" data-depth="far" style="width:168px;height:102px;bottom:8%;right:15%;transform:rotate(6deg)"></div>
+        <div class="ui-fragment frag-card" data-depth="far" style="width:135px;height:82px;bottom:2%;left:0%;transform:rotate(9deg)"></div>
+        <div class="ui-fragment frag-card" data-depth="far" style="width:158px;height:94px;bottom:3%;right:3%;transform:rotate(-5deg)"></div>
+        <div class="ui-fragment frag-file" data-depth="far" style="width:70px;height:90px;top:35%;left:1%;transform:rotate(-7deg)"></div>
+        <div class="ui-fragment frag-file" data-depth="far" style="width:65px;height:85px;top:40%;right:2%;transform:rotate(8deg)"></div>
+        <div class="ui-fragment frag-file" data-depth="far" style="width:72px;height:92px;bottom:40%;left:3%;transform:rotate(4deg)"></div>
+        <div class="ui-fragment frag-file" data-depth="far" style="width:68px;height:88px;bottom:35%;right:1%;transform:rotate(-6deg)"></div>
+        
+        <!-- MID LAYER - Middle depth -->
+        <div class="ui-fragment frag-card" data-depth="mid" style="width:140px;height:85px;top:8%;left:6%;transform:rotate(-5deg)"></div>
+        <div class="ui-fragment frag-card" data-depth="mid" style="width:130px;height:80px;top:6%;left:22%;transform:rotate(4deg)"></div>
+        <div class="ui-fragment frag-card" data-depth="mid" style="width:135px;height:82px;top:10%;right:20%;transform:rotate(-3deg)"></div>
+        <div class="ui-fragment frag-card" data-depth="mid" style="width:145px;height:88px;top:4%;right:5%;transform:rotate(6deg)"></div>
+        <div class="ui-fragment frag-card" data-depth="mid" style="width:125px;height:78px;top:25%;left:4%;transform:rotate(3deg)"></div>
+        <div class="ui-fragment frag-card" data-depth="mid" style="width:138px;height:84px;top:28%;right:6%;transform:rotate(-4deg)"></div>
+        <div class="ui-fragment frag-card" data-depth="mid" style="width:132px;height:81px;bottom:30%;left:5%;transform:rotate(-2deg)"></div>
+        <div class="ui-fragment frag-card" data-depth="mid" style="width:142px;height:86px;bottom:28%;right:4%;transform:rotate(5deg)"></div>
+        <div class="ui-fragment frag-card" data-depth="mid" style="width:128px;height:79px;bottom:12%;left:8%;transform:rotate(4deg)"></div>
+        <div class="ui-fragment frag-card" data-depth="mid" style="width:148px;height:90px;bottom:15%;right:7%;transform:rotate(-3deg)"></div>
+        <div class="ui-fragment frag-btn" data-depth="mid" style="width:85px;height:28px;top:15%;left:10%;transform:rotate(2deg)"></div>
+        <div class="ui-fragment frag-btn" data-depth="mid" style="width:90px;height:30px;top:18%;right:12%;transform:rotate(-2deg)"></div>
+        <div class="ui-fragment frag-btn" data-depth="mid" style="width:80px;height:26px;bottom:22%;left:12%;transform:rotate(-1deg)"></div>
+        <div class="ui-fragment frag-btn" data-depth="mid" style="width:88px;height:29px;bottom:18%;right:10%;transform:rotate(3deg)"></div>
+        <div class="ui-fragment frag-input" data-depth="mid" style="width:130px;height:26px;top:32%;left:8%;transform:rotate(1deg)"></div>
+        <div class="ui-fragment frag-input" data-depth="mid" style="width:125px;height:25px;top:35%;right:9%;transform:rotate(-2deg)"></div>
+        <div class="ui-fragment frag-input" data-depth="mid" style="width:135px;height:27px;bottom:35%;left:10%;transform:rotate(-1deg)"></div>
+        <div class="ui-fragment frag-input" data-depth="mid" style="width:128px;height:26px;bottom:32%;right:8%;transform:rotate(2deg)"></div>
+        <div class="ui-fragment frag-badge" data-depth="mid" style="width:65px;height:22px;top:42%;left:6%;transform:rotate(2deg)"></div>
+        <div class="ui-fragment frag-badge" data-depth="mid" style="width:70px;height:24px;top:45%;right:7%;transform:rotate(-1deg)"></div>
+        <div class="ui-fragment frag-badge" data-depth="mid" style="width:60px;height:20px;bottom:45%;left:8%;transform:rotate(-2deg)"></div>
+        <div class="ui-fragment frag-badge" data-depth="mid" style="width:68px;height:23px;bottom:42%;right:6%;transform:rotate(1deg)"></div>
+        <div class="ui-fragment frag-file" data-depth="mid" style="width:55px;height:70px;top:50%;left:5%;transform:rotate(-4deg)"></div>
+        <div class="ui-fragment frag-file" data-depth="mid" style="width:52px;height:68px;top:52%;right:6%;transform:rotate(5deg)"></div>
+        <div class="ui-fragment frag-file" data-depth="mid" style="width:58px;height:72px;bottom:50%;left:7%;transform:rotate(3deg)"></div>
+        <div class="ui-fragment frag-file" data-depth="mid" style="width:54px;height:69px;bottom:52%;right:5%;transform:rotate(-3deg)"></div>
+        <div class="ui-fragment frag-table" data-depth="mid" style="width:150px;height:50px;top:60%;left:4%;transform:rotate(2deg)"></div>
+        <div class="ui-fragment frag-table" data-depth="mid" style="width:145px;height:48px;top:62%;right:5%;transform:rotate(-2deg)"></div>
+        <div class="ui-fragment frag-table" data-depth="mid" style="width:155px;height:52px;bottom:60%;left:6%;transform:rotate(-1deg)"></div>
+        <div class="ui-fragment frag-table" data-depth="mid" style="width:148px;height:49px;bottom:58%;right:4%;transform:rotate(3deg)"></div>
+        <div class="ui-fragment frag-dot" data-depth="mid" style="width:12px;height:12px;top:20%;left:18%"></div>
+        <div class="ui-fragment frag-dot" data-depth="mid" style="width:10px;height:10px;top:38%;right:15%"></div>
+        <div class="ui-fragment frag-dot" data-depth="mid" style="width:14px;height:14px;bottom:38%;left:16%"></div>
+        <div class="ui-fragment frag-dot" data-depth="mid" style="width:11px;height:11px;bottom:20%;right:18%"></div>
+        <div class="ui-fragment frag-line" data-depth="mid" style="width:80px;height:2px;top:55%;left:3%;transform:rotate(15deg)"></div>
+        <div class="ui-fragment frag-line" data-depth="mid" style="width:70px;height:2px;top:48%;right:4%;transform:rotate(-12deg)"></div>
+        <div class="ui-fragment frag-line" data-depth="mid" style="width:75px;height:2px;bottom:48%;left:5%;transform:rotate(-18deg)"></div>
+        <div class="ui-fragment frag-line" data-depth="mid" style="width:85px;height:2px;bottom:55%;right:3%;transform:rotate(10deg)"></div>
+        
+        <!-- NEAR LAYER - Closest, least blur -->
+        <div class="ui-fragment frag-card" data-depth="near" style="width:115px;height:72px;top:12%;left:12%;transform:rotate(-3deg)"></div>
+        <div class="ui-fragment frag-card" data-depth="near" style="width:110px;height:70px;top:14%;left:28%;transform:rotate(2deg)"></div>
+        <div class="ui-fragment frag-card" data-depth="near" style="width:120px;height:75px;top:10%;right:25%;transform:rotate(-2deg)"></div>
+        <div class="ui-fragment frag-card" data-depth="near" style="width:108px;height:68px;top:16%;right:10%;transform:rotate(4deg)"></div>
+        <div class="ui-fragment frag-card" data-depth="near" style="width:118px;height:74px;top:30%;left:10%;transform:rotate(1deg)"></div>
+        <div class="ui-fragment frag-card" data-depth="near" style="width:112px;height:71px;top:32%;right:12%;transform:rotate(-3deg)"></div>
+        <div class="ui-fragment frag-card" data-depth="near" style="width:105px;height:66px;bottom:35%;left:14%;transform:rotate(-2deg)"></div>
+        <div class="ui-fragment frag-card" data-depth="near" style="width:122px;height:76px;bottom:32%;right:10%;transform:rotate(3deg)"></div>
+        <div class="ui-fragment frag-card" data-depth="near" style="width:116px;height:73px;bottom:18%;left:16%;transform:rotate(2deg)"></div>
+        <div class="ui-fragment frag-card" data-depth="near" style="width:110px;height:69px;bottom:20%;right:14%;transform:rotate(-1deg)"></div>
+        <div class="ui-fragment frag-card" data-depth="near" style="width:100px;height:64px;bottom:8%;left:20%;transform:rotate(-4deg)"></div>
+        <div class="ui-fragment frag-card" data-depth="near" style="width:114px;height:72px;bottom:10%;right:18%;transform:rotate(2deg)"></div>
+        <div class="ui-fragment frag-btn" data-depth="near" style="width:75px;height:25px;top:22%;left:18%;transform:rotate(1deg)"></div>
+        <div class="ui-fragment frag-btn" data-depth="near" style="width:78px;height:26px;top:25%;right:16%;transform:rotate(-1deg)"></div>
+        <div class="ui-fragment frag-btn" data-depth="near" style="width:72px;height:24px;bottom:25%;left:20%;transform:rotate(-2deg)"></div>
+        <div class="ui-fragment frag-btn" data-depth="near" style="width:80px;height:27px;bottom:22%;right:18%;transform:rotate(2deg)"></div>
+        <div class="ui-fragment frag-input" data-depth="near" style="width:110px;height:24px;top:40%;left:15%;transform:rotate(1deg)"></div>
+        <div class="ui-fragment frag-input" data-depth="near" style="width:105px;height:23px;top:42%;right:14%;transform:rotate(-1deg)"></div>
+        <div class="ui-fragment frag-input" data-depth="near" style="width:115px;height:25px;bottom:42%;left:18%;transform:rotate(-1deg)"></div>
+        <div class="ui-fragment frag-input" data-depth="near" style="width:108px;height:24px;bottom:40%;right:16%;transform:rotate(1deg)"></div>
+        <div class="ui-fragment frag-badge" data-depth="near" style="width:55px;height:18px;top:48%;left:12%;transform:rotate(1deg)"></div>
+        <div class="ui-fragment frag-badge" data-depth="near" style="width:58px;height:19px;top:50%;right:13%;transform:rotate(-1deg)"></div>
+        <div class="ui-fragment frag-badge" data-depth="near" style="width:52px;height:17px;bottom:50%;left:14%;transform:rotate(-1deg)"></div>
+        <div class="ui-fragment frag-badge" data-depth="near" style="width:60px;height:20px;bottom:48%;right:12%;transform:rotate(2deg)"></div>
+        <div class="ui-fragment frag-file" data-depth="near" style="width:45px;height:58px;top:55%;left:16%;transform:rotate(-3deg)"></div>
+        <div class="ui-fragment frag-file" data-depth="near" style="width:48px;height:62px;top:58%;right:15%;transform:rotate(4deg)"></div>
+        <div class="ui-fragment frag-file" data-depth="near" style="width:42px;height:55px;bottom:55%;left:18%;transform:rotate(2deg)"></div>
+        <div class="ui-fragment frag-file" data-depth="near" style="width:46px;height:60px;bottom:58%;right:17%;transform:rotate(-2deg)"></div>
+        <div class="ui-fragment frag-table" data-depth="near" style="width:125px;height:42px;top:65%;left:12%;transform:rotate(1deg)"></div>
+        <div class="ui-fragment frag-table" data-depth="near" style="width:120px;height:40px;top:68%;right:14%;transform:rotate(-1deg)"></div>
+        <div class="ui-fragment frag-table" data-depth="near" style="width:130px;height:44px;bottom:65%;left:15%;transform:rotate(-2deg)"></div>
+        <div class="ui-fragment frag-table" data-depth="near" style="width:122px;height:41px;bottom:68%;right:12%;transform:rotate(2deg)"></div>
+        <div class="ui-fragment frag-dot" data-depth="near" style="width:10px;height:10px;top:28%;left:25%"></div>
+        <div class="ui-fragment frag-dot" data-depth="near" style="width:8px;height:8px;top:35%;right:22%"></div>
+        <div class="ui-fragment frag-dot" data-depth="near" style="width:12px;height:12px;bottom:35%;left:22%"></div>
+        <div class="ui-fragment frag-dot" data-depth="near" style="width:9px;height:9px;bottom:28%;right:25%"></div>
+        <div class="ui-fragment frag-dot" data-depth="near" style="width:7px;height:7px;top:45%;left:20%"></div>
+        <div class="ui-fragment frag-dot" data-depth="near" style="width:11px;height:11px;bottom:45%;right:20%"></div>
+        <div class="ui-fragment frag-line" data-depth="near" style="width:60px;height:2px;top:52%;left:10%;transform:rotate(20deg)"></div>
+        <div class="ui-fragment frag-line" data-depth="near" style="width:55px;height:2px;top:60%;right:12%;transform:rotate(-15deg)"></div>
+        <div class="ui-fragment frag-line" data-depth="near" style="width:65px;height:2px;bottom:52%;left:13%;transform:rotate(-22deg)"></div>
+        <div class="ui-fragment frag-line" data-depth="near" style="width:58px;height:2px;bottom:60%;right:10%;transform:rotate(18deg)"></div>
       </div>
       
-      <!-- Mid layer -->
-      <div class="ui-layer layer-mid">
-        <div class="ui-cloud" style="width:200px;height:130px;top:10%;left:8%"></div>
-        <div class="ui-cloud" style="width:180px;height:115px;top:12%;left:30%"></div>
-        <div class="ui-cloud" style="width:220px;height:140px;top:8%;right:28%"></div>
-        <div class="ui-cloud" style="width:190px;height:122px;top:15%;right:5%"></div>
-        <div class="ui-cloud" style="width:210px;height:135px;top:35%;left:5%"></div>
-        <div class="ui-cloud" style="width:185px;height:118px;top:40%;right:8%"></div>
-        <div class="ui-cloud" style="width:195px;height:125px;bottom:40%;left:10%"></div>
-        <div class="ui-cloud" style="width:205px;height:132px;bottom:35%;right:6%"></div>
-        <div class="ui-cloud" style="width:175px;height:112px;bottom:18%;left:12%"></div>
-        <div class="ui-cloud" style="width:215px;height:138px;bottom:15%;right:15%"></div>
-        <div class="ui-cloud" style="width:188px;height:120px;bottom:8%;left:5%"></div>
-        <div class="ui-cloud" style="width:198px;height:127px;bottom:10%;right:8%"></div>
-      </div>
-      
-      <!-- Near layer - closest -->
-      <div class="ui-layer layer-near">
-        <div class="ui-cloud" style="width:150px;height:95px;top:15%;left:15%"></div>
-        <div class="ui-cloud" style="width:140px;height:90px;top:18%;right:18%"></div>
-        <div class="ui-cloud" style="width:160px;height:102px;top:38%;left:12%"></div>
-        <div class="ui-cloud" style="width:145px;height:93px;top:42%;right:15%"></div>
-        <div class="ui-cloud" style="width:155px;height:98px;bottom:40%;left:18%"></div>
-        <div class="ui-cloud" style="width:138px;height:88px;bottom:38%;right:12%"></div>
-        <div class="ui-cloud" style="width:148px;height:94px;bottom:18%;left:15%"></div>
-        <div class="ui-cloud" style="width:158px;height:100px;bottom:15%;right:18%"></div>
-      </div>
-      
-    </div>
-    
-    <!-- Ambient glow -->
-    <div class="key-ambient"></div>
-    
-    <!-- The Key -->
-    <div class="key-container">
-      <div class="key-glow"></div>
-      <div class="key">
-        <div class="key-bow">
-          <div class="key-scales">
-            <div class="scale-beam"></div>
-            <div class="scale-left"></div>
-            <div class="scale-right"></div>
+      <!-- The Key -->
+      <div class="key-container">
+        <div class="key-glow-outer"></div>
+        <div class="key-glow"></div>
+        <div class="key">
+          <div class="key-bow">
+            <div class="key-bow-inner">
+              <div class="scale-left"></div>
+              <div class="scale-right"></div>
+            </div>
+          </div>
+          <div class="key-shaft"></div>
+          <div class="key-bit">
+            <div class="key-bit-notch"></div>
           </div>
         </div>
-        <div class="key-shaft"></div>
-        <div class="key-bit">
-          <div class="key-notch-1"></div>
-          <div class="key-notch-2"></div>
+        <div class="key-shadow"></div>
+      </div>
+      
+      <!-- Text that appears on unlock -->
+      <div class="unlock-text">
+        <h1 class="unlock-headline">Access changes everything</h1>
+        <p class="unlock-subhead">From private preparation to structured evaluation, cases move forward with clarity, control, and intent on both sides.</p>
+        <div class="unlock-cta">
+          <a href="#" class="btn-primary">Request Access</a>
+          <a href="#" class="btn-secondary">Log In</a>
         </div>
       </div>
+      
     </div>
     
-    <!-- Hero content -->
-    <div class="hero-content">
-      <h1 class="hero-headline">Access changes everything</h1>
-      <p class="hero-subhead">From private preparation to structured evaluation, cases move forward with clarity, control, and intent on both sides.</p>
-      <div class="hero-cta">
-        <a href="#" class="btn-primary btn-large">Request Access</a>
-        <a href="#" class="btn-secondary btn-large">Log In</a>
-      </div>
+    <!-- Scroll indicator (visible in locked state) -->
+    <div class="scroll-indicator">
+      <span>Scroll to unlock</span>
+      <div class="scroll-arrow"></div>
     </div>
-    
-    <!-- Scroll prompt -->
-    <div class="scroll-prompt">
-      <span>Scroll</span>
-      <div class="scroll-line"></div>
-    </div>
-    
   </section>
 
-  <!-- Content sections -->
-  <section class="content-section">
+  <!-- Post-unlock content -->
+  <section class="content-section section-law-firms">
     <div class="section-inner">
       <h2>For Law Firms</h2>
       <p>Turn litigation work into fundable opportunities without running a fundraising process.</p>
-      <div class="card-grid">
+      <div class="card-row">
         <div class="card">
           <div class="card-icon"></div>
           <h3>Standardized Presentation</h3>
@@ -134,11 +193,11 @@
     </div>
   </section>
 
-  <section class="content-section alt">
+  <section class="content-section section-funders">
     <div class="section-inner">
       <h2>For Funders</h2>
       <p>Access structured, pre-qualified opportunities without the noise.</p>
-      <div class="card-grid">
+      <div class="card-row">
         <div class="card">
           <div class="card-icon"></div>
           <h3>Staged Evaluation</h3>
@@ -147,29 +206,29 @@
         <div class="card">
           <div class="card-icon"></div>
           <h3>Reduced Noise</h3>
-          <p>See only cases that match your criteria and investment thesis.</p>
+          <p>See only cases that meet your criteria and investment thesis.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="content-section">
+  <section class="content-section section-how">
     <div class="section-inner">
       <h2>How It Works</h2>
       <p>A controlled environment where serious cases meet serious capital.</p>
-      <div class="steps-grid">
+      <div class="steps">
         <div class="step">
-          <div class="step-number">1</div>
+          <div class="step-num">1</div>
           <h3>Submit</h3>
           <p>Law firms submit cases through a standardized intake.</p>
         </div>
         <div class="step">
-          <div class="step-number">2</div>
+          <div class="step-num">2</div>
           <h3>Structure</h3>
           <p>Cases are organized for funder evaluation.</p>
         </div>
         <div class="step">
-          <div class="step-number">3</div>
+          <div class="step-num">3</div>
           <h3>Connect</h3>
           <p>Qualified funders access cases on controlled terms.</p>
         </div>
@@ -177,26 +236,30 @@
     </div>
   </section>
 
-  <section class="cta-section">
-    <div class="section-inner">
+  <section class="content-section section-cta">
+    <div class="section-inner cta-inner">
       <h2>Ready to get started?</h2>
       <p>Request access to the platform.</p>
       <a href="#" class="btn-primary btn-large">Request Access</a>
     </div>
   </section>
 
+  <!-- Footer -->
   <footer class="footer">
     <div class="footer-inner">
-      <div class="footer-brand">CaseFin</div>
+      <div class="footer-logo">CaseFin</div>
       <div class="footer-links">
         <a href="index.html">Home</a>
         <a href="product.html">Product</a>
         <a href="about.html">About</a>
       </div>
-      <div class="footer-legal">&copy; 2025 CaseFin</div>
+      <div class="footer-legal">
+        <span>&copy; 2025 CaseFin. All rights reserved.</span>
+      </div>
     </div>
   </footer>
 
+  <!-- GSAP -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="main.js"></script>
