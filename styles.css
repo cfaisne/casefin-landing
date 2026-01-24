@@ -2,10 +2,10 @@
    CSS Variables & Reset
 ======================================== */
 :root {
-  /* Colors - Clean charcoal brown base */
-  --bg-base: #1a1614;
-  --bg-dark: #1a1614;
-  --bg-section: #151311;
+  /* Colors - Clean charcoal base */
+  --bg-base: #2B2A28;
+  --bg-dark: #2B2A28;
+  --bg-section: #242321;
   --gold: #c9a227;
   --gold-light: #e8d48b;
   --gold-warm: #d4a845;
@@ -16,8 +16,8 @@
   --text-muted: rgba(255, 255, 255, 0.4);
   
   /* Frosted Glass */
-  --glass-bg: rgba(26, 22, 20, 0.7);
-  --glass-bg-strong: rgba(26, 22, 20, 0.9);
+  --glass-bg: rgba(43, 42, 40, 0.7);
+  --glass-bg-strong: rgba(43, 42, 40, 0.9);
   --glass-border: rgba(255, 255, 255, 0.08);
   --glass-border-gold: rgba(201, 162, 39, 0.15);
   --glass-blur: 20px;
@@ -53,7 +53,7 @@ body {
 }
 
 /* ========================================
-   Navigation - Clean, no extra borders
+   Navigation - Always visible, bar on scroll
 ======================================== */
 .nav {
   position: fixed;
@@ -65,14 +65,17 @@ body {
   align-items: center;
   justify-content: space-between;
   padding: 1.25rem 3rem;
-  background: rgba(26, 22, 20, 0.9);
+  /* No background by default - transparent */
+  background: transparent;
+  border-bottom: none;
+  transition: background 0.3s ease, backdrop-filter 0.3s ease;
+}
+
+/* Nav bar appears on scroll - added via JS */
+.nav.scrolled {
+  background: rgba(43, 42, 40, 0.85);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border-bottom: none;
-  /* Hidden in locked state - GSAP will animate */
-  opacity: 0;
-  transform: translateY(-12px);
-  pointer-events: none;
 }
 
 .nav-logo {

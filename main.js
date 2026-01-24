@@ -94,7 +94,7 @@ function initCinematicUnlock() {
   // ========================================
   // Set Initial States
   // ========================================
-  gsap.set(nav, { opacity: 0, y: -12, pointerEvents: 'none' });
+  // Nav is always visible - no opacity animation
   gsap.set(unlockText, { opacity: 0, y: 40 });
   gsap.set(envAmbient, { opacity: 0 });
   gsap.set(keyGlow, { opacity: 0, scale: 0.8 });
@@ -103,6 +103,22 @@ function initCinematicUnlock() {
   
   // All fragments start invisible
   gsap.set(allFrags, { opacity: 0 });
+  
+  // ========================================
+  // Nav background on scroll
+  // ========================================
+  ScrollTrigger.create({
+    trigger: unlockSection,
+    start: 'top top',
+    end: '+=100',
+    onUpdate: (self) => {
+      if (self.progress > 0.1) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    }
+  });
   
   // ========================================
   // Create Master Timeline
@@ -191,14 +207,6 @@ function initCinematicUnlock() {
       duration: 0.25
     }, CONFIG.BEAT_2 + (i * 0.008));
   });
-  
-  // Nav starts appearing
-  masterTL.to(nav, {
-    opacity: 0.4,
-    y: -6,
-    duration: 0.25,
-    ease: 'power2.out'
-  }, CONFIG.BEAT_2 + 0.1);
   
   // ========================================
   // BEAT 3: Building (40% - 65%)
@@ -293,14 +301,6 @@ function initCinematicUnlock() {
       duration: 0.25
     }, CONFIG.BEAT_3 + (i * 0.006));
   });
-  
-  // Nav more visible
-  masterTL.to(nav, {
-    opacity: 0.7,
-    y: -3,
-    pointerEvents: 'auto',
-    duration: 0.25
-  }, CONFIG.BEAT_3);
   
   // ========================================
   // BEAT 4: Full Transformation (65% - 85%)
@@ -406,13 +406,6 @@ function initCinematicUnlock() {
       duration: 0.2
     }, CONFIG.BEAT_4 + (i * 0.005));
   });
-  
-  // Nav fully visible
-  masterTL.to(nav, {
-    opacity: 1,
-    y: 0,
-    duration: 0.2
-  }, CONFIG.BEAT_4);
   
   // ========================================
   // BEAT 5: Unlocked - Text Appears (85% - 100%)
