@@ -19,26 +19,34 @@ const CONFIG = {
   SCRUB_SMOOTHNESS: 1.2,
   
   // Environment
-  VIGNETTE_LOCKED: 1,        // Vignette intensity when locked
-  VIGNETTE_UNLOCKED: 0.3,    // Vignette intensity when unlocked
-  GRAIN_LOCKED: 0.5,         // Grain opacity when locked
-  GRAIN_UNLOCKED: 0.08,      // Grain opacity when unlocked
+  VIGNETTE_LOCKED: 0.8,      // Vignette intensity when locked (softer)
+  VIGNETTE_UNLOCKED: 0.2,    // Vignette intensity when unlocked
+  GRAIN_LOCKED: 0.06,        // Grain opacity when locked (very subtle)
+  GRAIN_UNLOCKED: 0.02,      // Grain opacity when unlocked
   
   // Key
   KEY_BRIGHTNESS_LOCKED: 0.35,
-  KEY_BRIGHTNESS_UNLOCKED: 1.1,
+  KEY_BRIGHTNESS_UNLOCKED: 1.15,
   KEY_SATURATION_LOCKED: 0.2,
-  KEY_SATURATION_UNLOCKED: 1.2,
+  KEY_SATURATION_UNLOCKED: 1.25,
   
   // Gold glow intensity
-  GLOW_INNER_MAX: 0.9,
-  GLOW_OUTER_MAX: 0.7,
-  AMBIENT_MAX: 0.6,
+  GLOW_INNER_MAX: 0.85,
+  GLOW_OUTER_MAX: 0.6,
+  AMBIENT_MAX: 0.5,
   
-  // UI Fragment blur
-  BLUR_FAR_LOCKED: 14,
-  BLUR_MID_LOCKED: 9,
-  BLUR_NEAR_LOCKED: 5,
+  // UI Fragment blur (locked state)
+  BLUR_FAR_LOCKED: 4,
+  BLUR_MID_LOCKED: 2,
+  BLUR_NEAR_LOCKED: 1,
+  
+  // UI Fragment opacity targets
+  FRAG_OPACITY_FAR_LOCKED: 0.25,
+  FRAG_OPACITY_MID_LOCKED: 0.35,
+  FRAG_OPACITY_NEAR_LOCKED: 0.45,
+  FRAG_OPACITY_FAR_UNLOCKED: 0.55,
+  FRAG_OPACITY_MID_UNLOCKED: 0.65,
+  FRAG_OPACITY_NEAR_UNLOCKED: 0.75,
   
   // Timing breakpoints (0-1 scale)
   BEAT_1: 0,      // Start - deep locked
