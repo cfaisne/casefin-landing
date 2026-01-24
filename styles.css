@@ -943,146 +943,122 @@ body {
 }
 
 /* ========================================
-   Unlock Button - Lock → Unlock on hover
+   Unlock Button - Final CTA
+   Container-in-container pattern
+   Restrained lock → unlock state change
 ======================================== */
 .btn-unlock {
   position: relative;
   display: inline-flex;
   align-items: center;
   gap: 14px;
-  padding: 0.9rem 1.8rem 0.9rem 1.4rem;
-  background: rgba(28, 24, 21, 0.85);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(201, 162, 39, 0.15);
-  border-radius: 10px;
+  padding: 0.65rem 1.6rem 0.65rem 0.65rem;
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
   color: var(--text-primary);
   text-decoration: none;
   font-size: 1rem;
   font-weight: 500;
-  overflow: hidden;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-/* Subtle gold inner glow */
-.btn-unlock::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: 10px;
-  background: radial-gradient(
-    ellipse at 30% 50%,
-    rgba(201, 162, 39, 0.06) 0%,
-    transparent 60%
-  );
-  pointer-events: none;
+  transition: border-color 0.2s ease-out, background 0.2s ease-out;
 }
 
 .btn-unlock:hover {
-  border-color: rgba(201, 162, 39, 0.35);
-  box-shadow: 
-    0 0 20px rgba(201, 162, 39, 0.1),
-    inset 0 0 20px rgba(201, 162, 39, 0.03);
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.12);
 }
 
-/* Lock icon container */
+/* Inner container for lock icon */
+.lock-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(201, 162, 39, 0.12);
+  border-radius: 8px;
+  transition: border-color 0.2s ease-out, box-shadow 0.2s ease-out;
+}
+
+.btn-unlock:hover .lock-container {
+  border-color: rgba(201, 162, 39, 0.25);
+  box-shadow: 0 0 12px rgba(201, 162, 39, 0.08);
+}
+
+/* Lock icon */
 .lock-icon {
   position: relative;
-  width: 18px;
-  height: 22px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  width: 14px;
+  height: 17px;
 }
 
 /* Lock shackle (the U-shaped top) */
 .lock-shackle {
   position: absolute;
   top: 0;
-  width: 12px;
-  height: 9px;
-  border: 2px solid rgba(201, 162, 39, 0.5);
+  left: 50%;
+  transform: translateX(-50%);
+  width: 10px;
+  height: 7px;
+  border: 1.5px solid rgba(201, 162, 39, 0.5);
   border-bottom: none;
-  border-radius: 6px 6px 0 0;
-  transform-origin: right bottom;
-  transition: transform 0.25s ease, border-color 0.25s ease;
+  border-radius: 5px 5px 0 0;
+  transition: transform 0.2s ease-out, border-color 0.2s ease-out;
 }
 
 /* Lock body */
 .lock-body {
   position: absolute;
   bottom: 0;
-  width: 16px;
-  height: 12px;
-  background: rgba(201, 162, 39, 0.4);
+  left: 50%;
+  transform: translateX(-50%);
+  width: 14px;
+  height: 10px;
+  background: rgba(201, 162, 39, 0.45);
   border-radius: 2px;
-  transition: background 0.25s ease, box-shadow 0.25s ease;
+  transition: background 0.2s ease-out;
 }
 
 /* Keyhole in lock body */
 .lock-body::before {
   content: '';
   position: absolute;
-  top: 3px;
+  top: 2.5px;
   left: 50%;
   transform: translateX(-50%);
-  width: 4px;
-  height: 4px;
-  background: rgba(20, 18, 16, 0.8);
+  width: 3px;
+  height: 3px;
+  background: rgba(20, 18, 16, 0.7);
   border-radius: 50%;
 }
 
 .lock-body::after {
   content: '';
   position: absolute;
-  top: 6px;
+  top: 5px;
   left: 50%;
   transform: translateX(-50%);
-  width: 2px;
-  height: 4px;
-  background: rgba(20, 18, 16, 0.8);
+  width: 1.5px;
+  height: 3px;
+  background: rgba(20, 18, 16, 0.7);
   border-radius: 0 0 1px 1px;
-}
-
-/* Gold shine sweep */
-.btn-shine {
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    105deg,
-    transparent 0%,
-    transparent 40%,
-    rgba(201, 162, 39, 0.08) 45%,
-    rgba(232, 212, 139, 0.15) 50%,
-    rgba(201, 162, 39, 0.08) 55%,
-    transparent 60%,
-    transparent 100%
-  );
-  pointer-events: none;
-  transition: left 0.5s ease;
 }
 
 /* Hover state - unlock */
 .btn-unlock:hover .lock-shackle {
-  transform: rotate(-25deg) translateY(-2px);
+  transform: translateX(-50%) translateY(-3px);
   border-color: var(--gold);
 }
 
 .btn-unlock:hover .lock-body {
   background: var(--gold);
-  box-shadow: 0 0 8px rgba(201, 162, 39, 0.4);
-}
-
-.btn-unlock:hover .btn-shine {
-  left: 100%;
 }
 
 .btn-label {
   position: relative;
-  z-index: 1;
 }
 
 /* ========================================
