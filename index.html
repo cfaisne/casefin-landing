@@ -35,144 +35,209 @@
       
       <!-- Data Room Fragments - Dense, overlapping, central gravity -->
       <!-- Global Data Vault - Dense, centrally clustered -->
-      <!-- APPLE-STYLE DATA VAULT - Clean, depth, restrained -->
+      <!-- DATA CATHEDRAL - Vertical, deep, reverent -->
       <div class="ui-environment">
         
         <!-- ==========================================
-             FAR BACKGROUND - Heavy blur (12-20px), very low opacity
-             Large ghosted panels suggesting depth
+             FAR DEPTH - The back walls of the cathedral
+             Heavy blur, tall panels receding
         ========================================== -->
-        <div class="data-frag vault-panel xl" data-depth="haze" style="top:-5%;left:-8%;transform:rotate(-8deg) perspective(800px) rotateY(15deg)"></div>
-        <div class="data-frag vault-panel xl" data-depth="haze" style="top:0%;right:-5%;transform:rotate(6deg) perspective(800px) rotateY(-12deg)"></div>
-        <div class="data-frag vault-panel lg" data-depth="haze" style="top:20%;left:-3%;transform:rotate(-4deg) perspective(600px) rotateY(10deg)"></div>
-        <div class="data-frag vault-panel lg" data-depth="haze" style="top:15%;right:0%;transform:rotate(5deg) perspective(600px) rotateY(-8deg)"></div>
-        <div class="data-frag vault-panel xl" data-depth="haze" style="bottom:10%;left:-5%;transform:rotate(4deg) perspective(800px) rotateY(12deg)"></div>
-        <div class="data-frag vault-panel xl" data-depth="haze" style="bottom:5%;right:-8%;transform:rotate(-7deg) perspective(800px) rotateY(-15deg)"></div>
+        <!-- Left wall panels - tall, angled inward -->
+        <div class="data-frag tall-panel" data-depth="haze" style="top:0;left:-2%;height:100%;transform:perspective(1200px) rotateY(25deg)">
+          <div class="tp-row">$142.8M</div>
+          <div class="tp-row dim">Morrison v. Global...</div>
+          <div class="tp-row">SDNY</div>
+          <div class="tp-row gold">94%</div>
+          <div class="tp-row dim">Commercial Litigation</div>
+          <div class="tp-row">$24.5M</div>
+          <div class="tp-row dim">Chen Industries...</div>
+          <div class="tp-row">Singapore SIAC</div>
+          <div class="tp-row gold">87%</div>
+          <div class="tp-row">€67.3M</div>
+          <div class="tp-row dim">Re: Arcadia Hold...</div>
+          <div class="tp-row">ICC Paris</div>
+          <div class="tp-row gold">91%</div>
+          <div class="tp-row dim">Arbitration</div>
+          <div class="tp-row">£38.2M</div>
+          <div class="tp-row">LCIA London</div>
+        </div>
         
-        <!-- Far scattered amounts - huge, faded -->
-        <div class="data-frag amt xxl" data-depth="haze" style="top:8%;left:15%">$142M</div>
-        <div class="data-frag amt xxl" data-depth="haze" style="top:12%;right:18%">€89M</div>
-        <div class="data-frag amt xl" data-depth="haze" style="bottom:15%;left:12%">£67M</div>
-        <div class="data-frag amt xl" data-depth="haze" style="bottom:10%;right:15%">¥4.2B</div>
+        <div class="data-frag tall-panel secondary" data-depth="haze" style="top:5%;left:8%;height:90%;transform:perspective(1000px) rotateY(18deg)">
+          <div class="tp-row">Complaint.pdf</div>
+          <div class="tp-row gold">$8.9M</div>
+          <div class="tp-row dim">Under Review</div>
+          <div class="tp-row">82%</div>
+          <div class="tp-row">Term_Sheet.docx</div>
+          <div class="tp-row gold">€4.2M</div>
+          <div class="tp-row dim">Matched</div>
+          <div class="tp-row">Delaware Chancery</div>
+          <div class="tp-row gold">$12.1M</div>
+          <div class="tp-row">Damages_Report.xlsx</div>
+          <div class="tp-row dim">Funded</div>
+          <div class="tp-row">95%</div>
+        </div>
+        
+        <!-- Right wall panels -->
+        <div class="data-frag tall-panel" data-depth="haze" style="top:0;right:-2%;height:100%;transform:perspective(1200px) rotateY(-25deg)">
+          <div class="tp-row">¥2.4B</div>
+          <div class="tp-row dim">Petrov Energy v...</div>
+          <div class="tp-row">Hong Kong HKIAC</div>
+          <div class="tp-row gold">89%</div>
+          <div class="tp-row dim">IP Litigation</div>
+          <div class="tp-row">CHF45.6M</div>
+          <div class="tp-row dim">Meridian Corp...</div>
+          <div class="tp-row">Swiss Arbitration</div>
+          <div class="tp-row gold">93%</div>
+          <div class="tp-row">A$28.4M</div>
+          <div class="tp-row dim">Federal Court AU</div>
+          <div class="tp-row">86%</div>
+          <div class="tp-row">$67.8M</div>
+          <div class="tp-row dim">Class Action</div>
+          <div class="tp-row">9th Circuit</div>
+        </div>
+        
+        <div class="data-frag tall-panel secondary" data-depth="haze" style="top:5%;right:8%;height:90%;transform:perspective(1000px) rotateY(-18deg)">
+          <div class="tp-row">Expert_Opinion.pdf</div>
+          <div class="tp-row gold">£6.7M</div>
+          <div class="tp-row dim">Diligence</div>
+          <div class="tp-row">High Court UK</div>
+          <div class="tp-row gold">$3.4M</div>
+          <div class="tp-row">Discovery_Index.xlsx</div>
+          <div class="tp-row dim">3 Bids</div>
+          <div class="tp-row">91%</div>
+          <div class="tp-row gold">€9.8M</div>
+          <div class="tp-row dim">Intake</div>
+          <div class="tp-row">ICSID</div>
+        </div>
         
         <!-- ==========================================
-             BACK LAYER - Moderate blur (6-10px)
-             Structured panels with data
+             MID DEPTH - Closer panels
+             Medium blur, more visible
         ========================================== -->
-        <!-- Left side panels -->
-        <div class="data-frag data-panel" data-depth="back" style="top:10%;left:5%;transform:rotate(-3deg) perspective(500px) rotateY(8deg)">
-          <div class="panel-row"><span class="label">Case</span><span class="value trunc">Morrison v. Gl...</span></div>
-          <div class="panel-row"><span class="label">Value</span><span class="value gold">$24.5M</span></div>
-          <div class="panel-row"><span class="label">Court</span><span class="value">SDNY</span></div>
+        <!-- Left mid panels -->
+        <div class="data-frag tall-panel mid" data-depth="back" style="top:8%;left:12%;height:70%;transform:perspective(800px) rotateY(12deg)">
+          <div class="tp-row gold lg">$24.5M</div>
+          <div class="tp-row">SDNY • Commercial</div>
+          <div class="tp-row dim">Morrison v. Global Tech</div>
+          <div class="tp-row badge green">Funded</div>
+          <div class="tp-row gold">94%</div>
+          <div class="tp-row">Complaint.pdf</div>
+          <div class="tp-row gold lg">€8.2M</div>
+          <div class="tp-row">ICC Paris</div>
+          <div class="tp-row dim">Re: Arcadia Holdings</div>
+          <div class="tp-row badge yellow">Under Review</div>
         </div>
         
-        <div class="data-frag data-panel sm" data-depth="back" style="top:28%;left:2%;transform:rotate(-2deg) perspective(400px) rotateY(6deg)">
-          <div class="panel-row"><span class="value gold">€8.2M</span></div>
-          <div class="panel-row"><span class="value dim">ICC Paris</span></div>
+        <div class="data-frag tall-panel mid secondary" data-depth="back" style="top:15%;left:22%;height:55%;transform:perspective(600px) rotateY(8deg)">
+          <div class="tp-row gold">$2.5M</div>
+          <div class="tp-row">87%</div>
+          <div class="tp-row dim">Term_Sheet_v3.docx</div>
+          <div class="tp-row gold">£1.8M</div>
+          <div class="tp-row badge blue">Matched</div>
+          <div class="tp-row">Delaware</div>
+          <div class="tp-row gold">$4.1M</div>
+          <div class="tp-row">91%</div>
         </div>
         
-        <div class="data-frag data-panel" data-depth="back" style="top:45%;left:0%;transform:rotate(-4deg) perspective(500px) rotateY(10deg)">
-          <div class="panel-row"><span class="label">Status</span><span class="value status-green">Funded</span></div>
-          <div class="panel-row"><span class="label">Match</span><span class="value gold">94%</span></div>
+        <!-- Right mid panels -->
+        <div class="data-frag tall-panel mid" data-depth="back" style="top:8%;right:12%;height:70%;transform:perspective(800px) rotateY(-12deg)">
+          <div class="tp-row gold lg">¥890M</div>
+          <div class="tp-row">Singapore SIAC • IP</div>
+          <div class="tp-row dim">Chen Industries Ltd</div>
+          <div class="tp-row badge green">Funded</div>
+          <div class="tp-row gold">89%</div>
+          <div class="tp-row">Damages_Model.xlsx</div>
+          <div class="tp-row gold lg">£4.7M</div>
+          <div class="tp-row">High Court UK</div>
+          <div class="tp-row dim">Insolvency Proceeding</div>
+          <div class="tp-row badge yellow">Diligence</div>
         </div>
         
-        <!-- Right side panels -->
-        <div class="data-frag data-panel" data-depth="back" style="top:8%;right:3%;transform:rotate(4deg) perspective(500px) rotateY(-10deg)">
-          <div class="panel-row"><span class="label">Case</span><span class="value trunc">Chen Industr...</span></div>
-          <div class="panel-row"><span class="value gold lg">¥890M</span></div>
-          <div class="panel-row"><span class="value dim">Singapore SIAC</span></div>
+        <div class="data-frag tall-panel mid secondary" data-depth="back" style="top:15%;right:22%;height:55%;transform:perspective(600px) rotateY(-8deg)">
+          <div class="tp-row gold">€3.2M</div>
+          <div class="tp-row">93%</div>
+          <div class="tp-row dim">Expert_Report.pdf</div>
+          <div class="tp-row gold">$6.8M</div>
+          <div class="tp-row badge blue">3 Bids</div>
+          <div class="tp-row">LCIA</div>
+          <div class="tp-row gold">CHF2.1M</div>
+          <div class="tp-row">86%</div>
         </div>
-        
-        <div class="data-frag data-panel sm" data-depth="back" style="top:30%;right:0%;transform:rotate(3deg) perspective(400px) rotateY(-8deg)">
-          <div class="panel-row"><span class="value gold">£4.7M</span></div>
-          <div class="panel-row"><span class="value dim">High Court UK</span></div>
-        </div>
-        
-        <div class="data-frag data-panel" data-depth="back" style="top:48%;right:2%;transform:rotate(2deg) perspective(500px) rotateY(-6deg)">
-          <div class="panel-row"><span class="label">Funder</span><span class="value trunc">Longford Ca...</span></div>
-          <div class="panel-row"><span class="label">Offer</span><span class="value gold">$5.5M</span></div>
-        </div>
-        
-        <!-- Back amounts scattered -->
-        <div class="data-frag amt lg" data-depth="back" style="top:22%;left:18%">$12.4M</div>
-        <div class="data-frag amt lg" data-depth="back" style="top:38%;left:12%">€6.8M</div>
-        <div class="data-frag amt lg" data-depth="back" style="top:25%;right:20%">£3.2M</div>
-        <div class="data-frag amt lg" data-depth="back" style="top:42%;right:15%">CHF9.1M</div>
-        
-        <!-- Back pills -->
-        <div class="data-frag match-score" data-depth="back" style="top:18%;left:25%">87%</div>
-        <div class="data-frag match-score" data-depth="back" style="top:35%;left:8%">91%</div>
-        <div class="data-frag match-score" data-depth="back" style="top:20%;right:12%">82%</div>
-        <div class="data-frag match-score" data-depth="back" style="top:40%;right:22%">95%</div>
-        
-        <!-- Back jurisdictions -->
-        <div class="data-frag court-label" data-depth="back" style="top:32%;left:20%">Delaware Chancery</div>
-        <div class="data-frag court-label" data-depth="back" style="top:52%;left:5%">LCIA London</div>
-        <div class="data-frag court-label" data-depth="back" style="top:28%;right:8%">Hong Kong HKIAC</div>
-        <div class="data-frag court-label" data-depth="back" style="top:55%;right:18%">Tokyo District</div>
         
         <!-- ==========================================
-             MID LAYER - Light blur (2-4px)
-             Closer elements, more visible
+             NEAR DEPTH - Close to the key clearing
+             Light blur, high visibility
         ========================================== -->
-        <!-- Mid panels - left -->
-        <div class="data-frag data-panel" data-depth="mid" style="top:18%;left:15%;transform:rotate(-2deg)">
-          <div class="panel-row"><span class="value gold lg">$2.5M</span></div>
-          <div class="panel-row"><span class="value dim">Commercial • SDNY</span></div>
+        <div class="data-frag data-card" data-depth="mid" style="top:20%;left:28%;transform:rotate(-2deg)">
+          <div class="dc-amount">$2.5M</div>
+          <div class="dc-meta">SDNY • 94%</div>
         </div>
         
-        <div class="data-frag data-panel sm" data-depth="mid" style="top:35%;left:20%;transform:rotate(1deg)">
-          <div class="panel-row"><span class="value trunc">Term_Sheet.pdf</span></div>
+        <div class="data-frag data-card" data-depth="mid" style="top:25%;left:35%;transform:rotate(1deg)">
+          <div class="dc-amount">€1.8M</div>
+          <div class="dc-meta">ICC • Matched</div>
         </div>
         
-        <!-- Mid panels - right -->
-        <div class="data-frag data-panel" data-depth="mid" style="top:20%;right:18%;transform:rotate(2deg)">
-          <div class="panel-row"><span class="value gold lg">€4.1M</span></div>
-          <div class="panel-row"><span class="value dim">Arbitration • ICC</span></div>
+        <div class="data-frag data-card" data-depth="mid" style="top:22%;right:30%;transform:rotate(2deg)">
+          <div class="dc-amount">£4.1M</div>
+          <div class="dc-meta">LCIA • 87%</div>
         </div>
         
-        <div class="data-frag data-panel sm" data-depth="mid" style="top:38%;right:22%;transform:rotate(-1deg)">
-          <div class="panel-row"><span class="value trunc">Damages_Rpt.xlsx</span></div>
+        <div class="data-frag data-card" data-depth="mid" style="top:28%;right:36%;transform:rotate(-1deg)">
+          <div class="dc-amount">$890K</div>
+          <div class="dc-meta">Delaware • Funded</div>
         </div>
         
-        <!-- Mid amounts - ring around key area -->
-        <div class="data-frag amt" data-depth="mid" style="top:28%;left:28%">$1.8M</div>
-        <div class="data-frag amt" data-depth="mid" style="top:25%;left:38%">€890K</div>
-        <div class="data-frag amt" data-depth="mid" style="top:30%;right:35%">£2.1M</div>
-        <div class="data-frag amt" data-depth="mid" style="top:26%;right:25%">$3.4M</div>
-        
-        <!-- Mid pills -->
-        <div class="data-frag match-score lg" data-depth="mid" style="top:24%;left:32%">94%</div>
-        <div class="data-frag match-score lg" data-depth="mid" style="top:28%;right:30%">88%</div>
-        
-        <!-- Mid status badges -->
-        <div class="data-frag status-tag green" data-depth="mid" style="top:32%;left:25%">Funded</div>
-        <div class="data-frag status-tag yellow" data-depth="mid" style="top:22%;right:32%">Under Review</div>
-        <div class="data-frag status-tag blue" data-depth="mid" style="top:35%;right:28%">Matched</div>
+        <!-- Near floating elements -->
+        <div class="data-frag pill-score" data-depth="mid" style="top:32%;left:32%">91%</div>
+        <div class="data-frag pill-score" data-depth="mid" style="top:30%;right:34%">88%</div>
+        <div class="data-frag status-pill green" data-depth="mid" style="top:35%;left:38%">Funded</div>
+        <div class="data-frag status-pill yellow" data-depth="mid" style="top:33%;right:40%">Review</div>
         
         <!-- ==========================================
-             BOTTOM AREA - Fades out near CTA
-             Less dense, more atmospheric
+             ATMOSPHERIC PARTICLES - Tiny specks
         ========================================== -->
-        <div class="data-frag amt lg" data-depth="back" style="bottom:35%;left:8%">A$5.2M</div>
-        <div class="data-frag amt lg" data-depth="back" style="bottom:38%;right:10%">$8.9M</div>
-        <div class="data-frag match-score" data-depth="back" style="bottom:40%;left:18%">79%</div>
-        <div class="data-frag match-score" data-depth="back" style="bottom:42%;right:20%">86%</div>
-        <div class="data-frag court-label" data-depth="haze" style="bottom:32%;left:5%">AAA New York</div>
-        <div class="data-frag court-label" data-depth="haze" style="bottom:30%;right:8%">ICSID</div>
-        
-        <!-- Very bottom - just hints -->
-        <div class="data-frag amt xl" data-depth="haze" style="bottom:5%;left:20%">$45M</div>
-        <div class="data-frag amt xl" data-depth="haze" style="bottom:8%;right:22%">€32M</div>
+        <div class="data-frag particle" data-depth="mid" style="top:15%;left:40%"></div>
+        <div class="data-frag particle" data-depth="mid" style="top:20%;left:55%"></div>
+        <div class="data-frag particle" data-depth="mid" style="top:25%;right:45%"></div>
+        <div class="data-frag particle" data-depth="mid" style="top:18%;right:52%"></div>
+        <div class="data-frag particle" data-depth="fg" style="top:30%;left:42%"></div>
+        <div class="data-frag particle" data-depth="fg" style="top:28%;right:44%"></div>
+        <div class="data-frag particle" data-depth="back" style="top:12%;left:48%"></div>
+        <div class="data-frag particle" data-depth="back" style="top:10%;right:50%"></div>
+        <div class="data-frag particle gold" data-depth="mid" style="top:35%;left:45%"></div>
+        <div class="data-frag particle gold" data-depth="mid" style="top:32%;right:47%"></div>
+        <div class="data-frag particle" data-depth="mid" style="bottom:35%;left:43%"></div>
+        <div class="data-frag particle" data-depth="mid" style="bottom:38%;right:45%"></div>
+        <div class="data-frag particle gold" data-depth="fg" style="bottom:32%;left:48%"></div>
+        <div class="data-frag particle gold" data-depth="fg" style="bottom:30%;right:50%"></div>
         
         <!-- ==========================================
-             FOREGROUND - Minimal blur (0-1px)
-             Very few elements, closest to viewer
+             FOREGROUND - Closest elements, minimal
         ========================================== -->
-        <div class="data-frag amt sm" data-depth="fg" style="top:30%;left:35%">$2.5M</div>
-        <div class="data-frag amt sm" data-depth="fg" style="top:28%;right:38%">€1.2M</div>
-        <div class="data-frag match-score sm" data-depth="fg" style="top:33%;left:40%">91%</div>
-        <div class="data-frag match-score sm" data-depth="fg" style="top:32%;right:42%">87%</div>
+        <div class="data-frag amt-float" data-depth="fg" style="top:28%;left:38%">$2.5M</div>
+        <div class="data-frag amt-float" data-depth="fg" style="top:30%;right:40%">€1.2M</div>
+        <div class="data-frag pill-score sm" data-depth="fg" style="top:33%;left:42%">94%</div>
+        <div class="data-frag pill-score sm" data-depth="fg" style="top:31%;right:44%">91%</div>
+        
+        <!-- ==========================================
+             BOTTOM FADE - Less dense, atmospheric
+        ========================================== -->
+        <div class="data-frag tall-panel bottom" data-depth="back" style="bottom:0;left:5%;height:45%;transform:perspective(800px) rotateY(15deg) rotateX(-5deg)">
+          <div class="tp-row gold">$8.4M</div>
+          <div class="tp-row dim">AAA New York</div>
+          <div class="tp-row">79%</div>
+          <div class="tp-row gold">€2.1M</div>
+          <div class="tp-row dim">Pending</div>
+        </div>
+        
+        <div class="data-frag tall-panel bottom" data-depth="back" style="bottom:0;right:5%;height:45%;transform:perspective(800px) rotateY(-15deg) rotateX(-5deg)">
+          <div class="tp-row gold">£5.6M</div>
+          <div class="tp-row dim">ICSID</div>
+          <div class="tp-row">83%</div>
+          <div class="tp-row gold">$3.9M</div>
+          <div class="tp-row dim">Intake</div>
+        </div>
         
       </div>
       <!-- The Key -->

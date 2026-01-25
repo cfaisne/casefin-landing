@@ -350,155 +350,148 @@ body {
 }
 
 /* ========================================
-   APPLE-STYLE DATA VAULT
-   Clean, depth, restrained, premium
+   DATA CATHEDRAL - Vertical, deep, reverent
 ======================================== */
 
-/* Large vault panels - perspective depth */
-.vault-panel {
-  background: linear-gradient(135deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%);
+/* Tall vertical panels - the walls of the cathedral */
+.tall-panel {
+  width: 140px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.025) 0%, rgba(255,255,255,0.01) 100%);
   border: 1px solid rgba(255,255,255,0.04);
-  border-radius: 12px;
-  width: 280px;
-  height: 180px;
+  border-radius: 4px;
+  padding: 15px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
-.vault-panel.lg {
-  width: 220px;
-  height: 140px;
+.tall-panel.secondary {
+  width: 120px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02) 0%, rgba(255,255,255,0.005) 100%);
+  border-color: rgba(255,255,255,0.03);
+  gap: 10px;
 }
-.vault-panel.xl {
-  width: 350px;
-  height: 220px;
+.tall-panel.mid {
+  width: 130px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.035) 0%, rgba(255,255,255,0.015) 100%);
+  border-color: rgba(255,255,255,0.05);
+  padding: 12px 10px;
+  gap: 10px;
+}
+.tall-panel.mid.secondary {
+  width: 110px;
+  gap: 8px;
+}
+.tall-panel.bottom {
+  width: 120px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02) 0%, transparent 100%);
+  border-color: rgba(255,255,255,0.025);
 }
 
-/* Data panels - structured info */
-.data-panel {
-  background: rgba(255,255,255,0.025);
-  border: 1px solid rgba(255,255,255,0.05);
-  border-radius: 8px;
-  padding: 12px 16px;
-  min-width: 120px;
-}
-.data-panel.sm {
-  padding: 8px 12px;
-  min-width: 90px;
-}
-.data-panel .panel-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 6px;
-}
-.data-panel .panel-row:last-child {
-  margin-bottom: 0;
-}
-.data-panel .label {
-  font-size: 0.5rem;
-  color: rgba(255,255,255,0.35);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-.data-panel .value {
+.tall-panel .tp-row {
   font-size: 0.6rem;
-  color: rgba(255,255,255,0.7);
-}
-.data-panel .value.lg {
-  font-size: 0.85rem;
-  font-weight: 600;
-}
-.data-panel .value.gold {
-  color: rgba(196,185,146,0.9);
-  font-weight: 600;
-}
-.data-panel .value.dim {
-  color: rgba(255,255,255,0.4);
-  font-size: 0.5rem;
-}
-.data-panel .value.trunc {
-  max-width: 100px;
+  color: rgba(255,255,255,0.6);
+  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  white-space: nowrap;
 }
-.data-panel .value.status-green {
+.tall-panel .tp-row.gold {
+  color: rgba(196,185,146,0.85);
+  font-weight: 600;
+}
+.tall-panel .tp-row.gold.lg {
+  font-size: 0.8rem;
+}
+.tall-panel .tp-row.dim {
+  color: rgba(255,255,255,0.35);
+  font-size: 0.5rem;
+}
+.tall-panel .tp-row.badge {
+  display: inline-block;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-size: 0.45rem;
+  width: fit-content;
+}
+.tall-panel .tp-row.badge.green {
+  background: rgba(76,175,80,0.15);
   color: rgba(134,194,137,0.9);
 }
+.tall-panel .tp-row.badge.yellow {
+  background: rgba(255,193,7,0.12);
+  color: rgba(255,213,79,0.9);
+}
+.tall-panel .tp-row.badge.blue {
+  background: rgba(33,150,243,0.12);
+  color: rgba(100,181,246,0.9);
+}
 
-/* Amounts - clean typography */
-.amt {
+/* Data cards - near key area */
+.data-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 6px;
+  padding: 8px 12px;
+}
+.data-card .dc-amount {
+  font-size: 0.85rem;
   font-weight: 600;
-  color: rgba(196,185,146,0.8);
-  font-size: 0.9rem;
-  letter-spacing: -0.02em;
+  color: rgba(196,185,146,0.9);
+  margin-bottom: 3px;
 }
-.amt.sm {
-  font-size: 0.7rem;
-}
-.amt.lg {
-  font-size: 1.2rem;
-  color: rgba(196,185,146,0.6);
-}
-.amt.xl {
-  font-size: 1.6rem;
-  color: rgba(196,185,146,0.4);
-}
-.amt.xxl {
-  font-size: 2.2rem;
-  color: rgba(196,185,146,0.25);
+.data-card .dc-meta {
+  font-size: 0.45rem;
+  color: rgba(255,255,255,0.5);
 }
 
-/* Match scores - subtle pills */
-.match-score {
-  display: inline-block;
-  padding: 3px 10px;
-  background: rgba(184,166,122,0.1);
-  border: 1px solid rgba(184,166,122,0.15);
-  border-radius: 12px;
-  font-size: 0.6rem;
+/* Floating amounts */
+.amt-float {
+  font-size: 0.75rem;
   font-weight: 600;
   color: rgba(196,185,146,0.85);
 }
-.match-score.lg {
-  padding: 4px 14px;
-  font-size: 0.7rem;
+
+/* Score pills */
+.pill-score {
+  display: inline-block;
+  padding: 3px 10px;
+  background: rgba(184,166,122,0.12);
+  border: 1px solid rgba(184,166,122,0.18);
+  border-radius: 12px;
+  font-size: 0.6rem;
+  font-weight: 600;
+  color: rgba(196,185,146,0.9);
 }
-.match-score.sm {
+.pill-score.sm {
   padding: 2px 8px;
   font-size: 0.5rem;
 }
 
-/* Status tags */
-.status-tag {
+/* Status pills */
+.status-pill {
   display: inline-block;
-  padding: 3px 10px;
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 4px;
+  padding: 2px 8px;
+  border-radius: 3px;
   font-size: 0.5rem;
   font-weight: 500;
-  color: rgba(255,255,255,0.7);
 }
-.status-tag.green {
-  background: rgba(76,175,80,0.08);
-  border-color: rgba(76,175,80,0.15);
+.status-pill.green {
+  background: rgba(76,175,80,0.12);
   color: rgba(134,194,137,0.9);
 }
-.status-tag.yellow {
-  background: rgba(255,193,7,0.06);
-  border-color: rgba(255,193,7,0.12);
-  color: rgba(255,213,79,0.85);
-}
-.status-tag.blue {
-  background: rgba(33,150,243,0.06);
-  border-color: rgba(33,150,243,0.12);
-  color: rgba(100,181,246,0.85);
+.status-pill.yellow {
+  background: rgba(255,193,7,0.1);
+  color: rgba(255,213,79,0.9);
 }
 
-/* Court labels */
-.court-label {
-  font-size: 0.55rem;
-  color: rgba(255,255,255,0.45);
-  font-weight: 500;
+/* Atmospheric particles */
+.particle {
+  width: 3px;
+  height: 3px;
+  background: rgba(255,255,255,0.3);
+  border-radius: 50%;
+}
+.particle.gold {
+  background: rgba(196,185,146,0.5);
 }
 
 /* ========================================
