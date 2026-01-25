@@ -251,7 +251,7 @@ body {
 
 /* ========================================
    UI Environment - Data Room Fragments
-   Dense, clustered around key, real content
+   Dense, overlapping, central gravity around key
 ======================================== */
 .ui-environment {
   position: absolute;
@@ -271,13 +271,13 @@ body {
   opacity: 0; /* GSAP fades in */
 }
 
-/* Depth layers */
+/* Depth layers - blur and base opacity */
 .data-frag[data-depth="far"] {
-  filter: blur(3px);
+  filter: blur(4px);
 }
 
 .data-frag[data-depth="mid"] {
-  filter: blur(1.5px);
+  filter: blur(2px);
 }
 
 .data-frag[data-depth="near"] {
@@ -285,141 +285,175 @@ body {
 }
 
 /* ========================================
-   Fragment Types - Real data room content
+   Fragment Types
 ======================================== */
 
-/* Dollar amounts - floating figures */
-.amount-frag {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: rgba(196, 185, 146, 0.5);
-  letter-spacing: -0.02em;
-}
-
-.amount-frag.lg {
-  font-size: 1.6rem;
-  color: rgba(196, 185, 146, 0.4);
-}
-
-/* Score/Status pills */
-.pill-frag {
-  padding: 4px 10px;
+/* Ghost cards - large background shapes */
+.card-ghost {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.04);
   border-radius: 10px;
-  font-size: 0.7rem;
-  font-weight: 500;
-  white-space: nowrap;
 }
 
-.pill-frag.score {
-  background: rgba(184, 166, 122, 0.12);
-  border: 1px solid rgba(184, 166, 122, 0.15);
-  color: rgba(196, 185, 146, 0.7);
+.card-ghost.lg {
+  background: rgba(255, 255, 255, 0.015);
 }
 
-.pill-frag.status {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  color: rgba(255, 255, 255, 0.5);
-}
-
-.pill-frag.type {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  color: rgba(255, 255, 255, 0.4);
-  font-size: 0.65rem;
-}
-
-/* Partial case cards */
-.card-frag {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+/* Panel fragments - partial cards with content */
+.panel-frag {
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(255, 255, 255, 0.05);
   border-radius: 8px;
   padding: 10px 12px;
+  overflow: hidden;
 }
 
-.card-frag .card-label {
-  font-size: 0.75rem;
+.panel-frag.sm {
+  padding: 8px 10px;
+}
+
+.panel-frag .panel-header {
+  font-size: 0.7rem;
   font-weight: 500;
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.4);
   margin-bottom: 4px;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
-.card-frag .card-amount {
-  font-size: 1rem;
+.panel-frag .panel-amount {
+  font-size: 0.9rem;
   font-weight: 600;
-  color: rgba(196, 185, 146, 0.6);
+  color: rgba(196, 185, 146, 0.5);
   margin-bottom: 2px;
 }
 
-.card-frag .card-type {
+.panel-frag .panel-score {
   font-size: 0.65rem;
-  color: rgba(255, 255, 255, 0.35);
-}
-
-.card-frag .card-meta {
-  font-size: 0.6rem;
-  color: rgba(255, 255, 255, 0.25);
-}
-
-.card-frag .card-score {
-  font-size: 0.7rem;
   font-weight: 500;
-  color: rgba(184, 166, 122, 0.6);
+  color: rgba(184, 166, 122, 0.5);
   margin-bottom: 4px;
 }
 
-/* Document list fragments */
-.doc-frag {
-  font-size: 0.7rem;
-  color: rgba(255, 255, 255, 0.4);
-  display: flex;
-  align-items: center;
-  gap: 6px;
+.panel-frag .panel-meta {
+  font-size: 0.6rem;
+  color: rgba(255, 255, 255, 0.25);
+  white-space: nowrap;
+  overflow: hidden;
 }
 
-.doc-frag .doc-icon {
-  font-size: 0.8rem;
-  opacity: 0.6;
+/* Dollar amounts */
+.amount-frag {
+  font-size: 1rem;
+  font-weight: 600;
+  color: rgba(196, 185, 146, 0.4);
+  letter-spacing: -0.02em;
 }
 
-/* Funder names */
-.funder-frag {
-  font-size: 0.75rem;
-  font-weight: 500;
+.amount-frag.xl {
+  font-size: 1.8rem;
+  color: rgba(196, 185, 146, 0.25);
+}
+
+.amount-frag.lg {
+  font-size: 1.4rem;
+  color: rgba(196, 185, 146, 0.3);
+}
+
+.amount-frag.sm {
+  font-size: 0.85rem;
   color: rgba(196, 185, 146, 0.45);
+}
+
+.amount-frag.xs {
+  font-size: 0.7rem;
+  color: rgba(196, 185, 146, 0.5);
+}
+
+/* Pills */
+.pill-frag {
+  padding: 3px 8px;
+  background: rgba(184, 166, 122, 0.1);
+  border: 1px solid rgba(184, 166, 122, 0.12);
+  border-radius: 10px;
+  font-size: 0.65rem;
+  font-weight: 500;
+  color: rgba(196, 185, 146, 0.55);
+  white-space: nowrap;
+}
+
+.pill-frag.status {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.pill-frag.type {
+  background: rgba(255, 255, 255, 0.025);
+  border-color: rgba(255, 255, 255, 0.04);
+  color: rgba(255, 255, 255, 0.3);
+  font-size: 0.6rem;
+}
+
+.pill-frag.sm {
+  padding: 2px 6px;
+  font-size: 0.6rem;
+}
+
+.pill-frag.xs {
+  padding: 2px 5px;
+  font-size: 0.55rem;
+}
+
+/* Document hints */
+.doc-frag {
+  font-size: 0.6rem;
+  color: rgba(255, 255, 255, 0.3);
+  white-space: nowrap;
 }
 
 /* Small labels */
 .label-frag {
-  font-size: 0.6rem;
+  font-size: 0.55rem;
   font-weight: 500;
-  color: rgba(255, 255, 255, 0.3);
+  color: rgba(255, 255, 255, 0.25);
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
 
-/* Progress bars */
-.progress-frag {
-  width: 80px;
+/* Micro details */
+.micro-frag {
+  font-size: 0.5rem;
+  color: rgba(255, 255, 255, 0.2);
 }
 
-.progress-track {
-  height: 4px;
-  background: rgba(255, 255, 255, 0.06);
+/* Progress hints */
+.progress-frag {
+  height: 3px;
+  background: rgba(255, 255, 255, 0.04);
   border-radius: 2px;
   overflow: hidden;
 }
 
-.progress-fill {
+.progress-frag::after {
+  content: '';
+  display: block;
   height: 100%;
-  background: rgba(184, 166, 122, 0.35);
+  width: 60%;
+  background: rgba(184, 166, 122, 0.25);
   border-radius: 2px;
 }
 
 /* Connecting lines */
 .line-frag {
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(184, 166, 122, 0.2), transparent);
+  background: linear-gradient(90deg, transparent, rgba(184, 166, 122, 0.15), transparent);
+}
+
+.line-frag.v {
+  width: 1px;
+  height: auto;
+  background: linear-gradient(180deg, transparent, rgba(184, 166, 122, 0.15), transparent);
 }
 
 /* ========================================
