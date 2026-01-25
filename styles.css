@@ -2,27 +2,24 @@
    CSS Variables & Reset
 ======================================== */
 :root {
-  /* Colors - Warm graphite vault */
-  --bg-base: #3A3835;
-  --bg-dark: #302E2B;
-  --bg-section: #302E2B;
-  --bg-deep: #262422;
-  --gold: #B8A67A;
-  --gold-light: #D4C9A8;
-  --gold-warm: #C4B592;
-  --gold-glow: rgba(184, 166, 122, 0.25);
-  --gold-intense: rgba(196, 181, 146, 0.5);
-  --champagne: #C4B998;
-  --brass: #A89968;
+  /* Colors */
+  --bg-dark: #0a0908;
+  --bg-locked: #050504;
+  --bg-section: #0d0c0a;
+  --gold: #c9a227;
+  --gold-light: #e8d48b;
+  --gold-warm: #d4a845;
+  --gold-glow: rgba(201, 162, 39, 0.4);
+  --gold-intense: rgba(212, 168, 69, 0.8);
   --text-primary: #ffffff;
   --text-secondary: rgba(255, 255, 255, 0.7);
   --text-muted: rgba(255, 255, 255, 0.4);
   
   /* Frosted Glass */
-  --glass-bg: rgba(58, 56, 53, 0.7);
-  --glass-bg-strong: rgba(58, 56, 53, 0.9);
+  --glass-bg: rgba(20, 18, 16, 0.6);
+  --glass-bg-strong: rgba(20, 18, 16, 0.85);
   --glass-border: rgba(255, 255, 255, 0.08);
-  --glass-border-gold: rgba(184, 166, 122, 0.15);
+  --glass-border-gold: rgba(201, 162, 39, 0.15);
   --glass-blur: 20px;
   
   /* Card styling */
@@ -49,14 +46,14 @@ html {
 
 body {
   font-family: var(--font-main);
-  background: var(--bg-base);
+  background: var(--bg-locked);
   color: var(--text-primary);
   line-height: 1.6;
   overflow-x: hidden;
 }
 
 /* ========================================
-   Navigation - Always visible, bar on scroll
+   Navigation - Hidden initially, frosted glass
 ======================================== */
 .nav {
   position: fixed;
@@ -68,17 +65,36 @@ body {
   align-items: center;
   justify-content: space-between;
   padding: 1.25rem 3rem;
-  /* No background by default - transparent */
-  background: transparent;
-  border-bottom: none;
-  transition: background 0.3s ease, backdrop-filter 0.3s ease;
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border-bottom: 1px solid var(--glass-border);
+  /* Hidden in locked state - GSAP will animate */
+  opacity: 0;
+  transform: translateY(-12px);
+  pointer-events: none;
 }
 
-/* Nav bar appears on scroll - added via JS */
-.nav.scrolled {
-  background: rgba(58, 56, 53, 0.92);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+/* Gold underglow beneath navbar */
+.nav::after {
+  content: '';
+  position: absolute;
+  bottom: -20px;
+  left: 10%;
+  right: 10%;
+  height: 20px;
+  background: radial-gradient(ellipse at center, rgba(201, 162, 39, 0.15) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+
+.nav.revealed::after {
+  opacity: 1;
+}
+
+.nav.revealed {
+  border-bottom-color: var(--glass-border-gold);
 }
 
 .nav-logo {
@@ -187,7 +203,7 @@ body {
 }
 
 /* ========================================
-   Unlock Section - Clean base
+   Unlock Section (Pinned Hero)
 ======================================== */
 .unlock-section {
   position: relative;
@@ -197,7 +213,7 @@ body {
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  background: var(--bg-base);
+  background: var(--bg-locked);
 }
 
 .unlock-container {
@@ -210,50 +226,10 @@ body {
 }
 
 /* ========================================
-   Environment Layers - Vault Enclosure
+   Environment Layers (Vignette, Grain, Glow)
 ======================================== */
 
-/* Deep shadow enclosure - strong edge falloff */
-.env-depth {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: 
-    /* Top shadow - heavy */
-    linear-gradient(180deg, rgba(18, 16, 14, 0.85) 0%, rgba(18, 16, 14, 0.4) 15%, transparent 35%),
-    /* Bottom shadow - heavy */
-    linear-gradient(0deg, rgba(18, 16, 14, 0.9) 0%, rgba(18, 16, 14, 0.5) 20%, transparent 40%),
-    /* Left shadow */
-    linear-gradient(90deg, rgba(18, 16, 14, 0.7) 0%, rgba(18, 16, 14, 0.3) 12%, transparent 30%),
-    /* Right shadow */
-    linear-gradient(270deg, rgba(18, 16, 14, 0.7) 0%, rgba(18, 16, 14, 0.3) 12%, transparent 30%);
-  pointer-events: none;
-  z-index: 1;
-  opacity: 0;
-}
-
-/* Center spotlight - key as light source */
-.env-spotlight {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(
-    ellipse 35% 40% at 50% 45%,
-    rgba(58, 56, 53, 0.4) 0%,
-    rgba(48, 46, 43, 0.2) 40%,
-    transparent 70%
-  );
-  pointer-events: none;
-  z-index: 2;
-  opacity: 0;
-}
-
-/* Vignette - tight enclosure */
+/* Vignette - softer, not crushing */
 .env-vignette {
   position: absolute;
   top: 0;
@@ -261,58 +237,51 @@ body {
   width: 100%;
   height: 100%;
   background: radial-gradient(
-    ellipse 55% 50% at 50% 48%,
+    ellipse 60% 60% at 50% 50%,
     transparent 0%,
-    transparent 30%,
-    rgba(18, 16, 14, 0.4) 55%,
-    rgba(18, 16, 14, 0.75) 80%,
-    rgba(18, 16, 14, 0.95) 100%
+    rgba(5, 5, 4, 0.15) 50%,
+    rgba(5, 5, 4, 0.5) 80%,
+    rgba(5, 5, 4, 0.8) 100%
   );
   pointer-events: none;
-  z-index: 6;
-  opacity: 0;
+  z-index: 5;
 }
 
-/* Key ambient glow */
+/* Grain/noise overlay - very subtle */
+.env-grain {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.06;
+  pointer-events: none;
+  z-index: 6;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+}
+
+/* Global ambient glow - grows during transition */
 .env-ambient {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 140%;
-  height: 140%;
+  width: 150%;
+  height: 150%;
   background: radial-gradient(
-    ellipse 22% 26% at 50% 44%,
-    rgba(184, 166, 122, 0.15) 0%,
-    rgba(184, 166, 122, 0.08) 25%,
-    rgba(184, 166, 122, 0.03) 45%,
-    transparent 65%
+    ellipse 40% 40% at 50% 50%,
+    rgba(201, 162, 39, 0.0) 0%,
+    transparent 60%
   );
   opacity: 0;
   pointer-events: none;
-  z-index: 3;
-}
-
-/* Floor shadow beneath key */
-.env-floor {
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 60%;
-  height: 35%;
-  background: radial-gradient(
-    ellipse 80% 100% at 50% 100%,
-    rgba(18, 16, 14, 0.5) 0%,
-    transparent 70%
-  );
-  pointer-events: none;
-  z-index: 2;
-  opacity: 0;
+  z-index: 1;
 }
 
 /* ========================================
-   UI Environment - Zone-based Composition
+   UI Environment - Dense Data Landscape
+   Hundreds of fragments creating rich background
 ======================================== */
 .ui-environment {
   position: absolute;
@@ -321,178 +290,240 @@ body {
   width: 100%;
   height: 100%;
   pointer-events: none;
-  z-index: 4;
+  z-index: 2;
   overflow: hidden;
 }
 
-.data-frag {
+/* Base fragment styles - more visible */
+.ui-fragment {
   position: absolute;
-  font-family: var(--font-main);
-  opacity: 0;
+  background: rgba(40, 35, 30, 0.6);
+  border: 1px solid rgba(201, 162, 39, 0.08);
+  border-radius: 6px;
+  backdrop-filter: blur(2px);
 }
 
-/* 4 Depth layers with distinct blur + opacity */
-/* Foreground: blur 0-1px */
-.data-frag[data-depth="fg"] { 
-  filter: blur(0.5px); 
+/* Depth layers - locked state */
+.ui-fragment[data-depth="far"] {
+  filter: blur(4px);
+  opacity: 0.25;
 }
-/* Mid: blur 2-4px */
-.data-frag[data-depth="mid"] { 
-  filter: blur(3px); 
+
+.ui-fragment[data-depth="mid"] {
+  filter: blur(2px);
+  opacity: 0.35;
 }
-/* Back: blur 6-10px */
-.data-frag[data-depth="back"] { 
-  filter: blur(7px); 
-}
-/* Far haze: blur 14-20px */
-.data-frag[data-depth="haze"] { 
-  filter: blur(16px); 
+
+.ui-fragment[data-depth="near"] {
+  filter: blur(1px);
+  opacity: 0.45;
 }
 
 /* ========================================
-   DATA CATHEDRAL - Vertical, deep, reverent
+   Fragment Types - Recognizable UI pieces
 ======================================== */
 
-/* Tall vertical panels - the walls of the cathedral */
-.tall-panel {
-  width: 140px;
-  background: linear-gradient(180deg, rgba(255,255,255,0.025) 0%, rgba(255,255,255,0.01) 100%);
-  border: 1px solid rgba(255,255,255,0.04);
+/* Cards - rectangular with header line */
+.frag-card {
+  border-radius: 8px;
+  background: linear-gradient(180deg, rgba(50, 45, 38, 0.7) 0%, rgba(35, 30, 25, 0.6) 100%);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.frag-card::before {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: 10px;
+  right: 30%;
+  height: 6px;
+  background: rgba(201, 162, 39, 0.15);
+  border-radius: 3px;
+}
+
+.frag-card::after {
+  content: '';
+  position: absolute;
+  top: 20px;
+  left: 10px;
+  right: 15%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 2px;
+}
+
+/* Buttons - small rounded rectangles */
+.frag-btn {
+  border-radius: 6px;
+  background: linear-gradient(180deg, rgba(201, 162, 39, 0.2) 0%, rgba(201, 162, 39, 0.1) 100%);
+  border-color: rgba(201, 162, 39, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.frag-btn::before {
+  content: '';
+  width: 60%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 2px;
+}
+
+/* Table rows */
+.frag-table {
   border-radius: 4px;
-  padding: 15px 12px;
+  background: rgba(35, 30, 25, 0.7);
   display: flex;
   flex-direction: column;
-  gap: 12px;
-}
-.tall-panel.secondary {
-  width: 120px;
-  background: linear-gradient(180deg, rgba(255,255,255,0.02) 0%, rgba(255,255,255,0.005) 100%);
-  border-color: rgba(255,255,255,0.03);
-  gap: 10px;
-}
-.tall-panel.mid {
-  width: 130px;
-  background: linear-gradient(180deg, rgba(255,255,255,0.035) 0%, rgba(255,255,255,0.015) 100%);
-  border-color: rgba(255,255,255,0.05);
-  padding: 12px 10px;
-  gap: 10px;
-}
-.tall-panel.mid.secondary {
-  width: 110px;
-  gap: 8px;
-}
-.tall-panel.bottom {
-  width: 120px;
-  background: linear-gradient(180deg, rgba(255,255,255,0.02) 0%, transparent 100%);
-  border-color: rgba(255,255,255,0.025);
+  padding: 6px;
+  gap: 4px;
 }
 
-.tall-panel .tp-row {
-  font-size: 0.6rem;
-  color: rgba(255,255,255,0.6);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.tall-panel .tp-row.gold {
-  color: rgba(196,185,146,0.85);
-  font-weight: 600;
-}
-.tall-panel .tp-row.gold.lg {
-  font-size: 0.8rem;
-}
-.tall-panel .tp-row.dim {
-  color: rgba(255,255,255,0.35);
-  font-size: 0.5rem;
-}
-.tall-panel .tp-row.badge {
-  display: inline-block;
-  padding: 2px 6px;
-  border-radius: 3px;
-  font-size: 0.45rem;
-  width: fit-content;
-}
-.tall-panel .tp-row.badge.green {
-  background: rgba(76,175,80,0.15);
-  color: rgba(134,194,137,0.9);
-}
-.tall-panel .tp-row.badge.yellow {
-  background: rgba(255,193,7,0.12);
-  color: rgba(255,213,79,0.9);
-}
-.tall-panel .tp-row.badge.blue {
-  background: rgba(33,150,243,0.12);
-  color: rgba(100,181,246,0.9);
+.frag-table::before,
+.frag-table::after {
+  content: '';
+  height: 4px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 2px;
 }
 
-/* Data cards - near key area */
-.data-card {
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.06);
+/* Chart bars */
+.frag-chart {
   border-radius: 6px;
-  padding: 8px 12px;
-}
-.data-card .dc-amount {
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: rgba(196,185,146,0.9);
-  margin-bottom: 3px;
-}
-.data-card .dc-meta {
-  font-size: 0.45rem;
-  color: rgba(255,255,255,0.5);
+  background: rgba(30, 28, 24, 0.7);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 3px;
+  padding: 8px 6px;
 }
 
-/* Floating amounts */
-.amt-float {
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: rgba(196,185,146,0.85);
+/* File/document icons */
+.frag-file {
+  border-radius: 4px;
+  background: linear-gradient(180deg, rgba(60, 55, 45, 0.7) 0%, rgba(40, 35, 30, 0.6) 100%);
+  position: relative;
 }
 
-/* Score pills */
-.pill-score {
-  display: inline-block;
-  padding: 3px 10px;
-  background: rgba(184,166,122,0.12);
-  border: 1px solid rgba(184,166,122,0.18);
-  border-radius: 12px;
-  font-size: 0.6rem;
-  font-weight: 600;
-  color: rgba(196,185,146,0.9);
-}
-.pill-score.sm {
-  padding: 2px 8px;
-  font-size: 0.5rem;
+.frag-file::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 30%;
+  height: 30%;
+  background: rgba(201, 162, 39, 0.1);
+  border-radius: 0 4px 0 4px;
 }
 
-/* Status pills */
-.status-pill {
-  display: inline-block;
-  padding: 2px 8px;
-  border-radius: 3px;
-  font-size: 0.5rem;
-  font-weight: 500;
-}
-.status-pill.green {
-  background: rgba(76,175,80,0.12);
-  color: rgba(134,194,137,0.9);
-}
-.status-pill.yellow {
-  background: rgba(255,193,7,0.1);
-  color: rgba(255,213,79,0.9);
-}
-
-/* Atmospheric particles */
-.particle {
-  width: 3px;
+.frag-file::after {
+  content: '';
+  position: absolute;
+  bottom: 20%;
+  left: 15%;
+  right: 15%;
   height: 3px;
-  background: rgba(255,255,255,0.3);
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 2px;
+  box-shadow: 0 6px 0 rgba(255, 255, 255, 0.05), 0 12px 0 rgba(255, 255, 255, 0.03);
+}
+
+/* Badges/tags */
+.frag-badge {
+  border-radius: 12px;
+  background: rgba(201, 162, 39, 0.12);
+  border-color: rgba(201, 162, 39, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.frag-badge::before {
+  content: '';
+  width: 50%;
+  height: 4px;
+  background: rgba(201, 162, 39, 0.25);
+  border-radius: 2px;
+}
+
+/* Input fields */
+.frag-input {
+  border-radius: 6px;
+  background: rgba(25, 22, 18, 0.8);
+  border-color: rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  padding: 0 8px;
+}
+
+.frag-input::before {
+  content: '';
+  width: 60%;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+}
+
+/* Toggle switches */
+.frag-toggle {
+  border-radius: 20px;
+  background: rgba(35, 30, 25, 0.8);
+  position: relative;
+}
+
+.frag-toggle::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 15%;
+  width: 35%;
+  height: 60%;
+  background: rgba(201, 162, 39, 0.3);
   border-radius: 50%;
 }
-.particle.gold {
-  background: rgba(196,185,146,0.5);
+
+/* Progress bars */
+.frag-progress {
+  border-radius: 4px;
+  background: rgba(25, 22, 18, 0.8);
+  overflow: hidden;
 }
+
+.frag-progress::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 65%;
+  background: linear-gradient(90deg, rgba(201, 162, 39, 0.3) 0%, rgba(201, 162, 39, 0.15) 100%);
+}
+
+/* Avatar circles */
+.frag-avatar {
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(80, 70, 55, 0.7) 0%, rgba(50, 45, 38, 0.6) 100%);
+  border-color: rgba(201, 162, 39, 0.12);
+}
+
+/* Notification dots */
+.frag-dot {
+  border-radius: 50%;
+  background: rgba(201, 162, 39, 0.4);
+  border: none;
+  box-shadow: 0 0 8px rgba(201, 162, 39, 0.3);
+}
+
+/* Line/divider */
+.frag-line {
+  border-radius: 2px;
+  background: rgba(201, 162, 39, 0.15);
+  border: none;
+}
+
+/* Fragment positions now inline in HTML for flexibility */
 
 /* ========================================
    The Key - Dramatic Material Transformation
@@ -1069,125 +1100,6 @@ body {
 }
 
 /* ========================================
-   Unlock Button - Final CTA
-   Container-in-container pattern
-   Restrained lock → unlock state change
-======================================== */
-.btn-unlock {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  gap: 14px;
-  padding: 0.65rem 1.6rem 0.65rem 0.65rem;
-  background: rgba(255, 255, 255, 0.04);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 12px;
-  color: var(--text-primary);
-  text-decoration: none;
-  font-size: 1rem;
-  font-weight: 500;
-  transition: border-color 0.2s ease-out, background 0.2s ease-out;
-}
-
-.btn-unlock:hover {
-  background: rgba(255, 255, 255, 0.06);
-  border-color: rgba(255, 255, 255, 0.12);
-}
-
-/* Inner container for lock icon */
-.lock-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 36px;
-  height: 36px;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(201, 162, 39, 0.12);
-  border-radius: 8px;
-  transition: border-color 0.2s ease-out, box-shadow 0.2s ease-out;
-}
-
-.btn-unlock:hover .lock-container {
-  border-color: rgba(201, 162, 39, 0.25);
-  box-shadow: 0 0 12px rgba(201, 162, 39, 0.08);
-}
-
-/* Lock icon */
-.lock-icon {
-  position: relative;
-  width: 14px;
-  height: 17px;
-}
-
-/* Lock shackle (the U-shaped top) */
-.lock-shackle {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 10px;
-  height: 7px;
-  border: 1.5px solid rgba(201, 162, 39, 0.5);
-  border-bottom: none;
-  border-radius: 5px 5px 0 0;
-  transition: transform 0.2s ease-out, border-color 0.2s ease-out;
-}
-
-/* Lock body */
-.lock-body {
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 14px;
-  height: 10px;
-  background: rgba(201, 162, 39, 0.45);
-  border-radius: 2px;
-  transition: background 0.2s ease-out;
-}
-
-/* Keyhole in lock body */
-.lock-body::before {
-  content: '';
-  position: absolute;
-  top: 2.5px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 3px;
-  height: 3px;
-  background: rgba(20, 18, 16, 0.7);
-  border-radius: 50%;
-}
-
-.lock-body::after {
-  content: '';
-  position: absolute;
-  top: 5px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 1.5px;
-  height: 3px;
-  background: rgba(20, 18, 16, 0.7);
-  border-radius: 0 0 1px 1px;
-}
-
-/* Hover state - unlock */
-.btn-unlock:hover .lock-shackle {
-  transform: translateX(-50%) translateY(-3px);
-  border-color: var(--gold);
-}
-
-.btn-unlock:hover .lock-body {
-  background: var(--gold);
-}
-
-.btn-label {
-  position: relative;
-}
-
-/* ========================================
    Responsive
 ======================================== */
 @media (max-width: 768px) {
@@ -1228,10 +1140,5 @@ body {
     flex-direction: column;
     gap: 1.5rem;
     text-align: center;
-  }
-  
-  /* Hide journey key on mobile - too small */
-  .key-container.journey-mode {
-    display: none;
   }
 }
