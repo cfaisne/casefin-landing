@@ -350,81 +350,246 @@ body {
 }
 
 /* ========================================
-   Fragment Types - Visible, partial tokens
+   Fragment Types - Real Data Room UI
 ======================================== */
 
-/* Ghost shapes - large diffused */
-.ghost {
+/* Ghost cards - large background shapes */
+.ghost-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: 12px;
+}
+.ghost-card.sm {
+  border-radius: 10px;
+}
+
+/* CASE CARDS */
+.case-card {
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: 8px;
+  border-radius: 10px;
+  padding: 12px 14px;
+  min-width: 140px;
 }
-
-/* Amounts - VISIBLE */
-.amt { font-weight: 600; color: rgba(196,185,146,0.9); letter-spacing: -0.02em; font-size: 0.75rem; }
-.amt.xl { font-size: 2.2rem; color: rgba(196,185,146,0.7); }
-.amt.lg { font-size: 1.5rem; color: rgba(196,185,146,0.75); }
-.amt.md { font-size: 1rem; color: rgba(196,185,146,0.85); }
-.amt.sm { font-size: 0.7rem; color: rgba(196,185,146,0.9); }
-.amt.xs { font-size: 0.55rem; color: rgba(196,185,146,0.95); }
-
-/* Score pills - VISIBLE */
-.pill { 
-  padding: 2px 6px; 
-  background: rgba(184,166,122,0.2); 
-  border: 1px solid rgba(184,166,122,0.25); 
-  border-radius: 6px; 
-  font-size: 0.55rem; 
-  font-weight: 500; 
-  color: rgba(196,185,146,0.95); 
-  white-space: nowrap; 
+.case-card.sm {
+  padding: 8px 10px;
+  min-width: 100px;
 }
-.pill.lg { padding: 3px 10px; font-size: 0.7rem; }
-.pill.sm { padding: 2px 5px; font-size: 0.5rem; }
-.pill.xs { padding: 1px 4px; font-size: 0.45rem; }
-
-/* Status - VISIBLE */
-.stat { 
-  font-size: 0.55rem; 
-  color: rgba(255,255,255,0.8); 
-  white-space: nowrap; 
-}
-.stat.lg { font-size: 0.7rem; }
-.stat.sm { font-size: 0.5rem; }
-.stat.xs { font-size: 0.42rem; }
-
-/* Jurisdiction/court - VISIBLE */
-.court { 
-  font-size: 0.5rem; 
-  color: rgba(255,255,255,0.7); 
-  white-space: nowrap; 
-}
-.court.lg { font-size: 0.65rem; }
-.court.sm { font-size: 0.42rem; }
-
-/* Document name - VISIBLE */
-.doc { 
-  font-size: 0.48rem; 
-  color: rgba(255,255,255,0.65); 
-  white-space: nowrap; 
-}
-
-/* Micro specks - VISIBLE */
-.micro { 
-  font-size: 0.4rem; 
-  color: rgba(255,255,255,0.6); 
-}
-
-/* Partial panel - VISIBLE */
-.panel {
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 6px;
-  padding: 6px 8px;
+.case-card .card-header {
+  font-size: 0.65rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 6px;
+  white-space: nowrap;
   overflow: hidden;
 }
-.panel .p-amt { font-size: 0.7rem; font-weight: 600; color: rgba(196,185,146,0.85); }
-.panel .p-label { font-size: 0.42rem; color: rgba(255,255,255,0.5); margin-top: 2px; }
+.case-card .card-amount {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: rgba(196, 185, 146, 0.9);
+  margin-bottom: 4px;
+}
+.case-card.sm .card-amount {
+  font-size: 0.9rem;
+}
+.case-card .card-meta {
+  font-size: 0.5rem;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+/* FUNDER PANELS */
+.funder-panel {
+  background: rgba(184, 166, 122, 0.06);
+  border: 1px solid rgba(184, 166, 122, 0.12);
+  border-radius: 8px;
+  padding: 10px 12px;
+  min-width: 120px;
+}
+.funder-panel.sm {
+  padding: 6px 8px;
+  min-width: 90px;
+}
+.funder-panel .funder-name {
+  font-size: 0.55rem;
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.funder-panel .funder-offer {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: rgba(196, 185, 146, 0.85);
+  margin-bottom: 2px;
+}
+.funder-panel.sm .funder-offer {
+  font-size: 0.7rem;
+}
+.funder-panel .funder-terms {
+  font-size: 0.45rem;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+/* MATCH PILLS */
+.match-pill {
+  display: inline-block;
+  padding: 4px 10px;
+  background: rgba(184, 166, 122, 0.15);
+  border: 1px solid rgba(184, 166, 122, 0.2);
+  border-radius: 20px;
+  font-size: 0.6rem;
+  font-weight: 600;
+  color: rgba(196, 185, 146, 0.95);
+  white-space: nowrap;
+}
+.match-pill.lg {
+  padding: 5px 14px;
+  font-size: 0.7rem;
+}
+.match-pill.sm {
+  padding: 3px 8px;
+  font-size: 0.5rem;
+}
+
+/* STATUS BADGES */
+.status-badge {
+  display: inline-block;
+  padding: 3px 10px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  font-size: 0.55rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.75);
+  white-space: nowrap;
+}
+.status-badge.sm {
+  padding: 2px 6px;
+  font-size: 0.45rem;
+}
+.status-badge.green {
+  background: rgba(76, 175, 80, 0.12);
+  border-color: rgba(76, 175, 80, 0.2);
+  color: rgba(156, 204, 158, 0.9);
+}
+.status-badge.yellow {
+  background: rgba(255, 193, 7, 0.1);
+  border-color: rgba(255, 193, 7, 0.18);
+  color: rgba(255, 213, 79, 0.9);
+}
+.status-badge.blue {
+  background: rgba(33, 150, 243, 0.1);
+  border-color: rgba(33, 150, 243, 0.18);
+  color: rgba(100, 181, 246, 0.9);
+}
+
+/* DOCUMENT ITEMS */
+.doc-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 6px;
+}
+.doc-item.sm {
+  padding: 4px 8px;
+}
+.doc-item .doc-icon {
+  font-size: 0.7rem;
+  opacity: 0.7;
+}
+.doc-item .doc-name {
+  font-size: 0.5rem;
+  color: rgba(255, 255, 255, 0.6);
+  white-space: nowrap;
+}
+.doc-item.sm .doc-name {
+  font-size: 0.42rem;
+}
+
+/* AMOUNTS */
+.amt {
+  font-weight: 600;
+  color: rgba(196, 185, 146, 0.85);
+  font-size: 0.85rem;
+}
+.amt.xl {
+  font-size: 1.8rem;
+  color: rgba(196, 185, 146, 0.5);
+}
+.amt.lg {
+  font-size: 1.3rem;
+  color: rgba(196, 185, 146, 0.65);
+}
+.amt.sm {
+  font-size: 0.65rem;
+  color: rgba(196, 185, 146, 0.9);
+}
+
+/* JURISDICTIONS */
+.jurisdiction {
+  font-size: 0.6rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.6);
+  white-space: nowrap;
+}
+.jurisdiction.sm {
+  font-size: 0.5rem;
+}
+
+/* WORKFLOW */
+.workflow {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  background: rgba(255, 255, 255, 0.025);
+  border-radius: 6px;
+}
+.workflow.sm {
+  padding: 4px 8px;
+  gap: 4px;
+}
+.workflow .stage {
+  font-size: 0.5rem;
+  color: rgba(255, 255, 255, 0.4);
+}
+.workflow .stage.active {
+  color: rgba(196, 185, 146, 0.9);
+  font-weight: 500;
+}
+.workflow .arrow {
+  font-size: 0.4rem;
+  color: rgba(255, 255, 255, 0.25);
+}
+.workflow.sm .stage, .workflow.sm .arrow {
+  font-size: 0.42rem;
+}
+
+/* TIMELINE */
+.timeline {
+  padding: 6px 10px;
+  background: rgba(255, 255, 255, 0.025);
+  border-left: 2px solid rgba(184, 166, 122, 0.3);
+  border-radius: 0 6px 6px 0;
+}
+.timeline.sm {
+  padding: 4px 8px;
+}
+.timeline .time {
+  font-size: 0.42rem;
+  color: rgba(255, 255, 255, 0.4);
+  margin-bottom: 2px;
+}
+.timeline .event {
+  font-size: 0.5rem;
+  color: rgba(255, 255, 255, 0.65);
+}
+.timeline.sm .time, .timeline.sm .event {
+  font-size: 0.4rem;
+}
 
 /* ========================================
    The Key - Dramatic Material Transformation
