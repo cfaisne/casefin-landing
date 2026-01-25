@@ -32,11 +32,11 @@ const CONFIG = {
   GLOW_OUTER_MAX: 0.4,
   AMBIENT_MAX: 0.6,
   
-  // Fragment opacity by depth layer - HIGH VISIBILITY
-  FRAG_OPACITY_FG: 0.7,
-  FRAG_OPACITY_MID: 0.6,
-  FRAG_OPACITY_BACK: 0.45,
-  FRAG_OPACITY_HAZE: 0.3,
+  // Fragment opacity by depth - Apple-style subtle
+  FRAG_OPACITY_FG: 0.75,
+  FRAG_OPACITY_MID: 0.55,
+  FRAG_OPACITY_BACK: 0.40,
+  FRAG_OPACITY_HAZE: 0.25,
   
   // Timing breakpoints (0-1 scale)
   BEAT_1: 0,      // Start - clean, just key

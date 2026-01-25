@@ -332,263 +332,173 @@ body {
 }
 
 /* 4 Depth layers with distinct blur + opacity */
-/* Foreground: blur 0-1px, will animate to opacity 10-16% */
+/* Foreground: blur 0-1px */
 .data-frag[data-depth="fg"] { 
   filter: blur(0.5px); 
 }
-/* Mid: blur 2-4px, will animate to opacity 7-12% */
+/* Mid: blur 2-4px */
 .data-frag[data-depth="mid"] { 
   filter: blur(3px); 
 }
-/* Back: blur 6-12px, will animate to opacity 4-8% */
+/* Back: blur 6-10px */
 .data-frag[data-depth="back"] { 
-  filter: blur(8px); 
+  filter: blur(7px); 
 }
-/* Far haze: blur 14-24px, will animate to opacity 2-5% */
+/* Far haze: blur 14-20px */
 .data-frag[data-depth="haze"] { 
-  filter: blur(18px); 
+  filter: blur(16px); 
 }
 
 /* ========================================
-   Fragment Types - Real Data Room UI
+   APPLE-STYLE DATA VAULT
+   Clean, depth, restrained, premium
 ======================================== */
 
-/* Ghost cards - large background shapes */
-.ghost-card {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.04);
+/* Large vault panels - perspective depth */
+.vault-panel {
+  background: linear-gradient(135deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%);
+  border: 1px solid rgba(255,255,255,0.04);
   border-radius: 12px;
+  width: 280px;
+  height: 180px;
 }
-.ghost-card.sm {
-  border-radius: 10px;
+.vault-panel.lg {
+  width: 220px;
+  height: 140px;
 }
-
-/* CASE CARDS */
-.case-card {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: 10px;
-  padding: 12px 14px;
-  min-width: 140px;
-}
-.case-card.sm {
-  padding: 8px 10px;
-  min-width: 100px;
-}
-.case-card .card-header {
-  font-size: 0.65rem;
-  font-weight: 500;
-  color: rgba(255, 255, 255, 0.7);
-  margin-bottom: 6px;
-  white-space: nowrap;
-  overflow: hidden;
-}
-.case-card .card-amount {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: rgba(196, 185, 146, 0.9);
-  margin-bottom: 4px;
-}
-.case-card.sm .card-amount {
-  font-size: 0.9rem;
-}
-.case-card .card-meta {
-  font-size: 0.5rem;
-  color: rgba(255, 255, 255, 0.45);
+.vault-panel.xl {
+  width: 350px;
+  height: 220px;
 }
 
-/* FUNDER PANELS */
-.funder-panel {
-  background: rgba(184, 166, 122, 0.06);
-  border: 1px solid rgba(184, 166, 122, 0.12);
+/* Data panels - structured info */
+.data-panel {
+  background: rgba(255,255,255,0.025);
+  border: 1px solid rgba(255,255,255,0.05);
   border-radius: 8px;
-  padding: 10px 12px;
+  padding: 12px 16px;
   min-width: 120px;
 }
-.funder-panel.sm {
-  padding: 6px 8px;
+.data-panel.sm {
+  padding: 8px 12px;
   min-width: 90px;
 }
-.funder-panel .funder-name {
-  font-size: 0.55rem;
-  color: rgba(255, 255, 255, 0.5);
-  margin-bottom: 4px;
-  white-space: nowrap;
-  overflow: hidden;
+.data-panel .panel-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
 }
-.funder-panel .funder-offer {
+.data-panel .panel-row:last-child {
+  margin-bottom: 0;
+}
+.data-panel .label {
+  font-size: 0.5rem;
+  color: rgba(255,255,255,0.35);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.data-panel .value {
+  font-size: 0.6rem;
+  color: rgba(255,255,255,0.7);
+}
+.data-panel .value.lg {
   font-size: 0.85rem;
   font-weight: 600;
-  color: rgba(196, 185, 146, 0.85);
-  margin-bottom: 2px;
 }
-.funder-panel.sm .funder-offer {
-  font-size: 0.7rem;
-}
-.funder-panel .funder-terms {
-  font-size: 0.45rem;
-  color: rgba(255, 255, 255, 0.4);
-}
-
-/* MATCH PILLS */
-.match-pill {
-  display: inline-block;
-  padding: 4px 10px;
-  background: rgba(184, 166, 122, 0.15);
-  border: 1px solid rgba(184, 166, 122, 0.2);
-  border-radius: 20px;
-  font-size: 0.6rem;
+.data-panel .value.gold {
+  color: rgba(196,185,146,0.9);
   font-weight: 600;
-  color: rgba(196, 185, 146, 0.95);
-  white-space: nowrap;
 }
-.match-pill.lg {
-  padding: 5px 14px;
-  font-size: 0.7rem;
-}
-.match-pill.sm {
-  padding: 3px 8px;
+.data-panel .value.dim {
+  color: rgba(255,255,255,0.4);
   font-size: 0.5rem;
 }
-
-/* STATUS BADGES */
-.status-badge {
-  display: inline-block;
-  padding: 3px 10px;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 4px;
-  font-size: 0.55rem;
-  font-weight: 500;
-  color: rgba(255, 255, 255, 0.75);
+.data-panel .value.trunc {
+  max-width: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis;
   white-space: nowrap;
 }
-.status-badge.sm {
-  padding: 2px 6px;
-  font-size: 0.45rem;
-}
-.status-badge.green {
-  background: rgba(76, 175, 80, 0.12);
-  border-color: rgba(76, 175, 80, 0.2);
-  color: rgba(156, 204, 158, 0.9);
-}
-.status-badge.yellow {
-  background: rgba(255, 193, 7, 0.1);
-  border-color: rgba(255, 193, 7, 0.18);
-  color: rgba(255, 213, 79, 0.9);
-}
-.status-badge.blue {
-  background: rgba(33, 150, 243, 0.1);
-  border-color: rgba(33, 150, 243, 0.18);
-  color: rgba(100, 181, 246, 0.9);
+.data-panel .value.status-green {
+  color: rgba(134,194,137,0.9);
 }
 
-/* DOCUMENT ITEMS */
-.doc-item {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  padding: 6px 10px;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  border-radius: 6px;
-}
-.doc-item.sm {
-  padding: 4px 8px;
-}
-.doc-item .doc-icon {
-  font-size: 0.7rem;
-  opacity: 0.7;
-}
-.doc-item .doc-name {
-  font-size: 0.5rem;
-  color: rgba(255, 255, 255, 0.6);
-  white-space: nowrap;
-}
-.doc-item.sm .doc-name {
-  font-size: 0.42rem;
-}
-
-/* AMOUNTS */
+/* Amounts - clean typography */
 .amt {
   font-weight: 600;
-  color: rgba(196, 185, 146, 0.85);
-  font-size: 0.85rem;
-}
-.amt.xl {
-  font-size: 1.8rem;
-  color: rgba(196, 185, 146, 0.5);
-}
-.amt.lg {
-  font-size: 1.3rem;
-  color: rgba(196, 185, 146, 0.65);
+  color: rgba(196,185,146,0.8);
+  font-size: 0.9rem;
+  letter-spacing: -0.02em;
 }
 .amt.sm {
-  font-size: 0.65rem;
-  color: rgba(196, 185, 146, 0.9);
+  font-size: 0.7rem;
+}
+.amt.lg {
+  font-size: 1.2rem;
+  color: rgba(196,185,146,0.6);
+}
+.amt.xl {
+  font-size: 1.6rem;
+  color: rgba(196,185,146,0.4);
+}
+.amt.xxl {
+  font-size: 2.2rem;
+  color: rgba(196,185,146,0.25);
 }
 
-/* JURISDICTIONS */
-.jurisdiction {
+/* Match scores - subtle pills */
+.match-score {
+  display: inline-block;
+  padding: 3px 10px;
+  background: rgba(184,166,122,0.1);
+  border: 1px solid rgba(184,166,122,0.15);
+  border-radius: 12px;
   font-size: 0.6rem;
-  font-weight: 500;
-  color: rgba(255, 255, 255, 0.6);
-  white-space: nowrap;
+  font-weight: 600;
+  color: rgba(196,185,146,0.85);
 }
-.jurisdiction.sm {
+.match-score.lg {
+  padding: 4px 14px;
+  font-size: 0.7rem;
+}
+.match-score.sm {
+  padding: 2px 8px;
   font-size: 0.5rem;
 }
 
-/* WORKFLOW */
-.workflow {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  padding: 6px 10px;
-  background: rgba(255, 255, 255, 0.025);
-  border-radius: 6px;
-}
-.workflow.sm {
-  padding: 4px 8px;
-  gap: 4px;
-}
-.workflow .stage {
+/* Status tags */
+.status-tag {
+  display: inline-block;
+  padding: 3px 10px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 4px;
   font-size: 0.5rem;
-  color: rgba(255, 255, 255, 0.4);
-}
-.workflow .stage.active {
-  color: rgba(196, 185, 146, 0.9);
   font-weight: 500;
+  color: rgba(255,255,255,0.7);
 }
-.workflow .arrow {
-  font-size: 0.4rem;
-  color: rgba(255, 255, 255, 0.25);
+.status-tag.green {
+  background: rgba(76,175,80,0.08);
+  border-color: rgba(76,175,80,0.15);
+  color: rgba(134,194,137,0.9);
 }
-.workflow.sm .stage, .workflow.sm .arrow {
-  font-size: 0.42rem;
+.status-tag.yellow {
+  background: rgba(255,193,7,0.06);
+  border-color: rgba(255,193,7,0.12);
+  color: rgba(255,213,79,0.85);
+}
+.status-tag.blue {
+  background: rgba(33,150,243,0.06);
+  border-color: rgba(33,150,243,0.12);
+  color: rgba(100,181,246,0.85);
 }
 
-/* TIMELINE */
-.timeline {
-  padding: 6px 10px;
-  background: rgba(255, 255, 255, 0.025);
-  border-left: 2px solid rgba(184, 166, 122, 0.3);
-  border-radius: 0 6px 6px 0;
-}
-.timeline.sm {
-  padding: 4px 8px;
-}
-.timeline .time {
-  font-size: 0.42rem;
-  color: rgba(255, 255, 255, 0.4);
-  margin-bottom: 2px;
-}
-.timeline .event {
-  font-size: 0.5rem;
-  color: rgba(255, 255, 255, 0.65);
-}
-.timeline.sm .time, .timeline.sm .event {
-  font-size: 0.4rem;
+/* Court labels */
+.court-label {
+  font-size: 0.55rem;
+  color: rgba(255,255,255,0.45);
+  font-weight: 500;
 }
 
 /* ========================================
