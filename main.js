@@ -1,18 +1,15 @@
 /* ========================================
-   CaseFin - Cinematic Unlock Sequence
+   CaseFin - Litigation Finance Data Cathedral
    GSAP + ScrollTrigger
    
-   TUNABLE VARIABLES (adjust these):
-   - SCROLL_DURATION: '+=350%' = ~5-6 seconds of scrubbing
-   - GOLD_INTENSITY: multiplier for glow opacity
-   - BLUR_MAX: maximum blur in locked state
-   - GRAIN_LOCKED: grain opacity when locked
+   Data fragments reveal as you scroll, creating
+   depth through typography density
 ======================================== */
 
 // ============ TUNABLE VARIABLES ============
 const CONFIG = {
   // Scroll duration (percentage of viewport height)
-  SCROLL_DURATION: '+=350%',  // ~5-6 seconds on trackpad
+  SCROLL_DURATION: '+=350%',
   
   // Scrub smoothness (higher = smoother but laggier)
   SCRUB_SMOOTHNESS: 1.2,
@@ -32,20 +29,15 @@ const CONFIG = {
   GLOW_OUTER_MAX: 0.5,
   AMBIENT_MAX: 0.4,
   
-  // UI Fragment blur (when fully visible)
-  BLUR_FAR: 6,
-  BLUR_MID: 3,
-  BLUR_NEAR: 1,
-  
-  // UI Fragment opacity targets (fragments fade IN)
-  FRAG_OPACITY_FAR: 0.4,
-  FRAG_OPACITY_MID: 0.55,
-  FRAG_OPACITY_NEAR: 0.7,
+  // Data Fragment opacity targets (fragments fade IN)
+  FRAG_OPACITY_FAR: 0.5,
+  FRAG_OPACITY_MID: 0.7,
+  FRAG_OPACITY_NEAR: 0.85,
   
   // Timing breakpoints (0-1 scale)
   BEAT_1: 0,      // Start - clean, just key
-  BEAT_2: 0.15,   // UI starts appearing
-  BEAT_3: 0.4,    // Key awakens, UI builds
+  BEAT_2: 0.15,   // Data starts appearing
+  BEAT_3: 0.4,    // Key awakens, data builds
   BEAT_4: 0.65,   // Full transformation
   BEAT_5: 0.85,   // Complete, text appears
   BEAT_END: 1
@@ -85,11 +77,11 @@ function initCinematicUnlock() {
   const scaleLeft = document.querySelector('.scale-left');
   const scaleRight = document.querySelector('.scale-right');
   
-  // UI Fragments by depth
-  const fragsFar = document.querySelectorAll('.ui-fragment[data-depth="far"]');
-  const fragsMid = document.querySelectorAll('.ui-fragment[data-depth="mid"]');
-  const fragsNear = document.querySelectorAll('.ui-fragment[data-depth="near"]');
-  const allFrags = document.querySelectorAll('.ui-fragment');
+  // Data Fragments by depth
+  const fragsFar = document.querySelectorAll('.data-fragment[data-depth="far"]');
+  const fragsMid = document.querySelectorAll('.data-fragment[data-depth="mid"]');
+  const fragsNear = document.querySelectorAll('.data-fragment[data-depth="near"]');
+  const allFrags = document.querySelectorAll('.data-fragment');
   
   // ========================================
   // Set Initial States
@@ -140,8 +132,8 @@ function initCinematicUnlock() {
   }, CONFIG.BEAT_1 + 0.05);
   
   // ========================================
-  // BEAT 2: UI Emerges (15% - 40%)
-  // Fragments start fading in from nothing
+  // BEAT 2: Data Emerges (15% - 40%)
+  // Far layer data starts appearing
   // ========================================
   
   // Vignette starts to relax slightly
@@ -184,12 +176,12 @@ function initCinematicUnlock() {
     duration: 0.25
   }, CONFIG.BEAT_2);
   
-  // FAR fragments fade in first (background)
+  // FAR data fragments fade in first (background) - staggered
   fragsFar.forEach((frag, i) => {
     masterTL.to(frag, {
       opacity: CONFIG.FRAG_OPACITY_FAR * 0.4,
       duration: 0.25
-    }, CONFIG.BEAT_2 + (i * 0.008));
+    }, CONFIG.BEAT_2 + (i * 0.004));
   });
   
   // Nav starts appearing
@@ -202,7 +194,7 @@ function initCinematicUnlock() {
   
   // ========================================
   // BEAT 3: Building (40% - 65%)
-  // More UI appears, key transforms
+  // More data appears, key transforms
   // ========================================
   
   // Environment opens up
@@ -283,15 +275,15 @@ function initCinematicUnlock() {
     masterTL.to(frag, {
       opacity: CONFIG.FRAG_OPACITY_FAR,
       duration: 0.25
-    }, CONFIG.BEAT_3 + (i * 0.005));
+    }, CONFIG.BEAT_3 + (i * 0.003));
   });
   
-  // MID fragments fade in
+  // MID data fragments fade in
   fragsMid.forEach((frag, i) => {
     masterTL.to(frag, {
       opacity: CONFIG.FRAG_OPACITY_MID * 0.6,
       duration: 0.25
-    }, CONFIG.BEAT_3 + (i * 0.006));
+    }, CONFIG.BEAT_3 + (i * 0.005));
   });
   
   // Nav more visible
@@ -304,7 +296,7 @@ function initCinematicUnlock() {
   
   // ========================================
   // BEAT 4: Full Transformation (65% - 85%)
-  // Everything lit up, UI complete
+  // Everything lit up, all data visible
   // ========================================
   
   // Environment fully open
@@ -396,15 +388,15 @@ function initCinematicUnlock() {
     masterTL.to(frag, {
       opacity: CONFIG.FRAG_OPACITY_MID,
       duration: 0.2
-    }, CONFIG.BEAT_4 + (i * 0.004));
+    }, CONFIG.BEAT_4 + (i * 0.003));
   });
   
-  // NEAR fragments fade in
+  // NEAR data fragments fade in
   fragsNear.forEach((frag, i) => {
     masterTL.to(frag, {
       opacity: CONFIG.FRAG_OPACITY_NEAR,
       duration: 0.2
-    }, CONFIG.BEAT_4 + (i * 0.005));
+    }, CONFIG.BEAT_4 + (i * 0.006));
   });
   
   // Nav fully visible
@@ -436,11 +428,6 @@ function initCinematicUnlock() {
   // Final environment settle
   masterTL.to(envVignette, {
     opacity: CONFIG.VIGNETTE_UNLOCKED,
-    duration: 0.15
-  }, CONFIG.BEAT_5);
-  
-  masterTL.to(envGrain, {
-    opacity: CONFIG.GRAIN_UNLOCKED,
     duration: 0.15
   }, CONFIG.BEAT_5);
   

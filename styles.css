@@ -15,6 +15,12 @@
   --text-secondary: rgba(255, 255, 255, 0.7);
   --text-muted: rgba(255, 255, 255, 0.4);
   
+  /* Data colors */
+  --data-gold: rgba(201, 162, 39, 0.85);
+  --data-gold-dim: rgba(201, 162, 39, 0.5);
+  --data-white: rgba(255, 255, 255, 0.75);
+  --data-white-dim: rgba(255, 255, 255, 0.4);
+  
   /* Frosted Glass */
   --glass-bg: rgba(26, 22, 20, 0.7);
   --glass-bg-strong: rgba(26, 22, 20, 0.9);
@@ -27,7 +33,8 @@
   --card-border: rgba(255, 255, 255, 0.06);
   
   /* Typography */
-  --font-main: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-main: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace;
   
   /* Transitions */
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
@@ -69,7 +76,6 @@ body {
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border-bottom: none;
-  /* Hidden in locked state - GSAP will animate */
   opacity: 0;
   transform: translateY(-12px);
   pointer-events: none;
@@ -133,7 +139,6 @@ body {
   transition: all 0.3s var(--ease-out);
 }
 
-/* Gold sheen overlay */
 .btn-primary::before {
   content: '';
   position: absolute;
@@ -181,7 +186,7 @@ body {
 }
 
 /* ========================================
-   Unlock Section - Clean base
+   Unlock Section
 ======================================== */
 .unlock-section {
   position: relative;
@@ -204,10 +209,8 @@ body {
 }
 
 /* ========================================
-   Environment Layers - Minimal
+   Environment Layers
 ======================================== */
-
-/* Vignette - starts invisible, very subtle when visible */
 .env-vignette {
   position: absolute;
   top: 0;
@@ -225,7 +228,6 @@ body {
   opacity: 0;
 }
 
-/* Ambient glow behind key - grows during transition */
 .env-ambient {
   position: absolute;
   top: 50%;
@@ -245,10 +247,9 @@ body {
 }
 
 /* ========================================
-   UI Environment - Dense Cloud of Fragments
-   Starts invisible, fades in during scroll
+   Data Environment - Typography Fragments
 ======================================== */
-.ui-environment {
+.data-environment {
   position: absolute;
   top: 0;
   left: 0;
@@ -259,114 +260,213 @@ body {
   overflow: hidden;
 }
 
-/* Base fragment styles - START INVISIBLE */
-.ui-fragment {
+/* Base data fragment styles */
+.data-fragment {
   position: absolute;
-  background: rgba(45, 40, 35, 0.5);
-  border: 1px solid rgba(201, 162, 39, 0.06);
-  border-radius: 6px;
-  opacity: 0; /* Start invisible - GSAP fades in */
+  font-family: var(--font-mono);
+  white-space: nowrap;
+  opacity: 0;
+  transition: none;
 }
 
-/* Depth layers define blur when visible */
-.ui-fragment[data-depth="far"] {
-  filter: blur(6px);
+/* Depth layers - blur and opacity */
+.data-fragment[data-depth="far"] {
+  filter: blur(4px);
+  font-size: 0.75rem;
+  color: var(--data-gold-dim);
 }
 
-.ui-fragment[data-depth="mid"] {
-  filter: blur(3px);
+.data-fragment[data-depth="mid"] {
+  filter: blur(2px);
+  font-size: 0.9rem;
+  color: var(--data-gold);
 }
 
-.ui-fragment[data-depth="near"] {
-  filter: blur(1px);
+.data-fragment[data-depth="near"] {
+  filter: blur(0.5px);
+  font-size: 1.1rem;
+  color: var(--data-gold);
 }
 
 /* ========================================
-   Fragment Types - Subtle, atmospheric
+   Data Fragment Types
 ======================================== */
 
-/* Cards */
-.frag-card {
-  border-radius: 8px;
-  background: linear-gradient(180deg, rgba(55, 48, 40, 0.5) 0%, rgba(40, 35, 30, 0.4) 100%);
+/* Dollar amounts - prominent, financial terminal feel */
+.frag-amount {
+  font-weight: 600;
+  letter-spacing: -0.02em;
 }
 
-.frag-card::before {
-  content: '';
-  position: absolute;
-  top: 10px;
-  left: 12px;
-  right: 35%;
-  height: 5px;
-  background: rgba(201, 162, 39, 0.12);
+.frag-amount-lg {
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.frag-amount-xl {
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+/* Size overrides for near layer */
+.data-fragment[data-depth="near"].frag-amount-xl {
+  font-size: 1.5rem;
+}
+
+.data-fragment[data-depth="near"].frag-amount-lg {
+  font-size: 1.25rem;
+}
+
+.data-fragment[data-depth="mid"].frag-amount-lg {
+  font-size: 1.1rem;
+}
+
+.data-fragment[data-depth="far"].frag-amount-lg {
+  font-size: 0.9rem;
+}
+
+/* Court/Jurisdiction names */
+.frag-court {
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--data-white-dim);
+}
+
+.frag-court-lg {
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+.data-fragment[data-depth="far"].frag-court {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.data-fragment[data-depth="mid"].frag-court {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.data-fragment[data-depth="near"].frag-court {
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.data-fragment[data-depth="near"].frag-court-lg {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Case names - X v. Y format */
+.frag-case {
+  font-weight: 400;
+  font-style: italic;
+  color: var(--data-white-dim);
+}
+
+.data-fragment[data-depth="far"].frag-case {
+  color: rgba(255, 255, 255, 0.25);
+}
+
+.data-fragment[data-depth="mid"].frag-case {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.data-fragment[data-depth="near"].frag-case {
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 1rem;
+}
+
+/* Percentages/Scores */
+.frag-percent {
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.frag-percent-lg {
+  font-weight: 700;
+}
+
+.data-fragment[data-depth="near"].frag-percent-lg {
+  font-size: 1.3rem;
+}
+
+/* File names */
+.frag-file {
+  font-weight: 400;
+  color: var(--data-white-dim);
+  font-size: 0.7rem;
+}
+
+.frag-file-lg {
+  font-weight: 400;
+}
+
+.data-fragment[data-depth="far"].frag-file {
+  color: rgba(255, 255, 255, 0.2);
+  font-size: 0.65rem;
+}
+
+.data-fragment[data-depth="mid"].frag-file {
+  color: rgba(255, 255, 255, 0.35);
+  font-size: 0.8rem;
+}
+
+.data-fragment[data-depth="near"].frag-file {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.95rem;
+}
+
+.data-fragment[data-depth="near"].frag-file-lg {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+/* Status badges */
+.frag-status {
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-size: 0.65rem;
+  padding: 0.15em 0.4em;
+  background: rgba(201, 162, 39, 0.15);
+  border: 1px solid rgba(201, 162, 39, 0.2);
   border-radius: 3px;
 }
 
-.frag-card::after {
-  content: '';
-  position: absolute;
-  top: 22px;
-  left: 12px;
-  right: 20%;
-  height: 3px;
-  background: rgba(255, 255, 255, 0.06);
-  border-radius: 2px;
-}
-
-/* Small cards */
-.frag-card-sm {
-  border-radius: 6px;
-  background: rgba(50, 44, 38, 0.45);
-}
-
-/* Buttons */
-.frag-btn {
-  border-radius: 5px;
-  background: rgba(201, 162, 39, 0.1);
+.data-fragment[data-depth="far"].frag-status {
+  font-size: 0.55rem;
+  background: rgba(201, 162, 39, 0.08);
   border-color: rgba(201, 162, 39, 0.12);
 }
 
-/* Table rows */
-.frag-table {
-  border-radius: 4px;
-  background: rgba(40, 36, 32, 0.5);
+.data-fragment[data-depth="mid"].frag-status {
+  font-size: 0.7rem;
+  background: rgba(201, 162, 39, 0.12);
+  border-color: rgba(201, 162, 39, 0.18);
 }
 
-/* Files */
-.frag-file {
-  border-radius: 4px;
-  background: linear-gradient(180deg, rgba(60, 52, 44, 0.5) 0%, rgba(45, 40, 35, 0.4) 100%);
+.data-fragment[data-depth="near"].frag-status {
+  font-size: 0.8rem;
+  background: rgba(201, 162, 39, 0.18);
+  border-color: rgba(201, 162, 39, 0.25);
 }
 
-/* Badges */
-.frag-badge {
-  border-radius: 10px;
-  background: rgba(201, 162, 39, 0.08);
-  border-color: rgba(201, 162, 39, 0.1);
+/* Bid/Ask indicators */
+.frag-bid {
+  font-weight: 500;
+  letter-spacing: 0.01em;
 }
 
-/* Inputs */
-.frag-input {
-  border-radius: 5px;
-  background: rgba(30, 28, 25, 0.6);
-  border-color: rgba(255, 255, 255, 0.08);
+.data-fragment[data-depth="far"].frag-bid {
+  font-size: 0.7rem;
 }
 
-/* Dots */
-.frag-dot {
-  border-radius: 50%;
-  background: rgba(201, 162, 39, 0.25);
-  border: none;
+.data-fragment[data-depth="mid"].frag-bid {
+  font-size: 0.85rem;
 }
 
-/* Lines */
-.frag-line {
-  border-radius: 1px;
-  background: rgba(201, 162, 39, 0.1);
-  border: none;
+.data-fragment[data-depth="near"].frag-bid {
+  font-size: 1rem;
 }
-
-/* Fragment positions now inline in HTML for flexibility */
 
 /* ========================================
    The Key - Dramatic Material Transformation
@@ -411,163 +511,105 @@ body {
   position: relative;
 }
 
-/* Rim light - invisible in locked state */
-.key-bow::before {
-  content: '';
-  position: absolute;
-  top: -2px;
-  left: -2px;
-  right: -2px;
-  bottom: -2px;
-  border-radius: 50%;
-  background: linear-gradient(
-    135deg,
-    transparent 40%,
-    rgba(232, 212, 139, 0) 50%,
-    transparent 60%
-  );
-  opacity: 0;
-  z-index: 1;
-}
-
-/* Specular highlight */
-.key-bow::after {
-  content: '';
-  position: absolute;
-  top: 8%;
-  left: 15%;
-  width: 35%;
-  height: 20%;
-  background: radial-gradient(
-    ellipse at center,
-    rgba(255, 255, 255, 0.0) 0%,
-    transparent 70%
-  );
-  border-radius: 50%;
-  opacity: 0;
-}
-
 .key-bow-inner {
-  width: 75px;
-  height: 55px;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  gap: 22px;
-  padding-bottom: 5px;
   position: relative;
-  z-index: 2;
+  width: 70%;
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* Scale beam */
-.key-bow-inner::before {
-  content: '';
-  position: absolute;
-  top: 8px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 65px;
-  height: 2px;
-  background: linear-gradient(90deg, transparent 0%, #5a4a3a 20%, #6a5a4a 50%, #5a4a3a 80%, transparent 100%);
+.scale-beam {
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, #3a332c 0%, #4a4035 50%, #3a332c 100%);
+  border-radius: 1px;
+  margin-top: 12px;
 }
 
 /* Scale pans */
 .scale-left,
 .scale-right {
-  width: 20px;
+  position: absolute;
+  width: 22px;
   height: 14px;
-  background: linear-gradient(to bottom, #5a4a3a 0%, #4a3a2a 100%);
-  border-radius: 0 0 50% 50%;
-  position: relative;
+  background: linear-gradient(to bottom, #4a4035 0%, #3a332c 100%);
+  border-radius: 0 0 10px 10px;
+  top: 24px;
+}
+
+.scale-left {
+  left: 8px;
+}
+
+.scale-right {
+  right: 8px;
 }
 
 .scale-left::before,
 .scale-right::before {
   content: '';
   position: absolute;
-  top: -22px;
+  top: -10px;
   left: 50%;
   transform: translateX(-50%);
   width: 1px;
-  height: 22px;
-  background: linear-gradient(to bottom, #6a5a4a 0%, #5a4a3a 100%);
+  height: 10px;
+  background: #3a332c;
 }
 
-/* Key shaft - LOCKED: dark matte */
+/* Key shaft */
 .key-shaft {
   width: 18px;
-  height: 110px;
+  height: 95px;
   background: linear-gradient(
     90deg,
-    #3a332c 0%,
-    #4a4035 20%,
-    #5a4a3a 50%,
-    #4a4035 80%,
-    #3a332c 100%
+    #2a2520 0%,
+    #3a332c 20%,
+    #4a4035 50%,
+    #3a332c 80%,
+    #2a2520 100%
   );
   border-radius: 2px;
   box-shadow: 
-    inset 3px 0 6px rgba(255, 255, 255, 0.02),
-    inset -3px 0 6px rgba(0, 0, 0, 0.3),
-    4px 0 12px rgba(0, 0, 0, 0.4);
-  position: relative;
+    inset 2px 0 4px rgba(255, 255, 255, 0.02),
+    inset -2px 0 4px rgba(0, 0, 0, 0.3),
+    3px 0 10px rgba(0, 0, 0, 0.4);
 }
 
-/* Shaft detail line */
-.key-shaft::before {
-  content: '';
-  position: absolute;
-  top: 20%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 2px;
-  height: 60%;
-  background: linear-gradient(to bottom, transparent 0%, rgba(90, 74, 58, 0.3) 50%, transparent 100%);
-}
-
-/* Key bit (the teeth at the bottom) - LOCKED: dark matte */
+/* Key bit (the teeth at bottom) */
 .key-bit {
-  width: 55px;
+  width: 40px;
   height: 35px;
   background: linear-gradient(
     90deg,
-    #3a332c 0%,
-    #4a4035 20%,
-    #5a4a3a 50%,
-    #4a4035 80%,
-    #3a332c 100%
+    #2a2520 0%,
+    #3a332c 20%,
+    #4a4035 50%,
+    #3a332c 80%,
+    #2a2520 100%
   );
-  border-radius: 0 0 6px 6px;
+  border-radius: 0 0 4px 4px;
   position: relative;
   box-shadow: 
-    inset 3px 0 6px rgba(255, 255, 255, 0.02),
-    inset -3px 0 6px rgba(0, 0, 0, 0.3),
-    0 6px 16px rgba(0, 0, 0, 0.5);
+    inset 2px 0 4px rgba(255, 255, 255, 0.02),
+    inset -2px 0 4px rgba(0, 0, 0, 0.3),
+    0 4px 12px rgba(0, 0, 0, 0.5);
 }
 
 .key-bit-notch {
   position: absolute;
-  top: 10px;
   right: 0;
-  width: 22px;
-  height: 16px;
-  background: var(--bg-locked);
-  border-radius: 3px 0 0 3px;
-}
-
-/* Secondary notch */
-.key-bit::before {
-  content: '';
-  position: absolute;
-  bottom: 6px;
-  right: 0;
+  top: 8px;
   width: 12px;
-  height: 8px;
-  background: var(--bg-locked);
+  height: 12px;
+  background: var(--bg-base);
   border-radius: 2px 0 0 2px;
 }
 
-/* Key glow layers */
+/* Key glows */
 .key-glow {
   position: absolute;
   top: 50%;
@@ -585,7 +627,6 @@ body {
   pointer-events: none;
 }
 
-/* Outer glow */
 .key-glow-outer {
   position: absolute;
   top: 50%;
@@ -603,7 +644,6 @@ body {
   pointer-events: none;
 }
 
-/* Key shadow on ground */
 .key-shadow {
   position: absolute;
   bottom: -40px;
@@ -753,7 +793,6 @@ body {
   transition: all 0.4s var(--ease-out);
 }
 
-/* Gold edge highlight */
 .card::before {
   content: '';
   position: absolute;
@@ -771,7 +810,6 @@ body {
   transition: all 0.4s var(--ease-out);
 }
 
-/* Gold sheen overlay */
 .card::after {
   content: '';
   position: absolute;
@@ -983,5 +1021,18 @@ body {
     flex-direction: column;
     gap: 1.5rem;
     text-align: center;
+  }
+  
+  /* Hide most data fragments on mobile */
+  .data-fragment[data-depth="far"] {
+    display: none;
+  }
+  
+  .data-fragment[data-depth="mid"] {
+    font-size: 0.7rem;
+  }
+  
+  .data-fragment[data-depth="near"] {
+    font-size: 0.85rem;
   }
 }
