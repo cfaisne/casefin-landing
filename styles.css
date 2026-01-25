@@ -250,8 +250,8 @@ body {
 }
 
 /* ========================================
-   UI Environment - Data Room Fragments
-   Dense, overlapping, central gravity around key
+   UI Environment - Global Data Room
+   Information field, not UI preview
 ======================================== */
 .ui-environment {
   position: absolute;
@@ -264,197 +264,76 @@ body {
   overflow: hidden;
 }
 
-/* Base fragment styles */
 .data-frag {
   position: absolute;
   font-family: var(--font-main);
-  opacity: 0; /* GSAP fades in */
+  opacity: 0;
 }
 
-/* Depth layers - blur and base opacity */
-.data-frag[data-depth="far"] {
-  filter: blur(4px);
-}
+.data-frag[data-depth="far"] { filter: blur(4px); }
+.data-frag[data-depth="mid"] { filter: blur(2px); }
+.data-frag[data-depth="near"] { filter: blur(0.5px); }
 
-.data-frag[data-depth="mid"] {
-  filter: blur(2px);
-}
-
-.data-frag[data-depth="near"] {
-  filter: blur(0.5px);
-}
-
-/* ========================================
-   Fragment Types
-======================================== */
-
-/* Ghost cards - large background shapes */
-.card-ghost {
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.04);
+/* Ghost cards */
+.ghost {
+  background: rgba(255, 255, 255, 0.015);
+  border: 1px solid rgba(255, 255, 255, 0.03);
   border-radius: 10px;
 }
 
-.card-ghost.lg {
-  background: rgba(255, 255, 255, 0.015);
-}
-
-/* Panel fragments - partial cards with content */
-.panel-frag {
-  background: rgba(255, 255, 255, 0.025);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+/* Panels */
+.panel {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.04);
   border-radius: 8px;
   padding: 10px 12px;
   overflow: hidden;
 }
+.panel.sm { padding: 8px 10px; }
+.p-head { font-size: 0.65rem; font-weight: 500; color: rgba(255,255,255,0.35); margin-bottom: 3px; white-space: nowrap; overflow: hidden; }
+.p-amt { font-size: 0.85rem; font-weight: 600; color: rgba(196,185,146,0.45); }
+.p-score { font-size: 0.6rem; font-weight: 500; color: rgba(184,166,122,0.45); margin-bottom: 3px; }
+.p-meta { font-size: 0.55rem; color: rgba(255,255,255,0.25); white-space: nowrap; overflow: hidden; }
 
-.panel-frag.sm {
-  padding: 8px 10px;
-}
-
-.panel-frag .panel-header {
-  font-size: 0.7rem;
-  font-weight: 500;
-  color: rgba(255, 255, 255, 0.4);
-  margin-bottom: 4px;
-  white-space: nowrap;
-  overflow: hidden;
-}
-
-.panel-frag .panel-amount {
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: rgba(196, 185, 146, 0.5);
-  margin-bottom: 2px;
-}
-
-.panel-frag .panel-score {
-  font-size: 0.65rem;
-  font-weight: 500;
-  color: rgba(184, 166, 122, 0.5);
-  margin-bottom: 4px;
-}
-
-.panel-frag .panel-meta {
-  font-size: 0.6rem;
-  color: rgba(255, 255, 255, 0.25);
-  white-space: nowrap;
-  overflow: hidden;
-}
-
-/* Dollar amounts */
-.amount-frag {
-  font-size: 1rem;
-  font-weight: 600;
-  color: rgba(196, 185, 146, 0.4);
-  letter-spacing: -0.02em;
-}
-
-.amount-frag.xl {
-  font-size: 1.8rem;
-  color: rgba(196, 185, 146, 0.25);
-}
-
-.amount-frag.lg {
-  font-size: 1.4rem;
-  color: rgba(196, 185, 146, 0.3);
-}
-
-.amount-frag.sm {
-  font-size: 0.85rem;
-  color: rgba(196, 185, 146, 0.45);
-}
-
-.amount-frag.xs {
-  font-size: 0.7rem;
-  color: rgba(196, 185, 146, 0.5);
-}
+/* Amounts */
+.amt { font-weight: 600; color: rgba(196,185,146,0.4); letter-spacing: -0.02em; }
+.amt.xl { font-size: 1.6rem; color: rgba(196,185,146,0.2); }
+.amt.lg { font-size: 1.2rem; color: rgba(196,185,146,0.25); }
+.amt { font-size: 0.9rem; }
+.amt.sm { font-size: 0.75rem; color: rgba(196,185,146,0.45); }
+.amt.xs { font-size: 0.6rem; color: rgba(196,185,146,0.5); }
 
 /* Pills */
-.pill-frag {
-  padding: 3px 8px;
-  background: rgba(184, 166, 122, 0.1);
-  border: 1px solid rgba(184, 166, 122, 0.12);
-  border-radius: 10px;
-  font-size: 0.65rem;
-  font-weight: 500;
-  color: rgba(196, 185, 146, 0.55);
-  white-space: nowrap;
-}
+.pill { padding: 2px 7px; background: rgba(184,166,122,0.08); border: 1px solid rgba(184,166,122,0.1); border-radius: 10px; font-size: 0.6rem; font-weight: 500; color: rgba(196,185,146,0.5); white-space: nowrap; }
+.pill.sm { padding: 2px 5px; font-size: 0.55rem; }
+.pill.xs { padding: 1px 4px; font-size: 0.5rem; }
 
-.pill-frag.status {
-  background: rgba(255, 255, 255, 0.04);
-  border-color: rgba(255, 255, 255, 0.06);
-  color: rgba(255, 255, 255, 0.4);
-}
+/* Status */
+.status { padding: 2px 6px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); border-radius: 4px; font-size: 0.55rem; color: rgba(255,255,255,0.35); white-space: nowrap; }
+.status.sm { padding: 1px 5px; font-size: 0.5rem; }
+.status.xs { padding: 1px 4px; font-size: 0.45rem; }
 
-.pill-frag.type {
-  background: rgba(255, 255, 255, 0.025);
-  border-color: rgba(255, 255, 255, 0.04);
-  color: rgba(255, 255, 255, 0.3);
-  font-size: 0.6rem;
-}
+/* Type */
+.type { font-size: 0.55rem; color: rgba(255,255,255,0.25); white-space: nowrap; }
+.type.xs { font-size: 0.45rem; }
 
-.pill-frag.sm {
-  padding: 2px 6px;
-  font-size: 0.6rem;
-}
+/* Jurisdiction */
+.juris { font-size: 0.6rem; color: rgba(255,255,255,0.3); white-space: nowrap; }
+.juris.sm { font-size: 0.5rem; }
+.juris.xs { font-size: 0.45rem; color: rgba(255,255,255,0.25); }
 
-.pill-frag.xs {
-  padding: 2px 5px;
-  font-size: 0.55rem;
-}
+/* Document */
+.doc { font-size: 0.5rem; color: rgba(255,255,255,0.25); white-space: nowrap; }
 
-/* Document hints */
-.doc-frag {
-  font-size: 0.6rem;
-  color: rgba(255, 255, 255, 0.3);
-  white-space: nowrap;
-}
+/* Funder */
+.funder { font-size: 0.55rem; color: rgba(196,185,146,0.35); white-space: nowrap; }
 
-/* Small labels */
-.label-frag {
-  font-size: 0.55rem;
-  font-weight: 500;
-  color: rgba(255, 255, 255, 0.25);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
+/* Micro */
+.micro { font-size: 0.45rem; color: rgba(255,255,255,0.2); }
 
-/* Micro details */
-.micro-frag {
-  font-size: 0.5rem;
-  color: rgba(255, 255, 255, 0.2);
-}
-
-/* Progress hints */
-.progress-frag {
-  height: 3px;
-  background: rgba(255, 255, 255, 0.04);
-  border-radius: 2px;
-  overflow: hidden;
-}
-
-.progress-frag::after {
-  content: '';
-  display: block;
-  height: 100%;
-  width: 60%;
-  background: rgba(184, 166, 122, 0.25);
-  border-radius: 2px;
-}
-
-/* Connecting lines */
-.line-frag {
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(184, 166, 122, 0.15), transparent);
-}
-
-.line-frag.v {
-  width: 1px;
-  height: auto;
-  background: linear-gradient(180deg, transparent, rgba(184, 166, 122, 0.15), transparent);
-}
+/* Lines */
+.line-h { height: 1px; background: linear-gradient(90deg, transparent, rgba(184,166,122,0.12), transparent); }
+.line-v { width: 1px; background: linear-gradient(180deg, transparent, rgba(184,166,122,0.12), transparent); }
 
 /* ========================================
    The Key - Dramatic Material Transformation
