@@ -24,8 +24,9 @@
   <!-- Hero / Unlock Section (Pinned) -->
   <section class="unlock-section">
     
-    <!-- Environment Layers - Vault Architecture -->
+    <!-- Environment Layers - Vault Enclosure -->
     <div class="env-depth"></div>
+    <div class="env-spotlight"></div>
     <div class="env-floor"></div>
     <div class="env-ambient"></div>
     <div class="env-vignette"></div>
@@ -34,220 +35,237 @@
       
       <!-- Data Room Fragments - Dense, overlapping, central gravity -->
       <!-- Global Data Vault - Dense, centrally clustered -->
+      <!-- Zone-based Data Vault - Strict zones from key center -->
       <div class="ui-environment">
         
-        <!-- FAR LAYER: Outer periphery - heavy blur, lowest opacity -->
-        <!-- Large ghost shapes at edges -->
-        <div class="data-frag ghost" data-depth="far" style="top:0%;left:0%;width:200px;height:130px"></div>
-        <div class="data-frag ghost" data-depth="far" style="top:5%;right:0%;width:180px;height:120px"></div>
-        <div class="data-frag ghost" data-depth="far" style="bottom:0%;left:5%;width:190px;height:125px"></div>
-        <div class="data-frag ghost" data-depth="far" style="bottom:5%;right:0%;width:185px;height:118px"></div>
+        <!-- ========================================
+             ZONE D (edges): 2-4 ghost fragments only
+             Far haze layer - blur 18px
+        ======================================== -->
+        <div class="data-frag ghost" data-depth="haze" style="top:2%;left:2%;width:180px;height:110px"></div>
+        <div class="data-frag ghost" data-depth="haze" style="top:5%;right:3%;width:160px;height:100px"></div>
+        <div class="data-frag ghost" data-depth="haze" style="bottom:3%;left:5%;width:170px;height:105px"></div>
+        <div class="data-frag ghost" data-depth="haze" style="bottom:5%;right:2%;width:155px;height:95px"></div>
         
-        <!-- Far amounts - large, faded -->
-        <div class="data-frag amt xl" data-depth="far" style="top:5%;left:8%">$188...</div>
-        <div class="data-frag amt xl" data-depth="far" style="top:8%;right:10%">€94.2...</div>
-        <div class="data-frag amt xl" data-depth="far" style="bottom:8%;left:5%">£45.8...</div>
-        <div class="data-frag amt xl" data-depth="far" style="bottom:5%;right:8%">¥2.4B</div>
-        <div class="data-frag amt lg" data-depth="far" style="top:18%;left:3%">A$32...</div>
-        <div class="data-frag amt lg" data-depth="far" style="top:15%;right:5%">CHF1...</div>
-        <div class="data-frag amt lg" data-depth="far" style="bottom:18%;left:8%">$67.3...</div>
-        <div class="data-frag amt lg" data-depth="far" style="bottom:15%;right:3%">€28.9...</div>
+        <!-- Haze amounts at edges - barely visible -->
+        <div class="data-frag amt xl" data-depth="haze" style="top:8%;left:6%">$188...</div>
+        <div class="data-frag amt xl" data-depth="haze" style="top:10%;right:8%">€94...</div>
+        <div class="data-frag amt xl" data-depth="haze" style="bottom:10%;left:8%">£45...</div>
+        <div class="data-frag amt xl" data-depth="haze" style="bottom:8%;right:6%">¥2.4...</div>
+        <div class="data-frag amt lg" data-depth="haze" style="top:18%;left:4%">A$32...</div>
+        <div class="data-frag amt lg" data-depth="haze" style="bottom:18%;right:4%">CHF...</div>
+        <div class="data-frag court lg" data-depth="haze" style="top:25%;left:3%">SDNY...</div>
+        <div class="data-frag court lg" data-depth="haze" style="bottom:25%;right:3%">ICC...</div>
+        <div class="data-frag pill lg" data-depth="haze" style="top:35%;left:5%">87%</div>
+        <div class="data-frag pill lg" data-depth="haze" style="bottom:35%;right:5%">92%</div>
+        <div class="data-frag stat lg" data-depth="haze" style="top:45%;left:3%">Fund...</div>
+        <div class="data-frag stat lg" data-depth="haze" style="bottom:45%;right:3%">Matc...</div>
+        <div class="data-frag ghost" data-depth="haze" style="top:55%;left:0%;width:140px;height:85px"></div>
+        <div class="data-frag ghost" data-depth="haze" style="bottom:55%;right:0%;width:145px;height:88px"></div>
+        <div class="data-frag amt lg" data-depth="haze" style="top:65%;left:5%">$67...</div>
+        <div class="data-frag amt lg" data-depth="haze" style="bottom:65%;right:5%">€28...</div>
+        <div class="data-frag court" data-depth="haze" style="top:75%;left:4%">Del...</div>
+        <div class="data-frag court" data-depth="haze" style="bottom:75%;right:4%">LCIA...</div>
         
-        <!-- Far jurisdictions -->
-        <div class="data-frag juris" data-depth="far" style="top:12%;left:15%">SDNY v...</div>
-        <div class="data-frag juris" data-depth="far" style="top:20%;right:12%">Del. Ch...</div>
-        <div class="data-frag juris" data-depth="far" style="bottom:20%;left:12%">High C...</div>
-        <div class="data-frag juris" data-depth="far" style="bottom:12%;right:15%">Singap...</div>
+        <!-- ========================================
+             ZONE C (420-720px from center): remaining elements
+             Back layer - blur 8px
+        ======================================== -->
+        <!-- These position at roughly 25-35% from center = 15-25% from edges OR 75-85% from opposite edge -->
+        <div class="data-frag ghost" data-depth="back" style="top:12%;left:15%;width:130px;height:80px"></div>
+        <div class="data-frag ghost" data-depth="back" style="top:10%;right:12%;width:140px;height:85px"></div>
+        <div class="data-frag ghost" data-depth="back" style="bottom:12%;left:12%;width:135px;height:82px"></div>
+        <div class="data-frag ghost" data-depth="back" style="bottom:10%;right:15%;width:128px;height:78px"></div>
         
-        <!-- MID LAYER: Ring around key - moderate blur -->
-        <!-- Mid ghost panels -->
-        <div class="data-frag ghost" data-depth="mid" style="top:12%;left:18%;width:140px;height:90px"></div>
-        <div class="data-frag ghost" data-depth="mid" style="top:10%;right:15%;width:150px;height:95px"></div>
-        <div class="data-frag ghost" data-depth="mid" style="bottom:12%;left:15%;width:145px;height:92px"></div>
-        <div class="data-frag ghost" data-depth="mid" style="bottom:10%;right:18%;width:138px;height:88px"></div>
-        <div class="data-frag ghost" data-depth="mid" style="top:25%;left:10%;width:125px;height:80px"></div>
-        <div class="data-frag ghost" data-depth="mid" style="top:28%;right:8%;width:130px;height:82px"></div>
-        <div class="data-frag ghost" data-depth="mid" style="bottom:25%;left:8%;width:128px;height:78px"></div>
-        <div class="data-frag ghost" data-depth="mid" style="bottom:28%;right:10%;width:132px;height:85px"></div>
+        <div class="data-frag amt lg" data-depth="back" style="top:15%;left:20%">$12.4...</div>
+        <div class="data-frag amt lg" data-depth="back" style="top:12%;right:18%">€8.2M</div>
+        <div class="data-frag amt lg" data-depth="back" style="bottom:15%;left:18%">£4.7M</div>
+        <div class="data-frag amt lg" data-depth="back" style="bottom:12%;right:20%">¥890M</div>
+        <div class="data-frag amt md" data-depth="back" style="top:20%;left:22%">$2.5M</div>
+        <div class="data-frag amt md" data-depth="back" style="top:18%;right:20%">€4.1M</div>
+        <div class="data-frag amt md" data-depth="back" style="bottom:20%;left:20%">£1.8M</div>
+        <div class="data-frag amt md" data-depth="back" style="bottom:18%;right:22%">$6.2M</div>
+        <div class="data-frag amt md" data-depth="back" style="top:25%;left:18%">¥340M</div>
+        <div class="data-frag amt md" data-depth="back" style="top:22%;right:16%">CHF2...</div>
+        <div class="data-frag amt md" data-depth="back" style="bottom:25%;left:16%">A$8.4M</div>
+        <div class="data-frag amt md" data-depth="back" style="bottom:22%;right:18%">€3.2M</div>
         
-        <!-- Mid panels with content -->
-        <div class="data-frag panel" data-depth="mid" style="top:15%;left:22%;width:120px">
-          <div class="p-head">Case ID: C...</div>
-          <div class="p-amt">$12.4M</div>
+        <div class="data-frag pill lg" data-depth="back" style="top:16%;left:25%">91%</div>
+        <div class="data-frag pill lg" data-depth="back" style="top:14%;right:23%">87%</div>
+        <div class="data-frag pill lg" data-depth="back" style="bottom:16%;left:23%">94%</div>
+        <div class="data-frag pill lg" data-depth="back" style="bottom:14%;right:25%">82%</div>
+        <div class="data-frag pill" data-depth="back" style="top:22%;left:24%">88%</div>
+        <div class="data-frag pill" data-depth="back" style="top:20%;right:22%">95%</div>
+        <div class="data-frag pill" data-depth="back" style="bottom:22%;left:22%">79%</div>
+        <div class="data-frag pill" data-depth="back" style="bottom:20%;right:24%">91%</div>
+        
+        <div class="data-frag stat lg" data-depth="back" style="top:18%;left:15%">Under R...</div>
+        <div class="data-frag stat lg" data-depth="back" style="top:15%;right:14%">Matched</div>
+        <div class="data-frag stat lg" data-depth="back" style="bottom:18%;left:14%">Funded</div>
+        <div class="data-frag stat lg" data-depth="back" style="bottom:15%;right:15%">Diligen...</div>
+        <div class="data-frag stat" data-depth="back" style="top:24%;left:20%">Bid</div>
+        <div class="data-frag stat" data-depth="back" style="top:21%;right:18%">Offer</div>
+        <div class="data-frag stat" data-depth="back" style="bottom:24%;left:18%">Closed</div>
+        <div class="data-frag stat" data-depth="back" style="bottom:21%;right:20%">Intake</div>
+        
+        <div class="data-frag court lg" data-depth="back" style="top:28%;left:12%">SDNY</div>
+        <div class="data-frag court lg" data-depth="back" style="top:26%;right:10%">Del. Ch...</div>
+        <div class="data-frag court lg" data-depth="back" style="bottom:28%;left:10%">LCIA</div>
+        <div class="data-frag court lg" data-depth="back" style="bottom:26%;right:12%">ICC Par...</div>
+        <div class="data-frag court" data-depth="back" style="top:32%;left:16%">Texas...</div>
+        <div class="data-frag court" data-depth="back" style="bottom:32%;right:16%">Hong K...</div>
+        
+        <div class="data-frag doc" data-depth="back" style="top:35%;left:10%">Complai...</div>
+        <div class="data-frag doc" data-depth="back" style="bottom:35%;right:10%">Damage...</div>
+        <div class="data-frag doc" data-depth="back" style="top:38%;left:14%">Retainer...</div>
+        <div class="data-frag doc" data-depth="back" style="bottom:38%;right:14%">Expert_...</div>
+        
+        <div class="data-frag panel" data-depth="back" style="top:40%;left:8%;width:90px">
+          <div class="p-amt">$5.4M</div>
+          <div class="p-label">Commerc...</div>
         </div>
-        <div class="data-frag panel" data-depth="mid" style="top:12%;left:38%;width:110px">
-          <div class="p-score">87% Ma...</div>
-          <div class="p-meta">Commerc...</div>
-        </div>
-        <div class="data-frag panel" data-depth="mid" style="top:18%;right:35%;width:115px">
-          <div class="p-amt">€8.2M</div>
-          <div class="p-meta">Paris IC...</div>
-        </div>
-        <div class="data-frag panel" data-depth="mid" style="top:10%;right:20%;width:125px">
-          <div class="p-score">92%</div>
-          <div class="p-head">Patent L...</div>
-        </div>
-        <div class="data-frag panel" data-depth="mid" style="bottom:18%;left:20%;width:118px">
-          <div class="p-head">£4.7M</div>
-          <div class="p-meta">High Cou...</div>
-        </div>
-        <div class="data-frag panel" data-depth="mid" style="bottom:12%;left:36%;width:105px">
-          <div class="p-amt">¥890M</div>
-        </div>
-        <div class="data-frag panel" data-depth="mid" style="bottom:20%;right:32%;width:122px">
-          <div class="p-score">78% Sc...</div>
-          <div class="p-head">Antitru...</div>
-        </div>
-        <div class="data-frag panel" data-depth="mid" style="bottom:10%;right:18%;width:112px">
-          <div class="p-head">A$15.3...</div>
+        <div class="data-frag panel" data-depth="back" style="bottom:40%;right:8%;width:85px">
+          <div class="p-amt">€7.2M</div>
+          <div class="p-label">Patent...</div>
         </div>
         
-        <!-- Mid amounts - ring -->
-        <div class="data-frag amt" data-depth="mid" style="top:22%;left:28%">$2.5M</div>
-        <div class="data-frag amt" data-depth="mid" style="top:18%;left:42%">€4.1M</div>
-        <div class="data-frag amt" data-depth="mid" style="top:24%;right:40%">£1.8M</div>
-        <div class="data-frag amt" data-depth="mid" style="top:20%;right:25%">$6.2M</div>
-        <div class="data-frag amt" data-depth="mid" style="bottom:24%;left:25%">¥340M</div>
-        <div class="data-frag amt" data-depth="mid" style="bottom:18%;left:40%">CHF2...</div>
-        <div class="data-frag amt" data-depth="mid" style="bottom:22%;right:38%">A$8.4M</div>
-        <div class="data-frag amt" data-depth="mid" style="bottom:20%;right:22%">€3.2M</div>
-        <div class="data-frag amt sm" data-depth="mid" style="top:28%;left:32%">$890K</div>
-        <div class="data-frag amt sm" data-depth="mid" style="top:30%;right:30%">£2.1M</div>
-        <div class="data-frag amt sm" data-depth="mid" style="bottom:30%;left:30%">$4.8M</div>
-        <div class="data-frag amt sm" data-depth="mid" style="bottom:28%;right:32%">€1.4M</div>
+        <!-- More back layer scattered -->
+        <div class="data-frag amt sm" data-depth="back" style="top:45%;left:12%">$890K</div>
+        <div class="data-frag amt sm" data-depth="back" style="bottom:45%;right:12%">£2.1M</div>
+        <div class="data-frag amt sm" data-depth="back" style="top:50%;left:8%">$4.8M</div>
+        <div class="data-frag amt sm" data-depth="back" style="bottom:50%;right:8%">€1.4M</div>
+        <div class="data-frag pill sm" data-depth="back" style="top:52%;left:15%">76%</div>
+        <div class="data-frag pill sm" data-depth="back" style="bottom:52%;right:15%">84%</div>
+        <div class="data-frag stat sm" data-depth="back" style="top:55%;left:10%">Match</div>
+        <div class="data-frag stat sm" data-depth="back" style="bottom:55%;right:10%">Fund</div>
+        <div class="data-frag court sm" data-depth="back" style="top:58%;left:14%">AAA</div>
+        <div class="data-frag court sm" data-depth="back" style="bottom:58%;right:14%">HKIAC</div>
         
-        <!-- Mid pills -->
-        <div class="data-frag pill" data-depth="mid" style="top:25%;left:35%">91%</div>
-        <div class="data-frag pill" data-depth="mid" style="top:22%;left:48%">87% M...</div>
-        <div class="data-frag pill" data-depth="mid" style="top:28%;right:45%">94%</div>
-        <div class="data-frag pill" data-depth="mid" style="top:24%;right:32%">82%</div>
-        <div class="data-frag pill" data-depth="mid" style="bottom:28%;left:33%">88%</div>
-        <div class="data-frag pill" data-depth="mid" style="bottom:24%;left:46%">95%</div>
-        <div class="data-frag pill" data-depth="mid" style="bottom:26%;right:43%">79%</div>
-        <div class="data-frag pill" data-depth="mid" style="bottom:22%;right:30%">91%</div>
+        <!-- ========================================
+             ZONE B (140-420px from center): 70%+ of elements
+             Mid layer - blur 3px - DENSE CLUSTER
+        ======================================== -->
+        <!-- These position at roughly 10-30% from center = 35-45% from edges -->
         
-        <!-- Mid status -->
-        <div class="data-frag status" data-depth="mid" style="top:32%;left:22%">Under R...</div>
-        <div class="data-frag status" data-depth="mid" style="top:28%;right:22%">Matched</div>
-        <div class="data-frag status" data-depth="mid" style="bottom:32%;left:25%">Funded</div>
-        <div class="data-frag status" data-depth="mid" style="bottom:28%;right:25%">Diligen...</div>
-        <div class="data-frag status sm" data-depth="mid" style="top:35%;left:30%">Bid</div>
-        <div class="data-frag status sm" data-depth="mid" style="top:33%;right:28%">Offer</div>
-        <div class="data-frag status sm" data-depth="mid" style="bottom:35%;left:28%">Closed</div>
-        <div class="data-frag status sm" data-depth="mid" style="bottom:33%;right:30%">Intake</div>
+        <!-- Ring of amounts - overlapping -->
+        <div class="data-frag amt md" data-depth="mid" style="top:28%;left:32%">$2.5M</div>
+        <div class="data-frag amt md" data-depth="mid" style="top:26%;left:38%">€1.8M</div>
+        <div class="data-frag amt md" data-depth="mid" style="top:30%;left:44%">£3.2M</div>
+        <div class="data-frag amt md" data-depth="mid" style="top:25%;right:42%">$4.1M</div>
+        <div class="data-frag amt md" data-depth="mid" style="top:28%;right:36%">¥420M</div>
+        <div class="data-frag amt md" data-depth="mid" style="top:32%;right:30%">$1.4M</div>
+        <div class="data-frag amt md" data-depth="mid" style="bottom:28%;left:30%">€2.9M</div>
+        <div class="data-frag amt md" data-depth="mid" style="bottom:26%;left:36%">A$5.1M</div>
+        <div class="data-frag amt md" data-depth="mid" style="bottom:30%;left:42%">$2.1M</div>
+        <div class="data-frag amt md" data-depth="mid" style="bottom:25%;right:44%">£890K</div>
+        <div class="data-frag amt md" data-depth="mid" style="bottom:28%;right:38%">€3.8M</div>
+        <div class="data-frag amt md" data-depth="mid" style="bottom:32%;right:32%">$1.2M</div>
         
-        <!-- Mid types -->
-        <div class="data-frag type" data-depth="mid" style="top:38%;left:18%">Commerc...</div>
-        <div class="data-frag type" data-depth="mid" style="top:36%;right:18%">Securiti...</div>
-        <div class="data-frag type" data-depth="mid" style="bottom:38%;left:20%">Arbitrat...</div>
-        <div class="data-frag type" data-depth="mid" style="bottom:36%;right:20%">IP Litig...</div>
+        <!-- More amounts overlapping -->
+        <div class="data-frag amt sm" data-depth="mid" style="top:32%;left:34%">$2.5M</div>
+        <div class="data-frag amt sm" data-depth="mid" style="top:30%;left:40%">€1.2M</div>
+        <div class="data-frag amt sm" data-depth="mid" style="top:34%;right:40%">£4.8M</div>
+        <div class="data-frag amt sm" data-depth="mid" style="top:31%;right:34%">$890K</div>
+        <div class="data-frag amt sm" data-depth="mid" style="bottom:32%;left:34%">¥180M</div>
+        <div class="data-frag amt sm" data-depth="mid" style="bottom:30%;left:40%">$3.2M</div>
+        <div class="data-frag amt sm" data-depth="mid" style="bottom:34%;right:40%">€890K</div>
+        <div class="data-frag amt sm" data-depth="mid" style="bottom:31%;right:34%">£1.1M</div>
         
-        <!-- Mid jurisdictions -->
-        <div class="data-frag juris sm" data-depth="mid" style="top:40%;left:25%">SDNY</div>
-        <div class="data-frag juris sm" data-depth="mid" style="top:42%;right:25%">Del. Ch...</div>
-        <div class="data-frag juris sm" data-depth="mid" style="bottom:42%;left:28%">LCIA</div>
-        <div class="data-frag juris sm" data-depth="mid" style="bottom:40%;right:28%">ICC Par...</div>
+        <!-- Pills cluster -->
+        <div class="data-frag pill" data-depth="mid" style="top:30%;left:36%">91%</div>
+        <div class="data-frag pill" data-depth="mid" style="top:28%;left:42%">87%</div>
+        <div class="data-frag pill" data-depth="mid" style="top:32%;right:42%">94%</div>
+        <div class="data-frag pill" data-depth="mid" style="top:29%;right:36%">82%</div>
+        <div class="data-frag pill" data-depth="mid" style="bottom:30%;left:36%">88%</div>
+        <div class="data-frag pill" data-depth="mid" style="bottom:28%;left:42%">95%</div>
+        <div class="data-frag pill" data-depth="mid" style="bottom:32%;right:42%">79%</div>
+        <div class="data-frag pill" data-depth="mid" style="bottom:29%;right:36%">91%</div>
+        <div class="data-frag pill sm" data-depth="mid" style="top:34%;left:38%">86%</div>
+        <div class="data-frag pill sm" data-depth="mid" style="top:33%;right:38%">93%</div>
+        <div class="data-frag pill sm" data-depth="mid" style="bottom:34%;left:38%">77%</div>
+        <div class="data-frag pill sm" data-depth="mid" style="bottom:33%;right:38%">89%</div>
         
-        <!-- Mid docs -->
-        <div class="data-frag doc" data-depth="mid" style="top:45%;left:15%">Complai...</div>
-        <div class="data-frag doc" data-depth="mid" style="bottom:45%;right:15%">Damage...</div>
+        <!-- Status cluster -->
+        <div class="data-frag stat" data-depth="mid" style="top:33%;left:32%">Bid</div>
+        <div class="data-frag stat" data-depth="mid" style="top:31%;left:44%">Offer</div>
+        <div class="data-frag stat" data-depth="mid" style="top:35%;right:44%">Match</div>
+        <div class="data-frag stat" data-depth="mid" style="top:32%;right:32%">Fund</div>
+        <div class="data-frag stat" data-depth="mid" style="bottom:33%;left:32%">Review</div>
+        <div class="data-frag stat" data-depth="mid" style="bottom:31%;left:44%">Intake</div>
+        <div class="data-frag stat" data-depth="mid" style="bottom:35%;right:44%">Closed</div>
+        <div class="data-frag stat" data-depth="mid" style="bottom:32%;right:32%">Due Dil...</div>
+        <div class="data-frag stat sm" data-depth="mid" style="top:36%;left:35%">Bid</div>
+        <div class="data-frag stat sm" data-depth="mid" style="top:35%;right:35%">Offer</div>
+        <div class="data-frag stat sm" data-depth="mid" style="bottom:36%;left:35%">Fund</div>
+        <div class="data-frag stat sm" data-depth="mid" style="bottom:35%;right:35%">Match</div>
         
-        <!-- NEAR LAYER: Tight orbit - light blur, higher opacity -->
-        <!-- Near amounts - dense cluster -->
-        <div class="data-frag amt" data-depth="near" style="top:30%;left:36%">$2.5M</div>
-        <div class="data-frag amt" data-depth="near" style="top:28%;left:48%">€1.8M</div>
-        <div class="data-frag amt" data-depth="near" style="top:32%;right:46%">£3.2M</div>
-        <div class="data-frag amt" data-depth="near" style="top:28%;right:35%">$4.1M</div>
-        <div class="data-frag amt" data-depth="near" style="bottom:32%;left:38%">¥420M</div>
-        <div class="data-frag amt" data-depth="near" style="bottom:28%;left:50%">$1.4M</div>
-        <div class="data-frag amt" data-depth="near" style="bottom:30%;right:48%">€2.9M</div>
-        <div class="data-frag amt" data-depth="near" style="bottom:28%;right:36%">A$5.1...</div>
-        <div class="data-frag amt sm" data-depth="near" style="top:35%;left:40%">$2.1M</div>
-        <div class="data-frag amt sm" data-depth="near" style="top:37%;right:40%">£890K</div>
-        <div class="data-frag amt sm" data-depth="near" style="bottom:37%;left:42%">€3.8M</div>
-        <div class="data-frag amt sm" data-depth="near" style="bottom:35%;right:42%">$1.2M</div>
-        <div class="data-frag amt xs" data-depth="near" style="top:38%;left:44%">$2.5M</div>
-        <div class="data-frag amt xs" data-depth="near" style="top:40%;right:44%">€1.2M</div>
-        <div class="data-frag amt xs" data-depth="near" style="bottom:40%;left:46%">£4.8M</div>
-        <div class="data-frag amt xs" data-depth="near" style="bottom:38%;right:46%">$890K</div>
+        <!-- Courts cluster -->
+        <div class="data-frag court" data-depth="mid" style="top:35%;left:30%">SDNY</div>
+        <div class="data-frag court" data-depth="mid" style="top:33%;right:30%">Del.</div>
+        <div class="data-frag court" data-depth="mid" style="bottom:35%;left:30%">ICC</div>
+        <div class="data-frag court" data-depth="mid" style="bottom:33%;right:30%">LCIA</div>
+        <div class="data-frag court sm" data-depth="mid" style="top:37%;left:33%">AAA</div>
+        <div class="data-frag court sm" data-depth="mid" style="top:36%;right:33%">SIAC</div>
+        <div class="data-frag court sm" data-depth="mid" style="bottom:37%;left:33%">PCA</div>
+        <div class="data-frag court sm" data-depth="mid" style="bottom:36%;right:33%">ICSID</div>
         
-        <!-- Near pills -->
-        <div class="data-frag pill sm" data-depth="near" style="top:33%;left:42%">91%</div>
-        <div class="data-frag pill sm" data-depth="near" style="top:31%;right:42%">87%</div>
-        <div class="data-frag pill sm" data-depth="near" style="bottom:33%;left:44%">94%</div>
-        <div class="data-frag pill sm" data-depth="near" style="bottom:31%;right:44%">82%</div>
-        <div class="data-frag pill xs" data-depth="near" style="top:36%;left:46%">95%</div>
-        <div class="data-frag pill xs" data-depth="near" style="bottom:36%;right:48%">88%</div>
-        <div class="data-frag pill xs" data-depth="near" style="top:42%;left:48%">79%</div>
-        <div class="data-frag pill xs" data-depth="near" style="bottom:42%;right:50%">86%</div>
+        <!-- Docs cluster -->
+        <div class="data-frag doc" data-depth="mid" style="top:38%;left:28%">Complai...</div>
+        <div class="data-frag doc" data-depth="mid" style="top:37%;right:28%">Damage...</div>
+        <div class="data-frag doc" data-depth="mid" style="bottom:38%;left:28%">Retainer...</div>
+        <div class="data-frag doc" data-depth="mid" style="bottom:37%;right:28%">Expert_...</div>
         
-        <!-- Near status -->
-        <div class="data-frag status sm" data-depth="near" style="top:35%;left:38%">Bid</div>
-        <div class="data-frag status sm" data-depth="near" style="top:33%;right:38%">Offer</div>
-        <div class="data-frag status sm" data-depth="near" style="bottom:35%;left:40%">Match</div>
-        <div class="data-frag status sm" data-depth="near" style="bottom:33%;right:40%">Fund</div>
-        <div class="data-frag status xs" data-depth="near" style="top:39%;left:45%">Review</div>
-        <div class="data-frag status xs" data-depth="near" style="bottom:39%;right:47%">Intake</div>
+        <!-- Small panels in Zone B -->
+        <div class="data-frag panel" data-depth="mid" style="top:26%;left:28%;width:75px">
+          <div class="p-amt">$2.5M</div>
+        </div>
+        <div class="data-frag panel" data-depth="mid" style="top:24%;right:28%;width:70px">
+          <div class="p-amt">€4.1M</div>
+        </div>
+        <div class="data-frag panel" data-depth="mid" style="bottom:26%;left:28%;width:72px">
+          <div class="p-amt">£1.8M</div>
+        </div>
+        <div class="data-frag panel" data-depth="mid" style="bottom:24%;right:28%;width:68px">
+          <div class="p-amt">¥340M</div>
+        </div>
         
-        <!-- Near micro -->
-        <div class="data-frag micro" data-depth="near" style="top:40%;left:41%">28m</div>
-        <div class="data-frag micro" data-depth="near" style="top:42%;right:43%">3 bids</div>
-        <div class="data-frag micro" data-depth="near" style="bottom:42%;left:43%">$500K</div>
-        <div class="data-frag micro" data-depth="near" style="bottom:40%;right:41%">82%</div>
-        <div class="data-frag micro" data-depth="near" style="top:44%;left:47%">→</div>
-        <div class="data-frag micro" data-depth="near" style="bottom:44%;right:49%">→</div>
+        <!-- Extra density - more overlapping amounts -->
+        <div class="data-frag amt xs" data-depth="mid" style="top:36%;left:40%">$2.5M</div>
+        <div class="data-frag amt xs" data-depth="mid" style="top:35%;left:45%">€1.2M</div>
+        <div class="data-frag amt xs" data-depth="mid" style="top:38%;right:45%">£4.8M</div>
+        <div class="data-frag amt xs" data-depth="mid" style="top:37%;right:40%">$890K</div>
+        <div class="data-frag amt xs" data-depth="mid" style="bottom:36%;left:40%">¥95M</div>
+        <div class="data-frag amt xs" data-depth="mid" style="bottom:35%;left:45%">$780K</div>
+        <div class="data-frag amt xs" data-depth="mid" style="bottom:38%;right:45%">€540K</div>
+        <div class="data-frag amt xs" data-depth="mid" style="bottom:37%;right:40%">£2.3M</div>
         
-        <!-- Near jurisdictions micro -->
-        <div class="data-frag juris xs" data-depth="near" style="top:41%;left:39%">SDNY</div>
-        <div class="data-frag juris xs" data-depth="near" style="bottom:41%;right:39%">ICC</div>
-        <div class="data-frag juris xs" data-depth="near" style="top:45%;right:45%">LCIA</div>
-        <div class="data-frag juris xs" data-depth="near" style="bottom:45%;left:45%">AAA</div>
+        <div class="data-frag pill xs" data-depth="mid" style="top:38%;left:42%">91%</div>
+        <div class="data-frag pill xs" data-depth="mid" style="top:37%;right:42%">87%</div>
+        <div class="data-frag pill xs" data-depth="mid" style="bottom:38%;left:42%">94%</div>
+        <div class="data-frag pill xs" data-depth="mid" style="bottom:37%;right:42%">82%</div>
         
-        <!-- CLOSE LAYER: Innermost - minimal blur -->
-        <div class="data-frag amt xs" data-depth="close" style="top:42%;left:46%">$2.5M</div>
-        <div class="data-frag amt xs" data-depth="close" style="top:40%;right:46%">€1.2M</div>
-        <div class="data-frag amt xs" data-depth="close" style="bottom:42%;left:48%">£4.8M</div>
-        <div class="data-frag amt xs" data-depth="close" style="bottom:40%;right:48%">$890K</div>
-        <div class="data-frag pill xs" data-depth="close" style="top:44%;left:48%">95%</div>
-        <div class="data-frag pill xs" data-depth="close" style="bottom:44%;right:50%">88%</div>
-        <div class="data-frag micro" data-depth="close" style="top:46%;left:47%">Bid</div>
-        <div class="data-frag micro" data-depth="close" style="bottom:46%;right:47%">Fund</div>
+        <div class="data-frag stat xs" data-depth="mid" style="top:39%;left:38%">Bid</div>
+        <div class="data-frag stat xs" data-depth="mid" style="top:38%;right:38%">Offer</div>
+        <div class="data-frag stat xs" data-depth="mid" style="bottom:39%;left:38%">Fund</div>
+        <div class="data-frag stat xs" data-depth="mid" style="bottom:38%;right:38%">Match</div>
         
-        <!-- Connecting lines -->
-        <div class="data-frag line-h" data-depth="near" style="top:39%;left:45%;width:18px"></div>
-        <div class="data-frag line-h" data-depth="near" style="top:39%;right:45%;width:18px"></div>
-        <div class="data-frag line-h" data-depth="near" style="bottom:39%;left:47%;width:15px"></div>
-        <div class="data-frag line-h" data-depth="near" style="bottom:39%;right:47%;width:15px"></div>
-        <div class="data-frag line-v" data-depth="near" style="top:43%;left:46%;height:12px"></div>
-        <div class="data-frag line-v" data-depth="near" style="bottom:43%;right:46%;height:12px"></div>
-        
-        <!-- Extra scattered elements for density -->
-        <div class="data-frag amt xs" data-depth="far" style="top:55%;left:5%">$3.2M</div>
-        <div class="data-frag amt xs" data-depth="far" style="top:60%;left:12%">€890K</div>
-        <div class="data-frag amt xs" data-depth="far" style="top:52%;right:8%">£1.1M</div>
-        <div class="data-frag amt xs" data-depth="far" style="top:58%;right:15%">¥180M</div>
-        <div class="data-frag amt xs" data-depth="far" style="bottom:55%;left:8%">A$2.4...</div>
-        <div class="data-frag amt xs" data-depth="far" style="bottom:60%;left:18%">$780K</div>
-        <div class="data-frag amt xs" data-depth="far" style="bottom:52%;right:12%">CHF1...</div>
-        <div class="data-frag amt xs" data-depth="far" style="bottom:58%;right:5%">€2.8M</div>
-        <div class="data-frag amt xs" data-depth="far" style="top:68%;left:10%">$1.1M</div>
-        <div class="data-frag amt xs" data-depth="far" style="top:72%;right:8%">€540K</div>
-        <div class="data-frag amt xs" data-depth="far" style="bottom:68%;left:12%">£2.3M</div>
-        <div class="data-frag amt xs" data-depth="far" style="bottom:72%;right:10%">¥95M</div>
-        
-        <div class="data-frag pill xs" data-depth="far" style="top:62%;left:18%">76%</div>
-        <div class="data-frag pill xs" data-depth="far" style="top:65%;right:15%">84%</div>
-        <div class="data-frag pill xs" data-depth="far" style="bottom:62%;left:15%">91%</div>
-        <div class="data-frag pill xs" data-depth="far" style="bottom:65%;right:18%">79%</div>
-        
-        <div class="data-frag status xs" data-depth="far" style="top:70%;left:5%">Funded</div>
-        <div class="data-frag status xs" data-depth="far" style="bottom:70%;right:5%">Closed</div>
-        
-        <div class="data-frag juris xs" data-depth="far" style="top:75%;left:15%">ICSID</div>
-        <div class="data-frag juris xs" data-depth="far" style="bottom:75%;right:12%">SIAC</div>
-        
-        <div class="data-frag type xs" data-depth="far" style="top:78%;left:8%">Bankru...</div>
-        <div class="data-frag type xs" data-depth="far" style="bottom:78%;right:8%">Merger...</div>
+        <!-- ========================================
+             ZONE A (0-140px from center): mostly negative space
+             Foreground layer - blur 0.5px - few micro specks only
+        ======================================== -->
+        <!-- Only 10-15 elements here - tiny specks -->
+        <div class="data-frag micro" data-depth="fg" style="top:42%;left:46%">$2.5M</div>
+        <div class="data-frag micro" data-depth="fg" style="top:41%;right:46%">91%</div>
+        <div class="data-frag micro" data-depth="fg" style="bottom:42%;left:47%">Bid</div>
+        <div class="data-frag micro" data-depth="fg" style="bottom:41%;right:47%">€1.2M</div>
+        <div class="data-frag micro" data-depth="fg" style="top:44%;left:48%">87%</div>
+        <div class="data-frag micro" data-depth="fg" style="top:43%;right:48%">Fund</div>
+        <div class="data-frag micro" data-depth="fg" style="bottom:44%;left:49%">£4.8M</div>
+        <div class="data-frag micro" data-depth="fg" style="bottom:43%;right:49%">94%</div>
+        <div class="data-frag micro" data-depth="fg" style="top:46%;left:47%">→</div>
+        <div class="data-frag micro" data-depth="fg" style="bottom:46%;right:47%">→</div>
+        <div class="data-frag micro" data-depth="fg" style="top:45%;left:45%">SDNY</div>
+        <div class="data-frag micro" data-depth="fg" style="bottom:45%;right:45%">ICC</div>
         
       </div>
       <!-- The Key -->

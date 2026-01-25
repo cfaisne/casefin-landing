@@ -30,19 +30,14 @@ const CONFIG = {
   // Gold glow intensity
   GLOW_INNER_MAX: 0.7,
   GLOW_OUTER_MAX: 0.4,
-  AMBIENT_MAX: 0.5,
+  AMBIENT_MAX: 0.6,
   
-  // UI Fragment blur (when fully visible) - layered depth
-  BLUR_FAR: 6,
-  BLUR_MID: 3,
-  BLUR_NEAR: 1,
-  BLUR_CLOSE: 0.5,
-  
-  // Data fragment opacity targets - by depth layer
-  FRAG_OPACITY_FAR: 0.5,
-  FRAG_OPACITY_MID: 0.7,
-  FRAG_OPACITY_NEAR: 0.85,
-  FRAG_OPACITY_CLOSE: 0.95,
+  // Fragment opacity by depth layer (per spec)
+  // Foreground: 10-16%, Mid: 7-12%, Back: 4-8%, Haze: 2-5%
+  FRAG_OPACITY_FG: 0.14,
+  FRAG_OPACITY_MID: 0.10,
+  FRAG_OPACITY_BACK: 0.06,
+  FRAG_OPACITY_HAZE: 0.035,
   
   // Timing breakpoints (0-1 scale)
   BEAT_1: 0,      // Start - clean, just key
@@ -71,8 +66,9 @@ function initCinematicUnlock() {
   const scrollIndicator = document.querySelector('.scroll-indicator');
   const unlockText = document.querySelector('.unlock-text');
   
-  // Environment - Vault Architecture
+  // Environment - Vault Enclosure
   const envDepth = document.querySelector('.env-depth');
+  const envSpotlight = document.querySelector('.env-spotlight');
   const envFloor = document.querySelector('.env-floor');
   const envVignette = document.querySelector('.env-vignette');
   const envAmbient = document.querySelector('.env-ambient');
@@ -89,19 +85,19 @@ function initCinematicUnlock() {
   const scaleLeft = document.querySelector('.scale-left');
   const scaleRight = document.querySelector('.scale-right');
   
-  // UI Fragments by depth
-  const fragsFar = document.querySelectorAll('.data-frag[data-depth="far"]');
+  // UI Fragments by depth (new naming)
+  const fragsHaze = document.querySelectorAll('.data-frag[data-depth="haze"]');
+  const fragsBack = document.querySelectorAll('.data-frag[data-depth="back"]');
   const fragsMid = document.querySelectorAll('.data-frag[data-depth="mid"]');
-  const fragsNear = document.querySelectorAll('.data-frag[data-depth="near"]');
-  const fragsClose = document.querySelectorAll('.data-frag[data-depth="close"]');
+  const fragsFg = document.querySelectorAll('.data-frag[data-depth="fg"]');
   const allFrags = document.querySelectorAll('.data-frag');
   
   // ========================================
   // Set Initial States
   // ========================================
-  // Nav is always visible - no opacity animation
   gsap.set(unlockText, { opacity: 0, y: 40 });
   gsap.set(envDepth, { opacity: 0 });
+  gsap.set(envSpotlight, { opacity: 0 });
   gsap.set(envFloor, { opacity: 0 });
   gsap.set(envVignette, { opacity: 0 });
   gsap.set(envAmbient, { opacity: 0 });
@@ -165,33 +161,40 @@ function initCinematicUnlock() {
   
   // ========================================
   // BEAT 2: Environment Emerges (15% - 40%)
-  // Vault architecture reveals, fragments emerge
+  // Vault enclosure reveals, fragments emerge
   // ========================================
   
-  // Vault depth planes fade in - creates enclosure
+  // Vault depth planes - strong edge falloff
   masterTL.to(envDepth, {
+    opacity: 1,
+    duration: 0.25,
+    ease: 'power2.out'
+  }, CONFIG.BEAT_2);
+  
+  // Center spotlight
+  masterTL.to(envSpotlight, {
+    opacity: 0.8,
+    duration: 0.25,
+    ease: 'power2.out'
+  }, CONFIG.BEAT_2 + 0.02);
+  
+  // Floor shadow
+  masterTL.to(envFloor, {
+    opacity: 0.7,
+    duration: 0.25,
+    ease: 'power2.out'
+  }, CONFIG.BEAT_2 + 0.05);
+  
+  // Vignette enclosure
+  masterTL.to(envVignette, {
     opacity: 0.8,
     duration: 0.25,
     ease: 'power2.out'
   }, CONFIG.BEAT_2);
   
-  // Floor shadow hint
-  masterTL.to(envFloor, {
-    opacity: 0.6,
-    duration: 0.25,
-    ease: 'power2.out'
-  }, CONFIG.BEAT_2 + 0.05);
-  
-  // Vignette reinforces enclosure
-  masterTL.to(envVignette, {
-    opacity: 0.7,
-    duration: 0.25,
-    ease: 'power2.out'
-  }, CONFIG.BEAT_2);
-  
-  // Ambient glow starts - key as light source
+  // Ambient glow from key
   masterTL.to(envAmbient, {
-    opacity: CONFIG.AMBIENT_MAX * 0.2,
+    opacity: CONFIG.AMBIENT_MAX * 0.3,
     duration: 0.25
   }, CONFIG.BEAT_2 + 0.05);
   
@@ -222,12 +225,12 @@ function initCinematicUnlock() {
     duration: 0.25
   }, CONFIG.BEAT_2);
   
-  // FAR fragments fade in first (background)
-  fragsFar.forEach((frag, i) => {
+  // HAZE fragments fade in first (far edges)
+  fragsHaze.forEach((frag, i) => {
     masterTL.to(frag, {
-      opacity: CONFIG.FRAG_OPACITY_FAR * 0.4,
+      opacity: CONFIG.FRAG_OPACITY_HAZE * 0.5,
       duration: 0.25
-    }, CONFIG.BEAT_2 + (i * 0.006));
+    }, CONFIG.BEAT_2 + (i * 0.008));
   });
   
   // ========================================
@@ -308,20 +311,20 @@ function initCinematicUnlock() {
     duration: 0.25
   }, CONFIG.BEAT_3);
   
-  // FAR fragments reach full opacity
-  fragsFar.forEach((frag, i) => {
+  // HAZE fragments reach full opacity
+  fragsHaze.forEach((frag, i) => {
     masterTL.to(frag, {
-      opacity: CONFIG.FRAG_OPACITY_FAR,
+      opacity: CONFIG.FRAG_OPACITY_HAZE,
       duration: 0.25
-    }, CONFIG.BEAT_3 + (i * 0.005));
+    }, CONFIG.BEAT_3 + (i * 0.008));
   });
   
-  // MID fragments fade in
-  fragsMid.forEach((frag, i) => {
+  // BACK fragments fade in
+  fragsBack.forEach((frag, i) => {
     masterTL.to(frag, {
-      opacity: CONFIG.FRAG_OPACITY_MID * 0.6,
+      opacity: CONFIG.FRAG_OPACITY_BACK * 0.6,
       duration: 0.25
-    }, CONFIG.BEAT_3 + (i * 0.006));
+    }, CONFIG.BEAT_3 + (i * 0.005));
   });
   
   // ========================================
@@ -413,28 +416,28 @@ function initCinematicUnlock() {
     duration: 0.2
   }, CONFIG.BEAT_4);
   
-  // MID fragments reach full
-  fragsMid.forEach((frag, i) => {
+  // BACK fragments reach full
+  fragsBack.forEach((frag, i) => {
     masterTL.to(frag, {
-      opacity: CONFIG.FRAG_OPACITY_MID,
+      opacity: CONFIG.FRAG_OPACITY_BACK,
       duration: 0.2
     }, CONFIG.BEAT_4 + (i * 0.004));
   });
   
-  // NEAR fragments fade in
-  fragsNear.forEach((frag, i) => {
+  // MID fragments fade in (Zone B - the dense cluster)
+  fragsMid.forEach((frag, i) => {
     masterTL.to(frag, {
-      opacity: CONFIG.FRAG_OPACITY_NEAR,
+      opacity: CONFIG.FRAG_OPACITY_MID,
       duration: 0.2
-    }, CONFIG.BEAT_4 + (i * 0.005));
+    }, CONFIG.BEAT_4 + (i * 0.003));
   });
   
-  // CLOSE fragments fade in (innermost)
-  fragsClose.forEach((frag, i) => {
+  // FG fragments fade in (Zone A - micro specks)
+  fragsFg.forEach((frag, i) => {
     masterTL.to(frag, {
-      opacity: CONFIG.FRAG_OPACITY_CLOSE,
+      opacity: CONFIG.FRAG_OPACITY_FG,
       duration: 0.2
-    }, CONFIG.BEAT_4 + 0.05 + (i * 0.006));
+    }, CONFIG.BEAT_4 + 0.05 + (i * 0.008));
   });
   
   // ========================================
