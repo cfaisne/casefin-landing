@@ -229,7 +229,11 @@ body {
    Environment Layers (Vignette, Grain, Glow)
 ======================================== */
 
+<<<<<<< HEAD
 /* Strong vignette - locked state */
+=======
+/* Vignette - softer, not crushing */
+>>>>>>> parent of 8c96225 (I4)
 .env-vignette {
   position: absolute;
   top: 0;
@@ -237,27 +241,46 @@ body {
   width: 100%;
   height: 100%;
   background: radial-gradient(
+<<<<<<< HEAD
     ellipse 50% 50% at 50% 50%,
     transparent 0%,
     rgba(5, 5, 4, 0.3) 40%,
     rgba(5, 5, 4, 0.7) 70%,
     rgba(5, 5, 4, 0.95) 100%
+=======
+    ellipse 60% 60% at 50% 50%,
+    transparent 0%,
+    rgba(5, 5, 4, 0.15) 50%,
+    rgba(5, 5, 4, 0.5) 80%,
+    rgba(5, 5, 4, 0.8) 100%
+>>>>>>> parent of 8c96225 (I4)
   );
   pointer-events: none;
   z-index: 5;
 }
 
+<<<<<<< HEAD
 /* Grain/noise overlay */
+=======
+/* Grain/noise overlay - very subtle */
+>>>>>>> parent of 8c96225 (I4)
 .env-grain {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
+<<<<<<< HEAD
   opacity: 0.4;
   pointer-events: none;
   z-index: 6;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+=======
+  opacity: 0.06;
+  pointer-events: none;
+  z-index: 6;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+>>>>>>> parent of 8c96225 (I4)
   background-repeat: repeat;
 }
 
@@ -280,7 +303,12 @@ body {
 }
 
 /* ========================================
+<<<<<<< HEAD
    Abstract UI Environment - Literal UI Fragments
+=======
+   UI Environment - Dense Data Landscape
+   Hundreds of fragments creating rich background
+>>>>>>> parent of 8c96225 (I4)
 ======================================== */
 .ui-environment {
   position: absolute;
@@ -301,6 +329,7 @@ body {
   overflow: hidden;
 }
 
+<<<<<<< HEAD
 /* Locked state - all fragments very dim */
 .ui-fragment[data-depth="far"] {
   filter: blur(12px);
@@ -321,10 +350,47 @@ body {
 .frag-card {
   border-radius: 10px;
   padding: 8px;
+=======
+/* Base fragment styles - more visible */
+.ui-fragment {
+  position: absolute;
+  background: rgba(40, 35, 30, 0.6);
+  border: 1px solid rgba(201, 162, 39, 0.08);
+  border-radius: 6px;
+  backdrop-filter: blur(2px);
+}
+
+/* Depth layers - locked state */
+.ui-fragment[data-depth="far"] {
+  filter: blur(4px);
+  opacity: 0.25;
+}
+
+.ui-fragment[data-depth="mid"] {
+  filter: blur(2px);
+  opacity: 0.35;
+}
+
+.ui-fragment[data-depth="near"] {
+  filter: blur(1px);
+  opacity: 0.45;
+}
+
+/* ========================================
+   Fragment Types - Recognizable UI pieces
+======================================== */
+
+/* Cards - rectangular with header line */
+.frag-card {
+  border-radius: 8px;
+  background: linear-gradient(180deg, rgba(50, 45, 38, 0.7) 0%, rgba(35, 30, 25, 0.6) 100%);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+>>>>>>> parent of 8c96225 (I4)
 }
 
 .frag-card::before {
   content: '';
+<<<<<<< HEAD
   display: block;
   width: 60%;
   height: 6px;
@@ -398,6 +464,14 @@ body {
   width: 50%;
   height: 5px;
   background: rgba(201, 162, 39, 0.12);
+=======
+  position: absolute;
+  top: 8px;
+  left: 10px;
+  right: 30%;
+  height: 6px;
+  background: rgba(201, 162, 39, 0.15);
+>>>>>>> parent of 8c96225 (I4)
   border-radius: 3px;
 }
 
@@ -411,6 +485,7 @@ body {
 
 .frag-input::before {
   content: '';
+<<<<<<< HEAD
   width: 70%;
   height: 3px;
   background: rgba(255, 255, 255, 0.06);
@@ -443,6 +518,186 @@ body {
   justify-content: center;
   gap: 3px;
   padding: 8px;
+=======
+  position: absolute;
+  top: 20px;
+  left: 10px;
+  right: 15%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 2px;
+}
+
+/* Buttons - small rounded rectangles */
+.frag-btn {
+  border-radius: 6px;
+  background: linear-gradient(180deg, rgba(201, 162, 39, 0.2) 0%, rgba(201, 162, 39, 0.1) 100%);
+  border-color: rgba(201, 162, 39, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.frag-btn::before {
+  content: '';
+  width: 60%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 2px;
+}
+
+/* Table rows */
+.frag-table {
+  border-radius: 4px;
+  background: rgba(35, 30, 25, 0.7);
+  display: flex;
+  flex-direction: column;
+  padding: 6px;
+  gap: 4px;
+}
+
+.frag-table::before,
+.frag-table::after {
+  content: '';
+  height: 4px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 2px;
+}
+
+/* Chart bars */
+.frag-chart {
+  border-radius: 6px;
+  background: rgba(30, 28, 24, 0.7);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 3px;
+  padding: 8px 6px;
+}
+
+/* File/document icons */
+.frag-file {
+  border-radius: 4px;
+  background: linear-gradient(180deg, rgba(60, 55, 45, 0.7) 0%, rgba(40, 35, 30, 0.6) 100%);
+  position: relative;
+}
+
+.frag-file::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 30%;
+  height: 30%;
+  background: rgba(201, 162, 39, 0.1);
+  border-radius: 0 4px 0 4px;
+}
+
+.frag-file::after {
+  content: '';
+  position: absolute;
+  bottom: 20%;
+  left: 15%;
+  right: 15%;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 2px;
+  box-shadow: 0 6px 0 rgba(255, 255, 255, 0.05), 0 12px 0 rgba(255, 255, 255, 0.03);
+}
+
+/* Badges/tags */
+.frag-badge {
+  border-radius: 12px;
+  background: rgba(201, 162, 39, 0.12);
+  border-color: rgba(201, 162, 39, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.frag-badge::before {
+  content: '';
+  width: 50%;
+  height: 4px;
+  background: rgba(201, 162, 39, 0.25);
+  border-radius: 2px;
+}
+
+/* Input fields */
+.frag-input {
+  border-radius: 6px;
+  background: rgba(25, 22, 18, 0.8);
+  border-color: rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  padding: 0 8px;
+}
+
+.frag-input::before {
+  content: '';
+  width: 60%;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+}
+
+/* Toggle switches */
+.frag-toggle {
+  border-radius: 20px;
+  background: rgba(35, 30, 25, 0.8);
+  position: relative;
+}
+
+.frag-toggle::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 15%;
+  width: 35%;
+  height: 60%;
+  background: rgba(201, 162, 39, 0.3);
+  border-radius: 50%;
+}
+
+/* Progress bars */
+.frag-progress {
+  border-radius: 4px;
+  background: rgba(25, 22, 18, 0.8);
+  overflow: hidden;
+}
+
+.frag-progress::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 65%;
+  background: linear-gradient(90deg, rgba(201, 162, 39, 0.3) 0%, rgba(201, 162, 39, 0.15) 100%);
+}
+
+/* Avatar circles */
+.frag-avatar {
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(80, 70, 55, 0.7) 0%, rgba(50, 45, 38, 0.6) 100%);
+  border-color: rgba(201, 162, 39, 0.12);
+}
+
+/* Notification dots */
+.frag-dot {
+  border-radius: 50%;
+  background: rgba(201, 162, 39, 0.4);
+  border: none;
+  box-shadow: 0 0 8px rgba(201, 162, 39, 0.3);
+}
+
+/* Line/divider */
+.frag-line {
+  border-radius: 2px;
+  background: rgba(201, 162, 39, 0.15);
+  border: none;
+>>>>>>> parent of 8c96225 (I4)
 }
 
 .frag-chart .bar {
