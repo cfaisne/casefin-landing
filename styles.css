@@ -2,10 +2,10 @@
    CSS Variables & Reset
 ======================================== */
 :root {
-  /* Colors */
-  --bg-dark: #0a0908;
-  --bg-locked: #050504;
-  --bg-section: #0d0c0a;
+  /* Colors - Clean charcoal brown base */
+  --bg-base: #1a1614;
+  --bg-dark: #1a1614;
+  --bg-section: #151311;
   --gold: #c9a227;
   --gold-light: #e8d48b;
   --gold-warm: #d4a845;
@@ -16,8 +16,8 @@
   --text-muted: rgba(255, 255, 255, 0.4);
   
   /* Frosted Glass */
-  --glass-bg: rgba(20, 18, 16, 0.6);
-  --glass-bg-strong: rgba(20, 18, 16, 0.85);
+  --glass-bg: rgba(26, 22, 20, 0.7);
+  --glass-bg-strong: rgba(26, 22, 20, 0.9);
   --glass-border: rgba(255, 255, 255, 0.08);
   --glass-border-gold: rgba(201, 162, 39, 0.15);
   --glass-blur: 20px;
@@ -46,14 +46,14 @@ html {
 
 body {
   font-family: var(--font-main);
-  background: var(--bg-locked);
+  background: var(--bg-base);
   color: var(--text-primary);
   line-height: 1.6;
   overflow-x: hidden;
 }
 
 /* ========================================
-   Navigation - Hidden initially, frosted glass
+   Navigation - Clean, no extra borders
 ======================================== */
 .nav {
   position: fixed;
@@ -65,36 +65,14 @@ body {
   align-items: center;
   justify-content: space-between;
   padding: 1.25rem 3rem;
-  background: var(--glass-bg);
-  backdrop-filter: blur(var(--glass-blur));
-  -webkit-backdrop-filter: blur(var(--glass-blur));
-  border-bottom: 1px solid var(--glass-border);
+  background: rgba(26, 22, 20, 0.9);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: none;
   /* Hidden in locked state - GSAP will animate */
   opacity: 0;
   transform: translateY(-12px);
   pointer-events: none;
-}
-
-/* Gold underglow beneath navbar */
-.nav::after {
-  content: '';
-  position: absolute;
-  bottom: -20px;
-  left: 10%;
-  right: 10%;
-  height: 20px;
-  background: radial-gradient(ellipse at center, rgba(201, 162, 39, 0.15) 0%, transparent 70%);
-  opacity: 0;
-  transition: opacity 0.5s ease;
-  pointer-events: none;
-}
-
-.nav.revealed::after {
-  opacity: 1;
-}
-
-.nav.revealed {
-  border-bottom-color: var(--glass-border-gold);
 }
 
 .nav-logo {
@@ -203,7 +181,7 @@ body {
 }
 
 /* ========================================
-   Unlock Section (Pinned Hero)
+   Unlock Section - Clean base
 ======================================== */
 .unlock-section {
   position: relative;
@@ -213,7 +191,7 @@ body {
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  background: var(--bg-locked);
+  background: var(--bg-base);
 }
 
 .unlock-container {
@@ -226,14 +204,10 @@ body {
 }
 
 /* ========================================
-   Environment Layers (Vignette, Grain, Glow)
+   Environment Layers - Minimal
 ======================================== */
 
-<<<<<<< HEAD
-/* Strong vignette - locked state */
-=======
-/* Vignette - softer, not crushing */
->>>>>>> parent of 8c96225 (I4)
+/* Vignette - starts invisible, very subtle when visible */
 .env-vignette {
   position: absolute;
   top: 0;
@@ -241,61 +215,29 @@ body {
   width: 100%;
   height: 100%;
   background: radial-gradient(
-<<<<<<< HEAD
-    ellipse 50% 50% at 50% 50%,
+    ellipse 80% 80% at 50% 50%,
     transparent 0%,
-    rgba(5, 5, 4, 0.3) 40%,
-    rgba(5, 5, 4, 0.7) 70%,
-    rgba(5, 5, 4, 0.95) 100%
-=======
-    ellipse 60% 60% at 50% 50%,
-    transparent 0%,
-    rgba(5, 5, 4, 0.15) 50%,
-    rgba(5, 5, 4, 0.5) 80%,
-    rgba(5, 5, 4, 0.8) 100%
->>>>>>> parent of 8c96225 (I4)
+    transparent 50%,
+    rgba(15, 13, 11, 0.4) 100%
   );
   pointer-events: none;
   z-index: 5;
+  opacity: 0;
 }
 
-<<<<<<< HEAD
-/* Grain/noise overlay */
-=======
-/* Grain/noise overlay - very subtle */
->>>>>>> parent of 8c96225 (I4)
-.env-grain {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-<<<<<<< HEAD
-  opacity: 0.4;
-  pointer-events: none;
-  z-index: 6;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-=======
-  opacity: 0.06;
-  pointer-events: none;
-  z-index: 6;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
->>>>>>> parent of 8c96225 (I4)
-  background-repeat: repeat;
-}
-
-/* Global ambient glow - grows during transition */
+/* Ambient glow behind key - grows during transition */
 .env-ambient {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 150%;
-  height: 150%;
+  width: 120%;
+  height: 120%;
   background: radial-gradient(
-    ellipse 40% 40% at 50% 50%,
-    rgba(201, 162, 39, 0.0) 0%,
-    transparent 60%
+    ellipse 30% 35% at 50% 45%,
+    rgba(201, 162, 39, 0.15) 0%,
+    rgba(201, 162, 39, 0.05) 40%,
+    transparent 70%
   );
   opacity: 0;
   pointer-events: none;
@@ -303,12 +245,8 @@ body {
 }
 
 /* ========================================
-<<<<<<< HEAD
-   Abstract UI Environment - Literal UI Fragments
-=======
-   UI Environment - Dense Data Landscape
-   Hundreds of fragments creating rich background
->>>>>>> parent of 8c96225 (I4)
+   UI Environment - Dense Cloud of Fragments
+   Starts invisible, fades in during scroll
 ======================================== */
 .ui-environment {
   position: absolute;
@@ -318,420 +256,117 @@ body {
   height: 100%;
   pointer-events: none;
   z-index: 2;
-}
-
-/* Base fragment styles */
-.ui-fragment {
-  position: absolute;
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.04);
-  border-radius: 8px;
   overflow: hidden;
 }
 
-<<<<<<< HEAD
-/* Locked state - all fragments very dim */
-.ui-fragment[data-depth="far"] {
-  filter: blur(12px);
-  opacity: 0.15;
-}
-
-.ui-fragment[data-depth="mid"] {
-  filter: blur(8px);
-  opacity: 0.2;
-}
-
-.ui-fragment[data-depth="near"] {
-  filter: blur(5px);
-  opacity: 0.25;
-}
-
-/* Fragment types - Mini Cards */
-.frag-card {
-  border-radius: 10px;
-  padding: 8px;
-=======
-/* Base fragment styles - more visible */
+/* Base fragment styles - START INVISIBLE */
 .ui-fragment {
   position: absolute;
-  background: rgba(40, 35, 30, 0.6);
-  border: 1px solid rgba(201, 162, 39, 0.08);
+  background: rgba(45, 40, 35, 0.5);
+  border: 1px solid rgba(201, 162, 39, 0.06);
   border-radius: 6px;
-  backdrop-filter: blur(2px);
+  opacity: 0; /* Start invisible - GSAP fades in */
 }
 
-/* Depth layers - locked state */
+/* Depth layers define blur when visible */
 .ui-fragment[data-depth="far"] {
-  filter: blur(4px);
-  opacity: 0.25;
+  filter: blur(6px);
 }
 
 .ui-fragment[data-depth="mid"] {
-  filter: blur(2px);
-  opacity: 0.35;
+  filter: blur(3px);
 }
 
 .ui-fragment[data-depth="near"] {
   filter: blur(1px);
-  opacity: 0.45;
 }
 
 /* ========================================
-   Fragment Types - Recognizable UI pieces
+   Fragment Types - Subtle, atmospheric
 ======================================== */
 
-/* Cards - rectangular with header line */
+/* Cards */
 .frag-card {
   border-radius: 8px;
-  background: linear-gradient(180deg, rgba(50, 45, 38, 0.7) 0%, rgba(35, 30, 25, 0.6) 100%);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
->>>>>>> parent of 8c96225 (I4)
+  background: linear-gradient(180deg, rgba(55, 48, 40, 0.5) 0%, rgba(40, 35, 30, 0.4) 100%);
 }
 
 .frag-card::before {
   content: '';
-<<<<<<< HEAD
-  display: block;
-  width: 60%;
-  height: 6px;
-  background: rgba(255, 255, 255, 0.1);
+  position: absolute;
+  top: 10px;
+  left: 12px;
+  right: 35%;
+  height: 5px;
+  background: rgba(201, 162, 39, 0.12);
   border-radius: 3px;
-  margin-bottom: 6px;
 }
 
 .frag-card::after {
   content: '';
-  display: block;
-  width: 85%;
-  height: 4px;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 2px;
-}
-
-/* Fragment types - Pills/Tags */
-.frag-pill {
-  border-radius: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.frag-pill::before {
-  content: '';
-  width: 60%;
-  height: 4px;
-  background: rgba(255, 255, 255, 0.08);
-  border-radius: 2px;
-}
-
-/* Fragment types - Table Rows */
-.frag-row {
-  border-radius: 6px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 6px 10px;
-}
-
-.frag-row::before {
-  content: '';
-  width: 8px;
-  height: 8px;
-  background: rgba(201, 162, 39, 0.15);
-  border-radius: 50%;
-  flex-shrink: 0;
-}
-
-.frag-row::after {
-  content: '';
-  flex: 1;
-  height: 4px;
-  background: rgba(255, 255, 255, 0.06);
-  border-radius: 2px;
-}
-
-/* Fragment types - Badges */
-.frag-badge {
-  border-radius: 6px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-color: rgba(201, 162, 39, 0.1);
-}
-
-.frag-badge::before {
-  content: '';
-  width: 50%;
-  height: 5px;
-  background: rgba(201, 162, 39, 0.12);
-=======
   position: absolute;
-  top: 8px;
-  left: 10px;
-  right: 30%;
-  height: 6px;
-  background: rgba(201, 162, 39, 0.15);
->>>>>>> parent of 8c96225 (I4)
-  border-radius: 3px;
-}
-
-/* Fragment types - Input Fields */
-.frag-input {
-  border-radius: 6px;
-  display: flex;
-  align-items: center;
-  padding: 0 10px;
-}
-
-.frag-input::before {
-  content: '';
-<<<<<<< HEAD
-  width: 70%;
+  top: 22px;
+  left: 12px;
+  right: 20%;
   height: 3px;
   background: rgba(255, 255, 255, 0.06);
   border-radius: 2px;
 }
 
-/* Fragment types - Toggles */
-.frag-toggle {
-  border-radius: 20px;
-  position: relative;
-}
-
-.frag-toggle::before {
-  content: '';
-  position: absolute;
-  left: 4px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 40%;
-  height: 70%;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 50%;
-}
-
-/* Fragment types - Mini Charts */
-.frag-chart {
-  border-radius: 8px;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  gap: 3px;
-  padding: 8px;
-=======
-  position: absolute;
-  top: 20px;
-  left: 10px;
-  right: 15%;
-  height: 4px;
-  background: rgba(255, 255, 255, 0.08);
-  border-radius: 2px;
-}
-
-/* Buttons - small rounded rectangles */
-.frag-btn {
+/* Small cards */
+.frag-card-sm {
   border-radius: 6px;
-  background: linear-gradient(180deg, rgba(201, 162, 39, 0.2) 0%, rgba(201, 162, 39, 0.1) 100%);
-  border-color: rgba(201, 162, 39, 0.2);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background: rgba(50, 44, 38, 0.45);
 }
 
-.frag-btn::before {
-  content: '';
-  width: 60%;
-  height: 4px;
-  background: rgba(255, 255, 255, 0.15);
-  border-radius: 2px;
+/* Buttons */
+.frag-btn {
+  border-radius: 5px;
+  background: rgba(201, 162, 39, 0.1);
+  border-color: rgba(201, 162, 39, 0.12);
 }
 
 /* Table rows */
 .frag-table {
   border-radius: 4px;
-  background: rgba(35, 30, 25, 0.7);
-  display: flex;
-  flex-direction: column;
-  padding: 6px;
-  gap: 4px;
+  background: rgba(40, 36, 32, 0.5);
 }
 
-.frag-table::before,
-.frag-table::after {
-  content: '';
-  height: 4px;
-  background: rgba(255, 255, 255, 0.06);
-  border-radius: 2px;
-}
-
-/* Chart bars */
-.frag-chart {
-  border-radius: 6px;
-  background: rgba(30, 28, 24, 0.7);
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  gap: 3px;
-  padding: 8px 6px;
-}
-
-/* File/document icons */
+/* Files */
 .frag-file {
   border-radius: 4px;
-  background: linear-gradient(180deg, rgba(60, 55, 45, 0.7) 0%, rgba(40, 35, 30, 0.6) 100%);
-  position: relative;
+  background: linear-gradient(180deg, rgba(60, 52, 44, 0.5) 0%, rgba(45, 40, 35, 0.4) 100%);
 }
 
-.frag-file::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 30%;
-  height: 30%;
-  background: rgba(201, 162, 39, 0.1);
-  border-radius: 0 4px 0 4px;
-}
-
-.frag-file::after {
-  content: '';
-  position: absolute;
-  bottom: 20%;
-  left: 15%;
-  right: 15%;
-  height: 3px;
-  background: rgba(255, 255, 255, 0.08);
-  border-radius: 2px;
-  box-shadow: 0 6px 0 rgba(255, 255, 255, 0.05), 0 12px 0 rgba(255, 255, 255, 0.03);
-}
-
-/* Badges/tags */
+/* Badges */
 .frag-badge {
-  border-radius: 12px;
-  background: rgba(201, 162, 39, 0.12);
-  border-color: rgba(201, 162, 39, 0.15);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  border-radius: 10px;
+  background: rgba(201, 162, 39, 0.08);
+  border-color: rgba(201, 162, 39, 0.1);
 }
 
-.frag-badge::before {
-  content: '';
-  width: 50%;
-  height: 4px;
-  background: rgba(201, 162, 39, 0.25);
-  border-radius: 2px;
-}
-
-/* Input fields */
+/* Inputs */
 .frag-input {
-  border-radius: 6px;
-  background: rgba(25, 22, 18, 0.8);
-  border-color: rgba(255, 255, 255, 0.1);
-  display: flex;
-  align-items: center;
-  padding: 0 8px;
+  border-radius: 5px;
+  background: rgba(30, 28, 25, 0.6);
+  border-color: rgba(255, 255, 255, 0.08);
 }
 
-.frag-input::before {
-  content: '';
-  width: 60%;
-  height: 3px;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 2px;
-}
-
-/* Toggle switches */
-.frag-toggle {
-  border-radius: 20px;
-  background: rgba(35, 30, 25, 0.8);
-  position: relative;
-}
-
-.frag-toggle::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  left: 15%;
-  width: 35%;
-  height: 60%;
-  background: rgba(201, 162, 39, 0.3);
-  border-radius: 50%;
-}
-
-/* Progress bars */
-.frag-progress {
-  border-radius: 4px;
-  background: rgba(25, 22, 18, 0.8);
-  overflow: hidden;
-}
-
-.frag-progress::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  width: 65%;
-  background: linear-gradient(90deg, rgba(201, 162, 39, 0.3) 0%, rgba(201, 162, 39, 0.15) 100%);
-}
-
-/* Avatar circles */
-.frag-avatar {
-  border-radius: 50%;
-  background: linear-gradient(135deg, rgba(80, 70, 55, 0.7) 0%, rgba(50, 45, 38, 0.6) 100%);
-  border-color: rgba(201, 162, 39, 0.12);
-}
-
-/* Notification dots */
+/* Dots */
 .frag-dot {
   border-radius: 50%;
-  background: rgba(201, 162, 39, 0.4);
+  background: rgba(201, 162, 39, 0.25);
   border: none;
-  box-shadow: 0 0 8px rgba(201, 162, 39, 0.3);
 }
 
-/* Line/divider */
+/* Lines */
 .frag-line {
-  border-radius: 2px;
-  background: rgba(201, 162, 39, 0.15);
+  border-radius: 1px;
+  background: rgba(201, 162, 39, 0.1);
   border: none;
->>>>>>> parent of 8c96225 (I4)
 }
 
-.frag-chart .bar {
-  width: 6px;
-  background: rgba(201, 162, 39, 0.15);
-  border-radius: 2px 2px 0 0;
-}
-
-/* Individual fragment positions and sizes */
-/* Far layer (6 fragments) */
-.frag-1 { width: 140px; height: 90px; top: 5%; left: 3%; transform: rotate(-12deg); }
-.frag-2 { width: 100px; height: 35px; top: 12%; right: 5%; transform: rotate(8deg); }
-.frag-3 { width: 160px; height: 45px; bottom: 15%; left: 5%; transform: rotate(6deg); }
-.frag-4 { width: 120px; height: 70px; bottom: 8%; right: 8%; transform: rotate(-8deg); }
-.frag-5 { width: 80px; height: 28px; top: 35%; left: 2%; transform: rotate(-5deg); }
-.frag-6 { width: 90px; height: 60px; top: 8%; left: 22%; transform: rotate(10deg); }
-
-/* Mid layer (7 fragments) */
-.frag-7 { width: 130px; height: 80px; top: 18%; left: 12%; transform: rotate(-6deg); }
-.frag-8 { width: 110px; height: 32px; top: 22%; right: 15%; transform: rotate(4deg); }
-.frag-9 { width: 70px; height: 26px; top: 45%; left: 8%; transform: rotate(-3deg); }
-.frag-10 { width: 150px; height: 38px; bottom: 28%; left: 15%; transform: rotate(5deg); }
-.frag-11 { width: 100px; height: 65px; bottom: 22%; right: 12%; transform: rotate(-7deg); }
-.frag-12 { width: 60px; height: 24px; top: 55%; right: 8%; transform: rotate(6deg); }
-.frag-13 { width: 85px; height: 50px; bottom: 35%; right: 20%; transform: rotate(-4deg); }
-
-/* Near layer (7 fragments) */
-.frag-14 { width: 120px; height: 75px; top: 25%; left: 20%; transform: rotate(-3deg); }
-.frag-15 { width: 90px; height: 30px; top: 30%; right: 22%; transform: rotate(2deg); }
-.frag-16 { width: 55px; height: 22px; top: 50%; left: 18%; transform: rotate(-2deg); }
-.frag-17 { width: 140px; height: 35px; bottom: 32%; left: 22%; transform: rotate(3deg); }
-.frag-18 { width: 80px; height: 55px; bottom: 28%; right: 18%; transform: rotate(-5deg); }
-.frag-19 { width: 65px; height: 25px; top: 60%; right: 25%; transform: rotate(4deg); }
-.frag-20 { width: 95px; height: 40px; bottom: 40%; right: 28%; transform: rotate(-2deg); }
+/* Fragment positions now inline in HTML for flexibility */
 
 /* ========================================
    The Key - Dramatic Material Transformation
