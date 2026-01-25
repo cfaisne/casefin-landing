@@ -2,15 +2,16 @@
    CSS Variables & Reset
 ======================================== */
 :root {
-  /* Colors - Warm neutral graphite */
-  --bg-base: #36332F;
-  --bg-dark: #2E2B28;
-  --bg-section: #2E2B28;
+  /* Colors - Warm graphite vault */
+  --bg-base: #3A3835;
+  --bg-dark: #302E2B;
+  --bg-section: #302E2B;
+  --bg-deep: #262422;
   --gold: #B8A67A;
   --gold-light: #D4C9A8;
   --gold-warm: #C4B592;
-  --gold-glow: rgba(184, 166, 122, 0.3);
-  --gold-intense: rgba(196, 181, 146, 0.6);
+  --gold-glow: rgba(184, 166, 122, 0.25);
+  --gold-intense: rgba(196, 181, 146, 0.5);
   --champagne: #C4B998;
   --brass: #A89968;
   --text-primary: #ffffff;
@@ -18,8 +19,8 @@
   --text-muted: rgba(255, 255, 255, 0.4);
   
   /* Frosted Glass */
-  --glass-bg: rgba(54, 51, 47, 0.7);
-  --glass-bg-strong: rgba(54, 51, 47, 0.9);
+  --glass-bg: rgba(58, 56, 53, 0.7);
+  --glass-bg-strong: rgba(58, 56, 53, 0.9);
   --glass-border: rgba(255, 255, 255, 0.08);
   --glass-border-gold: rgba(184, 166, 122, 0.15);
   --glass-blur: 20px;
@@ -75,7 +76,7 @@ body {
 
 /* Nav bar appears on scroll - added via JS */
 .nav.scrolled {
-  background: rgba(54, 51, 47, 0.9);
+  background: rgba(58, 56, 53, 0.92);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
 }
@@ -209,10 +210,31 @@ body {
 }
 
 /* ========================================
-   Environment Layers - Minimal
+   Environment Layers - Vault Architecture
 ======================================== */
 
-/* Vignette - starts invisible, very subtle when visible */
+/* Deep shadow enclosure - creates sense of room */
+.env-depth {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    /* Top plane shadow */
+    linear-gradient(180deg, rgba(20, 18, 16, 0.6) 0%, transparent 25%),
+    /* Bottom plane shadow */
+    linear-gradient(0deg, rgba(20, 18, 16, 0.7) 0%, transparent 30%),
+    /* Left wall implication */
+    linear-gradient(90deg, rgba(20, 18, 16, 0.5) 0%, transparent 20%),
+    /* Right wall implication */
+    linear-gradient(270deg, rgba(20, 18, 16, 0.5) 0%, transparent 20%);
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0;
+}
+
+/* Vignette - reinforces enclosure */
 .env-vignette {
   position: absolute;
   top: 0;
@@ -220,38 +242,58 @@ body {
   width: 100%;
   height: 100%;
   background: radial-gradient(
-    ellipse 80% 80% at 50% 50%,
+    ellipse 65% 60% at 50% 48%,
     transparent 0%,
-    transparent 50%,
-    rgba(15, 13, 11, 0.4) 100%
+    transparent 40%,
+    rgba(20, 18, 16, 0.5) 75%,
+    rgba(20, 18, 16, 0.8) 100%
   );
   pointer-events: none;
   z-index: 5;
   opacity: 0;
 }
 
-/* Ambient glow behind key - grows during transition */
+/* Key glow - light radiates from key as source */
 .env-ambient {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 120%;
-  height: 120%;
+  width: 140%;
+  height: 140%;
   background: radial-gradient(
-    ellipse 30% 35% at 50% 45%,
-    rgba(201, 162, 39, 0.15) 0%,
-    rgba(201, 162, 39, 0.05) 40%,
+    ellipse 28% 32% at 50% 45%,
+    rgba(184, 166, 122, 0.12) 0%,
+    rgba(184, 166, 122, 0.06) 30%,
+    rgba(184, 166, 122, 0.02) 50%,
     transparent 70%
   );
   opacity: 0;
   pointer-events: none;
-  z-index: 1;
+  z-index: 3;
+}
+
+/* Floor plane hint - subtle ground shadow */
+.env-floor {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 40%;
+  background: radial-gradient(
+    ellipse 100% 100% at 50% 100%,
+    rgba(20, 18, 16, 0.4) 0%,
+    transparent 60%
+  );
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0;
 }
 
 /* ========================================
-   UI Environment - Global Data Room
-   Information field, not UI preview
+   UI Environment - Global Data Vault
+   Dense, clustered, architectural depth
 ======================================== */
 .ui-environment {
   position: absolute;
@@ -260,7 +302,7 @@ body {
   width: 100%;
   height: 100%;
   pointer-events: none;
-  z-index: 2;
+  z-index: 4;
   overflow: hidden;
 }
 
@@ -270,70 +312,80 @@ body {
   opacity: 0;
 }
 
-.data-frag[data-depth="far"] { filter: blur(4px); }
-.data-frag[data-depth="mid"] { filter: blur(2px); }
-.data-frag[data-depth="near"] { filter: blur(0.5px); }
+/* Depth layers - blur increases with distance, opacity decreases */
+.data-frag[data-depth="far"] { 
+  filter: blur(6px); 
+}
+.data-frag[data-depth="mid"] { 
+  filter: blur(3px); 
+}
+.data-frag[data-depth="near"] { 
+  filter: blur(1px); 
+}
+.data-frag[data-depth="close"] { 
+  filter: blur(0.5px); 
+}
 
-/* Ghost cards */
+/* Ghost cards - large background shapes */
 .ghost {
-  background: rgba(255, 255, 255, 0.015);
-  border: 1px solid rgba(255, 255, 255, 0.03);
+  background: rgba(255, 255, 255, 0.012);
+  border: 1px solid rgba(255, 255, 255, 0.02);
   border-radius: 10px;
 }
 
 /* Panels */
 .panel {
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.04);
+  background: rgba(255, 255, 255, 0.018);
+  border: 1px solid rgba(255, 255, 255, 0.03);
   border-radius: 8px;
-  padding: 10px 12px;
+  padding: 8px 10px;
   overflow: hidden;
 }
-.panel.sm { padding: 8px 10px; }
-.p-head { font-size: 0.65rem; font-weight: 500; color: rgba(255,255,255,0.35); margin-bottom: 3px; white-space: nowrap; overflow: hidden; }
-.p-amt { font-size: 0.85rem; font-weight: 600; color: rgba(196,185,146,0.45); }
-.p-score { font-size: 0.6rem; font-weight: 500; color: rgba(184,166,122,0.45); margin-bottom: 3px; }
-.p-meta { font-size: 0.55rem; color: rgba(255,255,255,0.25); white-space: nowrap; overflow: hidden; }
+.panel.sm { padding: 6px 8px; }
+.p-head { font-size: 0.55rem; font-weight: 500; color: rgba(255,255,255,0.3); margin-bottom: 2px; white-space: nowrap; overflow: hidden; }
+.p-amt { font-size: 0.75rem; font-weight: 600; color: rgba(196,185,146,0.4); }
+.p-score { font-size: 0.5rem; font-weight: 500; color: rgba(184,166,122,0.4); margin-bottom: 2px; }
+.p-meta { font-size: 0.45rem; color: rgba(255,255,255,0.2); white-space: nowrap; overflow: hidden; }
 
-/* Amounts */
-.amt { font-weight: 600; color: rgba(196,185,146,0.4); letter-spacing: -0.02em; }
-.amt.xl { font-size: 1.6rem; color: rgba(196,185,146,0.2); }
-.amt.lg { font-size: 1.2rem; color: rgba(196,185,146,0.25); }
-.amt { font-size: 0.9rem; }
-.amt.sm { font-size: 0.75rem; color: rgba(196,185,146,0.45); }
-.amt.xs { font-size: 0.6rem; color: rgba(196,185,146,0.5); }
+/* Amounts - primary data signals */
+.amt { font-weight: 600; color: rgba(196,185,146,0.35); letter-spacing: -0.02em; }
+.amt.xl { font-size: 1.8rem; color: rgba(196,185,146,0.15); }
+.amt.lg { font-size: 1.3rem; color: rgba(196,185,146,0.2); }
+.amt { font-size: 0.8rem; }
+.amt.sm { font-size: 0.65rem; color: rgba(196,185,146,0.4); }
+.amt.xs { font-size: 0.5rem; color: rgba(196,185,146,0.45); }
 
-/* Pills */
-.pill { padding: 2px 7px; background: rgba(184,166,122,0.08); border: 1px solid rgba(184,166,122,0.1); border-radius: 10px; font-size: 0.6rem; font-weight: 500; color: rgba(196,185,146,0.5); white-space: nowrap; }
-.pill.sm { padding: 2px 5px; font-size: 0.55rem; }
-.pill.xs { padding: 1px 4px; font-size: 0.5rem; }
+/* Pills - scores and matches */
+.pill { padding: 2px 6px; background: rgba(184,166,122,0.06); border: 1px solid rgba(184,166,122,0.08); border-radius: 8px; font-size: 0.5rem; font-weight: 500; color: rgba(196,185,146,0.45); white-space: nowrap; }
+.pill.sm { padding: 1px 4px; font-size: 0.45rem; }
+.pill.xs { padding: 1px 3px; font-size: 0.4rem; }
 
-/* Status */
-.status { padding: 2px 6px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); border-radius: 4px; font-size: 0.55rem; color: rgba(255,255,255,0.35); white-space: nowrap; }
-.status.sm { padding: 1px 5px; font-size: 0.5rem; }
-.status.xs { padding: 1px 4px; font-size: 0.45rem; }
+/* Status badges */
+.status { padding: 1px 5px; background: rgba(255,255,255,0.025); border: 1px solid rgba(255,255,255,0.04); border-radius: 4px; font-size: 0.45rem; color: rgba(255,255,255,0.3); white-space: nowrap; }
+.status.sm { padding: 1px 4px; font-size: 0.4rem; }
+.status.xs { padding: 1px 3px; font-size: 0.35rem; }
 
-/* Type */
-.type { font-size: 0.55rem; color: rgba(255,255,255,0.25); white-space: nowrap; }
-.type.xs { font-size: 0.45rem; }
+/* Case types */
+.type { font-size: 0.45rem; color: rgba(255,255,255,0.2); white-space: nowrap; }
+.type.xs { font-size: 0.38rem; }
 
-/* Jurisdiction */
-.juris { font-size: 0.6rem; color: rgba(255,255,255,0.3); white-space: nowrap; }
-.juris.sm { font-size: 0.5rem; }
-.juris.xs { font-size: 0.45rem; color: rgba(255,255,255,0.25); }
+/* Jurisdictions */
+.juris { font-size: 0.5rem; color: rgba(255,255,255,0.25); white-space: nowrap; }
+.juris.sm { font-size: 0.42rem; }
+.juris.xs { font-size: 0.35rem; color: rgba(255,255,255,0.2); }
 
-/* Document */
-.doc { font-size: 0.5rem; color: rgba(255,255,255,0.25); white-space: nowrap; }
+/* Documents */
+.doc { font-size: 0.42rem; color: rgba(255,255,255,0.2); white-space: nowrap; }
 
-/* Funder */
-.funder { font-size: 0.55rem; color: rgba(196,185,146,0.35); white-space: nowrap; }
+/* Funders */
+.funder { font-size: 0.45rem; color: rgba(196,185,146,0.3); white-space: nowrap; }
 
-/* Micro */
-.micro { font-size: 0.45rem; color: rgba(255,255,255,0.2); }
+/* Micro fragments */
+.micro { font-size: 0.38rem; color: rgba(255,255,255,0.18); }
 
-/* Lines */
-.line-h { height: 1px; background: linear-gradient(90deg, transparent, rgba(184,166,122,0.12), transparent); }
-.line-v { width: 1px; background: linear-gradient(180deg, transparent, rgba(184,166,122,0.12), transparent); }
+/* Connecting lines */
+.line-h { height: 1px; background: linear-gradient(90deg, transparent, rgba(184,166,122,0.1), transparent); }
+.line-v { width: 1px; background: linear-gradient(180deg, transparent, rgba(184,166,122,0.1), transparent); }
 
 /* ========================================
    The Key - Dramatic Material Transformation

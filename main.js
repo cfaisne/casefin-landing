@@ -28,24 +28,26 @@ const CONFIG = {
   KEY_SATURATION_UNLOCKED: 1.25,
   
   // Gold glow intensity
-  GLOW_INNER_MAX: 0.8,
-  GLOW_OUTER_MAX: 0.5,
-  AMBIENT_MAX: 0.4,
+  GLOW_INNER_MAX: 0.7,
+  GLOW_OUTER_MAX: 0.4,
+  AMBIENT_MAX: 0.5,
   
-  // UI Fragment blur (when fully visible)
-  BLUR_FAR: 4,
-  BLUR_MID: 2,
-  BLUR_NEAR: 0.5,
+  // UI Fragment blur (when fully visible) - layered depth
+  BLUR_FAR: 6,
+  BLUR_MID: 3,
+  BLUR_NEAR: 1,
+  BLUR_CLOSE: 0.5,
   
-  // Data fragment opacity targets - visible but not dominant
-  FRAG_OPACITY_FAR: 0.6,
-  FRAG_OPACITY_MID: 0.75,
-  FRAG_OPACITY_NEAR: 0.9,
+  // Data fragment opacity targets - by depth layer
+  FRAG_OPACITY_FAR: 0.5,
+  FRAG_OPACITY_MID: 0.7,
+  FRAG_OPACITY_NEAR: 0.85,
+  FRAG_OPACITY_CLOSE: 0.95,
   
   // Timing breakpoints (0-1 scale)
   BEAT_1: 0,      // Start - clean, just key
-  BEAT_2: 0.15,   // UI starts appearing
-  BEAT_3: 0.4,    // Key awakens, UI builds
+  BEAT_2: 0.15,   // Environment depth appears
+  BEAT_3: 0.4,    // Key awakens, data emerges
   BEAT_4: 0.65,   // Full transformation
   BEAT_5: 0.85,   // Complete, text appears
   BEAT_END: 1
@@ -69,7 +71,9 @@ function initCinematicUnlock() {
   const scrollIndicator = document.querySelector('.scroll-indicator');
   const unlockText = document.querySelector('.unlock-text');
   
-  // Environment
+  // Environment - Vault Architecture
+  const envDepth = document.querySelector('.env-depth');
+  const envFloor = document.querySelector('.env-floor');
   const envVignette = document.querySelector('.env-vignette');
   const envAmbient = document.querySelector('.env-ambient');
   
@@ -89,6 +93,7 @@ function initCinematicUnlock() {
   const fragsFar = document.querySelectorAll('.data-frag[data-depth="far"]');
   const fragsMid = document.querySelectorAll('.data-frag[data-depth="mid"]');
   const fragsNear = document.querySelectorAll('.data-frag[data-depth="near"]');
+  const fragsClose = document.querySelectorAll('.data-frag[data-depth="close"]');
   const allFrags = document.querySelectorAll('.data-frag');
   
   // ========================================
@@ -96,6 +101,9 @@ function initCinematicUnlock() {
   // ========================================
   // Nav is always visible - no opacity animation
   gsap.set(unlockText, { opacity: 0, y: 40 });
+  gsap.set(envDepth, { opacity: 0 });
+  gsap.set(envFloor, { opacity: 0 });
+  gsap.set(envVignette, { opacity: 0 });
   gsap.set(envAmbient, { opacity: 0 });
   gsap.set(keyGlow, { opacity: 0, scale: 0.8 });
   gsap.set(keyGlowOuter, { opacity: 0, scale: 0.6 });
@@ -156,22 +164,36 @@ function initCinematicUnlock() {
   }, CONFIG.BEAT_1 + 0.05);
   
   // ========================================
-  // BEAT 2: UI Emerges (15% - 40%)
-  // Fragments start fading in from nothing
+  // BEAT 2: Environment Emerges (15% - 40%)
+  // Vault architecture reveals, fragments emerge
   // ========================================
   
-  // Vignette starts to relax slightly
-  masterTL.to(envVignette, {
-    opacity: 0.75,
+  // Vault depth planes fade in - creates enclosure
+  masterTL.to(envDepth, {
+    opacity: 0.8,
     duration: 0.25,
     ease: 'power2.out'
   }, CONFIG.BEAT_2);
   
-  // Ambient glow starts
-  masterTL.to(envAmbient, {
-    opacity: CONFIG.AMBIENT_MAX * 0.15,
-    duration: 0.25
+  // Floor shadow hint
+  masterTL.to(envFloor, {
+    opacity: 0.6,
+    duration: 0.25,
+    ease: 'power2.out'
+  }, CONFIG.BEAT_2 + 0.05);
+  
+  // Vignette reinforces enclosure
+  masterTL.to(envVignette, {
+    opacity: 0.7,
+    duration: 0.25,
+    ease: 'power2.out'
   }, CONFIG.BEAT_2);
+  
+  // Ambient glow starts - key as light source
+  masterTL.to(envAmbient, {
+    opacity: CONFIG.AMBIENT_MAX * 0.2,
+    duration: 0.25
+  }, CONFIG.BEAT_2 + 0.05);
   
   // Key continues warming
   masterTL.to(key, {
@@ -188,7 +210,7 @@ function initCinematicUnlock() {
       inset 0 3px 6px rgba(255, 255, 255, 0.05),
       inset 0 -4px 8px rgba(0, 0, 0, 0.4),
       0 8px 35px rgba(0, 0, 0, 0.5),
-      0 0 20px rgba(201, 162, 39, 0.08)
+      0 0 20px rgba(184, 166, 122, 0.08)
     `,
     duration: 0.25
   }, CONFIG.BEAT_2);
@@ -205,7 +227,7 @@ function initCinematicUnlock() {
     masterTL.to(frag, {
       opacity: CONFIG.FRAG_OPACITY_FAR * 0.4,
       duration: 0.25
-    }, CONFIG.BEAT_2 + (i * 0.008));
+    }, CONFIG.BEAT_2 + (i * 0.006));
   });
   
   // ========================================
@@ -405,6 +427,14 @@ function initCinematicUnlock() {
       opacity: CONFIG.FRAG_OPACITY_NEAR,
       duration: 0.2
     }, CONFIG.BEAT_4 + (i * 0.005));
+  });
+  
+  // CLOSE fragments fade in (innermost)
+  fragsClose.forEach((frag, i) => {
+    masterTL.to(frag, {
+      opacity: CONFIG.FRAG_OPACITY_CLOSE,
+      duration: 0.2
+    }, CONFIG.BEAT_4 + 0.05 + (i * 0.006));
   });
   
   // ========================================
