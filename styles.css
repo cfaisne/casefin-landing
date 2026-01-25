@@ -350,81 +350,81 @@ body {
 }
 
 /* ========================================
-   Fragment Types - Partial, cropped tokens
+   Fragment Types - Visible, partial tokens
 ======================================== */
 
 /* Ghost shapes - large diffused */
 .ghost {
-  background: rgba(255, 255, 255, 0.008);
-  border: 1px solid rgba(255, 255, 255, 0.015);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: 8px;
 }
 
-/* Amounts */
-.amt { font-weight: 600; color: rgba(196,185,146,0.5); letter-spacing: -0.02em; font-size: 0.7rem; }
-.amt.xl { font-size: 2rem; color: rgba(196,185,146,0.25); }
-.amt.lg { font-size: 1.4rem; color: rgba(196,185,146,0.3); }
-.amt.md { font-size: 0.9rem; color: rgba(196,185,146,0.4); }
-.amt.sm { font-size: 0.6rem; color: rgba(196,185,146,0.5); }
-.amt.xs { font-size: 0.45rem; color: rgba(196,185,146,0.55); }
+/* Amounts - VISIBLE */
+.amt { font-weight: 600; color: rgba(196,185,146,0.9); letter-spacing: -0.02em; font-size: 0.75rem; }
+.amt.xl { font-size: 2.2rem; color: rgba(196,185,146,0.7); }
+.amt.lg { font-size: 1.5rem; color: rgba(196,185,146,0.75); }
+.amt.md { font-size: 1rem; color: rgba(196,185,146,0.85); }
+.amt.sm { font-size: 0.7rem; color: rgba(196,185,146,0.9); }
+.amt.xs { font-size: 0.55rem; color: rgba(196,185,146,0.95); }
 
-/* Score pills */
+/* Score pills - VISIBLE */
 .pill { 
-  padding: 1px 5px; 
-  background: rgba(184,166,122,0.08); 
-  border: 1px solid rgba(184,166,122,0.1); 
+  padding: 2px 6px; 
+  background: rgba(184,166,122,0.2); 
+  border: 1px solid rgba(184,166,122,0.25); 
   border-radius: 6px; 
-  font-size: 0.45rem; 
+  font-size: 0.55rem; 
   font-weight: 500; 
-  color: rgba(196,185,146,0.55); 
+  color: rgba(196,185,146,0.95); 
   white-space: nowrap; 
 }
-.pill.lg { padding: 2px 8px; font-size: 0.6rem; }
-.pill.sm { padding: 1px 4px; font-size: 0.38rem; }
-.pill.xs { padding: 1px 3px; font-size: 0.32rem; }
+.pill.lg { padding: 3px 10px; font-size: 0.7rem; }
+.pill.sm { padding: 2px 5px; font-size: 0.5rem; }
+.pill.xs { padding: 1px 4px; font-size: 0.45rem; }
 
-/* Status */
+/* Status - VISIBLE */
 .stat { 
-  font-size: 0.4rem; 
-  color: rgba(255,255,255,0.4); 
+  font-size: 0.55rem; 
+  color: rgba(255,255,255,0.8); 
   white-space: nowrap; 
 }
-.stat.lg { font-size: 0.55rem; }
-.stat.sm { font-size: 0.32rem; }
-.stat.xs { font-size: 0.26rem; }
+.stat.lg { font-size: 0.7rem; }
+.stat.sm { font-size: 0.5rem; }
+.stat.xs { font-size: 0.42rem; }
 
-/* Jurisdiction/court */
+/* Jurisdiction/court - VISIBLE */
 .court { 
-  font-size: 0.38rem; 
-  color: rgba(255,255,255,0.35); 
+  font-size: 0.5rem; 
+  color: rgba(255,255,255,0.7); 
   white-space: nowrap; 
 }
-.court.lg { font-size: 0.5rem; }
-.court.sm { font-size: 0.3rem; }
+.court.lg { font-size: 0.65rem; }
+.court.sm { font-size: 0.42rem; }
 
-/* Document name */
+/* Document name - VISIBLE */
 .doc { 
-  font-size: 0.35rem; 
-  color: rgba(255,255,255,0.3); 
+  font-size: 0.48rem; 
+  color: rgba(255,255,255,0.65); 
   white-space: nowrap; 
 }
 
-/* Micro specks */
+/* Micro specks - VISIBLE */
 .micro { 
-  font-size: 0.28rem; 
-  color: rgba(255,255,255,0.25); 
+  font-size: 0.4rem; 
+  color: rgba(255,255,255,0.6); 
 }
 
-/* Partial panel */
+/* Partial panel - VISIBLE */
 .panel {
-  background: rgba(255,255,255,0.015);
-  border: 1px solid rgba(255,255,255,0.025);
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
   border-radius: 6px;
   padding: 6px 8px;
   overflow: hidden;
 }
-.panel .p-amt { font-size: 0.6rem; font-weight: 600; color: rgba(196,185,146,0.4); }
-.panel .p-label { font-size: 0.35rem; color: rgba(255,255,255,0.25); margin-top: 2px; }
+.panel .p-amt { font-size: 0.7rem; font-weight: 600; color: rgba(196,185,146,0.85); }
+.panel .p-label { font-size: 0.42rem; color: rgba(255,255,255,0.5); margin-top: 2px; }
 
 /* ========================================
    The Key - Dramatic Material Transformation

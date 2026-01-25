@@ -32,12 +32,15 @@ const CONFIG = {
   GLOW_OUTER_MAX: 0.4,
   AMBIENT_MAX: 0.6,
   
-  // Fragment opacity by depth layer (per spec)
-  // Foreground: 10-16%, Mid: 7-12%, Back: 4-8%, Haze: 2-5%
-  FRAG_OPACITY_FG: 0.14,
-  FRAG_OPACITY_MID: 0.10,
-  FRAG_OPACITY_BACK: 0.06,
-  FRAG_OPACITY_HAZE: 0.035,
+  // Fragment opacity by depth layer - ACTUALLY VISIBLE
+  // Foreground: closest to key, sharpest
+  FRAG_OPACITY_FG: 0.55,
+  // Mid: Zone B dense cluster  
+  FRAG_OPACITY_MID: 0.45,
+  // Back: Zone C 
+  FRAG_OPACITY_BACK: 0.35,
+  // Haze: edges, most diffused
+  FRAG_OPACITY_HAZE: 0.25,
   
   // Timing breakpoints (0-1 scale)
   BEAT_1: 0,      // Start - clean, just key
