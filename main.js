@@ -81,8 +81,7 @@ function initHeroUnlock() {
       trigger: unlockSection,
       start: 'top top',
       end: CONFIG.SCROLL_DURATION,
-      pin: '.pin-wrapper',
-      pinType: 'transform',
+      pin: true,
       scrub: CONFIG.SCRUB_SMOOTHNESS,
       anticipatePin: 1,
       invalidateOnRefresh: true
