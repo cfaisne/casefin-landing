@@ -1,71 +1,61 @@
 /* ========================================
    CaseFin - Litigation Finance Data Cathedral
    GSAP + ScrollTrigger
-   
-   Data fragments reveal as you scroll, creating
-   depth through typography density
 ======================================== */
 
-// ============ TUNABLE VARIABLES ============
 const CONFIG = {
-  // Scroll duration (percentage of viewport height)
   SCROLL_DURATION: '+=350%',
-  
-  // Scrub smoothness (higher = smoother but laggier)
   SCRUB_SMOOTHNESS: 1.2,
-  
-  // Environment
   VIGNETTE_LOCKED: 0.9,      
   VIGNETTE_UNLOCKED: 0.15,    
-  
-  // Key
   KEY_BRIGHTNESS_LOCKED: 0.35,
   KEY_BRIGHTNESS_UNLOCKED: 1.15,
   KEY_SATURATION_LOCKED: 0.2,
   KEY_SATURATION_UNLOCKED: 1.25,
-  
-  // Gold glow intensity
   GLOW_INNER_MAX: 0.8,
   GLOW_OUTER_MAX: 0.5,
   AMBIENT_MAX: 0.4,
-  
-  // Data Fragment opacity targets (fragments fade IN)
   FRAG_OPACITY_FAR: 0.5,
   FRAG_OPACITY_MID: 0.7,
   FRAG_OPACITY_NEAR: 0.85,
-  
-  // Timing breakpoints (0-1 scale)
-  BEAT_1: 0,      // Start - clean, just key
-  BEAT_2: 0.15,   // Data starts appearing
-  BEAT_3: 0.4,    // Key awakens, data builds
-  BEAT_4: 0.65,   // Full transformation
-  BEAT_5: 0.85,   // Complete, text appears
+  BEAT_1: 0,
+  BEAT_2: 0.15,
+  BEAT_3: 0.4,
+  BEAT_4: 0.65,
+  BEAT_5: 0.85,
   BEAT_END: 1
 };
 
-// Register ScrollTrigger
 gsap.registerPlugin(ScrollTrigger);
 
-// Wait for DOM
 document.addEventListener('DOMContentLoaded', () => {
   initCinematicUnlock();
+  initNavScroll();
 });
+
+// Nav background on scroll
+function initNavScroll() {
+  const nav = document.querySelector('.nav');
+  
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+      nav.classList.add('scrolled');
+    } else {
+      nav.classList.remove('scrolled');
+    }
+  });
+}
 
 function initCinematicUnlock() {
   
-  // ========================================
-  // Element References
-  // ========================================
   const nav = document.querySelector('.nav');
   const unlockSection = document.querySelector('.unlock-section');
   const scrollIndicator = document.querySelector('.scroll-indicator');
   const unlockText = document.querySelector('.unlock-text');
   
-  // Environment
   const envVignette = document.querySelector('.env-vignette');
   const envAmbient = document.querySelector('.env-ambient');
   
-  // Key elements
   const keyContainer = document.querySelector('.key-container');
   const key = document.querySelector('.key');
   const keyBow = document.querySelector('.key-bow');
@@ -77,28 +67,19 @@ function initCinematicUnlock() {
   const scaleLeft = document.querySelector('.scale-left');
   const scaleRight = document.querySelector('.scale-right');
   
-  // Data Fragments by depth
   const fragsFar = document.querySelectorAll('.data-fragment[data-depth="far"]');
   const fragsMid = document.querySelectorAll('.data-fragment[data-depth="mid"]');
   const fragsNear = document.querySelectorAll('.data-fragment[data-depth="near"]');
   const allFrags = document.querySelectorAll('.data-fragment');
   
-  // ========================================
-  // Set Initial States
-  // ========================================
-  gsap.set(nav, { opacity: 0, y: -12, pointerEvents: 'none' });
+  // Initial states - Nav is visible now
   gsap.set(unlockText, { opacity: 0, y: 40 });
   gsap.set(envAmbient, { opacity: 0 });
   gsap.set(keyGlow, { opacity: 0, scale: 0.8 });
   gsap.set(keyGlowOuter, { opacity: 0, scale: 0.6 });
   gsap.set(keyShadow, { opacity: 0.2 });
-  
-  // All fragments start invisible
   gsap.set(allFrags, { opacity: 0 });
   
-  // ========================================
-  // Create Master Timeline
-  // ========================================
   const masterTL = gsap.timeline({
     scrollTrigger: {
       trigger: unlockSection,
@@ -110,12 +91,7 @@ function initCinematicUnlock() {
     }
   });
   
-  // ========================================
-  // BEAT 1: Clean Start (0% - 15%)
-  // Just the key, subtle pulse, nothing else
-  // ========================================
-  
-  // Fade out scroll indicator
+  // BEAT 1: Clean Start
   masterTL.to(scrollIndicator, {
     opacity: 0,
     y: 10,
@@ -123,7 +99,6 @@ function initCinematicUnlock() {
     ease: 'power2.out'
   }, CONFIG.BEAT_1);
   
-  // Subtle key pulse - first sign of life
   masterTL.to(key, {
     filter: `brightness(${CONFIG.KEY_BRIGHTNESS_LOCKED + 0.08}) saturate(${CONFIG.KEY_SATURATION_LOCKED + 0.08})`,
     scale: 1.01,
@@ -131,25 +106,18 @@ function initCinematicUnlock() {
     ease: 'power1.inOut'
   }, CONFIG.BEAT_1 + 0.05);
   
-  // ========================================
-  // BEAT 2: Data Emerges (15% - 40%)
-  // Far layer data starts appearing
-  // ========================================
-  
-  // Vignette starts to relax slightly
+  // BEAT 2: Data Emerges
   masterTL.to(envVignette, {
     opacity: 0.75,
     duration: 0.25,
     ease: 'power2.out'
   }, CONFIG.BEAT_2);
   
-  // Ambient glow starts
   masterTL.to(envAmbient, {
     opacity: CONFIG.AMBIENT_MAX * 0.15,
     duration: 0.25
   }, CONFIG.BEAT_2);
   
-  // Key continues warming
   masterTL.to(key, {
     filter: `brightness(0.5) saturate(0.4)`,
     scale: 1.03,
@@ -157,7 +125,6 @@ function initCinematicUnlock() {
     ease: 'power2.out'
   }, CONFIG.BEAT_2);
   
-  // Key bow starts color shift
   masterTL.to(keyBow, {
     background: 'linear-gradient(155deg, #5a4a3a 0%, #4a3a30 40%, #3a302a 70%, #2a2520 100%)',
     boxShadow: `
@@ -169,14 +136,12 @@ function initCinematicUnlock() {
     duration: 0.25
   }, CONFIG.BEAT_2);
   
-  // Inner glow begins faintly
   masterTL.to(keyGlow, {
     opacity: 0.1,
     scale: 0.85,
     duration: 0.25
   }, CONFIG.BEAT_2);
   
-  // FAR data fragments fade in first (background) - staggered
   fragsFar.forEach((frag, i) => {
     masterTL.to(frag, {
       opacity: CONFIG.FRAG_OPACITY_FAR * 0.4,
@@ -184,20 +149,7 @@ function initCinematicUnlock() {
     }, CONFIG.BEAT_2 + (i * 0.004));
   });
   
-  // Nav starts appearing
-  masterTL.to(nav, {
-    opacity: 0.4,
-    y: -6,
-    duration: 0.25,
-    ease: 'power2.out'
-  }, CONFIG.BEAT_2 + 0.1);
-  
-  // ========================================
-  // BEAT 3: Building (40% - 65%)
-  // More data appears, key transforms
-  // ========================================
-  
-  // Environment opens up
+  // BEAT 3: Building
   masterTL.to(envVignette, {
     opacity: 0.5,
     duration: 0.25,
@@ -209,7 +161,6 @@ function initCinematicUnlock() {
     duration: 0.25
   }, CONFIG.BEAT_3);
   
-  // Key transforms significantly
   masterTL.to(key, {
     filter: `brightness(0.75) saturate(0.8)`,
     scale: 1.06,
@@ -219,7 +170,6 @@ function initCinematicUnlock() {
     ease: 'power2.out'
   }, CONFIG.BEAT_3);
   
-  // Key bow goes golden
   masterTL.to(keyBow, {
     background: 'linear-gradient(155deg, #a08030 0%, #8a6a25 40%, #6a5018 70%, #4a3a12 100%)',
     boxShadow: `
@@ -232,25 +182,21 @@ function initCinematicUnlock() {
     duration: 0.25
   }, CONFIG.BEAT_3);
   
-  // Shaft transforms
   masterTL.to(keyShaft, {
     background: 'linear-gradient(90deg, #6a5018 0%, #8a6a25 20%, #a08030 50%, #8a6a25 80%, #6a5018 100%)',
     duration: 0.25
   }, CONFIG.BEAT_3);
   
-  // Bit transforms
   masterTL.to(keyBit, {
     background: 'linear-gradient(90deg, #6a5018 0%, #8a6a25 20%, #a08030 50%, #8a6a25 80%, #6a5018 100%)',
     duration: 0.25
   }, CONFIG.BEAT_3);
   
-  // Scales brighten
   masterTL.to([scaleLeft, scaleRight], {
     background: 'linear-gradient(to bottom, #a08030 0%, #8a6a25 100%)',
     duration: 0.25
   }, CONFIG.BEAT_3);
   
-  // Glows grow
   masterTL.to(keyGlow, {
     opacity: 0.4,
     scale: 1,
@@ -263,14 +209,12 @@ function initCinematicUnlock() {
     duration: 0.25
   }, CONFIG.BEAT_3);
   
-  // Shadow grows
   masterTL.to(keyShadow, {
     opacity: 0.45,
     scale: 1.1,
     duration: 0.25
   }, CONFIG.BEAT_3);
   
-  // FAR fragments reach full opacity
   fragsFar.forEach((frag, i) => {
     masterTL.to(frag, {
       opacity: CONFIG.FRAG_OPACITY_FAR,
@@ -278,7 +222,6 @@ function initCinematicUnlock() {
     }, CONFIG.BEAT_3 + (i * 0.003));
   });
   
-  // MID data fragments fade in
   fragsMid.forEach((frag, i) => {
     masterTL.to(frag, {
       opacity: CONFIG.FRAG_OPACITY_MID * 0.6,
@@ -286,20 +229,7 @@ function initCinematicUnlock() {
     }, CONFIG.BEAT_3 + (i * 0.005));
   });
   
-  // Nav more visible
-  masterTL.to(nav, {
-    opacity: 0.7,
-    y: -3,
-    pointerEvents: 'auto',
-    duration: 0.25
-  }, CONFIG.BEAT_3);
-  
-  // ========================================
-  // BEAT 4: Full Transformation (65% - 85%)
-  // Everything lit up, all data visible
-  // ========================================
-  
-  // Environment fully open
+  // BEAT 4: Full Transformation
   masterTL.to(envVignette, {
     opacity: CONFIG.VIGNETTE_UNLOCKED + 0.1,
     duration: 0.2,
@@ -311,7 +241,6 @@ function initCinematicUnlock() {
     duration: 0.2
   }, CONFIG.BEAT_4);
   
-  // Key fully golden and bright
   masterTL.to(key, {
     filter: `brightness(${CONFIG.KEY_BRIGHTNESS_UNLOCKED}) saturate(${CONFIG.KEY_SATURATION_UNLOCKED})`,
     scale: 1.1,
@@ -321,7 +250,6 @@ function initCinematicUnlock() {
     ease: 'power2.out'
   }, CONFIG.BEAT_4);
   
-  // Key bow final golden state
   masterTL.to(keyBow, {
     background: 'linear-gradient(155deg, #e8d48b 0%, #c9a227 35%, #a08020 65%, #806818 100%)',
     boxShadow: `
@@ -335,7 +263,6 @@ function initCinematicUnlock() {
     duration: 0.2
   }, CONFIG.BEAT_4);
   
-  // Shaft final
   masterTL.to(keyShaft, {
     background: 'linear-gradient(90deg, #a08020 0%, #c9a227 25%, #e8d48b 50%, #c9a227 75%, #a08020 100%)',
     boxShadow: `
@@ -346,7 +273,6 @@ function initCinematicUnlock() {
     duration: 0.2
   }, CONFIG.BEAT_4);
   
-  // Bit final
   masterTL.to(keyBit, {
     background: 'linear-gradient(90deg, #a08020 0%, #c9a227 25%, #e8d48b 50%, #c9a227 75%, #a08020 100%)',
     boxShadow: `
@@ -357,13 +283,11 @@ function initCinematicUnlock() {
     duration: 0.2
   }, CONFIG.BEAT_4);
   
-  // Scales final
   masterTL.to([scaleLeft, scaleRight], {
     background: 'linear-gradient(to bottom, #e8d48b 0%, #c9a227 100%)',
     duration: 0.2
   }, CONFIG.BEAT_4);
   
-  // Full glow
   masterTL.to(keyGlow, {
     opacity: CONFIG.GLOW_INNER_MAX,
     scale: 1.2,
@@ -376,14 +300,12 @@ function initCinematicUnlock() {
     duration: 0.2
   }, CONFIG.BEAT_4);
   
-  // Shadow full
   masterTL.to(keyShadow, {
     opacity: 0.55,
     scale: 1.15,
     duration: 0.2
   }, CONFIG.BEAT_4);
   
-  // MID fragments reach full
   fragsMid.forEach((frag, i) => {
     masterTL.to(frag, {
       opacity: CONFIG.FRAG_OPACITY_MID,
@@ -391,7 +313,6 @@ function initCinematicUnlock() {
     }, CONFIG.BEAT_4 + (i * 0.003));
   });
   
-  // NEAR data fragments fade in
   fragsNear.forEach((frag, i) => {
     masterTL.to(frag, {
       opacity: CONFIG.FRAG_OPACITY_NEAR,
@@ -399,25 +320,13 @@ function initCinematicUnlock() {
     }, CONFIG.BEAT_4 + (i * 0.006));
   });
   
-  // Nav fully visible
-  masterTL.to(nav, {
-    opacity: 1,
-    y: 0,
-    duration: 0.2
-  }, CONFIG.BEAT_4);
-  
-  // ========================================
-  // BEAT 5: Unlocked - Text Appears (85% - 100%)
-  // ========================================
-  
-  // Key moves up slightly
+  // BEAT 5: Unlocked - Text Appears
   masterTL.to(keyContainer, {
     y: -50,
     duration: 0.15,
     ease: 'power2.out'
   }, CONFIG.BEAT_5);
   
-  // Text fades in
   masterTL.to(unlockText, {
     opacity: 1,
     y: 0,
@@ -425,16 +334,12 @@ function initCinematicUnlock() {
     ease: 'power2.out'
   }, CONFIG.BEAT_5 + 0.05);
   
-  // Final environment settle
   masterTL.to(envVignette, {
     opacity: CONFIG.VIGNETTE_UNLOCKED,
     duration: 0.15
   }, CONFIG.BEAT_5);
   
-  // ========================================
   // Post-Unlock Content Animations
-  // ========================================
-  
   const contentSections = document.querySelectorAll('.content-section');
   
   contentSections.forEach((section) => {
