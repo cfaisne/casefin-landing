@@ -43,17 +43,14 @@ body {
   align-items: center;
   justify-content: space-between;
   padding: 1.25rem 3rem;
-  background: transparent;
-  backdrop-filter: blur(0px);
-  -webkit-backdrop-filter: blur(0px);
-  border-bottom: 1px solid transparent;
-  transition: background 0.4s ease, border-color 0.4s ease, backdrop-filter 0.4s ease;
-}
-
-.nav.scrolled {
   background: rgba(42, 36, 35, 0.95);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.4s ease;
+}
+
+.nav.scrolled {
   border-bottom-color: var(--glass-border-gold);
 }
 
@@ -148,11 +145,11 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.4rem 0.85rem;
+  padding: 0.5rem 1rem;
   background: var(--glass-bg);
   backdrop-filter: blur(16px);
   border: 1px solid var(--glass-border);
-  border-radius: 100px;
+  border-radius: 12px;
   font-size: 0.8rem;
   font-weight: 500;
   color: var(--text-secondary);
@@ -160,8 +157,8 @@ body {
 }
 
 .pill-icon {
-  width: 14px;
-  height: 14px;
+  width: 16px;
+  height: 16px;
   opacity: 0.7;
 }
 
