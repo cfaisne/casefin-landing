@@ -10,9 +10,6 @@
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <!-- Fixed gradient background - seamless across entire page -->
-  <div class="page-gradient"></div>
-  
   <!-- Navigation -->
   <nav class="nav">
     <div class="nav-logo">CaseFin</div>
@@ -27,7 +24,7 @@
     </div>
   </nav>
 
-  <!-- Hero / Unlock Section -->
+  <!-- Hero / Unlock Section - has its own animated background -->
   <section class="unlock-section">
     <div class="env-ambient"></div>
     <div class="env-vignette"></div>
@@ -212,108 +209,110 @@
     </div>
   </section>
 
-  <!-- Content sections - all transparent, gradient shows through -->
-  <section class="content-section section-law-firms">
-    <div class="section-inner">
-      <h2>For Law Firms</h2>
-      <p>Turn litigation work into fundable opportunities without running a fundraising process.</p>
-      <div class="card-row">
-        <div class="card">
-          <div class="card-icon"></div>
-          <h3>Standardized Presentation</h3>
-          <p>Present cases once, reach multiple funders without rewriting for each.</p>
-        </div>
-        <div class="card">
-          <div class="card-icon"></div>
-          <h3>Controlled Access</h3>
-          <p>You decide who sees what, when, and on what terms.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="content-section section-funders">
-    <div class="section-inner">
-      <h2>For Funders</h2>
-      <p>Access structured, pre-qualified opportunities without the noise.</p>
-      <div class="card-row">
-        <div class="card">
-          <div class="card-icon"></div>
-          <h3>Staged Evaluation</h3>
-          <p>Review cases through a structured process designed for efficient diligence.</p>
-        </div>
-        <div class="card">
-          <div class="card-icon"></div>
-          <h3>Reduced Noise</h3>
-          <p>See only cases that meet your criteria and investment thesis.</p>
+  <!-- Post-hero wrapper with its own gradient -->
+  <div class="post-hero-gradient">
+    <section class="content-section section-law-firms">
+      <div class="section-inner">
+        <h2>For Law Firms</h2>
+        <p>Turn litigation work into fundable opportunities without running a fundraising process.</p>
+        <div class="card-row">
+          <div class="card">
+            <div class="card-icon"></div>
+            <h3>Standardized Presentation</h3>
+            <p>Present cases once, reach multiple funders without rewriting for each.</p>
+          </div>
+          <div class="card">
+            <div class="card-icon"></div>
+            <h3>Controlled Access</h3>
+            <p>You decide who sees what, when, and on what terms.</p>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="content-section section-how">
-    <div class="section-inner">
-      <h2>How It Works</h2>
-      <p>A controlled environment where serious cases meet serious capital.</p>
-      <div class="steps">
-        <div class="step">
-          <div class="step-num">1</div>
-          <h3>Submit</h3>
-          <p>Law firms submit cases through a standardized intake.</p>
-        </div>
-        <div class="step">
-          <div class="step-num">2</div>
-          <h3>Structure</h3>
-          <p>Cases are organized for funder evaluation.</p>
-        </div>
-        <div class="step">
-          <div class="step-num">3</div>
-          <h3>Connect</h3>
-          <p>Qualified funders access cases on controlled terms.</p>
+    <section class="content-section section-funders">
+      <div class="section-inner">
+        <h2>For Funders</h2>
+        <p>Access structured, pre-qualified opportunities without the noise.</p>
+        <div class="card-row">
+          <div class="card">
+            <div class="card-icon"></div>
+            <h3>Staged Evaluation</h3>
+            <p>Review cases through a structured process designed for efficient diligence.</p>
+          </div>
+          <div class="card">
+            <div class="card-icon"></div>
+            <h3>Reduced Noise</h3>
+            <p>See only cases that meet your criteria and investment thesis.</p>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="content-section section-cta">
-    <div class="section-inner cta-inner">
-      <h2>Ready to get started?</h2>
-      <p>Request access to the platform.</p>
-      <a href="#" class="btn-cta">
-        <span class="btn-cta-text">Request Access</span>
-        <span class="btn-cta-icon">
-          <span class="lock-icon lock-closed">
-            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect x="3" y="11" width="18" height="11" rx="2" fill="currentColor"/>
-              <path d="M7 11V7C7 4.23858 9.23858 2 12 2C14.7614 2 17 4.23858 17 7V11" stroke="currentColor" stroke-width="2" fill="none"/>
-              <circle cx="12" cy="16" r="1.5" fill="#2A2423"/>
-            </svg>
+    <section class="content-section section-how">
+      <div class="section-inner">
+        <h2>How It Works</h2>
+        <p>A controlled environment where serious cases meet serious capital.</p>
+        <div class="steps">
+          <div class="step">
+            <div class="step-num">1</div>
+            <h3>Submit</h3>
+            <p>Law firms submit cases through a standardized intake.</p>
+          </div>
+          <div class="step">
+            <div class="step-num">2</div>
+            <h3>Structure</h3>
+            <p>Cases are organized for funder evaluation.</p>
+          </div>
+          <div class="step">
+            <div class="step-num">3</div>
+            <h3>Connect</h3>
+            <p>Qualified funders access cases on controlled terms.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section section-cta">
+      <div class="section-inner cta-inner">
+        <h2>Ready to get started?</h2>
+        <p>Request access to the platform.</p>
+        <a href="#" class="btn-cta">
+          <span class="btn-cta-text">Request Access</span>
+          <span class="btn-cta-icon">
+            <span class="lock-icon lock-closed">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="3" y="11" width="18" height="11" rx="2" fill="currentColor"/>
+                <path d="M7 11V7C7 4.23858 9.23858 2 12 2C14.7614 2 17 4.23858 17 7V11" stroke="currentColor" stroke-width="2" fill="none"/>
+                <circle cx="12" cy="16" r="1.5" fill="#2A2423"/>
+              </svg>
+            </span>
+            <span class="lock-icon lock-open">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="3" y="11" width="18" height="11" rx="2" fill="currentColor"/>
+                <path d="M7 11V7C7 4.23858 9.23858 2 12 2C14.7614 2 17 4.23858 17 7" stroke="currentColor" stroke-width="2" fill="none"/>
+                <circle cx="12" cy="16" r="1.5" fill="#2A2423"/>
+              </svg>
+            </span>
           </span>
-          <span class="lock-icon lock-open">
-            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect x="3" y="11" width="18" height="11" rx="2" fill="currentColor"/>
-              <path d="M7 11V7C7 4.23858 9.23858 2 12 2C14.7614 2 17 4.23858 17 7" stroke="currentColor" stroke-width="2" fill="none"/>
-              <circle cx="12" cy="16" r="1.5" fill="#2A2423"/>
-            </svg>
-          </span>
-        </span>
-      </a>
-    </div>
-  </section>
+        </a>
+      </div>
+    </section>
 
-  <footer class="footer">
-    <div class="footer-inner">
-      <div class="footer-logo">CaseFin</div>
-      <div class="footer-links">
-        <a href="index.html">Home</a>
-        <a href="product.html">Product</a>
-        <a href="about.html">About</a>
+    <footer class="footer">
+      <div class="footer-inner">
+        <div class="footer-logo">CaseFin</div>
+        <div class="footer-links">
+          <a href="index.html">Home</a>
+          <a href="product.html">Product</a>
+          <a href="about.html">About</a>
+        </div>
+        <div class="footer-legal">
+          <span>&copy; 2025 CaseFin. All rights reserved.</span>
+        </div>
       </div>
-      <div class="footer-legal">
-        <span>&copy; 2025 CaseFin. All rights reserved.</span>
-      </div>
-    </div>
-  </footer>
+    </footer>
+  </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>

@@ -1,14 +1,15 @@
 /* ========================================
-   I28 - Seamless Gradient + Unlock Animation
+   I29 - Hero Unlock Animation
    
-   Two scroll-driven animations:
-   1. Hero unlock (pinned) - key, fragments, text
-   2. Page gradient - seamless across entire page
+   Hero: animates background #2A2423 → #413D3A
+   Post-hero: CSS gradient handles the rest
 ======================================== */
 
 const CONFIG = {
   SCROLL_DURATION: '+=350%',
   SCRUB_SMOOTHNESS: 1.2,
+  BG_LOCKED: '#2A2423',
+  BG_UNLOCKED: '#413D3A',
   GLOW_INNER_MAX: 0.8,
   GLOW_OUTER_MAX: 0.5,
   AMBIENT_MAX: 0.45,
@@ -25,35 +26,10 @@ const CONFIG = {
 gsap.registerPlugin(ScrollTrigger);
 
 document.addEventListener('DOMContentLoaded', () => {
-  initPageGradient();
   initHeroUnlock();
   initContentAnimations();
 });
 
-/* ========================================
-   Page Gradient Animation
-   Animates background-position based on
-   total page scroll progress
-======================================== */
-function initPageGradient() {
-  const pageGradient = document.querySelector('.page-gradient');
-  
-  // Animate gradient across the full page scroll
-  gsap.to(pageGradient, {
-    backgroundPosition: '0% 100%',
-    ease: 'none',
-    scrollTrigger: {
-      trigger: document.body,
-      start: 'top top',
-      end: 'bottom bottom',
-      scrub: 0.5
-    }
-  });
-}
-
-/* ========================================
-   Hero Unlock Animation
-======================================== */
 function initHeroUnlock() {
   const unlockSection = document.querySelector('.unlock-section');
   const scrollIndicator = document.querySelector('.scroll-indicator');
@@ -108,7 +84,12 @@ function initHeroUnlock() {
     duration: 0.15
   }, CONFIG.BEAT_1 + 0.05);
   
-  // BEAT 2: Awakening
+  // BEAT 2: Awakening - background starts lightening
+  masterTL.to(unlockSection, {
+    backgroundColor: '#322B2A',
+    duration: 0.25
+  }, CONFIG.BEAT_2);
+  
   masterTL.to(envVignette, {
     opacity: 0.75,
     duration: 0.25
@@ -144,7 +125,12 @@ function initHeroUnlock() {
     }, CONFIG.BEAT_2 + (i * 0.004));
   });
   
-  // BEAT 3: Building
+  // BEAT 3: Building - continues lightening
+  masterTL.to(unlockSection, {
+    backgroundColor: '#3A3332',
+    duration: 0.25
+  }, CONFIG.BEAT_3);
+  
   masterTL.to(envVignette, {
     opacity: 0.5,
     duration: 0.25
@@ -217,7 +203,12 @@ function initHeroUnlock() {
     }, CONFIG.BEAT_3 + (i * 0.005));
   });
   
-  // BEAT 4: Full Transformation
+  // BEAT 4: Full Unlock - reaches #413D3A
+  masterTL.to(unlockSection, {
+    backgroundColor: CONFIG.BG_UNLOCKED, // #413D3A
+    duration: 0.2
+  }, CONFIG.BEAT_4);
+  
   masterTL.to(envVignette, {
     opacity: 0.25,
     duration: 0.2
@@ -310,9 +301,6 @@ function initHeroUnlock() {
   }, CONFIG.BEAT_5);
 }
 
-/* ========================================
-   Content Animations
-======================================== */
 function initContentAnimations() {
   const contentSections = document.querySelectorAll('.content-section');
   
