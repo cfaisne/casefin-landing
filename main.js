@@ -1,20 +1,16 @@
 /* ========================================
-   I33 - Hero GSAP + Post-hero CSS Gradient
-   
-   Hero: GSAP animates #2A2423 → #453D3C
-   Post-hero: CSS gradient handles darkening
-   Vignette fades to 0 at unlock for clean seam
+   I34 - Hero Swap + Pinned Steps + Key Unlock
 ======================================== */
 
 const HERO_COLORS = [
-  '#2A2423', // start (locked)
+  '#2A2423',
   '#2F2928',
   '#332C2B',
   '#37302E',
   '#3B3331',
   '#3F3735',
   '#423A39',
-  '#453D3C'  // end (unlocked/brightest)
+  '#453D3C'
 ];
 
 const CONFIG = {
@@ -26,24 +22,32 @@ const CONFIG = {
   FRAG_OPACITY_FAR: 0.5,
   FRAG_OPACITY_MID: 0.7,
   FRAG_OPACITY_NEAR: 0.85,
+  // Timeline beats
   BEAT_1: 0,
   BEAT_2: 0.15,
   BEAT_3: 0.4,
   BEAT_4: 0.65,
   BEAT_5: 0.85,
+  // Hero text swap timing
+  TEXT_FADE_START: 0.5,
+  TEXT_FADE_END: 0.75,
 };
 
 gsap.registerPlugin(ScrollTrigger);
 
 document.addEventListener('DOMContentLoaded', () => {
   initHeroUnlock();
-  initContentAnimations();
+  initHowItWorks();
 });
 
+/* ========================================
+   Hero Unlock Animation + Text Swap
+======================================== */
 function initHeroUnlock() {
   const unlockSection = document.querySelector('.unlock-section');
   const scrollIndicator = document.querySelector('.scroll-indicator');
-  const unlockText = document.querySelector('.unlock-text');
+  const heroTextLocked = document.querySelector('.hero-text-locked');
+  const heroTextUnlocked = document.querySelector('.hero-text-unlocked');
   const envVignette = document.querySelector('.env-vignette');
   const envAmbient = document.querySelector('.env-ambient');
   const keyContainer = document.querySelector('.key-container');
@@ -63,7 +67,8 @@ function initHeroUnlock() {
   const allFrags = document.querySelectorAll('.data-fragment');
   
   // Initial states
-  gsap.set(unlockText, { opacity: 0, y: 40 });
+  gsap.set(heroTextLocked, { opacity: 1, y: 0 });
+  gsap.set(heroTextUnlocked, { opacity: 0, y: 30 });
   gsap.set(envAmbient, { opacity: 0 });
   gsap.set(keyGlow, { opacity: 0, scale: 0.8 });
   gsap.set(keyGlowOuter, { opacity: 0, scale: 0.6 });
@@ -81,7 +86,7 @@ function initHeroUnlock() {
     }
   });
   
-  // BEAT 1: Clean Start - color 0→1
+  // ========== BEAT 1: Clean Start ==========
   masterTL.to(scrollIndicator, {
     opacity: 0,
     y: 10,
@@ -89,7 +94,7 @@ function initHeroUnlock() {
   }, CONFIG.BEAT_1);
   
   masterTL.to(unlockSection, {
-    backgroundColor: HERO_COLORS[1], // #2F2928
+    backgroundColor: HERO_COLORS[1],
     duration: 0.15
   }, CONFIG.BEAT_1);
   
@@ -99,14 +104,14 @@ function initHeroUnlock() {
     duration: 0.15
   }, CONFIG.BEAT_1 + 0.05);
   
-  // BEAT 2: Awakening - colors 2→3
+  // ========== BEAT 2: Awakening ==========
   masterTL.to(unlockSection, {
-    backgroundColor: HERO_COLORS[2], // #332C2B
+    backgroundColor: HERO_COLORS[2],
     duration: 0.12
   }, CONFIG.BEAT_2);
   
   masterTL.to(unlockSection, {
-    backgroundColor: HERO_COLORS[3], // #37302E
+    backgroundColor: HERO_COLORS[3],
     duration: 0.13
   }, CONFIG.BEAT_2 + 0.12);
   
@@ -145,14 +150,14 @@ function initHeroUnlock() {
     }, CONFIG.BEAT_2 + (i * 0.004));
   });
   
-  // BEAT 3: Building - colors 4→5
+  // ========== BEAT 3: Building ==========
   masterTL.to(unlockSection, {
-    backgroundColor: HERO_COLORS[4], // #3B3331
+    backgroundColor: HERO_COLORS[4],
     duration: 0.12
   }, CONFIG.BEAT_3);
   
   masterTL.to(unlockSection, {
-    backgroundColor: HERO_COLORS[5], // #3F3735
+    backgroundColor: HERO_COLORS[5],
     duration: 0.13
   }, CONFIG.BEAT_3 + 0.12);
   
@@ -228,18 +233,31 @@ function initHeroUnlock() {
     }, CONFIG.BEAT_3 + (i * 0.005));
   });
   
-  // BEAT 4: Full Unlock - colors 6→7 (brightest)
+  // ========== HERO TEXT SWAP (during BEAT_3 to BEAT_4) ==========
+  masterTL.to(heroTextLocked, {
+    opacity: 0,
+    y: -20,
+    duration: 0.2
+  }, CONFIG.TEXT_FADE_START);
+  
+  masterTL.to(heroTextUnlocked, {
+    opacity: 1,
+    y: 0,
+    duration: 0.2
+  }, CONFIG.TEXT_FADE_END);
+  
+  // ========== BEAT 4: Full Unlock ==========
   masterTL.to(unlockSection, {
-    backgroundColor: HERO_COLORS[6], // #423A39
+    backgroundColor: HERO_COLORS[6],
     duration: 0.1
   }, CONFIG.BEAT_4);
   
   masterTL.to(unlockSection, {
-    backgroundColor: HERO_COLORS[7], // #453D3C (brightest)
+    backgroundColor: HERO_COLORS[7],
     duration: 0.1
   }, CONFIG.BEAT_4 + 0.1);
   
-  // Fade vignette to 0 at unlock for clean edge
+  // Fade vignette to 0 for clean edge
   masterTL.to(envVignette, {
     opacity: 0,
     duration: 0.2
@@ -314,55 +332,47 @@ function initHeroUnlock() {
     }, CONFIG.BEAT_4 + (i * 0.006));
   });
   
-  // BEAT 5: Text Appears
+  // ========== BEAT 5: Key lifts ==========
   masterTL.to(keyContainer, {
-    y: -50,
+    y: -60,
     duration: 0.15
   }, CONFIG.BEAT_5);
-  
-  masterTL.to(unlockText, {
-    opacity: 1,
-    y: 0,
-    duration: 0.15
-  }, CONFIG.BEAT_5 + 0.05);
 }
 
-function initContentAnimations() {
-  const contentSections = document.querySelectorAll('.content-section');
+/* ========================================
+   How It Works - Pinned with Step Focus
+======================================== */
+function initHowItWorks() {
+  const section = document.querySelector('.how-it-works-section');
+  const steps = document.querySelectorAll('.step');
+  const totalSteps = steps.length;
   
-  contentSections.forEach((section) => {
-    const heading = section.querySelector('h2');
-    const paragraph = section.querySelector('.section-inner > p');
-    const cards = section.querySelectorAll('.card');
-    const steps = section.querySelectorAll('.step');
-    
-    const sectionTL = gsap.timeline({
-      scrollTrigger: {
-        trigger: section,
-        start: 'top 80%',
-        end: 'top 20%',
-        toggleActions: 'play none none reverse'
-      }
-    });
-    
-    if (heading) {
-      gsap.set(heading, { opacity: 0, y: 30 });
-      sectionTL.to(heading, { opacity: 1, y: 0, duration: 0.7 }, 0);
-    }
-    
-    if (paragraph) {
-      gsap.set(paragraph, { opacity: 0, y: 20 });
-      sectionTL.to(paragraph, { opacity: 1, y: 0, duration: 0.7 }, 0.1);
-    }
-    
-    if (cards.length) {
-      gsap.set(cards, { opacity: 0, y: 40 });
-      sectionTL.to(cards, { opacity: 1, y: 0, duration: 0.8, stagger: 0.15 }, 0.2);
-    }
-    
-    if (steps.length) {
-      gsap.set(steps, { opacity: 0, y: 40 });
-      sectionTL.to(steps, { opacity: 1, y: 0, duration: 0.8, stagger: 0.12 }, 0.2);
+  // Set first step as active initially
+  steps[0].classList.add('active');
+  
+  ScrollTrigger.create({
+    trigger: section,
+    start: 'top top',
+    end: 'bottom bottom',
+    scrub: true,
+    invalidateOnRefresh: true,
+    onUpdate: (self) => {
+      // Map scroll progress to step index
+      const progress = self.progress;
+      // Divide progress into segments for each step
+      const stepIndex = Math.min(
+        Math.floor(progress * totalSteps),
+        totalSteps - 1
+      );
+      
+      // Update active state
+      steps.forEach((step, i) => {
+        if (i === stepIndex) {
+          step.classList.add('active');
+        } else {
+          step.classList.remove('active');
+        }
+      });
     }
   });
 }

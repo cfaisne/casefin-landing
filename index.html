@@ -14,9 +14,9 @@
   <nav class="nav">
     <div class="nav-logo">CaseFin</div>
     <div class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="product.html">Product</a>
-      <a href="about.html">About</a>
+      <a href="#law-firms">For Law Firms</a>
+      <a href="#funders">For Funders</a>
+      <a href="#how-it-works">How It Works</a>
     </div>
     <div class="nav-actions">
       <a href="#" class="btn-text">Log In</a>
@@ -24,7 +24,7 @@
     </div>
   </nav>
 
-  <!-- Hero / Unlock Section - has its own animated background -->
+  <!-- Hero / Unlock Section -->
   <section class="unlock-section">
     <div class="env-ambient"></div>
     <div class="env-vignette"></div>
@@ -119,7 +119,7 @@
         <div class="data-fragment frag-court" data-depth="mid" style="top:9%;right:21%">SDNY</div>
         <div class="data-fragment frag-case" data-depth="mid" style="top:15%;right:8%">Burford v. Lincoln</div>
         <div class="data-fragment frag-percent" data-depth="mid" style="top:21%;right:22%">F-33%</div>
-        <div class="data-fragment frag-file" data-depth="mid" style="top:27%;right:10%">Damages_etsx</div>
+        <div class="data-fragment frag-file" data-depth="mid" style="top:27%;right:10%">Damages.xlsx</div>
         <div class="data-fragment frag-amount" data-depth="mid" style="top:33%;right:21%">-€380K</div>
         <div class="data-fragment frag-bid" data-depth="mid" style="top:39%;right:8%">ASK: £5.6M</div>
         <div class="data-fragment frag-status" data-depth="mid" style="top:45%;right:22%">TERM SHEET</div>
@@ -174,31 +174,31 @@
         <div class="key-shadow"></div>
       </div>
       
-      <!-- Unlock text -->
-      <div class="unlock-text">
-        <h1 class="unlock-headline">Access changes everything</h1>
-        <p class="unlock-subhead">From private preparation to structured evaluation, cases move forward with clarity, control, and intent on both sides.</p>
-        <div class="unlock-cta">
-          <a href="#" class="btn-cta">
-            <span class="btn-cta-text">Request Access</span>
-            <span class="btn-cta-icon">
-              <span class="lock-icon lock-closed">
-                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <rect x="3" y="11" width="18" height="11" rx="2" fill="currentColor"/>
-                  <path d="M7 11V7C7 4.23858 9.23858 2 12 2C14.7614 2 17 4.23858 17 7V11" stroke="currentColor" stroke-width="2" fill="none"/>
-                  <circle cx="12" cy="16" r="1.5" fill="#2A2423"/>
+      <!-- Hero Text - Swap Container -->
+      <div class="hero-text-container">
+        <!-- Locked State -->
+        <div class="hero-text hero-text-locked">
+          <h1 class="hero-headline">Unlock disciplined litigation finance.</h1>
+          <p class="hero-body">A controlled environment where serious cases meet serious capital, designed to minimize noise, exposure, and wasted effort.</p>
+          <p class="hero-tagline">Structured review. Staged evaluation. Permissioned access.</p>
+        </div>
+        
+        <!-- Unlocked State -->
+        <div class="hero-text hero-text-unlocked">
+          <h1 class="hero-headline">Access changes everything.</h1>
+          <p class="hero-body">From private preparation to structured evaluation, cases move forward with clarity, control, and intent on both sides.</p>
+          <div class="hero-cta">
+            <a href="#" class="btn-cta">
+              <span class="btn-cta-text">Request Access</span>
+              <span class="btn-cta-icon">
+                <svg class="icon-lock-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <rect x="5" y="11" width="14" height="10" rx="2"/>
+                  <path d="M8 11V7a4 4 0 018 0"/>
                 </svg>
               </span>
-              <span class="lock-icon lock-open">
-                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <rect x="3" y="11" width="18" height="11" rx="2" fill="currentColor"/>
-                  <path d="M7 11V7C7 4.23858 9.23858 2 12 2C14.7614 2 17 4.23858 17 7" stroke="currentColor" stroke-width="2" fill="none"/>
-                  <circle cx="12" cy="16" r="1.5" fill="#2A2423"/>
-                </svg>
-              </span>
-            </span>
-          </a>
-          <a href="#" class="btn-secondary">Log In</a>
+            </a>
+            <a href="#" class="btn-secondary">Log In</a>
+          </div>
         </div>
       </div>
     </div>
@@ -209,103 +209,153 @@
     </div>
   </section>
 
-  <!-- Post-hero wrapper with its own gradient -->
+  <!-- Post-hero content wrapper -->
   <div class="post-hero-gradient">
-    <section class="content-section section-law-firms">
+    
+    <!-- For Law Firms -->
+    <section id="law-firms" class="content-section">
       <div class="section-inner">
-        <h2>For Law Firms</h2>
-        <p>Turn litigation work into fundable opportunities without running a fundraising process.</p>
-        <div class="card-row">
-          <div class="card">
-            <div class="card-icon"></div>
-            <h3>Standardized Presentation</h3>
-            <p>Present cases once, reach multiple funders without rewriting for each.</p>
+        <div class="pill">
+          <svg class="pill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M12 3v18M3 12h18M5.5 5.5l13 13M18.5 5.5l-13 13"/>
+            <circle cx="12" cy="12" r="9"/>
+          </svg>
+          <span>For Law Firms</span>
+        </div>
+        <h2>Turn litigation work into fundable opportunities without running a fundraising process.</h2>
+        <ul class="feature-list">
+          <li>Standardize case presentation without rewriting your work for every funder</li>
+          <li>Control access and evaluator interest on your terms</li>
+          <li>Share sensitive materials only after intent is established</li>
+          <li>Collaborate internally using a single source of truth</li>
+        </ul>
+        <p class="section-tagline">Prepare once. Engage selectively. Move forward with confidence.</p>
+      </div>
+    </section>
+
+    <!-- For Funders -->
+    <section id="funders" class="content-section">
+      <div class="section-inner">
+        <div class="pill">
+          <svg class="pill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="2" y="6" width="20" height="12" rx="2"/>
+            <path d="M2 10h20"/>
+            <path d="M6 14h4"/>
+          </svg>
+          <span>For Funders</span>
+        </div>
+        <h2>Evaluate more cases with less noise and stronger early signal.</h2>
+        <ul class="feature-list">
+          <li>Browse standardized opportunities before committing resources</li>
+          <li>Request access only when a case fits your mandate</li>
+          <li>Compare matters consistently across stages of evaluation</li>
+          <li>Engage privately without cross-contamination or pressure</li>
+        </ul>
+        <p class="section-tagline">Spend time where conviction is highest.</p>
+      </div>
+    </section>
+
+    <!-- How It Works - Pinned Steps -->
+    <section id="how-it-works" class="how-it-works-section">
+      <div class="how-it-works-container">
+        <div class="how-it-works-header">
+          <div class="pill">
+            <svg class="pill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M4 6h16M4 12h16M4 18h16"/>
+              <circle cx="8" cy="6" r="1.5" fill="currentColor"/>
+              <circle cx="12" cy="12" r="1.5" fill="currentColor"/>
+              <circle cx="16" cy="18" r="1.5" fill="currentColor"/>
+            </svg>
+            <span>How It Works</span>
           </div>
-          <div class="card">
-            <div class="card-icon"></div>
-            <h3>Controlled Access</h3>
-            <p>You decide who sees what, when, and on what terms.</p>
+          <h2>A staged path from submission to serious engagement.</h2>
+        </div>
+        
+        <div class="steps-container">
+          <div class="step" data-step="0">
+            <div class="step-number">1</div>
+            <div class="step-content">
+              <h3>Submit</h3>
+              <p>Cases are structured, summarized, and prepared for review</p>
+            </div>
+          </div>
+          <div class="step" data-step="1">
+            <div class="step-number">2</div>
+            <div class="step-content">
+              <h3>Discover</h3>
+              <p>Evaluators browse and identify aligned opportunities</p>
+            </div>
+          </div>
+          <div class="step" data-step="2">
+            <div class="step-number">3</div>
+            <div class="step-content">
+              <h3>Request Access</h3>
+              <p>Permissioned entry replaces cold outreach</p>
+            </div>
+          </div>
+          <div class="step" data-step="3">
+            <div class="step-number">4</div>
+            <div class="step-content">
+              <h3>Evaluate</h3>
+              <p>Secure data rooms support deeper diligence</p>
+            </div>
+          </div>
+          <div class="step" data-step="4">
+            <div class="step-number">5</div>
+            <div class="step-content">
+              <h3>Advance</h3>
+              <p>Qualified cases move forward off-platform</p>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="content-section section-funders">
+    <!-- Security & Trust -->
+    <section id="security" class="content-section">
       <div class="section-inner">
-        <h2>For Funders</h2>
-        <p>Access structured, pre-qualified opportunities without the noise.</p>
-        <div class="card-row">
-          <div class="card">
-            <div class="card-icon"></div>
-            <h3>Staged Evaluation</h3>
-            <p>Review cases through a structured process designed for efficient diligence.</p>
-          </div>
-          <div class="card">
-            <div class="card-icon"></div>
-            <h3>Reduced Noise</h3>
-            <p>See only cases that meet your criteria and investment thesis.</p>
-          </div>
+        <div class="pill">
+          <svg class="pill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M12 2L4 6v6c0 5.5 3.5 10 8 11 4.5-1 8-5.5 8-11V6l-8-4z"/>
+            <path d="M9 12l2 2 4-4"/>
+          </svg>
+          <span>Security & Trust</span>
         </div>
+        <h2>Built for discretion. Designed for credibility.</h2>
+        <ul class="feature-list">
+          <li>Permissioned access at every stage</li>
+          <li>Secure document handling and auditability</li>
+          <li>Clear separation between evaluators</li>
+          <li>AI-assisted analysis designed to support, not replace, human judgment</li>
+        </ul>
+        <p class="section-tagline">CaseFin exists to bridge gaps, not expose them.</p>
       </div>
     </section>
 
-    <section class="content-section section-how">
-      <div class="section-inner">
-        <h2>How It Works</h2>
-        <p>A controlled environment where serious cases meet serious capital.</p>
-        <div class="steps">
-          <div class="step">
-            <div class="step-num">1</div>
-            <h3>Submit</h3>
-            <p>Law firms submit cases through a standardized intake.</p>
-          </div>
-          <div class="step">
-            <div class="step-num">2</div>
-            <h3>Structure</h3>
-            <p>Cases are organized for funder evaluation.</p>
-          </div>
-          <div class="step">
-            <div class="step-num">3</div>
-            <h3>Connect</h3>
-            <p>Qualified funders access cases on controlled terms.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
+    <!-- Final CTA -->
     <section class="content-section section-cta">
       <div class="section-inner cta-inner">
-        <h2>Ready to get started?</h2>
-        <p>Request access to the platform.</p>
-        <a href="#" class="btn-cta">
+        <h2>Request access to CaseFin.</h2>
+        <p class="cta-subtext">A controlled environment for disciplined litigation finance.</p>
+        <a href="#" class="btn-cta btn-cta-large">
           <span class="btn-cta-text">Request Access</span>
           <span class="btn-cta-icon">
-            <span class="lock-icon lock-closed">
-              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="3" y="11" width="18" height="11" rx="2" fill="currentColor"/>
-                <path d="M7 11V7C7 4.23858 9.23858 2 12 2C14.7614 2 17 4.23858 17 7V11" stroke="currentColor" stroke-width="2" fill="none"/>
-                <circle cx="12" cy="16" r="1.5" fill="#2A2423"/>
-              </svg>
-            </span>
-            <span class="lock-icon lock-open">
-              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="3" y="11" width="18" height="11" rx="2" fill="currentColor"/>
-                <path d="M7 11V7C7 4.23858 9.23858 2 12 2C14.7614 2 17 4.23858 17 7" stroke="currentColor" stroke-width="2" fill="none"/>
-                <circle cx="12" cy="16" r="1.5" fill="#2A2423"/>
-              </svg>
-            </span>
+            <svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
           </span>
         </a>
       </div>
     </section>
 
+    <!-- Footer -->
     <footer class="footer">
       <div class="footer-inner">
         <div class="footer-logo">CaseFin</div>
         <div class="footer-links">
-          <a href="index.html">Home</a>
-          <a href="product.html">Product</a>
-          <a href="about.html">About</a>
+          <a href="#law-firms">For Law Firms</a>
+          <a href="#funders">For Funders</a>
+          <a href="#how-it-works">How It Works</a>
         </div>
         <div class="footer-legal">
           <span>&copy; 2025 CaseFin. All rights reserved.</span>
