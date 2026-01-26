@@ -50,7 +50,14 @@ body {
 }
 
 .nav-logo { font-size: 1.5rem; font-weight: 600; letter-spacing: -0.03em; }
-.nav-links { display: flex; gap: 2.5rem; }
+
+.nav-links { 
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex; 
+  gap: 2.5rem; 
+}
 .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.95rem; transition: color 0.2s; }
 .nav-links a:hover { color: var(--text-primary); }
 .nav-actions { display: flex; align-items: center; gap: 1rem; }
@@ -344,6 +351,13 @@ body {
   letter-spacing: 0.01em;
 }
 
+.hero-differentiator {
+  font-size: 1rem;
+  color: var(--text-muted);
+  margin-top: 1.5rem;
+  font-style: italic;
+}
+
 .hero-cta {
   display: flex;
   gap: 1rem;
@@ -393,8 +407,15 @@ body {
   font-size: 2rem;
   font-weight: 600;
   letter-spacing: -0.02em;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
   line-height: 1.25;
+}
+
+.section-intro {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 2rem;
 }
 
 /* Feature list */
