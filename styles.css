@@ -292,19 +292,19 @@ body {
 
 /* ========================================
    Post-Hero Gradient Wrapper
-   Starts at #413D3A (matching hero end state)
+   Starts at #453D3C (matching hero end state)
    Gradients down to #2A2423
 ======================================== */
 .post-hero-gradient {
   background: linear-gradient(
     180deg,
-    #413D3A 0%,
-    #3D3836 8%,
-    #393433 18%,
-    #352F2E 30%,
-    #312C2B 45%,
-    #2D2827 62%,
-    #2A2524 80%,
+    #453D3C 0%,
+    #403937 12%,
+    #3B3532 25%,
+    #37312F 40%,
+    #322D2B 55%,
+    #2E2927 70%,
+    #2A2524 85%,
     #2A2423 100%
   );
 }

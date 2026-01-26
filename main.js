@@ -9,7 +9,7 @@ const CONFIG = {
   SCROLL_DURATION: '+=350%',
   SCRUB_SMOOTHNESS: 1.2,
   BG_LOCKED: '#2A2423',
-  BG_UNLOCKED: '#413D3A',
+  BG_UNLOCKED: '#453D3C',
   GLOW_INNER_MAX: 0.8,
   GLOW_OUTER_MAX: 0.5,
   AMBIENT_MAX: 0.45,
@@ -86,7 +86,7 @@ function initHeroUnlock() {
   
   // BEAT 2: Awakening - background starts lightening
   masterTL.to(unlockSection, {
-    backgroundColor: '#322B2A',
+    backgroundColor: '#322D2B',
     duration: 0.25
   }, CONFIG.BEAT_2);
   
@@ -127,7 +127,7 @@ function initHeroUnlock() {
   
   // BEAT 3: Building - continues lightening
   masterTL.to(unlockSection, {
-    backgroundColor: '#3A3332',
+    backgroundColor: '#3B3735',
     duration: 0.25
   }, CONFIG.BEAT_3);
   
@@ -205,7 +205,7 @@ function initHeroUnlock() {
   
   // BEAT 4: Full Unlock - reaches #413D3A
   masterTL.to(unlockSection, {
-    backgroundColor: CONFIG.BG_UNLOCKED, // #413D3A
+    backgroundColor: CONFIG.BG_UNLOCKED, // #453D3C
     duration: 0.2
   }, CONFIG.BEAT_4);
   
