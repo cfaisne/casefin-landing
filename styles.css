@@ -292,25 +292,23 @@ body {
 
 /* ========================================
    Post-Hero Gradient Wrapper
-   Starts at #453D3C (matching hero end state)
+   Starts at #443C3B (just below hero peak)
    Very gradually darkens back to #2A2423
-   Light color extends far down before darkening
 ======================================== */
 .post-hero-gradient {
   background: linear-gradient(
     180deg,
-    #453D3C 0%,
-    #453D3C 8%,
-    #443C3B 15%,
-    #423A39 22%,
-    #403837 30%,
-    #3D3534 38%,
-    #3A3231 47%,
-    #372F2E 56%,
-    #332C2B 65%,
-    #302928 74%,
-    #2D2625 83%,
-    #2A2423 92%,
+    #443C3B 0%,
+    #443C3B 8%,
+    #423A39 15%,
+    #403837 22%,
+    #3D3534 30%,
+    #3A3231 38%,
+    #372F2E 47%,
+    #332C2B 56%,
+    #302928 65%,
+    #2D2625 74%,
+    #2A2423 85%,
     #2A2423 100%
   );
 }
