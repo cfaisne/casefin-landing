@@ -1,18 +1,42 @@
 /* ========================================
-   I29 - Hero Unlock Animation
+   I32 - GSAP Solid Color Animation
    
-   Hero: animates background #2A2423 → #413D3A
-   Post-hero: CSS gradient handles the rest
+   Hero: #2A2423 → #453D3C (8 stops)
+   Post-hero: #453D3C hold → #2A2423 (11 stops)
+   No CSS gradients - all GSAP interpolated
 ======================================== */
+
+const HERO_COLORS = [
+  '#2A2423', // start (locked)
+  '#2F2928',
+  '#332C2B',
+  '#37302E',
+  '#3B3331',
+  '#3F3735',
+  '#423A39',
+  '#453D3C'  // end (unlocked/brightest)
+];
+
+const POST_HERO_COLORS = [
+  '#453D3C', // hold
+  '#453D3C', // hold longer
+  '#433B3A',
+  '#403837',
+  '#3D3534',
+  '#3A3231',
+  '#372F2E',
+  '#332C2B',
+  '#2F2928',
+  '#2C2625',
+  '#2A2423'  // end (matches nav)
+];
 
 const CONFIG = {
   SCROLL_DURATION: '+=350%',
   SCRUB_SMOOTHNESS: 1.2,
-  BG_LOCKED: '#2A2423',
-  BG_UNLOCKED: '#453D3C',
-  GLOW_INNER_MAX: 0.8,
-  GLOW_OUTER_MAX: 0.5,
-  AMBIENT_MAX: 0.45,
+  GLOW_INNER_MAX: 0.6,
+  GLOW_OUTER_MAX: 0.4,
+  AMBIENT_MAX: 0.5,
   FRAG_OPACITY_FAR: 0.5,
   FRAG_OPACITY_MID: 0.7,
   FRAG_OPACITY_NEAR: 0.85,
@@ -27,6 +51,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 document.addEventListener('DOMContentLoaded', () => {
   initHeroUnlock();
+  initPostHeroGradient();
   initContentAnimations();
 });
 
@@ -71,11 +96,16 @@ function initHeroUnlock() {
     }
   });
   
-  // BEAT 1: Clean Start
+  // BEAT 1: Clean Start - color 0→1
   masterTL.to(scrollIndicator, {
     opacity: 0,
     y: 10,
     duration: 0.1
+  }, CONFIG.BEAT_1);
+  
+  masterTL.to(unlockSection, {
+    backgroundColor: HERO_COLORS[1], // #2F2928
+    duration: 0.15
   }, CONFIG.BEAT_1);
   
   masterTL.to(key, {
@@ -84,14 +114,19 @@ function initHeroUnlock() {
     duration: 0.15
   }, CONFIG.BEAT_1 + 0.05);
   
-  // BEAT 2: Awakening - background starts lightening
+  // BEAT 2: Awakening - colors 2→3
   masterTL.to(unlockSection, {
-    backgroundColor: '#322D2B',
-    duration: 0.25
+    backgroundColor: HERO_COLORS[2], // #332C2B
+    duration: 0.12
   }, CONFIG.BEAT_2);
   
+  masterTL.to(unlockSection, {
+    backgroundColor: HERO_COLORS[3], // #37302E
+    duration: 0.13
+  }, CONFIG.BEAT_2 + 0.12);
+  
   masterTL.to(envVignette, {
-    opacity: 0.75,
+    opacity: 0.4,
     duration: 0.25
   }, CONFIG.BEAT_2);
   
@@ -125,14 +160,19 @@ function initHeroUnlock() {
     }, CONFIG.BEAT_2 + (i * 0.004));
   });
   
-  // BEAT 3: Building - continues lightening
+  // BEAT 3: Building - colors 4→5
   masterTL.to(unlockSection, {
-    backgroundColor: '#3B3735',
-    duration: 0.25
+    backgroundColor: HERO_COLORS[4], // #3B3331
+    duration: 0.12
   }, CONFIG.BEAT_3);
   
+  masterTL.to(unlockSection, {
+    backgroundColor: HERO_COLORS[5], // #3F3735
+    duration: 0.13
+  }, CONFIG.BEAT_3 + 0.12);
+  
   masterTL.to(envVignette, {
-    opacity: 0.5,
+    opacity: 0.3,
     duration: 0.25
   }, CONFIG.BEAT_3);
   
@@ -203,14 +243,20 @@ function initHeroUnlock() {
     }, CONFIG.BEAT_3 + (i * 0.005));
   });
   
-  // BEAT 4: Full Unlock - reaches #413D3A
+  // BEAT 4: Full Unlock - colors 6→7 (brightest)
   masterTL.to(unlockSection, {
-    backgroundColor: CONFIG.BG_UNLOCKED, // #453D3C
-    duration: 0.2
+    backgroundColor: HERO_COLORS[6], // #423A39
+    duration: 0.1
   }, CONFIG.BEAT_4);
   
+  masterTL.to(unlockSection, {
+    backgroundColor: HERO_COLORS[7], // #453D3C (brightest)
+    duration: 0.1
+  }, CONFIG.BEAT_4 + 0.1);
+  
+  // Fade vignette to 0 at unlock for clean edge
   masterTL.to(envVignette, {
-    opacity: 0.25,
+    opacity: 0,
     duration: 0.2
   }, CONFIG.BEAT_4);
   
@@ -294,11 +340,38 @@ function initHeroUnlock() {
     y: 0,
     duration: 0.15
   }, CONFIG.BEAT_5 + 0.05);
+}
+
+/* ========================================
+   Post-Hero Gradient Animation
+   GSAP animates background-color through stops
+======================================== */
+function initPostHeroGradient() {
+  const postHero = document.querySelector('.post-hero-gradient');
   
-  masterTL.to(envVignette, {
-    opacity: 0.15,
-    duration: 0.15
-  }, CONFIG.BEAT_5);
+  // Create timeline for post-hero color animation
+  const postHeroTL = gsap.timeline({
+    scrollTrigger: {
+      trigger: postHero,
+      start: 'top top',
+      end: 'bottom bottom',
+      scrub: 1
+    }
+  });
+  
+  // Animate through each color stop
+  // First two are holds at brightest
+  const totalStops = POST_HERO_COLORS.length;
+  const durationPerStop = 1 / (totalStops - 1);
+  
+  POST_HERO_COLORS.forEach((color, i) => {
+    if (i === 0) return; // Skip first, it's the starting state
+    postHeroTL.to(postHero, {
+      backgroundColor: color,
+      duration: durationPerStop,
+      ease: 'none'
+    });
+  });
 }
 
 function initContentAnimations() {
