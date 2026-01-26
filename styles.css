@@ -291,11 +291,24 @@ body {
 @keyframes bounce { 0%, 100% { transform: rotate(45deg) translateY(0); opacity: 0.5; } 50% { transform: rotate(45deg) translateY(6px); opacity: 1; } }
 
 /* ========================================
-   Post-Hero Wrapper
-   Solid color animated by GSAP
+   Post-Hero Gradient Wrapper
+   CSS gradient: holds light then gradually darkens
 ======================================== */
 .post-hero-gradient {
-  background-color: #453D3C;
+  background: linear-gradient(
+    180deg,
+    #453D3C 0%,
+    #453D3C 5%,
+    #433B3A 12%,
+    #403837 20%,
+    #3D3534 30%,
+    #3A3231 42%,
+    #372F2E 55%,
+    #332C2B 68%,
+    #2F2928 80%,
+    #2C2625 90%,
+    #2A2423 100%
+  );
 }
 
 /* ========================================

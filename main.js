@@ -1,9 +1,9 @@
 /* ========================================
-   I32 - GSAP Solid Color Animation
+   I33 - Hero GSAP + Post-hero CSS Gradient
    
-   Hero: #2A2423 → #453D3C (8 stops)
-   Post-hero: #453D3C hold → #2A2423 (11 stops)
-   No CSS gradients - all GSAP interpolated
+   Hero: GSAP animates #2A2423 → #453D3C
+   Post-hero: CSS gradient handles darkening
+   Vignette fades to 0 at unlock for clean seam
 ======================================== */
 
 const HERO_COLORS = [
@@ -15,20 +15,6 @@ const HERO_COLORS = [
   '#3F3735',
   '#423A39',
   '#453D3C'  // end (unlocked/brightest)
-];
-
-const POST_HERO_COLORS = [
-  '#453D3C', // hold
-  '#453D3C', // hold longer
-  '#433B3A',
-  '#403837',
-  '#3D3534',
-  '#3A3231',
-  '#372F2E',
-  '#332C2B',
-  '#2F2928',
-  '#2C2625',
-  '#2A2423'  // end (matches nav)
 ];
 
 const CONFIG = {
@@ -51,7 +37,6 @@ gsap.registerPlugin(ScrollTrigger);
 
 document.addEventListener('DOMContentLoaded', () => {
   initHeroUnlock();
-  initPostHeroGradient();
   initContentAnimations();
 });
 
@@ -340,38 +325,6 @@ function initHeroUnlock() {
     y: 0,
     duration: 0.15
   }, CONFIG.BEAT_5 + 0.05);
-}
-
-/* ========================================
-   Post-Hero Gradient Animation
-   GSAP animates background-color through stops
-======================================== */
-function initPostHeroGradient() {
-  const postHero = document.querySelector('.post-hero-gradient');
-  
-  // Create timeline for post-hero color animation
-  const postHeroTL = gsap.timeline({
-    scrollTrigger: {
-      trigger: postHero,
-      start: 'top top',
-      end: 'bottom bottom',
-      scrub: 1
-    }
-  });
-  
-  // Animate through each color stop
-  // First two are holds at brightest
-  const totalStops = POST_HERO_COLORS.length;
-  const durationPerStop = 1 / (totalStops - 1);
-  
-  POST_HERO_COLORS.forEach((color, i) => {
-    if (i === 0) return; // Skip first, it's the starting state
-    postHeroTL.to(postHero, {
-      backgroundColor: color,
-      duration: durationPerStop,
-      ease: 'none'
-    });
-  });
 }
 
 function initContentAnimations() {
