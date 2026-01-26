@@ -1,28 +1,20 @@
 /* ========================================
-   CSS Variables & Reset
+   I28 - Seamless Page Gradient
    
-   GRADIENT NARRATIVE:
-   - Top (locked): #2A2423 (darkest)
-   - Unlock moment: #453D3C (brightest)
-   - Content: #3A3231 → #2F2928 (darkening)
-   - Bottom: #2A2423 (return to dark)
+   Single fixed gradient layer behind everything.
+   No section backgrounds - all transparent.
+   Gradient position animated by scroll.
 ======================================== */
 :root {
-  /* Gradient narrative colors */
+  /* Gradient colors */
   --color-locked: #2A2423;
   --color-unlocked: #453D3C;
-  --color-interior-1: #3E3635;
-  --color-interior-2: #3A3231;
-  --color-interior-3: #342E2D;
-  --color-interior-4: #2F2928;
   --color-deep: #2A2423;
   
-  /* Accent colors */
+  /* Accent */
   --gold: #c9a227;
   --gold-light: #e8d48b;
-  --gold-warm: #d4a845;
   --champagne: #d4c4a8;
-  --gold-glow: rgba(201, 162, 39, 0.4);
   --text-primary: #ffffff;
   --text-secondary: rgba(255, 255, 255, 0.7);
   --text-muted: rgba(255, 255, 255, 0.4);
@@ -35,12 +27,10 @@
   --glass-border-gold: rgba(212, 196, 168, 0.2);
   
   /* Typography */
-  --font-main: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-mono: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace;
+  --font-main: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
   
-  /* Transitions */
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
-  --ease-dramatic: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 * {
@@ -49,20 +39,59 @@
   box-sizing: border-box;
 }
 
-html {
-  scroll-behavior: auto;
-}
-
 body {
   font-family: var(--font-main);
-  background: var(--color-locked);
   color: var(--text-primary);
   line-height: 1.6;
   overflow-x: hidden;
+  background: var(--color-locked);
 }
 
 /* ========================================
-   Navigation - Always anchored to darkest
+   SEAMLESS PAGE GRADIENT
+   Fixed behind everything, animated by JS
+======================================== */
+.page-gradient {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+  
+  /* 
+   Gradient narrative (vertical):
+   - 0%: Dark/locked #2A2423
+   - 15%: Transitioning
+   - 25%: Brightest/unlocked #453D3C
+   - 40%: Starting to darken
+   - 100%: Dark again #2A2423
+   
+   We make it 300% tall and shift it via background-position
+  */
+  background: linear-gradient(
+    180deg,
+    #2A2423 0%,
+    #2A2423 5%,
+    #322B2A 12%,
+    #3A3332 18%,
+    #453D3C 25%,
+    #453D3C 30%,
+    #403937 38%,
+    #3A3433 48%,
+    #353030 58%,
+    #302B2A 70%,
+    #2C2726 82%,
+    #2A2423 92%,
+    #2A2423 100%
+  );
+  background-size: 100% 300%;
+  background-position: 0% 0%;
+}
+
+/* ========================================
+   Navigation
 ======================================== */
 .nav {
   position: fixed;
@@ -78,14 +107,12 @@ body {
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--glass-border-gold);
-  transition: background 0.3s ease;
 }
 
 .nav-logo {
   font-size: 1.5rem;
   font-weight: 600;
   letter-spacing: -0.03em;
-  color: var(--text-primary);
 }
 
 .nav-links {
@@ -123,16 +150,13 @@ body {
 }
 
 /* ========================================
-   Frosted Buttons
+   Buttons
 ======================================== */
 .btn-primary {
-  position: relative;
   display: inline-flex;
   align-items: center;
-  gap: 0.75rem;
   background: var(--glass-bg-button);
   backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
   color: var(--text-primary);
   text-decoration: none;
   font-size: 0.95rem;
@@ -148,13 +172,10 @@ body {
 }
 
 .btn-secondary {
-  position: relative;
   display: inline-flex;
   align-items: center;
-  gap: 0.75rem;
   background: var(--glass-bg-button);
   backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
   color: var(--text-primary);
   text-decoration: none;
   font-size: 0.95rem;
@@ -169,17 +190,13 @@ body {
   background: var(--glass-bg-strong);
 }
 
-/* ========================================
-   CTA Button with Lock Icon
-======================================== */
+/* CTA with lock icon */
 .btn-cta {
-  position: relative;
   display: inline-flex;
   align-items: center;
   gap: 1rem;
   background: var(--glass-bg-button);
   backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
   color: var(--text-primary);
   text-decoration: none;
   font-size: 1rem;
@@ -188,16 +205,10 @@ body {
   border-radius: 10px;
   border: 1px solid var(--glass-border-gold);
   transition: all 0.3s var(--ease-out);
-  overflow: hidden;
 }
 
 .btn-cta:hover {
   background: var(--glass-bg-strong);
-}
-
-.btn-cta-text {
-  position: relative;
-  z-index: 2;
 }
 
 .btn-cta-icon {
@@ -210,7 +221,6 @@ body {
   align-items: center;
   justify-content: center;
   transition: all 0.3s var(--ease-out);
-  overflow: hidden;
 }
 
 .btn-cta:hover .btn-cta-icon {
@@ -228,31 +238,16 @@ body {
   width: 100%;
   height: 100%;
   fill: currentColor;
-  color: var(--text-primary);
 }
 
-.lock-closed {
-  opacity: 1;
-  transform: translateY(0);
-}
+.lock-closed { opacity: 1; transform: translateY(0); }
+.lock-open { opacity: 0; transform: translateY(10px); }
 
-.lock-open {
-  opacity: 0;
-  transform: translateY(10px);
-}
-
-.btn-cta:hover .lock-closed {
-  opacity: 0;
-  transform: translateY(-10px);
-}
-
-.btn-cta:hover .lock-open {
-  opacity: 1;
-  transform: translateY(0);
-}
+.btn-cta:hover .lock-closed { opacity: 0; transform: translateY(-10px); }
+.btn-cta:hover .lock-open { opacity: 1; transform: translateY(0); }
 
 /* ========================================
-   Unlock Section - Starts dark, brightens
+   Unlock Section - Transparent background
 ======================================== */
 .unlock-section {
   position: relative;
@@ -262,8 +257,7 @@ body {
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  background: var(--color-locked);
-  /* Will be animated by GSAP to var(--color-unlocked) */
+  background: transparent;
 }
 
 .unlock-container {
@@ -275,9 +269,7 @@ body {
   justify-content: center;
 }
 
-/* ========================================
-   Environment Layers
-======================================== */
+/* Environment */
 .env-vignette {
   position: absolute;
   top: 0;
@@ -288,7 +280,7 @@ body {
     ellipse 70% 70% at 50% 50%,
     transparent 0%,
     transparent 40%,
-    rgba(42, 36, 35, 0.6) 100%
+    rgba(42, 36, 35, 0.5) 100%
   );
   pointer-events: none;
   z-index: 5;
@@ -313,9 +305,7 @@ body {
   z-index: 1;
 }
 
-/* ========================================
-   Data Environment
-======================================== */
+/* Data fragments */
 .data-environment {
   position: absolute;
   top: 0;
@@ -332,7 +322,6 @@ body {
   font-family: var(--font-mono);
   white-space: nowrap;
   opacity: 0;
-  transition: none;
 }
 
 .data-fragment[data-depth="far"] {
@@ -353,31 +342,17 @@ body {
   color: rgba(201, 162, 39, 0.7);
 }
 
-/* Fragment types */
-.frag-amount, .frag-amount-lg, .frag-amount-xl {
-  font-weight: 600;
-  letter-spacing: -0.02em;
-}
-
+.frag-amount, .frag-amount-lg, .frag-amount-xl { font-weight: 600; letter-spacing: -0.02em; }
 .data-fragment[data-depth="near"].frag-amount-xl { font-size: 1.5rem; }
 .data-fragment[data-depth="near"].frag-amount-lg { font-size: 1.25rem; }
 
-.frag-court, .frag-court-lg {
-  font-weight: 500;
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
-}
-
+.frag-court, .frag-court-lg { font-weight: 500; letter-spacing: 0.02em; text-transform: uppercase; }
 .data-fragment[data-depth="far"].frag-court { color: rgba(255, 255, 255, 0.2); }
 .data-fragment[data-depth="mid"].frag-court { color: rgba(255, 255, 255, 0.35); }
 .data-fragment[data-depth="near"].frag-court { color: rgba(255, 255, 255, 0.5); }
 .data-fragment[data-depth="near"].frag-court-lg { font-size: 1rem; color: rgba(255, 255, 255, 0.55); }
 
-.frag-case {
-  font-weight: 400;
-  font-style: italic;
-}
-
+.frag-case { font-weight: 400; font-style: italic; }
 .data-fragment[data-depth="far"].frag-case { color: rgba(255, 255, 255, 0.15); }
 .data-fragment[data-depth="mid"].frag-case { color: rgba(255, 255, 255, 0.3); }
 .data-fragment[data-depth="near"].frag-case { color: rgba(255, 255, 255, 0.45); font-size: 1rem; }
@@ -400,7 +375,6 @@ body {
   background: rgba(201, 162, 39, 0.1);
   border-radius: 3px;
 }
-
 .data-fragment[data-depth="far"].frag-status { font-size: 0.55rem; background: rgba(201, 162, 39, 0.05); }
 .data-fragment[data-depth="mid"].frag-status { font-size: 0.7rem; background: rgba(201, 162, 39, 0.08); }
 .data-fragment[data-depth="near"].frag-status { font-size: 0.8rem; background: rgba(201, 162, 39, 0.12); }
@@ -426,7 +400,6 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  transform-origin: center center;
   filter: brightness(0.4) saturate(0.3);
 }
 
@@ -443,7 +416,6 @@ body {
     inset 0 -4px 8px rgba(0, 0, 0, 0.6),
     0 8px 32px rgba(0, 0, 0, 0.9);
   border: 1px solid rgba(60, 52, 48, 0.2);
-  position: relative;
 }
 
 .key-bow-inner {
@@ -471,7 +443,6 @@ body {
   border-radius: 0 0 10px 10px;
   top: 24px;
 }
-
 .scale-left { left: 8px; }
 .scale-right { right: 8px; }
 
@@ -493,8 +464,7 @@ body {
   border-radius: 2px;
   box-shadow: 
     inset 2px 0 4px rgba(255, 255, 255, 0.01),
-    inset -2px 0 4px rgba(0, 0, 0, 0.4),
-    3px 0 10px rgba(0, 0, 0, 0.5);
+    inset -2px 0 4px rgba(0, 0, 0, 0.4);
 }
 
 .key-bit {
@@ -503,10 +473,6 @@ body {
   background: linear-gradient(90deg, #1a1815 0%, #2a2520 20%, #3a332c 50%, #2a2520 80%, #1a1815 100%);
   border-radius: 0 0 4px 4px;
   position: relative;
-  box-shadow: 
-    inset 2px 0 4px rgba(255, 255, 255, 0.01),
-    inset -2px 0 4px rgba(0, 0, 0, 0.4),
-    0 4px 12px rgba(0, 0, 0, 0.6);
 }
 
 .key-bit-notch {
@@ -515,32 +481,29 @@ body {
   top: 8px;
   width: 12px;
   height: 12px;
-  background: var(--color-locked);
+  background: transparent;
   border-radius: 2px 0 0 2px;
 }
 
-.key-glow {
+.key-glow, .key-glow-outer {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  pointer-events: none;
+  opacity: 0;
+}
+
+.key-glow {
   width: 280px;
   height: 280px;
   background: radial-gradient(circle, rgba(201, 162, 39, 0.5) 0%, rgba(201, 162, 39, 0.2) 30%, transparent 60%);
-  opacity: 0;
-  pointer-events: none;
 }
 
 .key-glow-outer {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   width: 450px;
   height: 450px;
   background: radial-gradient(circle, rgba(201, 162, 39, 0.15) 0%, rgba(201, 162, 39, 0.05) 40%, transparent 70%);
-  opacity: 0;
-  pointer-events: none;
 }
 
 .key-shadow {
@@ -555,9 +518,7 @@ body {
   filter: blur(8px);
 }
 
-/* ========================================
-   Unlock Text
-======================================== */
+/* Unlock text */
 .unlock-text {
   position: absolute;
   bottom: 12%;
@@ -594,9 +555,7 @@ body {
   justify-content: center;
 }
 
-/* ========================================
-   Scroll Indicator
-======================================== */
+/* Scroll indicator */
 .scroll-indicator {
   position: absolute;
   bottom: 3.5rem;
@@ -615,7 +574,6 @@ body {
   color: var(--text-muted);
   text-transform: uppercase;
   letter-spacing: 0.15em;
-  font-weight: 500;
 }
 
 .scroll-arrow {
@@ -628,42 +586,16 @@ body {
 }
 
 @keyframes bounce {
-  0%, 100% {
-    transform: rotate(45deg) translateY(0);
-    opacity: 0.5;
-  }
-  50% {
-    transform: rotate(45deg) translateY(6px);
-    opacity: 1;
-  }
+  0%, 100% { transform: rotate(45deg) translateY(0); opacity: 0.5; }
+  50% { transform: rotate(45deg) translateY(6px); opacity: 1; }
 }
 
 /* ========================================
-   Content Sections - Gradient continues
-   
-   Narrative: After unlock (brightest), slowly
-   darken as user goes deeper "inside"
+   Content Sections - ALL TRANSPARENT
 ======================================== */
 .content-section {
   padding: 8rem 3rem;
   background: transparent;
-}
-
-/* Progressive darkening through content */
-.section-law-firms {
-  background: var(--color-interior-1); /* #3E3635 */
-}
-
-.section-funders {
-  background: var(--color-interior-2); /* #3A3231 */
-}
-
-.section-how {
-  background: var(--color-interior-3); /* #342E2D */
-}
-
-.section-cta {
-  background: var(--color-interior-4); /* #2F2928 */
 }
 
 .section-inner {
@@ -685,9 +617,7 @@ body {
   max-width: 600px;
 }
 
-/* ========================================
-   Frosted Cards
-======================================== */
+/* Cards */
 .card-row {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -695,10 +625,8 @@ body {
 }
 
 .card {
-  position: relative;
   background: var(--glass-bg);
   backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
   border: none;
   border-radius: 16px;
   padding: 2rem;
@@ -742,7 +670,6 @@ body {
   height: 56px;
   background: var(--glass-bg);
   backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
   border: none;
   border-radius: 50%;
   display: flex;
@@ -771,22 +698,13 @@ body {
   padding: 10rem 3rem;
 }
 
-.cta-inner h2 {
-  margin-bottom: 1rem;
-}
+.cta-inner h2 { margin-bottom: 1rem; }
+.cta-inner p { margin-bottom: 2.5rem; margin-left: auto; margin-right: auto; }
 
-.cta-inner p {
-  margin-bottom: 2.5rem;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-/* ========================================
-   Footer - Returns to darkest
-======================================== */
+/* Footer - transparent */
 .footer {
   padding: 3rem;
-  background: var(--color-deep); /* #2A2423 */
+  background: transparent;
   border-top: 1px solid var(--glass-border);
 }
 
@@ -798,10 +716,7 @@ body {
   justify-content: space-between;
 }
 
-.footer-logo {
-  font-size: 1.25rem;
-  font-weight: 600;
-}
+.footer-logo { font-size: 1.25rem; font-weight: 600; }
 
 .footer-links {
   display: flex;
@@ -815,9 +730,7 @@ body {
   transition: color 0.2s ease;
 }
 
-.footer-links a:hover {
-  color: var(--text-primary);
-}
+.footer-links a:hover { color: var(--text-primary); }
 
 .footer-legal {
   color: var(--text-muted);
@@ -828,46 +741,14 @@ body {
    Responsive
 ======================================== */
 @media (max-width: 768px) {
-  .nav {
-    padding: 1rem 1.5rem;
-  }
-  
-  .nav-links {
-    display: none;
-  }
-  
-  .unlock-headline {
-    font-size: 2.25rem;
-  }
-  
-  .unlock-subhead {
-    font-size: 1rem;
-    padding: 0 1rem;
-  }
-  
-  .content-section {
-    padding: 5rem 1.5rem;
-  }
-  
-  .content-section h2 {
-    font-size: 2rem;
-  }
-  
-  .card-row {
-    grid-template-columns: 1fr;
-  }
-  
-  .steps {
-    grid-template-columns: 1fr;
-  }
-  
-  .footer-inner {
-    flex-direction: column;
-    gap: 1.5rem;
-    text-align: center;
-  }
-  
-  .data-fragment[data-depth="far"] {
-    display: none;
-  }
+  .nav { padding: 1rem 1.5rem; }
+  .nav-links { display: none; }
+  .unlock-headline { font-size: 2.25rem; }
+  .unlock-subhead { font-size: 1rem; padding: 0 1rem; }
+  .content-section { padding: 5rem 1.5rem; }
+  .content-section h2 { font-size: 2rem; }
+  .card-row { grid-template-columns: 1fr; }
+  .steps { grid-template-columns: 1fr; }
+  .footer-inner { flex-direction: column; gap: 1.5rem; text-align: center; }
+  .data-fragment[data-depth="far"] { display: none; }
 }

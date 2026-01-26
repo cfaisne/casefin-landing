@@ -10,7 +10,10 @@
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <!-- Navigation - anchored to darkest color -->
+  <!-- Fixed gradient background - seamless across entire page -->
+  <div class="page-gradient"></div>
+  
+  <!-- Navigation -->
   <nav class="nav">
     <div class="nav-logo">CaseFin</div>
     <div class="nav-links">
@@ -24,16 +27,12 @@
     </div>
   </nav>
 
-  <!-- Hero / Unlock Section - transitions from dark to light -->
+  <!-- Hero / Unlock Section -->
   <section class="unlock-section">
-    
-    <!-- Environment Layers -->
     <div class="env-ambient"></div>
     <div class="env-vignette"></div>
     
     <div class="unlock-container">
-      
-      <!-- Data Fragment Cloud -->
       <div class="data-environment">
         <!-- FAR LAYER -->
         <div class="data-fragment frag-amount" data-depth="far" style="top:3%;left:2%">$4.2M</div>
@@ -178,7 +177,7 @@
         <div class="key-shadow"></div>
       </div>
       
-      <!-- Text that appears on unlock -->
+      <!-- Unlock text -->
       <div class="unlock-text">
         <h1 class="unlock-headline">Access changes everything</h1>
         <p class="unlock-subhead">From private preparation to structured evaluation, cases move forward with clarity, control, and intent on both sides.</p>
@@ -205,17 +204,15 @@
           <a href="#" class="btn-secondary">Log In</a>
         </div>
       </div>
-      
     </div>
     
-    <!-- Scroll indicator -->
     <div class="scroll-indicator">
       <span>Scroll to unlock</span>
       <div class="scroll-arrow"></div>
     </div>
   </section>
 
-  <!-- Content sections - gradient continues darkening -->
+  <!-- Content sections - all transparent, gradient shows through -->
   <section class="content-section section-law-firms">
     <div class="section-inner">
       <h2>For Law Firms</h2>
@@ -304,7 +301,6 @@
     </div>
   </section>
 
-  <!-- Footer - returns to darkest -->
   <footer class="footer">
     <div class="footer-inner">
       <div class="footer-logo">CaseFin</div>
@@ -319,7 +315,6 @@
     </div>
   </footer>
 
-  <!-- GSAP -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="main.js"></script>

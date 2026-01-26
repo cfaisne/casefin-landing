@@ -1,27 +1,14 @@
 /* ========================================
-   CaseFin - Iteration 27
-   Gradient Narrative: locked → unlocked → interior
+   I28 - Seamless Gradient + Unlock Animation
    
-   Background transitions:
-   - Start: #2A2423 (darkest/locked)
-   - Unlock peak: #453D3C (brightest)
-   - Then content sections handle darkening
+   Two scroll-driven animations:
+   1. Hero unlock (pinned) - key, fragments, text
+   2. Page gradient - seamless across entire page
 ======================================== */
 
 const CONFIG = {
   SCROLL_DURATION: '+=350%',
   SCRUB_SMOOTHNESS: 1.2,
-  
-  // Background colors for narrative
-  BG_LOCKED: '#2A2423',
-  BG_UNLOCKED: '#453D3C',
-  
-  VIGNETTE_LOCKED: 0.9,      
-  VIGNETTE_UNLOCKED: 0.15,    
-  KEY_BRIGHTNESS_LOCKED: 0.35,
-  KEY_BRIGHTNESS_UNLOCKED: 1.15,
-  KEY_SATURATION_LOCKED: 0.2,
-  KEY_SATURATION_UNLOCKED: 1.25,
   GLOW_INNER_MAX: 0.8,
   GLOW_OUTER_MAX: 0.5,
   AMBIENT_MAX: 0.45,
@@ -33,24 +20,46 @@ const CONFIG = {
   BEAT_3: 0.4,
   BEAT_4: 0.65,
   BEAT_5: 0.85,
-  BEAT_END: 1
 };
 
 gsap.registerPlugin(ScrollTrigger);
 
 document.addEventListener('DOMContentLoaded', () => {
-  initCinematicUnlock();
+  initPageGradient();
+  initHeroUnlock();
+  initContentAnimations();
 });
 
-function initCinematicUnlock() {
+/* ========================================
+   Page Gradient Animation
+   Animates background-position based on
+   total page scroll progress
+======================================== */
+function initPageGradient() {
+  const pageGradient = document.querySelector('.page-gradient');
   
+  // Animate gradient across the full page scroll
+  gsap.to(pageGradient, {
+    backgroundPosition: '0% 100%',
+    ease: 'none',
+    scrollTrigger: {
+      trigger: document.body,
+      start: 'top top',
+      end: 'bottom bottom',
+      scrub: 0.5
+    }
+  });
+}
+
+/* ========================================
+   Hero Unlock Animation
+======================================== */
+function initHeroUnlock() {
   const unlockSection = document.querySelector('.unlock-section');
   const scrollIndicator = document.querySelector('.scroll-indicator');
   const unlockText = document.querySelector('.unlock-text');
-  
   const envVignette = document.querySelector('.env-vignette');
   const envAmbient = document.querySelector('.env-ambient');
-  
   const keyContainer = document.querySelector('.key-container');
   const key = document.querySelector('.key');
   const keyBow = document.querySelector('.key-bow');
@@ -86,41 +95,23 @@ function initCinematicUnlock() {
     }
   });
   
-  // ========================================
-  // BEAT 1: Clean Start (0% - 15%)
-  // Dark, locked state
-  // ========================================
-  
+  // BEAT 1: Clean Start
   masterTL.to(scrollIndicator, {
     opacity: 0,
     y: 10,
-    duration: 0.1,
-    ease: 'power2.out'
+    duration: 0.1
   }, CONFIG.BEAT_1);
   
   masterTL.to(key, {
-    filter: `brightness(${CONFIG.KEY_BRIGHTNESS_LOCKED + 0.08}) saturate(${CONFIG.KEY_SATURATION_LOCKED + 0.08})`,
+    filter: 'brightness(0.43) saturate(0.28)',
     scale: 1.01,
-    duration: 0.15,
-    ease: 'power1.inOut'
+    duration: 0.15
   }, CONFIG.BEAT_1 + 0.05);
   
-  // ========================================
-  // BEAT 2: Awakening (15% - 40%)
-  // Background starts to lighten
-  // ========================================
-  
-  // Background begins transition toward lighter
-  masterTL.to(unlockSection, {
-    backgroundColor: '#322B2A',
-    duration: 0.25,
-    ease: 'power2.out'
-  }, CONFIG.BEAT_2);
-  
+  // BEAT 2: Awakening
   masterTL.to(envVignette, {
     opacity: 0.75,
-    duration: 0.25,
-    ease: 'power2.out'
+    duration: 0.25
   }, CONFIG.BEAT_2);
   
   masterTL.to(envAmbient, {
@@ -129,20 +120,14 @@ function initCinematicUnlock() {
   }, CONFIG.BEAT_2);
   
   masterTL.to(key, {
-    filter: `brightness(0.5) saturate(0.4)`,
+    filter: 'brightness(0.5) saturate(0.4)',
     scale: 1.03,
-    duration: 0.25,
-    ease: 'power2.out'
+    duration: 0.25
   }, CONFIG.BEAT_2);
   
   masterTL.to(keyBow, {
     background: 'linear-gradient(155deg, #4a4035 0%, #3a332c 40%, #2a2520 70%, #1a1815 100%)',
-    boxShadow: `
-      inset 0 3px 6px rgba(255, 255, 255, 0.04),
-      inset 0 -4px 8px rgba(0, 0, 0, 0.5),
-      0 8px 35px rgba(0, 0, 0, 0.6),
-      0 0 20px rgba(201, 162, 39, 0.08)
-    `,
+    boxShadow: `inset 0 3px 6px rgba(255,255,255,0.04), inset 0 -4px 8px rgba(0,0,0,0.5), 0 8px 35px rgba(0,0,0,0.6), 0 0 20px rgba(201,162,39,0.08)`,
     duration: 0.25
   }, CONFIG.BEAT_2);
   
@@ -159,22 +144,10 @@ function initCinematicUnlock() {
     }, CONFIG.BEAT_2 + (i * 0.004));
   });
   
-  // ========================================
-  // BEAT 3: Building (40% - 65%)
-  // Background continues lightening, key transforms
-  // ========================================
-  
-  // Background continues toward unlock brightness
-  masterTL.to(unlockSection, {
-    backgroundColor: '#3A3332',
-    duration: 0.25,
-    ease: 'power2.out'
-  }, CONFIG.BEAT_3);
-  
+  // BEAT 3: Building
   masterTL.to(envVignette, {
     opacity: 0.5,
-    duration: 0.25,
-    ease: 'power2.out'
+    duration: 0.25
   }, CONFIG.BEAT_3);
   
   masterTL.to(envAmbient, {
@@ -183,22 +156,16 @@ function initCinematicUnlock() {
   }, CONFIG.BEAT_3);
   
   masterTL.to(key, {
-    filter: `brightness(0.75) saturate(0.8)`,
+    filter: 'brightness(0.75) saturate(0.8)',
     scale: 1.06,
     rotateY: 3,
     rotateZ: 1,
-    duration: 0.25,
-    ease: 'power2.out'
+    duration: 0.25
   }, CONFIG.BEAT_3);
   
   masterTL.to(keyBow, {
     background: 'linear-gradient(155deg, #a08030 0%, #8a6a25 40%, #6a5018 70%, #4a3a12 100%)',
-    boxShadow: `
-      inset 0 4px 10px rgba(255, 255, 255, 0.12),
-      inset 0 -4px 8px rgba(0, 0, 0, 0.3),
-      0 8px 45px rgba(0, 0, 0, 0.4),
-      0 0 40px rgba(201, 162, 39, 0.25)
-    `,
+    boxShadow: `inset 0 4px 10px rgba(255,255,255,0.12), inset 0 -4px 8px rgba(0,0,0,0.3), 0 8px 45px rgba(0,0,0,0.4), 0 0 40px rgba(201,162,39,0.25)`,
     borderColor: 'rgba(201, 162, 39, 0.25)',
     duration: 0.25
   }, CONFIG.BEAT_3);
@@ -250,22 +217,10 @@ function initCinematicUnlock() {
     }, CONFIG.BEAT_3 + (i * 0.005));
   });
   
-  // ========================================
-  // BEAT 4: Full Unlock (65% - 85%)
-  // Background reaches brightest, full transformation
-  // ========================================
-  
-  // Background reaches peak brightness - the unlock moment
-  masterTL.to(unlockSection, {
-    backgroundColor: CONFIG.BG_UNLOCKED, // #453D3C
-    duration: 0.2,
-    ease: 'power2.out'
-  }, CONFIG.BEAT_4);
-  
+  // BEAT 4: Full Transformation
   masterTL.to(envVignette, {
-    opacity: CONFIG.VIGNETTE_UNLOCKED + 0.1,
-    duration: 0.2,
-    ease: 'power2.out'
+    opacity: 0.25,
+    duration: 0.2
   }, CONFIG.BEAT_4);
   
   masterTL.to(envAmbient, {
@@ -274,44 +229,29 @@ function initCinematicUnlock() {
   }, CONFIG.BEAT_4);
   
   masterTL.to(key, {
-    filter: `brightness(${CONFIG.KEY_BRIGHTNESS_UNLOCKED}) saturate(${CONFIG.KEY_SATURATION_UNLOCKED})`,
+    filter: 'brightness(1.15) saturate(1.25)',
     scale: 1.1,
     rotateY: 0,
     rotateZ: 0,
-    duration: 0.2,
-    ease: 'power2.out'
+    duration: 0.2
   }, CONFIG.BEAT_4);
   
   masterTL.to(keyBow, {
     background: 'linear-gradient(155deg, #e8d48b 0%, #c9a227 35%, #a08020 65%, #806818 100%)',
-    boxShadow: `
-      inset 0 4px 12px rgba(255, 255, 255, 0.28),
-      inset 0 -4px 8px rgba(0, 0, 0, 0.15),
-      0 0 70px rgba(201, 162, 39, 0.45),
-      0 0 100px rgba(201, 162, 39, 0.2),
-      0 8px 50px rgba(0, 0, 0, 0.25)
-    `,
+    boxShadow: `inset 0 4px 12px rgba(255,255,255,0.28), inset 0 -4px 8px rgba(0,0,0,0.15), 0 0 70px rgba(201,162,39,0.45), 0 0 100px rgba(201,162,39,0.2), 0 8px 50px rgba(0,0,0,0.25)`,
     borderColor: 'rgba(232, 212, 139, 0.4)',
     duration: 0.2
   }, CONFIG.BEAT_4);
   
   masterTL.to(keyShaft, {
     background: 'linear-gradient(90deg, #a08020 0%, #c9a227 25%, #e8d48b 50%, #c9a227 75%, #a08020 100%)',
-    boxShadow: `
-      inset 4px 0 8px rgba(255, 255, 255, 0.12),
-      inset -4px 0 8px rgba(0, 0, 0, 0.18),
-      5px 0 18px rgba(0, 0, 0, 0.25)
-    `,
+    boxShadow: `inset 4px 0 8px rgba(255,255,255,0.12), inset -4px 0 8px rgba(0,0,0,0.18), 5px 0 18px rgba(0,0,0,0.25)`,
     duration: 0.2
   }, CONFIG.BEAT_4);
   
   masterTL.to(keyBit, {
     background: 'linear-gradient(90deg, #a08020 0%, #c9a227 25%, #e8d48b 50%, #c9a227 75%, #a08020 100%)',
-    boxShadow: `
-      inset 4px 0 8px rgba(255, 255, 255, 0.12),
-      inset -4px 0 8px rgba(0, 0, 0, 0.18),
-      0 6px 20px rgba(0, 0, 0, 0.35)
-    `,
+    boxShadow: `inset 4px 0 8px rgba(255,255,255,0.12), inset -4px 0 8px rgba(0,0,0,0.18), 0 6px 20px rgba(0,0,0,0.35)`,
     duration: 0.2
   }, CONFIG.BEAT_4);
   
@@ -352,33 +292,28 @@ function initCinematicUnlock() {
     }, CONFIG.BEAT_4 + (i * 0.006));
   });
   
-  // ========================================
-  // BEAT 5: Unlocked Complete (85% - 100%)
-  // Text appears, ready to enter
-  // ========================================
-  
+  // BEAT 5: Text Appears
   masterTL.to(keyContainer, {
     y: -50,
-    duration: 0.15,
-    ease: 'power2.out'
+    duration: 0.15
   }, CONFIG.BEAT_5);
   
   masterTL.to(unlockText, {
     opacity: 1,
     y: 0,
-    duration: 0.15,
-    ease: 'power2.out'
+    duration: 0.15
   }, CONFIG.BEAT_5 + 0.05);
   
   masterTL.to(envVignette, {
-    opacity: CONFIG.VIGNETTE_UNLOCKED,
+    opacity: 0.15,
     duration: 0.15
   }, CONFIG.BEAT_5);
-  
-  // ========================================
-  // Post-Unlock Content Animations
-  // ========================================
-  
+}
+
+/* ========================================
+   Content Animations
+======================================== */
+function initContentAnimations() {
   const contentSections = document.querySelectorAll('.content-section');
   
   contentSections.forEach((section) => {
@@ -398,44 +333,22 @@ function initCinematicUnlock() {
     
     if (heading) {
       gsap.set(heading, { opacity: 0, y: 30 });
-      sectionTL.to(heading, {
-        opacity: 1,
-        y: 0,
-        duration: 0.7,
-        ease: 'power2.out'
-      }, 0);
+      sectionTL.to(heading, { opacity: 1, y: 0, duration: 0.7 }, 0);
     }
     
     if (paragraph) {
       gsap.set(paragraph, { opacity: 0, y: 20 });
-      sectionTL.to(paragraph, {
-        opacity: 1,
-        y: 0,
-        duration: 0.7,
-        ease: 'power2.out'
-      }, 0.1);
+      sectionTL.to(paragraph, { opacity: 1, y: 0, duration: 0.7 }, 0.1);
     }
     
     if (cards.length) {
       gsap.set(cards, { opacity: 0, y: 40 });
-      sectionTL.to(cards, {
-        opacity: 1,
-        y: 0,
-        duration: 0.8,
-        stagger: 0.15,
-        ease: 'power2.out'
-      }, 0.2);
+      sectionTL.to(cards, { opacity: 1, y: 0, duration: 0.8, stagger: 0.15 }, 0.2);
     }
     
     if (steps.length) {
       gsap.set(steps, { opacity: 0, y: 40 });
-      sectionTL.to(steps, {
-        opacity: 1,
-        y: 0,
-        duration: 0.8,
-        stagger: 0.12,
-        ease: 'power2.out'
-      }, 0.2);
+      sectionTL.to(steps, { opacity: 1, y: 0, duration: 0.8, stagger: 0.12 }, 0.2);
     }
   });
 }
