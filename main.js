@@ -81,10 +81,9 @@ function initHeroUnlock() {
       trigger: unlockSection,
       start: 'top top',
       end: CONFIG.SCROLL_DURATION,
-      pin: '.pin-wrapper',
+      pin: true,
       scrub: CONFIG.SCRUB_SMOOTHNESS,
-      anticipatePin: 1,
-      invalidateOnRefresh: true
+      anticipatePin: 1
     }
   });
   
