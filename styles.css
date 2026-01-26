@@ -177,17 +177,12 @@ body {
 }
 
 .unlock-container {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
+  position: relative;
   width: 100%;
-  max-width: 800px;
-  padding: 0 2rem;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .env-vignette {
@@ -312,14 +307,16 @@ body {
    Hero Text Swap Container
 ======================================== */
 .hero-text-container {
-  position: relative;
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+  transform: translateX(-50%);
   width: 100%;
   max-width: 680px;
   text-align: center;
   z-index: 20;
-  margin-top: 2rem;
   /* Fixed height to prevent reflow during swap */
-  min-height: 220px;
+  min-height: 280px;
 }
 
 .hero-text {
@@ -604,11 +601,9 @@ body {
   .nav { padding: 1rem 1.5rem; }
   .nav-links { display: none; }
   
-  .unlock-container { padding: 0 1.5rem; }
-  
   .hero-headline { font-size: 2rem; }
   .hero-body { font-size: 1rem; }
-  .hero-text-container { min-height: 260px; }
+  .hero-text-container { padding: 0 1.5rem; min-height: 320px; }
   .hero-cta { flex-direction: column; align-items: center; }
   
   .content-section { padding: 5rem 1.5rem; }

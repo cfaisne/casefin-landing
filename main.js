@@ -83,8 +83,7 @@ function initHeroUnlock() {
       end: CONFIG.SCROLL_DURATION,
       pin: true,
       scrub: CONFIG.SCRUB_SMOOTHNESS,
-      anticipatePin: 1,
-      invalidateOnRefresh: true
+      anticipatePin: 1
     }
   });
   
