@@ -43,10 +43,18 @@ body {
   align-items: center;
   justify-content: space-between;
   padding: 1.25rem 3rem;
+  background: transparent;
+  backdrop-filter: blur(0px);
+  -webkit-backdrop-filter: blur(0px);
+  border-bottom: 1px solid transparent;
+  transition: background 0.4s ease, border-color 0.4s ease, backdrop-filter 0.4s ease;
+}
+
+.nav.scrolled {
   background: rgba(42, 36, 35, 0.95);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--glass-border-gold);
+  border-bottom-color: var(--glass-border-gold);
 }
 
 .nav-logo { font-size: 1.5rem; font-weight: 600; letter-spacing: -0.03em; }
@@ -351,13 +359,6 @@ body {
   letter-spacing: 0.01em;
 }
 
-.hero-differentiator {
-  font-size: 1rem;
-  color: var(--text-muted);
-  margin-top: 1.5rem;
-  font-style: italic;
-}
-
 .hero-cta {
   display: flex;
   gap: 1rem;
@@ -389,6 +390,23 @@ body {
     #2C2625 90%,
     #2A2423 100%
   );
+}
+
+/* ========================================
+   Bridge Section
+======================================== */
+.bridge-section {
+  padding: 5rem 3rem 4rem;
+  text-align: center;
+}
+
+.bridge-text {
+  max-width: 680px;
+  margin: 0 auto;
+  font-size: 1.25rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  font-weight: 400;
 }
 
 /* ========================================

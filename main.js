@@ -45,6 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
 ======================================== */
 function initHeroUnlock() {
   const unlockSection = document.querySelector('.unlock-section');
+  const nav = document.querySelector('.nav');
   const scrollIndicator = document.querySelector('.scroll-indicator');
   const heroTextLocked = document.querySelector('.hero-text-locked');
   const heroTextUnlocked = document.querySelector('.hero-text-unlocked');
@@ -256,6 +257,13 @@ function initHeroUnlock() {
     backgroundColor: HERO_COLORS[7],
     duration: 0.1
   }, CONFIG.BEAT_4 + 0.1);
+  
+  // Nav background appears at unlock
+  masterTL.to(nav, {
+    onStart: () => nav.classList.add('scrolled'),
+    onReverseComplete: () => nav.classList.remove('scrolled'),
+    duration: 0.01
+  }, CONFIG.BEAT_4);
   
   // Fade vignette to 0 for clean edge
   masterTL.to(envVignette, {
