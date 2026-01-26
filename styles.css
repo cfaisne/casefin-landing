@@ -291,26 +291,11 @@ body {
 @keyframes bounce { 0%, 100% { transform: rotate(45deg) translateY(0); opacity: 0.5; } 50% { transform: rotate(45deg) translateY(6px); opacity: 1; } }
 
 /* ========================================
-   Post-Hero Gradient Wrapper
-   Starts at #443C3B (just below hero peak)
-   Very gradually darkens back to #2A2423
+   Post-Hero Wrapper
+   Solid color #443C3B
 ======================================== */
 .post-hero-gradient {
-  background: linear-gradient(
-    180deg,
-    #443C3B 0%,
-    #443C3B 8%,
-    #423A39 15%,
-    #403837 22%,
-    #3D3534 30%,
-    #3A3231 38%,
-    #372F2E 47%,
-    #332C2B 56%,
-    #302928 65%,
-    #2D2625 74%,
-    #2A2423 85%,
-    #2A2423 100%
-  );
+  background: #443C3B;
 }
 
 /* ========================================
