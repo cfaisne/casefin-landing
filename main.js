@@ -1,11 +1,21 @@
 /* ========================================
-   CaseFin - Litigation Finance Data Cathedral
-   GSAP + ScrollTrigger
+   CaseFin - Iteration 27
+   Gradient Narrative: locked → unlocked → interior
+   
+   Background transitions:
+   - Start: #2A2423 (darkest/locked)
+   - Unlock peak: #453D3C (brightest)
+   - Then content sections handle darkening
 ======================================== */
 
 const CONFIG = {
   SCROLL_DURATION: '+=350%',
   SCRUB_SMOOTHNESS: 1.2,
+  
+  // Background colors for narrative
+  BG_LOCKED: '#2A2423',
+  BG_UNLOCKED: '#453D3C',
+  
   VIGNETTE_LOCKED: 0.9,      
   VIGNETTE_UNLOCKED: 0.15,    
   KEY_BRIGHTNESS_LOCKED: 0.35,
@@ -14,7 +24,7 @@ const CONFIG = {
   KEY_SATURATION_UNLOCKED: 1.25,
   GLOW_INNER_MAX: 0.8,
   GLOW_OUTER_MAX: 0.5,
-  AMBIENT_MAX: 0.4,
+  AMBIENT_MAX: 0.45,
   FRAG_OPACITY_FAR: 0.5,
   FRAG_OPACITY_MID: 0.7,
   FRAG_OPACITY_NEAR: 0.85,
@@ -30,25 +40,10 @@ gsap.registerPlugin(ScrollTrigger);
 
 document.addEventListener('DOMContentLoaded', () => {
   initCinematicUnlock();
-  initNavScroll();
 });
-
-// Nav background on scroll
-function initNavScroll() {
-  const nav = document.querySelector('.nav');
-  
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 50) {
-      nav.classList.add('scrolled');
-    } else {
-      nav.classList.remove('scrolled');
-    }
-  });
-}
 
 function initCinematicUnlock() {
   
-  const nav = document.querySelector('.nav');
   const unlockSection = document.querySelector('.unlock-section');
   const scrollIndicator = document.querySelector('.scroll-indicator');
   const unlockText = document.querySelector('.unlock-text');
@@ -72,7 +67,7 @@ function initCinematicUnlock() {
   const fragsNear = document.querySelectorAll('.data-fragment[data-depth="near"]');
   const allFrags = document.querySelectorAll('.data-fragment');
   
-  // Initial states - Nav is visible now
+  // Initial states
   gsap.set(unlockText, { opacity: 0, y: 40 });
   gsap.set(envAmbient, { opacity: 0 });
   gsap.set(keyGlow, { opacity: 0, scale: 0.8 });
@@ -91,7 +86,11 @@ function initCinematicUnlock() {
     }
   });
   
-  // BEAT 1: Clean Start
+  // ========================================
+  // BEAT 1: Clean Start (0% - 15%)
+  // Dark, locked state
+  // ========================================
+  
   masterTL.to(scrollIndicator, {
     opacity: 0,
     y: 10,
@@ -106,7 +105,18 @@ function initCinematicUnlock() {
     ease: 'power1.inOut'
   }, CONFIG.BEAT_1 + 0.05);
   
-  // BEAT 2: Data Emerges
+  // ========================================
+  // BEAT 2: Awakening (15% - 40%)
+  // Background starts to lighten
+  // ========================================
+  
+  // Background begins transition toward lighter
+  masterTL.to(unlockSection, {
+    backgroundColor: '#322B2A',
+    duration: 0.25,
+    ease: 'power2.out'
+  }, CONFIG.BEAT_2);
+  
   masterTL.to(envVignette, {
     opacity: 0.75,
     duration: 0.25,
@@ -114,7 +124,7 @@ function initCinematicUnlock() {
   }, CONFIG.BEAT_2);
   
   masterTL.to(envAmbient, {
-    opacity: CONFIG.AMBIENT_MAX * 0.15,
+    opacity: CONFIG.AMBIENT_MAX * 0.2,
     duration: 0.25
   }, CONFIG.BEAT_2);
   
@@ -126,11 +136,11 @@ function initCinematicUnlock() {
   }, CONFIG.BEAT_2);
   
   masterTL.to(keyBow, {
-    background: 'linear-gradient(155deg, #5a4a3a 0%, #4a3a30 40%, #3a302a 70%, #2a2520 100%)',
+    background: 'linear-gradient(155deg, #4a4035 0%, #3a332c 40%, #2a2520 70%, #1a1815 100%)',
     boxShadow: `
-      inset 0 3px 6px rgba(255, 255, 255, 0.05),
-      inset 0 -4px 8px rgba(0, 0, 0, 0.4),
-      0 8px 35px rgba(0, 0, 0, 0.5),
+      inset 0 3px 6px rgba(255, 255, 255, 0.04),
+      inset 0 -4px 8px rgba(0, 0, 0, 0.5),
+      0 8px 35px rgba(0, 0, 0, 0.6),
       0 0 20px rgba(201, 162, 39, 0.08)
     `,
     duration: 0.25
@@ -149,7 +159,18 @@ function initCinematicUnlock() {
     }, CONFIG.BEAT_2 + (i * 0.004));
   });
   
-  // BEAT 3: Building
+  // ========================================
+  // BEAT 3: Building (40% - 65%)
+  // Background continues lightening, key transforms
+  // ========================================
+  
+  // Background continues toward unlock brightness
+  masterTL.to(unlockSection, {
+    backgroundColor: '#3A3332',
+    duration: 0.25,
+    ease: 'power2.out'
+  }, CONFIG.BEAT_3);
+  
   masterTL.to(envVignette, {
     opacity: 0.5,
     duration: 0.25,
@@ -157,7 +178,7 @@ function initCinematicUnlock() {
   }, CONFIG.BEAT_3);
   
   masterTL.to(envAmbient, {
-    opacity: CONFIG.AMBIENT_MAX * 0.4,
+    opacity: CONFIG.AMBIENT_MAX * 0.5,
     duration: 0.25
   }, CONFIG.BEAT_3);
   
@@ -229,7 +250,18 @@ function initCinematicUnlock() {
     }, CONFIG.BEAT_3 + (i * 0.005));
   });
   
-  // BEAT 4: Full Transformation
+  // ========================================
+  // BEAT 4: Full Unlock (65% - 85%)
+  // Background reaches brightest, full transformation
+  // ========================================
+  
+  // Background reaches peak brightness - the unlock moment
+  masterTL.to(unlockSection, {
+    backgroundColor: CONFIG.BG_UNLOCKED, // #453D3C
+    duration: 0.2,
+    ease: 'power2.out'
+  }, CONFIG.BEAT_4);
+  
   masterTL.to(envVignette, {
     opacity: CONFIG.VIGNETTE_UNLOCKED + 0.1,
     duration: 0.2,
@@ -320,7 +352,11 @@ function initCinematicUnlock() {
     }, CONFIG.BEAT_4 + (i * 0.006));
   });
   
-  // BEAT 5: Unlocked - Text Appears
+  // ========================================
+  // BEAT 5: Unlocked Complete (85% - 100%)
+  // Text appears, ready to enter
+  // ========================================
+  
   masterTL.to(keyContainer, {
     y: -50,
     duration: 0.15,
@@ -339,7 +375,10 @@ function initCinematicUnlock() {
     duration: 0.15
   }, CONFIG.BEAT_5);
   
+  // ========================================
   // Post-Unlock Content Animations
+  // ========================================
+  
   const contentSections = document.querySelectorAll('.content-section');
   
   contentSections.forEach((section) => {

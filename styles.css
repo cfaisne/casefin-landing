@@ -1,11 +1,23 @@
 /* ========================================
    CSS Variables & Reset
+   
+   GRADIENT NARRATIVE:
+   - Top (locked): #2A2423 (darkest)
+   - Unlock moment: #453D3C (brightest)
+   - Content: #3A3231 → #2F2928 (darkening)
+   - Bottom: #2A2423 (return to dark)
 ======================================== */
 :root {
-  /* Colors - Warm brown base */
-  --bg-base: #453d3c;
-  --bg-dark: #3a3433;
-  --bg-section: #3f3837;
+  /* Gradient narrative colors */
+  --color-locked: #2A2423;
+  --color-unlocked: #453D3C;
+  --color-interior-1: #3E3635;
+  --color-interior-2: #3A3231;
+  --color-interior-3: #342E2D;
+  --color-interior-4: #2F2928;
+  --color-deep: #2A2423;
+  
+  /* Accent colors */
   --gold: #c9a227;
   --gold-light: #e8d48b;
   --gold-warm: #d4a845;
@@ -16,11 +28,11 @@
   --text-muted: rgba(255, 255, 255, 0.4);
   
   /* Frosted Glass */
-  --glass-bg: rgba(255, 255, 255, 0.06);
-  --glass-bg-strong: rgba(255, 255, 255, 0.1);
-  --glass-bg-button: rgba(255, 255, 255, 0.08);
-  --glass-border: rgba(255, 255, 255, 0.08);
-  --glass-border-gold: rgba(212, 196, 168, 0.25);
+  --glass-bg: rgba(255, 255, 255, 0.05);
+  --glass-bg-strong: rgba(255, 255, 255, 0.08);
+  --glass-bg-button: rgba(255, 255, 255, 0.06);
+  --glass-border: rgba(255, 255, 255, 0.06);
+  --glass-border-gold: rgba(212, 196, 168, 0.2);
   
   /* Typography */
   --font-main: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -43,14 +55,14 @@ html {
 
 body {
   font-family: var(--font-main);
-  background: var(--bg-base);
+  background: var(--color-locked);
   color: var(--text-primary);
   line-height: 1.6;
   overflow-x: hidden;
 }
 
 /* ========================================
-   Navigation - Visible on load, no bg until scroll
+   Navigation - Always anchored to darkest
 ======================================== */
 .nav {
   position: fixed;
@@ -62,18 +74,11 @@ body {
   align-items: center;
   justify-content: space-between;
   padding: 1.25rem 3rem;
-  background: transparent;
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
-  border-bottom: 1px solid transparent;
-  transition: background 0.3s ease, backdrop-filter 0.3s ease, border-color 0.3s ease;
-}
-
-.nav.scrolled {
-  background: rgba(69, 61, 60, 0.85);
+  background: rgba(42, 36, 35, 0.95);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--glass-border-gold);
+  transition: background 0.3s ease;
 }
 
 .nav-logo {
@@ -199,7 +204,7 @@ body {
   position: relative;
   width: 38px;
   height: 38px;
-  background: rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.1);
   border-radius: 8px;
   display: flex;
   align-items: center;
@@ -209,10 +214,9 @@ body {
 }
 
 .btn-cta:hover .btn-cta-icon {
-  background: rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.15);
 }
 
-/* Lock icons */
 .lock-icon {
   position: absolute;
   width: 18px;
@@ -248,7 +252,7 @@ body {
 }
 
 /* ========================================
-   Unlock Section
+   Unlock Section - Starts dark, brightens
 ======================================== */
 .unlock-section {
   position: relative;
@@ -258,7 +262,8 @@ body {
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  background: var(--bg-base);
+  background: var(--color-locked);
+  /* Will be animated by GSAP to var(--color-unlocked) */
 }
 
 .unlock-container {
@@ -280,10 +285,10 @@ body {
   width: 100%;
   height: 100%;
   background: radial-gradient(
-    ellipse 80% 80% at 50% 50%,
+    ellipse 70% 70% at 50% 50%,
     transparent 0%,
-    transparent 50%,
-    rgba(50, 44, 43, 0.5) 100%
+    transparent 40%,
+    rgba(42, 36, 35, 0.6) 100%
   );
   pointer-events: none;
   z-index: 5;
@@ -298,9 +303,9 @@ body {
   width: 120%;
   height: 120%;
   background: radial-gradient(
-    ellipse 30% 35% at 50% 45%,
-    rgba(201, 162, 39, 0.12) 0%,
-    rgba(201, 162, 39, 0.04) 40%,
+    ellipse 35% 40% at 50% 45%,
+    rgba(201, 162, 39, 0.15) 0%,
+    rgba(201, 162, 39, 0.05) 40%,
     transparent 70%
   );
   opacity: 0;
@@ -309,7 +314,7 @@ body {
 }
 
 /* ========================================
-   Data Environment - Typography Fragments
+   Data Environment
 ======================================== */
 .data-environment {
   position: absolute;
@@ -333,19 +338,19 @@ body {
 .data-fragment[data-depth="far"] {
   filter: blur(4px);
   font-size: 0.75rem;
-  color: rgba(201, 162, 39, 0.4);
+  color: rgba(201, 162, 39, 0.35);
 }
 
 .data-fragment[data-depth="mid"] {
   filter: blur(2px);
   font-size: 0.9rem;
-  color: rgba(201, 162, 39, 0.6);
+  color: rgba(201, 162, 39, 0.55);
 }
 
 .data-fragment[data-depth="near"] {
   filter: blur(0.5px);
   font-size: 1.1rem;
-  color: rgba(201, 162, 39, 0.75);
+  color: rgba(201, 162, 39, 0.7);
 }
 
 /* Fragment types */
@@ -354,13 +359,8 @@ body {
   letter-spacing: -0.02em;
 }
 
-.data-fragment[data-depth="near"].frag-amount-xl {
-  font-size: 1.5rem;
-}
-
-.data-fragment[data-depth="near"].frag-amount-lg {
-  font-size: 1.25rem;
-}
+.data-fragment[data-depth="near"].frag-amount-xl { font-size: 1.5rem; }
+.data-fragment[data-depth="near"].frag-amount-lg { font-size: 1.25rem; }
 
 .frag-court, .frag-court-lg {
   font-weight: 500;
@@ -368,36 +368,28 @@ body {
   text-transform: uppercase;
 }
 
-.data-fragment[data-depth="far"].frag-court { color: rgba(255, 255, 255, 0.25); }
-.data-fragment[data-depth="mid"].frag-court { color: rgba(255, 255, 255, 0.4); }
-.data-fragment[data-depth="near"].frag-court { color: rgba(255, 255, 255, 0.55); }
-.data-fragment[data-depth="near"].frag-court-lg { font-size: 1rem; color: rgba(255, 255, 255, 0.6); }
+.data-fragment[data-depth="far"].frag-court { color: rgba(255, 255, 255, 0.2); }
+.data-fragment[data-depth="mid"].frag-court { color: rgba(255, 255, 255, 0.35); }
+.data-fragment[data-depth="near"].frag-court { color: rgba(255, 255, 255, 0.5); }
+.data-fragment[data-depth="near"].frag-court-lg { font-size: 1rem; color: rgba(255, 255, 255, 0.55); }
 
 .frag-case {
   font-weight: 400;
   font-style: italic;
 }
 
-.data-fragment[data-depth="far"].frag-case { color: rgba(255, 255, 255, 0.2); }
-.data-fragment[data-depth="mid"].frag-case { color: rgba(255, 255, 255, 0.35); }
-.data-fragment[data-depth="near"].frag-case { color: rgba(255, 255, 255, 0.5); font-size: 1rem; }
+.data-fragment[data-depth="far"].frag-case { color: rgba(255, 255, 255, 0.15); }
+.data-fragment[data-depth="mid"].frag-case { color: rgba(255, 255, 255, 0.3); }
+.data-fragment[data-depth="near"].frag-case { color: rgba(255, 255, 255, 0.45); font-size: 1rem; }
 
-.frag-percent, .frag-percent-lg {
-  font-weight: 600;
-}
+.frag-percent, .frag-percent-lg { font-weight: 600; }
+.data-fragment[data-depth="near"].frag-percent-lg { font-size: 1.3rem; }
 
-.data-fragment[data-depth="near"].frag-percent-lg {
-  font-size: 1.3rem;
-}
-
-.frag-file, .frag-file-lg {
-  font-weight: 400;
-}
-
-.data-fragment[data-depth="far"].frag-file { color: rgba(255, 255, 255, 0.15); font-size: 0.65rem; }
-.data-fragment[data-depth="mid"].frag-file { color: rgba(255, 255, 255, 0.3); font-size: 0.8rem; }
-.data-fragment[data-depth="near"].frag-file { color: rgba(255, 255, 255, 0.45); font-size: 0.95rem; }
-.data-fragment[data-depth="near"].frag-file-lg { font-size: 1rem; color: rgba(255, 255, 255, 0.5); }
+.frag-file, .frag-file-lg { font-weight: 400; }
+.data-fragment[data-depth="far"].frag-file { color: rgba(255, 255, 255, 0.12); font-size: 0.65rem; }
+.data-fragment[data-depth="mid"].frag-file { color: rgba(255, 255, 255, 0.25); font-size: 0.8rem; }
+.data-fragment[data-depth="near"].frag-file { color: rgba(255, 255, 255, 0.4); font-size: 0.95rem; }
+.data-fragment[data-depth="near"].frag-file-lg { font-size: 1rem; color: rgba(255, 255, 255, 0.45); }
 
 .frag-status {
   font-weight: 600;
@@ -405,18 +397,15 @@ body {
   text-transform: uppercase;
   font-size: 0.65rem;
   padding: 0.15em 0.4em;
-  background: rgba(201, 162, 39, 0.12);
+  background: rgba(201, 162, 39, 0.1);
   border-radius: 3px;
 }
 
-.data-fragment[data-depth="far"].frag-status { font-size: 0.55rem; background: rgba(201, 162, 39, 0.06); }
-.data-fragment[data-depth="mid"].frag-status { font-size: 0.7rem; background: rgba(201, 162, 39, 0.1); }
-.data-fragment[data-depth="near"].frag-status { font-size: 0.8rem; background: rgba(201, 162, 39, 0.15); }
+.data-fragment[data-depth="far"].frag-status { font-size: 0.55rem; background: rgba(201, 162, 39, 0.05); }
+.data-fragment[data-depth="mid"].frag-status { font-size: 0.7rem; background: rgba(201, 162, 39, 0.08); }
+.data-fragment[data-depth="near"].frag-status { font-size: 0.8rem; background: rgba(201, 162, 39, 0.12); }
 
-.frag-bid {
-  font-weight: 500;
-}
-
+.frag-bid { font-weight: 500; }
 .data-fragment[data-depth="far"].frag-bid { font-size: 0.7rem; }
 .data-fragment[data-depth="mid"].frag-bid { font-size: 0.85rem; }
 .data-fragment[data-depth="near"].frag-bid { font-size: 1rem; }
@@ -445,15 +434,15 @@ body {
   width: 130px;
   height: 130px;
   border-radius: 50%;
-  background: linear-gradient(155deg, #4a4035 0%, #3a332c 40%, #2a2520 70%, #1a1815 100%);
+  background: linear-gradient(155deg, #3a332c 0%, #2a2520 40%, #1a1815 70%, #0f0d0c 100%);
   display: flex;
   align-items: center;
   justify-content: center;
   box-shadow: 
-    inset 0 3px 6px rgba(255, 255, 255, 0.03),
-    inset 0 -4px 8px rgba(0, 0, 0, 0.5),
-    0 8px 32px rgba(0, 0, 0, 0.8);
-  border: 1px solid rgba(80, 70, 60, 0.2);
+    inset 0 3px 6px rgba(255, 255, 255, 0.02),
+    inset 0 -4px 8px rgba(0, 0, 0, 0.6),
+    0 8px 32px rgba(0, 0, 0, 0.9);
+  border: 1px solid rgba(60, 52, 48, 0.2);
   position: relative;
 }
 
@@ -469,7 +458,7 @@ body {
 .scale-beam {
   width: 60px;
   height: 3px;
-  background: linear-gradient(90deg, #3a332c 0%, #4a4035 50%, #3a332c 100%);
+  background: linear-gradient(90deg, #2a2520 0%, #3a332c 50%, #2a2520 100%);
   border-radius: 1px;
   margin-top: 12px;
 }
@@ -478,7 +467,7 @@ body {
   position: absolute;
   width: 22px;
   height: 14px;
-  background: linear-gradient(to bottom, #4a4035 0%, #3a332c 100%);
+  background: linear-gradient(to bottom, #3a332c 0%, #2a2520 100%);
   border-radius: 0 0 10px 10px;
   top: 24px;
 }
@@ -494,30 +483,30 @@ body {
   transform: translateX(-50%);
   width: 1px;
   height: 10px;
-  background: #3a332c;
+  background: #2a2520;
 }
 
 .key-shaft {
   width: 18px;
   height: 95px;
-  background: linear-gradient(90deg, #2a2520 0%, #3a332c 20%, #4a4035 50%, #3a332c 80%, #2a2520 100%);
+  background: linear-gradient(90deg, #1a1815 0%, #2a2520 20%, #3a332c 50%, #2a2520 80%, #1a1815 100%);
   border-radius: 2px;
   box-shadow: 
-    inset 2px 0 4px rgba(255, 255, 255, 0.02),
-    inset -2px 0 4px rgba(0, 0, 0, 0.3),
-    3px 0 10px rgba(0, 0, 0, 0.4);
+    inset 2px 0 4px rgba(255, 255, 255, 0.01),
+    inset -2px 0 4px rgba(0, 0, 0, 0.4),
+    3px 0 10px rgba(0, 0, 0, 0.5);
 }
 
 .key-bit {
   width: 40px;
   height: 35px;
-  background: linear-gradient(90deg, #2a2520 0%, #3a332c 20%, #4a4035 50%, #3a332c 80%, #2a2520 100%);
+  background: linear-gradient(90deg, #1a1815 0%, #2a2520 20%, #3a332c 50%, #2a2520 80%, #1a1815 100%);
   border-radius: 0 0 4px 4px;
   position: relative;
   box-shadow: 
-    inset 2px 0 4px rgba(255, 255, 255, 0.02),
-    inset -2px 0 4px rgba(0, 0, 0, 0.3),
-    0 4px 12px rgba(0, 0, 0, 0.5);
+    inset 2px 0 4px rgba(255, 255, 255, 0.01),
+    inset -2px 0 4px rgba(0, 0, 0, 0.4),
+    0 4px 12px rgba(0, 0, 0, 0.6);
 }
 
 .key-bit-notch {
@@ -526,7 +515,7 @@ body {
   top: 8px;
   width: 12px;
   height: 12px;
-  background: var(--bg-base);
+  background: var(--color-locked);
   border-radius: 2px 0 0 2px;
 }
 
@@ -561,7 +550,7 @@ body {
   transform: translateX(-50%);
   width: 120px;
   height: 30px;
-  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.4) 0%, transparent 70%);
+  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.5) 0%, transparent 70%);
   opacity: 0.3;
   filter: blur(8px);
 }
@@ -650,15 +639,31 @@ body {
 }
 
 /* ========================================
-   Content Sections
+   Content Sections - Gradient continues
+   
+   Narrative: After unlock (brightest), slowly
+   darken as user goes deeper "inside"
 ======================================== */
 .content-section {
   padding: 8rem 3rem;
-  background: var(--bg-section);
+  background: transparent;
 }
 
-.content-section:nth-child(odd) {
-  background: var(--bg-dark);
+/* Progressive darkening through content */
+.section-law-firms {
+  background: var(--color-interior-1); /* #3E3635 */
+}
+
+.section-funders {
+  background: var(--color-interior-2); /* #3A3231 */
+}
+
+.section-how {
+  background: var(--color-interior-3); /* #342E2D */
+}
+
+.section-cta {
+  background: var(--color-interior-4); /* #2F2928 */
 }
 
 .section-inner {
@@ -681,7 +686,7 @@ body {
 }
 
 /* ========================================
-   Frosted Cards - No hover effects, no borders
+   Frosted Cards
 ======================================== */
 .card-row {
   display: grid;
@@ -760,13 +765,10 @@ body {
   color: var(--text-secondary);
 }
 
-/* ========================================
-   CTA Section
-======================================== */
+/* CTA Section */
 .section-cta {
   text-align: center;
   padding: 10rem 3rem;
-  background: linear-gradient(180deg, var(--bg-section) 0%, var(--bg-dark) 100%);
 }
 
 .cta-inner h2 {
@@ -780,11 +782,11 @@ body {
 }
 
 /* ========================================
-   Footer
+   Footer - Returns to darkest
 ======================================== */
 .footer {
   padding: 3rem;
-  background: var(--bg-dark);
+  background: var(--color-deep); /* #2A2423 */
   border-top: 1px solid var(--glass-border);
 }
 
