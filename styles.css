@@ -104,7 +104,6 @@ body {
   background: rgba(255, 255, 255, 0.12);
   border-radius: 5px;
   flex-shrink: 0;
-  transition: background 0.3s ease;
 }
 
 .btn-primary:hover .btn-icon-cube,
@@ -114,29 +113,24 @@ body {
 
 .lock-icon {
   position: absolute;
-  transition: opacity 0.25s ease, transform 0.25s ease;
 }
 
 .lock-closed {
   opacity: 1;
-  transform: translateY(0);
 }
 
 .lock-open {
   opacity: 0;
-  transform: translateY(2px);
 }
 
 .btn-primary:hover .lock-closed,
 .btn-cta:hover .lock-closed {
   opacity: 0;
-  transform: translateY(-2px);
 }
 
 .btn-primary:hover .lock-open,
 .btn-cta:hover .lock-open {
   opacity: 1;
-  transform: translateY(0);
 }
 
 .btn-secondary {
@@ -563,7 +557,7 @@ body {
    How It Works - Pinned Steps
 ======================================== */
 .how-it-works-section {
-  min-height: 300vh; /* Space for scroll-driven animation */
+  min-height: 450vh; /* Increased for slower scroll */
   position: relative;
 }
 
