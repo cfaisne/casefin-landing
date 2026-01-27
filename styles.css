@@ -95,37 +95,22 @@ body {
 
 /* Lock icon animation */
 .btn-lock {
-  position: relative;
-  width: 18px;
-  height: 18px;
+  display: flex;
+  align-items: center;
   flex-shrink: 0;
 }
 
 .btn-lock svg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  transition: opacity 0.35s cubic-bezier(0.625, 0.05, 0, 1), transform 0.35s cubic-bezier(0.625, 0.05, 0, 1);
+  overflow: visible;
 }
 
-.btn-lock-locked {
-  opacity: 1;
-  transform: translateY(0);
+.lock-shackle {
+  transition: transform 0.35s cubic-bezier(0.625, 0.05, 0, 1);
+  transform-origin: center center;
 }
 
-.btn-lock-unlocked {
-  opacity: 0;
-  transform: translateY(2px);
-}
-
-.btn-primary:hover .btn-lock-locked {
-  opacity: 0;
-  transform: translateY(-2px);
-}
-
-.btn-primary:hover .btn-lock-unlocked {
-  opacity: 1;
-  transform: translateY(0);
+.btn-primary:hover .lock-shackle {
+  transform: translateY(-3px);
 }
 
 .btn-secondary {
