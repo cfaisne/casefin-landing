@@ -133,7 +133,7 @@ function initHeroUnlock() {
   
   masterTL.to(keyBow, {
     background: 'linear-gradient(155deg, #4a4035 0%, #3a332c 40%, #2a2520 70%, #1a1815 100%)',
-    boxShadow: `inset 0 3px 6px rgba(255,255,255,0.04), inset 0 -4px 8px rgba(0,0,0,0.5), 0 8px 35px rgba(0,0,0,0.6), 0 0 20px rgba(201,162,39,0.08)`,
+    boxShadow: `inset 0 3px 6px rgba(255,255,255,0.04), inset 0 -4px 8px rgba(0,0,0,0.5), 0 8px 35px rgba(0,0,0,0.6), 0 0 20px rgba(184,166,122,0.08)`,
     duration: 0.25
   }, CONFIG.BEAT_2);
   
@@ -180,24 +180,24 @@ function initHeroUnlock() {
   }, CONFIG.BEAT_3);
   
   masterTL.to(keyBow, {
-    background: 'linear-gradient(155deg, #a08030 0%, #8a6a25 40%, #6a5018 70%, #4a3a12 100%)',
-    boxShadow: `inset 0 4px 10px rgba(255,255,255,0.12), inset 0 -4px 8px rgba(0,0,0,0.3), 0 8px 45px rgba(0,0,0,0.4), 0 0 40px rgba(201,162,39,0.25)`,
-    borderColor: 'rgba(201, 162, 39, 0.25)',
+    background: 'linear-gradient(155deg, #9a8a60 0%, #857550 40%, #6a5a40 70%, #4a4030 100%)',
+    boxShadow: `inset 0 4px 10px rgba(255,255,255,0.12), inset 0 -4px 8px rgba(0,0,0,0.3), 0 8px 45px rgba(0,0,0,0.4), 0 0 40px rgba(184,166,122,0.2)`,
+    borderColor: 'rgba(184, 166, 122, 0.25)',
     duration: 0.25
   }, CONFIG.BEAT_3);
   
   masterTL.to(keyShaft, {
-    background: 'linear-gradient(90deg, #6a5018 0%, #8a6a25 20%, #a08030 50%, #8a6a25 80%, #6a5018 100%)',
+    background: 'linear-gradient(90deg, #6a5a40 0%, #857550 20%, #9a8a60 50%, #857550 80%, #6a5a40 100%)',
     duration: 0.25
   }, CONFIG.BEAT_3);
   
   masterTL.to(keyBit, {
-    background: 'linear-gradient(90deg, #6a5018 0%, #8a6a25 20%, #a08030 50%, #8a6a25 80%, #6a5018 100%)',
+    background: 'linear-gradient(90deg, #6a5a40 0%, #857550 20%, #9a8a60 50%, #857550 80%, #6a5a40 100%)',
     duration: 0.25
   }, CONFIG.BEAT_3);
   
   masterTL.to([scaleLeft, scaleRight], {
-    background: 'linear-gradient(to bottom, #a08030 0%, #8a6a25 100%)',
+    background: 'linear-gradient(to bottom, #9a8a60 0%, #857550 100%)',
     duration: 0.25
   }, CONFIG.BEAT_3);
   
@@ -284,26 +284,26 @@ function initHeroUnlock() {
   }, CONFIG.BEAT_4);
   
   masterTL.to(keyBow, {
-    background: 'linear-gradient(155deg, #e8d48b 0%, #c9a227 35%, #a08020 65%, #806818 100%)',
-    boxShadow: `inset 0 4px 12px rgba(255,255,255,0.28), inset 0 -4px 8px rgba(0,0,0,0.15), 0 0 70px rgba(201,162,39,0.45), 0 0 100px rgba(201,162,39,0.2), 0 8px 50px rgba(0,0,0,0.25)`,
-    borderColor: 'rgba(232, 212, 139, 0.4)',
+    background: 'linear-gradient(155deg, #d4c9a8 0%, #b8a67a 35%, #9a8a60 65%, #7a6a48 100%)',
+    boxShadow: `inset 0 4px 12px rgba(255,255,255,0.28), inset 0 -4px 8px rgba(0,0,0,0.15), 0 0 70px rgba(184,166,122,0.35), 0 0 100px rgba(184,166,122,0.15), 0 8px 50px rgba(0,0,0,0.25)`,
+    borderColor: 'rgba(212, 201, 168, 0.4)',
     duration: 0.2
   }, CONFIG.BEAT_4);
   
   masterTL.to(keyShaft, {
-    background: 'linear-gradient(90deg, #a08020 0%, #c9a227 25%, #e8d48b 50%, #c9a227 75%, #a08020 100%)',
+    background: 'linear-gradient(90deg, #9a8a60 0%, #b8a67a 25%, #d4c9a8 50%, #b8a67a 75%, #9a8a60 100%)',
     boxShadow: `inset 4px 0 8px rgba(255,255,255,0.12), inset -4px 0 8px rgba(0,0,0,0.18), 5px 0 18px rgba(0,0,0,0.25)`,
     duration: 0.2
   }, CONFIG.BEAT_4);
   
   masterTL.to(keyBit, {
-    background: 'linear-gradient(90deg, #a08020 0%, #c9a227 25%, #e8d48b 50%, #c9a227 75%, #a08020 100%)',
+    background: 'linear-gradient(90deg, #9a8a60 0%, #b8a67a 25%, #d4c9a8 50%, #b8a67a 75%, #9a8a60 100%)',
     boxShadow: `inset 4px 0 8px rgba(255,255,255,0.12), inset -4px 0 8px rgba(0,0,0,0.18), 0 6px 20px rgba(0,0,0,0.35)`,
     duration: 0.2
   }, CONFIG.BEAT_4);
   
   masterTL.to([scaleLeft, scaleRight], {
-    background: 'linear-gradient(to bottom, #e8d48b 0%, #c9a227 100%)',
+    background: 'linear-gradient(to bottom, #d4c9a8 0%, #b8a67a 100%)',
     duration: 0.2
   }, CONFIG.BEAT_4);
   
