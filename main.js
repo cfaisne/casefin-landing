@@ -55,7 +55,7 @@ function initRefreshHandlers() {
   
   // Clear stale inline widths before refresh
   ScrollTrigger.addEventListener('refreshInit', () => {
-    gsap.set('.unlock-section', { clearProps: 'width,maxWidth' });
+    gsap.set('.unlock-section', { clearProps: 'width,maxWidth,left,right' });
   });
 }
 
