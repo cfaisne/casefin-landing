@@ -95,6 +95,7 @@ body {
 
 /* Lock icon cube container */
 .btn-icon-cube {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -103,24 +104,39 @@ body {
   background: rgba(255, 255, 255, 0.12);
   border-radius: 5px;
   flex-shrink: 0;
-  transition: background 0.35s cubic-bezier(0.625, 0.05, 0, 1);
+  transition: background 0.3s ease;
 }
 
-.btn-primary:hover .btn-icon-cube {
+.btn-primary:hover .btn-icon-cube,
+.btn-cta:hover .btn-icon-cube {
   background: rgba(255, 255, 255, 0.18);
 }
 
-.btn-lock {
-  overflow: visible;
+.lock-icon {
+  position: absolute;
+  transition: opacity 0.25s ease, transform 0.25s ease;
 }
 
-.lock-shackle {
-  transition: transform 0.35s cubic-bezier(0.625, 0.05, 0, 1);
-  transform-origin: 16px 10px; /* Pivot from right connection point */
+.lock-closed {
+  opacity: 1;
+  transform: translateY(0);
 }
 
-.btn-primary:hover .lock-shackle {
-  transform: rotate(-25deg) translateY(-1px);
+.lock-open {
+  opacity: 0;
+  transform: translateY(2px);
+}
+
+.btn-primary:hover .lock-closed,
+.btn-cta:hover .lock-closed {
+  opacity: 0;
+  transform: translateY(-2px);
+}
+
+.btn-primary:hover .lock-open,
+.btn-cta:hover .lock-open {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .btn-secondary {
@@ -173,12 +189,29 @@ body {
 }
 .btn-cta-icon svg { width: 16px; height: 16px; }
 
+/* btn-icon-cube inside btn-cta */
+.btn-cta .btn-icon-cube {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+}
+
 .btn-cta-large {
   font-size: 1.1rem;
   padding: 1rem 1.25rem 1rem 2rem;
 }
 .btn-cta-large .btn-cta-icon { width: 40px; height: 40px; }
 .btn-cta-large .btn-cta-icon svg { width: 20px; height: 20px; }
+
+.btn-cta-large .btn-icon-cube {
+  width: 36px;
+  height: 36px;
+  border-radius: 7px;
+}
+.btn-cta-large .btn-icon-cube .lock-icon {
+  width: 18px;
+  height: 18px;
+}
 
 /* ========================================
    Pills
