@@ -50,7 +50,9 @@ function initRefreshHandlers() {
   let resizeTO;
   window.addEventListener('resize', () => {
     clearTimeout(resizeTO);
-    resizeTO = setTimeout(() => ScrollTrigger.refresh(), 150);
+    resizeTO = setTimeout(() => {
+      ScrollTrigger.refresh(true);
+    }, 200);
   });
   
   // Clear stale inline widths before refresh
@@ -101,8 +103,7 @@ function initHeroUnlock() {
       start: 'top top',
       end: CONFIG.SCROLL_DURATION,
       pin: true,
-      pinReparent: true,
-      pinType: 'fixed',
+      pinType: 'transform',
       scrub: CONFIG.SCRUB_SMOOTHNESS,
       anticipatePin: 1,
       invalidateOnRefresh: true

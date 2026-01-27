@@ -188,13 +188,15 @@ body {
 .unlock-inner {
   position: relative;
   height: 100%;
-  max-width: 860px;
+  max-width: 900px;
   margin: 0 auto;
   padding: 0 24px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: center;
+  z-index: 5;
 }
 
 .env-vignette {
