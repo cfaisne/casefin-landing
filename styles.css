@@ -34,20 +34,6 @@ body {
   background: var(--color-locked);
 }
 
-/* Ultra-light grain overlay for tactile finish */
-body::after {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 9999;
-  opacity: 0.025;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-}
-
 /* ========================================
    Navigation
 ======================================== */
@@ -59,14 +45,15 @@ body::after {
   align-items: center;
   justify-content: space-between;
   padding: 1.25rem 3rem;
-  background: rgba(42, 36, 35, 0.95);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background: var(--color-locked);
   border-bottom: 1px solid transparent;
-  transition: border-color 0.4s ease;
+  transition: background 0.4s ease, border-color 0.4s ease;
 }
 
 .nav.scrolled {
+  background: rgba(42, 36, 35, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   border-bottom-color: var(--glass-border-gold);
 }
 
@@ -205,9 +192,7 @@ body::after {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: 
-    radial-gradient(ellipse 80% 60% at 50% 45%, transparent 0%, rgba(0, 0, 0, 0.15) 100%),
-    var(--color-locked);
+  background: var(--color-locked);
 }
 
 .unlock-container {
