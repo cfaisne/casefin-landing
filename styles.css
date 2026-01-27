@@ -167,14 +167,15 @@ body {
 ======================================== */
 .unlock-section {
   position: relative;
-  width: 100%;
+  width: 100vw;
   max-width: none;
-  margin: 0;
+  height: 100vh;
   left: 0;
   right: 0;
-  height: 100vh;
+  margin: 0;
   overflow: hidden;
   background: var(--color-locked);
+  display: block;
 }
 
 .unlock-container {
@@ -186,15 +187,14 @@ body {
 /* Centered content wrapper - GSAP doesn't touch this */
 .unlock-inner {
   position: relative;
-  width: 100%;
-  max-width: 800px;
   height: 100%;
+  max-width: 860px;
   margin: 0 auto;
+  padding: 0 24px;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  z-index: 10;
+  align-items: center;
 }
 
 .env-vignette {
