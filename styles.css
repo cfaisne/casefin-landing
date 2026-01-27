@@ -167,7 +167,10 @@ body {
 ======================================== */
 .unlock-section {
   position: relative;
-  width: 100%;
+  width: 100vw;
+  max-width: none;
+  left: 0;
+  right: 0;
   height: 100vh;
   overflow: hidden;
   background: var(--color-locked);
@@ -381,6 +384,7 @@ body {
    Post-Hero Gradient
 ======================================== */
 .post-hero-gradient {
+  margin-top: -1px;
   background: linear-gradient(
     180deg,
     #453D3C 0%,

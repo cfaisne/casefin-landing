@@ -38,7 +38,26 @@ gsap.registerPlugin(ScrollTrigger);
 document.addEventListener('DOMContentLoaded', () => {
   initHeroUnlock();
   initHowItWorks();
+  initRefreshHandlers();
 });
+
+/* ========================================
+   ScrollTrigger Refresh Handlers
+   Prevents horizontal nudge on zoom/resize
+======================================== */
+function initRefreshHandlers() {
+  // Debounced resize refresh
+  let resizeTO;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTO);
+    resizeTO = setTimeout(() => ScrollTrigger.refresh(), 150);
+  });
+  
+  // Clear stale inline widths before refresh
+  ScrollTrigger.addEventListener('refreshInit', () => {
+    gsap.set('.unlock-section', { clearProps: 'width,maxWidth' });
+  });
+}
 
 /* ========================================
    Hero Unlock Animation + Text Swap
