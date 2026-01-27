@@ -45,6 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
 ======================================== */
 function initHeroUnlock() {
   const unlockSection = document.querySelector('.unlock-section');
+  const unlockSticky = document.querySelector('.unlock-sticky');
   const nav = document.querySelector('.nav');
   const scrollIndicator = document.querySelector('.scroll-indicator');
   const heroTextLocked = document.querySelector('.hero-text-locked');
@@ -80,10 +81,8 @@ function initHeroUnlock() {
     scrollTrigger: {
       trigger: unlockSection,
       start: 'top top',
-      end: CONFIG.SCROLL_DURATION,
-      pin: true,
-      scrub: CONFIG.SCRUB_SMOOTHNESS,
-      anticipatePin: 1
+      end: 'bottom bottom',
+      scrub: CONFIG.SCRUB_SMOOTHNESS
     }
   });
   
@@ -94,7 +93,7 @@ function initHeroUnlock() {
     duration: 0.1
   }, CONFIG.BEAT_1);
   
-  masterTL.to(unlockSection, {
+  masterTL.to(unlockSticky, {
     backgroundColor: HERO_COLORS[1],
     duration: 0.15
   }, CONFIG.BEAT_1);
@@ -106,12 +105,12 @@ function initHeroUnlock() {
   }, CONFIG.BEAT_1 + 0.05);
   
   // ========== BEAT 2: Awakening ==========
-  masterTL.to(unlockSection, {
+  masterTL.to(unlockSticky, {
     backgroundColor: HERO_COLORS[2],
     duration: 0.12
   }, CONFIG.BEAT_2);
   
-  masterTL.to(unlockSection, {
+  masterTL.to(unlockSticky, {
     backgroundColor: HERO_COLORS[3],
     duration: 0.13
   }, CONFIG.BEAT_2 + 0.12);
@@ -152,12 +151,12 @@ function initHeroUnlock() {
   });
   
   // ========== BEAT 3: Building ==========
-  masterTL.to(unlockSection, {
+  masterTL.to(unlockSticky, {
     backgroundColor: HERO_COLORS[4],
     duration: 0.12
   }, CONFIG.BEAT_3);
   
-  masterTL.to(unlockSection, {
+  masterTL.to(unlockSticky, {
     backgroundColor: HERO_COLORS[5],
     duration: 0.13
   }, CONFIG.BEAT_3 + 0.12);
@@ -248,12 +247,12 @@ function initHeroUnlock() {
   }, CONFIG.TEXT_FADE_END);
   
   // ========== BEAT 4: Full Unlock ==========
-  masterTL.to(unlockSection, {
+  masterTL.to(unlockSticky, {
     backgroundColor: HERO_COLORS[6],
     duration: 0.1
   }, CONFIG.BEAT_4);
   
-  masterTL.to(unlockSection, {
+  masterTL.to(unlockSticky, {
     backgroundColor: HERO_COLORS[7],
     duration: 0.1
   }, CONFIG.BEAT_4 + 0.1);
