@@ -101,6 +101,8 @@ function initHeroUnlock() {
       start: 'top top',
       end: CONFIG.SCROLL_DURATION,
       pin: true,
+      pinReparent: true,
+      pinType: 'fixed',
       scrub: CONFIG.SCRUB_SMOOTHNESS,
       anticipatePin: 1,
       invalidateOnRefresh: true
