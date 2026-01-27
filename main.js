@@ -46,13 +46,13 @@ document.addEventListener('DOMContentLoaded', () => {
    Prevents horizontal nudge on zoom/resize
 ======================================== */
 function initRefreshHandlers() {
-  // Debounced resize refresh
+  // Debounced resize refresh - use refresh() not refresh(true)
   let resizeTO;
   window.addEventListener('resize', () => {
     clearTimeout(resizeTO);
     resizeTO = setTimeout(() => {
-      ScrollTrigger.refresh(true);
-    }, 200);
+      ScrollTrigger.refresh();
+    }, 250);
   });
   
   // Clear stale inline widths before refresh
