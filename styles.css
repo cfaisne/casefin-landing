@@ -392,7 +392,7 @@ body {
   text-align: center;
   z-index: 20;
   margin-top: 2rem;
-  min-height: 220px;
+  min-height: 320px;
 }
 
 .hero-text {
@@ -553,6 +553,21 @@ body {
   font-style: italic;
 }
 
+.section-body {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+  margin-bottom: 1.25rem;
+}
+
+.micro-disclosure {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--glass-border);
+}
+
 /* ========================================
    How It Works - Pinned Steps
 ======================================== */
@@ -661,25 +676,92 @@ body {
    Footer
 ======================================== */
 .footer {
-  padding: 2.5rem 3rem;
   border-top: 1px solid var(--glass-border);
 }
 
+.footer-main {
+  padding: 2.5rem 3rem;
+}
+
 .footer-inner {
-  max-width: 720px;
+  max-width: 900px;
   margin: 0 auto;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 2rem;
 }
 
 .footer-logo { font-size: 1.15rem; font-weight: 600; }
 
-.footer-links { display: flex; gap: 2rem; }
-.footer-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.85rem; transition: color 0.2s; }
+.footer-links { 
+  display: flex; 
+  flex-wrap: wrap;
+  gap: 1.5rem; 
+}
+.footer-links a { 
+  color: var(--text-secondary); 
+  text-decoration: none; 
+  font-size: 0.85rem; 
+  transition: color 0.2s; 
+}
 .footer-links a:hover { color: var(--text-primary); }
 
-.footer-legal { color: var(--text-muted); font-size: 0.8rem; }
+.footer-legal-links {
+  display: flex;
+  gap: 1.5rem;
+}
+.footer-legal-links a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.8rem;
+  transition: color 0.2s;
+}
+.footer-legal-links a:hover { color: var(--text-secondary); }
+
+/* Footer Disclosure */
+.footer-disclosure {
+  padding: 2.5rem 3rem;
+  background: rgba(0, 0, 0, 0.15);
+  border-top: 1px solid var(--glass-border);
+}
+
+.footer-disclosure-inner {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.footer-disclosure h4 {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.footer-disclosure p {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 0.75rem;
+}
+
+.footer-disclosure p:last-child {
+  margin-bottom: 0;
+}
+
+.footer-bottom {
+  padding: 1.5rem 3rem;
+  text-align: center;
+  border-top: 1px solid var(--glass-border);
+}
+
+.footer-bottom span {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}
 
 /* ========================================
    Responsive
@@ -701,7 +783,99 @@ body {
   .how-it-works-container { padding: 0 1.5rem; }
   .how-it-works-header h2 { font-size: 1.5rem; }
   
+  .footer-main { padding: 2rem 1.5rem; }
   .footer-inner { flex-direction: column; gap: 1.5rem; text-align: center; }
+  .footer-links { justify-content: center; }
+  .footer-legal-links { justify-content: center; }
+  .footer-disclosure { padding: 2rem 1.5rem; }
+  .footer-bottom { padding: 1.25rem 1.5rem; }
   
   .data-fragment[data-depth="far"] { display: none; }
+}
+
+/* ========================================
+   Legal Pages
+======================================== */
+.legal-page {
+  padding: 8rem 3rem 4rem;
+  min-height: 100vh;
+  background: var(--color-locked);
+}
+
+.legal-container {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.legal-page h1 {
+  font-size: 2.5rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.5rem;
+}
+
+.legal-updated {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-bottom: 3rem;
+}
+
+.legal-section {
+  margin-bottom: 2.5rem;
+}
+
+.legal-section h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+}
+
+.legal-section p {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  line-height: 1.65;
+  margin-bottom: 1rem;
+}
+
+.legal-section p:last-child {
+  margin-bottom: 0;
+}
+
+.legal-list {
+  list-style: none;
+  margin: 1rem 0;
+  padding-left: 1.5rem;
+}
+
+.legal-list li {
+  position: relative;
+  font-size: 1rem;
+  color: var(--text-secondary);
+  line-height: 1.65;
+  margin-bottom: 0.5rem;
+}
+
+.legal-list li::before {
+  content: '•';
+  position: absolute;
+  left: -1rem;
+  color: var(--text-muted);
+}
+
+.legal-reinforcement {
+  margin-top: 4rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--glass-border);
+}
+
+.legal-reinforcement p {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+@media (max-width: 768px) {
+  .legal-page { padding: 6rem 1.5rem 3rem; }
+  .legal-page h1 { font-size: 1.75rem; }
 }
