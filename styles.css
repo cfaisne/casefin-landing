@@ -47,7 +47,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1.25rem clamp(1rem, 3vw, 3rem);
+  padding: 1.25rem clamp(1.5rem, 3vw, 3rem);
   background: var(--color-locked);
   border-bottom: 1px solid transparent;
   transition: background 0.4s ease, border-color 0.4s ease;
@@ -61,27 +61,42 @@ body {
   border-bottom-color: var(--glass-border-gold);
 }
 
-.nav-logo { font-size: clamp(1.25rem, 2vw, 1.5rem); font-weight: 600; letter-spacing: -0.03em; flex-shrink: 0; }
+.nav-logo { 
+  font-size: clamp(1.25rem, 2vw, 1.5rem); 
+  font-weight: 600; 
+  letter-spacing: -0.03em; 
+  flex: 1;
+}
 
 .nav-links { 
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex; 
   justify-content: center;
-  gap: clamp(1rem, 2.5vw, 2.5rem);
+  gap: clamp(1.5rem, 3vw, 2.5rem);
 }
 .nav-links a { 
   color: var(--text-secondary); 
   text-decoration: none; 
-  font-size: clamp(0.8rem, 1.2vw, 0.95rem); 
+  font-size: 0.9rem; 
   transition: color 0.2s; 
   white-space: nowrap;
 }
 .nav-links a:hover { color: var(--text-primary); }
-.nav-actions { display: flex; align-items: center; gap: clamp(0.5rem, 1vw, 1rem); flex-shrink: 0; }
+
+.nav-actions { 
+  display: flex; 
+  align-items: center; 
+  gap: clamp(0.75rem, 1.5vw, 1.25rem); 
+  flex: 1;
+  justify-content: flex-end;
+}
 .btn-text { 
   color: var(--text-secondary); 
   text-decoration: none; 
-  font-size: clamp(0.8rem, 1.2vw, 0.95rem); 
-  padding: 0.5rem clamp(0.5rem, 1vw, 1rem); 
+  font-size: 0.9rem; 
+  padding: 0.5rem 0.75rem; 
   transition: color 0.2s; 
   white-space: nowrap;
 }
