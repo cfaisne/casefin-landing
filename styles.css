@@ -259,21 +259,21 @@ body {
 .unlock-section {
   position: relative;
   height: 450vh;
+  padding-top: var(--header-h);
   background: var(--color-locked);
   scroll-margin-top: var(--header-h);
 }
 
 .unlock-sticky {
   position: sticky;
-  top: 0;
-  height: 100vh;
-  height: 100svh;
+  top: var(--header-h);
+  height: calc(100vh - var(--header-h));
+  height: calc(100svh - var(--header-h));
   width: 100%;
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-top: var(--header-h);
 }
 
 .unlock-container {
@@ -286,7 +286,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: clamp(1rem, 3vw, 2rem) clamp(1rem, 3vw, 2rem);
+  padding: clamp(1rem, 3vw, 2rem);
 }
 
 .env-vignette {
@@ -793,8 +793,6 @@ body {
   .btn-text { display: none; }
   
   .unlock-sticky {
-    padding-top: var(--header-h);
-  }
   
   .unlock-container { padding: 1rem 1.5rem; }
   
