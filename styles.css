@@ -350,38 +350,23 @@ body {
   justify-content: center;
 }
 
-.key {
+.key-image {
   position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  width: 280px;
+  height: auto;
   filter: brightness(0.4) saturate(0.3);
+  transition: filter 0.3s ease, transform 0.3s ease;
 }
 
-.key-bow {
-  width: 130px; height: 130px;
-  border-radius: 50%;
-  background: linear-gradient(155deg, #3A3530 0%, #2A2825 40%, #1A1A18 70%, #0F0F0F 100%);
-  display: flex; align-items: center; justify-content: center;
-  box-shadow: inset 0 3px 6px rgba(255,255,255,0.02), inset 0 -4px 8px rgba(0,0,0,0.6), 0 8px 32px rgba(0,0,0,0.9);
-  border: 1px solid rgba(60, 52, 48, 0.2);
-}
-
-.key-bow-inner { position: relative; width: 70%; height: 50%; display: flex; flex-direction: column; align-items: center; }
-.scale-beam { width: 60px; height: 3px; background: linear-gradient(90deg, #2A2825 0%, #3A3530 50%, #2A2825 100%); border-radius: 1px; margin-top: 12px; }
-.scale-left, .scale-right { position: absolute; width: 22px; height: 14px; background: linear-gradient(to bottom, #3A3530 0%, #2A2825 100%); border-radius: 0 0 10px 10px; top: 24px; }
-.scale-left { left: 8px; }
-.scale-right { right: 8px; }
-.scale-left::before, .scale-right::before { content: ''; position: absolute; top: -10px; left: 50%; transform: translateX(-50%); width: 1px; height: 10px; background: #2A2825; }
-
-.key-shaft { width: 18px; height: 95px; background: linear-gradient(90deg, #1A1A18 0%, #2A2825 20%, #3A3530 50%, #2A2825 80%, #1A1A18 100%); border-radius: 2px; box-shadow: inset 2px 0 4px rgba(255,255,255,0.01), inset -2px 0 4px rgba(0,0,0,0.4); }
-.key-bit { width: 40px; height: 35px; background: linear-gradient(90deg, #1A1A18 0%, #2A2825 20%, #3A3530 50%, #2A2825 80%, #1A1A18 100%); border-radius: 0 0 4px 4px; position: relative; }
-.key-bit-notch { position: absolute; right: 0; top: 8px; width: 12px; height: 12px; background: transparent; border-radius: 2px 0 0 2px; }
+/* Keep old key styles commented for reference, but not used */
+/*
+.key { ... old CSS key ... }
+*/
 
 .key-glow, .key-glow-outer { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); pointer-events: none; opacity: 0; }
-.key-glow { width: 280px; height: 280px; background: radial-gradient(circle, rgba(196,165,128,0.4) 0%, rgba(196,165,128,0.15) 30%, transparent 60%); }
-.key-glow-outer { width: 450px; height: 450px; background: radial-gradient(circle, rgba(196,165,128,0.12) 0%, rgba(196,165,128,0.04) 40%, transparent 70%); }
-.key-shadow { position: absolute; bottom: -40px; left: 50%; transform: translateX(-50%); width: 120px; height: 30px; background: radial-gradient(ellipse at center, rgba(0,0,0,0.5) 0%, transparent 70%); opacity: 0.3; filter: blur(8px); }
+.key-glow { width: 350px; height: 500px; background: radial-gradient(ellipse, rgba(196,165,128,0.4) 0%, rgba(196,165,128,0.15) 30%, transparent 60%); }
+.key-glow-outer { width: 500px; height: 700px; background: radial-gradient(ellipse, rgba(196,165,128,0.12) 0%, rgba(196,165,128,0.04) 40%, transparent 70%); }
+.key-shadow { position: absolute; bottom: -40px; left: 50%; transform: translateX(-50%); width: 180px; height: 40px; background: radial-gradient(ellipse at center, rgba(0,0,0,0.5) 0%, transparent 70%); opacity: 0.3; filter: blur(10px); }
 
 /* ========================================
    Hero Text Swap Container

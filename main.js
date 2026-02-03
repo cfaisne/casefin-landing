@@ -53,15 +53,10 @@ function initHeroUnlock() {
   const envVignette = document.querySelector('.env-vignette');
   const envAmbient = document.querySelector('.env-ambient');
   const keyContainer = document.querySelector('.key-container');
-  const key = document.querySelector('.key');
-  const keyBow = document.querySelector('.key-bow');
-  const keyShaft = document.querySelector('.key-shaft');
-  const keyBit = document.querySelector('.key-bit');
+  const keyImage = document.querySelector('.key-image');
   const keyGlow = document.querySelector('.key-glow');
   const keyGlowOuter = document.querySelector('.key-glow-outer');
   const keyShadow = document.querySelector('.key-shadow');
-  const scaleLeft = document.querySelector('.scale-left');
-  const scaleRight = document.querySelector('.scale-right');
   
   const fragsFar = document.querySelectorAll('.data-fragment[data-depth="far"]');
   const fragsMid = document.querySelectorAll('.data-fragment[data-depth="mid"]');
@@ -98,7 +93,7 @@ function initHeroUnlock() {
     duration: 0.15
   }, CONFIG.BEAT_1);
   
-  masterTL.to(key, {
+  masterTL.to(keyImage, {
     filter: 'brightness(0.43) saturate(0.28)',
     scale: 1.01,
     duration: 0.15
@@ -125,15 +120,9 @@ function initHeroUnlock() {
     duration: 0.25
   }, CONFIG.BEAT_2);
   
-  masterTL.to(key, {
+  masterTL.to(keyImage, {
     filter: 'brightness(0.5) saturate(0.4)',
     scale: 1.03,
-    duration: 0.25
-  }, CONFIG.BEAT_2);
-  
-  masterTL.to(keyBow, {
-    background: 'linear-gradient(155deg, #4A4238 0%, #3A3530 40%, #2A2825 70%, #1A1A18 100%)',
-    boxShadow: `inset 0 3px 6px rgba(255,255,255,0.04), inset 0 -4px 8px rgba(0,0,0,0.5), 0 8px 35px rgba(0,0,0,0.6), 0 0 20px rgba(196,165,128,0.08)`,
     duration: 0.25
   }, CONFIG.BEAT_2);
   
@@ -171,33 +160,11 @@ function initHeroUnlock() {
     duration: 0.25
   }, CONFIG.BEAT_3);
   
-  masterTL.to(key, {
+  masterTL.to(keyImage, {
     filter: 'brightness(0.75) saturate(0.8)',
     scale: 1.06,
     rotateY: 3,
     rotateZ: 1,
-    duration: 0.25
-  }, CONFIG.BEAT_3);
-  
-  masterTL.to(keyBow, {
-    background: 'linear-gradient(155deg, #A8906C 0%, #8B7355 40%, #6B5A42 70%, #4A4030 100%)',
-    boxShadow: `inset 0 4px 10px rgba(255,255,255,0.12), inset 0 -4px 8px rgba(0,0,0,0.3), 0 8px 45px rgba(0,0,0,0.4), 0 0 40px rgba(196,165,128,0.2)`,
-    borderColor: 'rgba(196, 165, 128, 0.25)',
-    duration: 0.25
-  }, CONFIG.BEAT_3);
-  
-  masterTL.to(keyShaft, {
-    background: 'linear-gradient(90deg, #6B5A42 0%, #8B7355 20%, #A8906C 50%, #8B7355 80%, #6B5A42 100%)',
-    duration: 0.25
-  }, CONFIG.BEAT_3);
-  
-  masterTL.to(keyBit, {
-    background: 'linear-gradient(90deg, #6B5A42 0%, #8B7355 20%, #A8906C 50%, #8B7355 80%, #6B5A42 100%)',
-    duration: 0.25
-  }, CONFIG.BEAT_3);
-  
-  masterTL.to([scaleLeft, scaleRight], {
-    background: 'linear-gradient(to bottom, #A8906C 0%, #8B7355 100%)',
     duration: 0.25
   }, CONFIG.BEAT_3);
   
@@ -275,35 +242,11 @@ function initHeroUnlock() {
     duration: 0.2
   }, CONFIG.BEAT_4);
   
-  masterTL.to(key, {
+  masterTL.to(keyImage, {
     filter: 'brightness(1.15) saturate(1.25)',
     scale: 1.1,
     rotateY: 0,
     rotateZ: 0,
-    duration: 0.2
-  }, CONFIG.BEAT_4);
-  
-  masterTL.to(keyBow, {
-    background: 'linear-gradient(155deg, #d4c9a8 0%, #C4A580 35%, #A8906C 65%, #8B7355 100%)',
-    boxShadow: `inset 0 4px 12px rgba(255,255,255,0.28), inset 0 -4px 8px rgba(0,0,0,0.15), 0 0 70px rgba(196,165,128,0.35), 0 0 100px rgba(196,165,128,0.15), 0 8px 50px rgba(0,0,0,0.25)`,
-    borderColor: 'rgba(212, 201, 168, 0.4)',
-    duration: 0.2
-  }, CONFIG.BEAT_4);
-  
-  masterTL.to(keyShaft, {
-    background: 'linear-gradient(90deg, #9a8a60 0%, #b8a67a 25%, #d4c9a8 50%, #b8a67a 75%, #9a8a60 100%)',
-    boxShadow: `inset 4px 0 8px rgba(255,255,255,0.12), inset -4px 0 8px rgba(0,0,0,0.18), 5px 0 18px rgba(0,0,0,0.25)`,
-    duration: 0.2
-  }, CONFIG.BEAT_4);
-  
-  masterTL.to(keyBit, {
-    background: 'linear-gradient(90deg, #9a8a60 0%, #b8a67a 25%, #d4c9a8 50%, #b8a67a 75%, #9a8a60 100%)',
-    boxShadow: `inset 4px 0 8px rgba(255,255,255,0.12), inset -4px 0 8px rgba(0,0,0,0.18), 0 6px 20px rgba(0,0,0,0.35)`,
-    duration: 0.2
-  }, CONFIG.BEAT_4);
-  
-  masterTL.to([scaleLeft, scaleRight], {
-    background: 'linear-gradient(to bottom, #d4c9a8 0%, #C4A580 100%)',
     duration: 0.2
   }, CONFIG.BEAT_4);
   
