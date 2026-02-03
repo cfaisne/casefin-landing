@@ -265,6 +265,46 @@ body {
   padding: 0 2rem;
 }
 
+/* Text container sits above key, will fade up and out */
+.hero-text-container {
+  position: absolute;
+  width: 100%;
+  max-width: 680px;
+  text-align: center;
+  z-index: 20;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.hero-text {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: 0;
+}
+
+.hero-text-locked {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hero-text-unlocked {
+  opacity: 0;
+  transform: translateY(60px);
+}
+
+.hero-support-text {
+  font-size: 1rem;
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.02em;
+}
+
+.hero-cta-small {
+  transform: scale(0.9);
+}
+
 .env-vignette {
   position: absolute;
   top: 0; left: 0;
@@ -343,16 +383,19 @@ body {
 
 /* Key */
 .key-container {
-  position: relative;
+  position: absolute;
   z-index: 10;
   display: flex;
   align-items: center;
   justify-content: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .key-image {
   position: relative;
-  width: 320px;
+  width: 280px;
   height: auto;
   filter: brightness(0.4) saturate(0.3);
   transform-origin: center center;
@@ -364,33 +407,8 @@ body {
 .key-shadow { position: absolute; bottom: -40px; left: 50%; transform: translateX(-50%); width: 180px; height: 40px; background: radial-gradient(ellipse at center, rgba(0,0,0,0.5) 0%, transparent 70%); opacity: 0.3; filter: blur(10px); }
 
 /* ========================================
-   Hero Text Swap Container
+   Hero Text
 ======================================== */
-.hero-text-container {
-  position: relative;
-  width: 100%;
-  max-width: 680px;
-  text-align: center;
-  z-index: 20;
-  margin-top: 2rem;
-  min-height: 320px;
-}
-
-.hero-text {
-  position: absolute;
-  width: 100%;
-  left: 0;
-  top: 0;
-}
-
-.hero-text-locked {
-  opacity: 1;
-}
-
-.hero-text-unlocked {
-  opacity: 0;
-}
-
 .hero-headline {
   font-size: 3rem;
   font-weight: 600;
