@@ -121,6 +121,7 @@ function initHeroUnlock() {
   
   masterTL.to(keyImage, {
     filter: 'brightness(0.5) saturate(0.4)',
+    scale: 1.08,
     duration: 0.25
   }, CONFIG.BEAT_2);
   
@@ -160,6 +161,7 @@ function initHeroUnlock() {
   
   masterTL.to(keyImage, {
     filter: 'brightness(0.75) saturate(0.8)',
+    scale: 1.2,
     duration: 0.25
   }, CONFIG.BEAT_3);
   
@@ -203,8 +205,9 @@ function initHeroUnlock() {
   }, CONFIG.TEXT_FADE_START);
   
   masterTL.to(heroTextUnlocked, {
-    opacity: 1,
+    opacity: 0.6,
     y: 0,
+    scale: 0.9,
     duration: 0.2
   }, CONFIG.TEXT_FADE_END);
   
@@ -237,11 +240,19 @@ function initHeroUnlock() {
     duration: 0.2
   }, CONFIG.BEAT_4);
   
+  // Key reaches maximum size and brightness - the payoff
   masterTL.to(keyImage, {
     filter: 'brightness(1.15) saturate(1.25)',
-    y: -20,
+    scale: 1.4,
     duration: 0.2
   }, CONFIG.BEAT_4);
+  
+  // Text fades further back as key dominates
+  masterTL.to(heroTextUnlocked, {
+    opacity: 0.35,
+    y: 40,
+    duration: 0.15
+  }, CONFIG.BEAT_4 + 0.1);
   
   masterTL.to(keyGlow, {
     opacity: CONFIG.GLOW_INNER_MAX,

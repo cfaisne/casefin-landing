@@ -352,20 +352,15 @@ body {
 
 .key-image {
   position: relative;
-  width: 420px;
+  width: 320px;
   height: auto;
   filter: brightness(0.4) saturate(0.3);
   transform-origin: center center;
 }
 
-/* Keep old key styles commented for reference, but not used */
-/*
-.key { ... old CSS key ... }
-*/
-
 .key-glow, .key-glow-outer { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); pointer-events: none; opacity: 0; }
-.key-glow { width: 350px; height: 500px; background: radial-gradient(ellipse, rgba(196,165,128,0.4) 0%, rgba(196,165,128,0.15) 30%, transparent 60%); }
-.key-glow-outer { width: 500px; height: 700px; background: radial-gradient(ellipse, rgba(196,165,128,0.12) 0%, rgba(196,165,128,0.04) 40%, transparent 70%); }
+.key-glow { width: 450px; height: 650px; background: radial-gradient(ellipse, rgba(196,165,128,0.4) 0%, rgba(196,165,128,0.15) 30%, transparent 60%); }
+.key-glow-outer { width: 650px; height: 900px; background: radial-gradient(ellipse, rgba(196,165,128,0.12) 0%, rgba(196,165,128,0.04) 40%, transparent 70%); }
 .key-shadow { position: absolute; bottom: -40px; left: 50%; transform: translateX(-50%); width: 180px; height: 40px; background: radial-gradient(ellipse at center, rgba(0,0,0,0.5) 0%, transparent 70%); opacity: 0.3; filter: blur(10px); }
 
 /* ========================================
