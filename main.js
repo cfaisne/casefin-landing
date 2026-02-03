@@ -117,12 +117,19 @@ function initHeroUnlock() {
     ease: "power1.inOut"
   }, "knock1");
   
-  // Locked text exits - synced with key (SAME duration, SAME start)
+  // Locked text exits - LINEAR opacity so it tracks exactly with scroll
+  // Text fade completes exactly when key reaches y: -120 (halfway point)
   masterTL.to(heroTextLocked, {
-    opacity: 0,
     y: -120,
     duration: 0.25,
     ease: "power1.inOut"
+  }, "knock1");
+  
+  // Opacity fades LINEAR - tied directly to scroll, not eased
+  masterTL.to(heroTextLocked, {
+    opacity: 0,
+    duration: 0.15,
+    ease: "none"
   }, "knock1");
   
   masterTL.to(unlockSticky, {
@@ -206,7 +213,7 @@ function initHeroUnlock() {
     }, "solo+=0.13");
   });
   
-  // ========== D · 58-75% — Unlocked text fades in ==========
+  // ========== D · 58-75% — Unlocked text fades in AFTER key holds ==========
   masterTL.addLabel("textIn", 0.58);
   
   masterTL.to(unlockSticky, {
@@ -220,6 +227,7 @@ function initHeroUnlock() {
     duration: 0.01
   }, "textIn");
   
+  // Key stays LOCKED at -250, no movement
   masterTL.to(keyContainer, {
     y: -250,
     duration: 0.17,
@@ -250,12 +258,19 @@ function initHeroUnlock() {
     duration: 0.17
   }, "textIn");
   
+  // Unlocked text fades in ONLY after key has held - delayed start
+  // LINEAR opacity so it tracks exactly with scroll
+  masterTL.to(heroTextUnlocked, {
+    y: 0,
+    duration: 0.14,
+    ease: "power1.out"
+  }, "textIn+=0.06");
+  
   masterTL.to(heroTextUnlocked, {
     opacity: 1,
-    y: 0,
-    duration: 0.17,
-    ease: "power1.out"
-  }, "textIn+=0.02");
+    duration: 0.12,
+    ease: "none"
+  }, "textIn+=0.06");
   
   fragsFar.forEach((frag, i) => {
     masterTL.to(frag, {
@@ -351,12 +366,18 @@ function initHeroUnlock() {
     ease: "power1.inOut"
   }, "knock2");
   
-  // Unlocked text exits - synced with key (SAME duration, SAME start)
+  // Unlocked text pushed down - synced with key drop
   masterTL.to(heroTextUnlocked, {
-    opacity: 0,
     y: 80,
     duration: 0.12,
     ease: "power1.inOut"
+  }, "knock2");
+  
+  // Opacity fades LINEAR - tied directly to scroll
+  masterTL.to(heroTextUnlocked, {
+    opacity: 0,
+    duration: 0.10,
+    ease: "none"
   }, "knock2");
   
   masterTL.to(keyGlow, {
