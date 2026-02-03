@@ -347,11 +347,12 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-top: 1rem;
 }
 
 .key-image {
   position: relative;
-  width: 320px;
+  width: 280px;
   height: auto;
   filter: brightness(0.4) saturate(0.3);
   transform-origin: center center;
@@ -371,8 +372,8 @@ body {
   max-width: 680px;
   text-align: center;
   z-index: 20;
-  margin-top: 2rem;
-  min-height: 320px;
+  margin-bottom: 2rem;
+  min-height: 200px;
 }
 
 .hero-text {
@@ -429,17 +430,17 @@ body {
 .post-hero-gradient {
   background: linear-gradient(
     180deg,
-    #453D3C 0%,
-    #453D3C 5%,
-    #433B3A 12%,
-    #403837 20%,
-    #3D3534 30%,
-    #3A3231 42%,
-    #372F2E 55%,
-    #332C2B 68%,
-    #2F2928 80%,
-    #2C2625 90%,
-    #2A2423 100%
+    #262626 0%,
+    #262626 5%,
+    #252525 12%,
+    #242424 20%,
+    #232323 30%,
+    #222222 42%,
+    #212121 55%,
+    #1f1f1f 68%,
+    #1d1d1d 80%,
+    #1b1b1b 90%,
+    #181818 100%
   );
 }
 

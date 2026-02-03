@@ -161,12 +161,13 @@ function initHeroUnlock() {
   // Key brightens and starts rising
   masterTL.to(keyImage, {
     filter: 'brightness(0.75) saturate(0.8)',
+    scale: 1.1,
     duration: 0.25
   }, CONFIG.BEAT_3);
   
-  // Key container moves up
+  // Key container moves up to take center stage
   masterTL.to(keyContainer, {
-    y: -60,
+    y: -120,
     duration: 0.3
   }, CONFIG.BEAT_3);
   
