@@ -389,7 +389,7 @@ body {
 
 .hero-text-unlocked {
   opacity: 0;
-  top: 320px; /* Position well below where key will be */
+  top: 280px; /* Below key's final position */
 }
 
 .hero-headline {
