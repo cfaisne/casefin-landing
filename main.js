@@ -3,14 +3,14 @@
 ======================================== */
 
 const HERO_COLORS = [
-  '#2A2423',
-  '#2F2928',
-  '#332C2B',
-  '#37302E',
-  '#3B3331',
-  '#3F3735',
-  '#423A39',
-  '#453D3C'
+  '#181818',
+  '#1c1c1c',
+  '#1f1f1f',
+  '#212121',
+  '#232323',
+  '#252525',
+  '#282828',
+  '#262626'
 ];
 
 const CONFIG = {
@@ -132,8 +132,8 @@ function initHeroUnlock() {
   }, CONFIG.BEAT_2);
   
   masterTL.to(keyBow, {
-    background: 'linear-gradient(155deg, #4a4035 0%, #3a332c 40%, #2a2520 70%, #1a1815 100%)',
-    boxShadow: `inset 0 3px 6px rgba(255,255,255,0.04), inset 0 -4px 8px rgba(0,0,0,0.5), 0 8px 35px rgba(0,0,0,0.6), 0 0 20px rgba(184,166,122,0.08)`,
+    background: 'linear-gradient(155deg, #4A4238 0%, #3A3530 40%, #2A2825 70%, #1A1A18 100%)',
+    boxShadow: `inset 0 3px 6px rgba(255,255,255,0.04), inset 0 -4px 8px rgba(0,0,0,0.5), 0 8px 35px rgba(0,0,0,0.6), 0 0 20px rgba(196,165,128,0.08)`,
     duration: 0.25
   }, CONFIG.BEAT_2);
   
@@ -180,24 +180,24 @@ function initHeroUnlock() {
   }, CONFIG.BEAT_3);
   
   masterTL.to(keyBow, {
-    background: 'linear-gradient(155deg, #9a8a60 0%, #857550 40%, #6a5a40 70%, #4a4030 100%)',
-    boxShadow: `inset 0 4px 10px rgba(255,255,255,0.12), inset 0 -4px 8px rgba(0,0,0,0.3), 0 8px 45px rgba(0,0,0,0.4), 0 0 40px rgba(184,166,122,0.2)`,
-    borderColor: 'rgba(184, 166, 122, 0.25)',
+    background: 'linear-gradient(155deg, #A8906C 0%, #8B7355 40%, #6B5A42 70%, #4A4030 100%)',
+    boxShadow: `inset 0 4px 10px rgba(255,255,255,0.12), inset 0 -4px 8px rgba(0,0,0,0.3), 0 8px 45px rgba(0,0,0,0.4), 0 0 40px rgba(196,165,128,0.2)`,
+    borderColor: 'rgba(196, 165, 128, 0.25)',
     duration: 0.25
   }, CONFIG.BEAT_3);
   
   masterTL.to(keyShaft, {
-    background: 'linear-gradient(90deg, #6a5a40 0%, #857550 20%, #9a8a60 50%, #857550 80%, #6a5a40 100%)',
+    background: 'linear-gradient(90deg, #6B5A42 0%, #8B7355 20%, #A8906C 50%, #8B7355 80%, #6B5A42 100%)',
     duration: 0.25
   }, CONFIG.BEAT_3);
   
   masterTL.to(keyBit, {
-    background: 'linear-gradient(90deg, #6a5a40 0%, #857550 20%, #9a8a60 50%, #857550 80%, #6a5a40 100%)',
+    background: 'linear-gradient(90deg, #6B5A42 0%, #8B7355 20%, #A8906C 50%, #8B7355 80%, #6B5A42 100%)',
     duration: 0.25
   }, CONFIG.BEAT_3);
   
   masterTL.to([scaleLeft, scaleRight], {
-    background: 'linear-gradient(to bottom, #9a8a60 0%, #857550 100%)',
+    background: 'linear-gradient(to bottom, #A8906C 0%, #8B7355 100%)',
     duration: 0.25
   }, CONFIG.BEAT_3);
   
@@ -284,8 +284,8 @@ function initHeroUnlock() {
   }, CONFIG.BEAT_4);
   
   masterTL.to(keyBow, {
-    background: 'linear-gradient(155deg, #d4c9a8 0%, #b8a67a 35%, #9a8a60 65%, #7a6a48 100%)',
-    boxShadow: `inset 0 4px 12px rgba(255,255,255,0.28), inset 0 -4px 8px rgba(0,0,0,0.15), 0 0 70px rgba(184,166,122,0.35), 0 0 100px rgba(184,166,122,0.15), 0 8px 50px rgba(0,0,0,0.25)`,
+    background: 'linear-gradient(155deg, #d4c9a8 0%, #C4A580 35%, #A8906C 65%, #8B7355 100%)',
+    boxShadow: `inset 0 4px 12px rgba(255,255,255,0.28), inset 0 -4px 8px rgba(0,0,0,0.15), 0 0 70px rgba(196,165,128,0.35), 0 0 100px rgba(196,165,128,0.15), 0 8px 50px rgba(0,0,0,0.25)`,
     borderColor: 'rgba(212, 201, 168, 0.4)',
     duration: 0.2
   }, CONFIG.BEAT_4);
@@ -303,7 +303,7 @@ function initHeroUnlock() {
   }, CONFIG.BEAT_4);
   
   masterTL.to([scaleLeft, scaleRight], {
-    background: 'linear-gradient(to bottom, #d4c9a8 0%, #b8a67a 100%)',
+    background: 'linear-gradient(to bottom, #d4c9a8 0%, #C4A580 100%)',
     duration: 0.2
   }, CONFIG.BEAT_4);
   
