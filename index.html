@@ -173,12 +173,19 @@
         <div class="key-shadow"></div>
       </div>
       
-      <!-- Hero Text - Initial State (above key conceptually, fades up and out) -->
+      <!-- Hero Text - Swap Container -->
       <div class="hero-text-container">
+        <!-- Locked State (no buttons) -->
         <div class="hero-text hero-text-locked">
           <h1 class="hero-headline">Unlock disciplined litigation finance.</h1>
           <p class="hero-body">A controlled environment where serious cases meet serious capital, designed to minimize noise, exposure, and wasted effort.</p>
           <p class="hero-tagline">STRUCTURED REVIEW. STAGED EVALUATION. PERMISSIONED ACCESS.</p>
+        </div>
+        
+        <!-- Unlocked State -->
+        <div class="hero-text hero-text-unlocked">
+          <h1 class="hero-headline">Access changes everything.</h1>
+          <p class="hero-body">From private preparation to structured evaluation, cases move forward with clarity, control, and intent on both sides.</p>
           <div class="hero-cta">
             <a href="#" class="btn-cta">
               <span class="btn-cta-text">Get Started</span>
@@ -187,26 +194,11 @@
                   <path fill-rule="evenodd" clip-rule="evenodd" d="M7 7C7 4.238 9.238 2 12 2C14.762 2 17 4.238 17 7V10H17.4C18.28 10 19 10.72 19 11.6V18.6C19 19.92 17.92 21 16.6 21H7.4C6.08 21 5 19.92 5 18.6V11.6C5 10.72 5.72 10 6.6 10H7V7ZM15 7V10H9V7C9 5.342 10.342 4 12 4C13.658 4 15 5.342 15 7ZM12 12.25C11.6023 12.2496 11.2164 12.3846 10.9057 12.6329C10.5951 12.8811 10.3782 13.2278 10.2909 13.6157C10.2036 14.0037 10.251 14.4098 10.4253 14.7672C10.5996 15.1246 10.8905 15.412 11.25 15.582V18C11.25 18.1989 11.329 18.3897 11.4697 18.5303C11.6103 18.671 11.8011 18.75 12 18.75C12.1989 18.75 12.3897 18.671 12.5303 18.5303C12.671 18.3897 12.75 18.1989 12.75 18V15.582C13.1095 15.412 13.4004 15.1246 13.5747 14.7672C13.749 14.4098 13.7964 14.0037 13.7091 13.6157C13.6218 13.2278 13.4049 12.8811 13.0943 12.6329C12.7836 12.3846 12.3977 12.2496 12 12.25Z" fill="currentColor" fill-opacity="0.9"/>
                 </svg>
                 <svg class="lock-icon lock-open" width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C9.238 2 7 4.238 7 7V10H6.6C5.72 10 5 10.72 5 11.6V18.6C5 19.92 6.08 21 7.4 21H16.6C17.92 21 19 19.92 19 18.6V11.6C19 10.72 18.28 10 17.4 10H9V7C9 5.342 10.342 4 12 4C13.304 4 14.416 4.836 14.829 6H17C16.5 3.75 14.47 2 12 2ZM12 12.25C11.6023 12.2496 11.2164 12.3846 10.9057 12.6329C10.5951 12.8811 10.3782 13.2278 10.2909 13.6157C10.2036 14.0037 10.251 14.4098 10.4253 14.7672C10.5996 15.1246 10.8905 15.412 11.25 15.582V18C11.25 18.1989 11.329 18.3897 11.4697 18.5303C11.6103 18.671 11.8011 18.75 12 18.75C12.1989 18.75 12.3897 18.671 12.5303 18.5303C12.671 18.3897 12.75 18.1989 12.75 18V15.582C13.1095 15.412 13.4004 15.1246 13.5747 14.7672C13.749 14.4098 13.7964 14.0037 13.7091 13.6157C13.6218 13.2278 13.4049 12.8811 13.0943 12.6329C12.7836 12.3846 12.3977 12.2496 12 12.25Z" fill="currentColor" fill-opacity="0.9"/>
-                </svg>
-              </span>
-            </a>
-            <a href="product.html" class="btn-secondary">Learn More</a>
-          </div>
-        </div>
-        
-        <!-- Unlocked State - smaller supporting text below key -->
-        <div class="hero-text hero-text-unlocked">
-          <p class="hero-support-text">You now have access.</p>
-          <div class="hero-cta hero-cta-small">
-            <a href="#" class="btn-cta">
-              <span class="btn-cta-text">Get Started</span>
-              <span class="btn-icon-cube">
-                <svg class="lock-icon lock-open" width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C9.238 2 7 4.238 7 7V10H6.6C5.72 10 5 10.72 5 11.6V18.6C5 19.92 6.08 21 7.4 21H16.6C17.92 21 19 19.92 19 18.6V11.6C19 10.72 18.28 10 17.4 10H9V7C9 5.342 10.342 4 12 4C13.304 4 14.416 4.836 14.829 6H17C16.5 3.75 14.47 2 12 2ZM12 12.25C11.6023 12.2496 11.2164 12.3846 10.9057 12.6329C10.5951 12.8811 10.3782 13.2278 10.2909 13.6157C10.2036 14.0037 10.251 14.4098 10.4253 14.7672C10.5996 15.1246 10.8905 15.412 11.25 15.582V18C11.25 18.1989 11.329 18.3897 11.4697 18.5303C11.6103 18.671 11.8011 18.75 12 18.75C12.1989 18.75 12.3897 18.671 12.5303 18.5303C12.671 18.3897 12.75 18.1989 12.75 18V15.582C13.1095 15.412 13.4004 15.1246 13.5747 14.7672C13.749 14.4098 13.7964 14.0028 13.7091 13.6157C13.6218 13.2278 13.4049 12.8811 13.0943 12.6329C12.7836 12.3846 12.3977 12.2496 12 12.25Z" fill="currentColor" fill-opacity="0.9"/>
                 </svg>
               </span>
             </a>
+            <a href="product.html" class="btn-secondary">Learn More</a>
           </div>
         </div>
       </div>
