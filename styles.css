@@ -352,10 +352,10 @@ body {
 
 .key-image {
   position: relative;
-  width: 280px;
+  width: 420px;
   height: auto;
   filter: brightness(0.4) saturate(0.3);
-  transition: filter 0.3s ease, transform 0.3s ease;
+  transform-origin: center center;
 }
 
 /* Keep old key styles commented for reference, but not used */

@@ -95,7 +95,6 @@ function initHeroUnlock() {
   
   masterTL.to(keyImage, {
     filter: 'brightness(0.43) saturate(0.28)',
-    scale: 1.01,
     duration: 0.15
   }, CONFIG.BEAT_1 + 0.05);
   
@@ -122,7 +121,6 @@ function initHeroUnlock() {
   
   masterTL.to(keyImage, {
     filter: 'brightness(0.5) saturate(0.4)',
-    scale: 1.03,
     duration: 0.25
   }, CONFIG.BEAT_2);
   
@@ -162,9 +160,6 @@ function initHeroUnlock() {
   
   masterTL.to(keyImage, {
     filter: 'brightness(0.75) saturate(0.8)',
-    scale: 1.06,
-    rotateY: 3,
-    rotateZ: 1,
     duration: 0.25
   }, CONFIG.BEAT_3);
   
@@ -244,9 +239,7 @@ function initHeroUnlock() {
   
   masterTL.to(keyImage, {
     filter: 'brightness(1.15) saturate(1.25)',
-    scale: 1.1,
-    rotateY: 0,
-    rotateZ: 0,
+    y: -20,
     duration: 0.2
   }, CONFIG.BEAT_4);
   
