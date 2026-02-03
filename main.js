@@ -275,139 +275,139 @@ function initHeroUnlock() {
     }, 0.68 + (i * 0.001));
   });
   
-  // ========== E · 78-88% — Extra "read second" ==========
+  // ========== E · 78-92% — Extra "read second" (EXTENDED) ==========
   // Key: y -250 (STILL LOCKED), scale 1.18 (STILL HOLD), brightness continues
   // Text: Unlocked headline fully readable (no movement)
   
   masterTL.to(unlockSticky, {
     backgroundColor: HERO_COLORS[5],
-    duration: 0.1
+    duration: 0.14
   }, 0.78);
   
   // Key STILL at -250, scale STILL at 1.18
   masterTL.to(keyContainer, {
     y: -250,
-    duration: 0.1,
+    duration: 0.14,
     ease: "sine.inOut"
   }, 0.78);
   
   masterTL.to(keyImage, {
     filter: 'brightness(0.95) saturate(0.95)',
     scale: 1.18,
-    duration: 0.1,
+    duration: 0.14,
     ease: "sine.inOut"
   }, 0.78);
   
   masterTL.to(keyGlow, {
     opacity: 0.55,
     scale: 1.05,
-    duration: 0.1
+    duration: 0.14
   }, 0.78);
   
   masterTL.to(keyGlowOuter, {
     opacity: 0.32,
     scale: 0.92,
-    duration: 0.1
-  }, 0.8);
+    duration: 0.14
+  }, 0.82);
   
   masterTL.to(envAmbient, {
     opacity: CONFIG.AMBIENT_MAX * 0.65,
-    duration: 0.1
+    duration: 0.14
   }, 0.78);
   
   masterTL.to(keyShadow, {
     opacity: 0.45,
     scale: 1.1,
-    duration: 0.1
-  }, 0.8);
+    duration: 0.14
+  }, 0.82);
   
   fragsMid.forEach((frag, i) => {
     masterTL.to(frag, {
       opacity: CONFIG.FRAG_OPACITY_MID * 0.8,
-      duration: 0.08
-    }, 0.8 + (i * 0.001));
+      duration: 0.1
+    }, 0.82 + (i * 0.001));
   });
   
   fragsNear.forEach((frag, i) => {
     masterTL.to(frag, {
       opacity: CONFIG.FRAG_OPACITY_NEAR * 0.5,
-      duration: 0.08
-    }, 0.82 + (i * 0.001));
+      duration: 0.1
+    }, 0.85 + (i * 0.001));
   });
   
-  // ========== F · 88-100% — Knockaway #2: key drops + grows, ends centered ==========
-  // Key: y -250 → -80, scale 1.18 → 1.45
+  // ========== F · 92-100% — Knockaway #2: key drops + grows, ends centered ==========
+  // Key: y -250 → -95, scale 1.18 → 1.45
   // Text: Unlocked pushed down + out (y 0 → +80, opacity to 0)
-  // End: key is sole hero, centered higher (Y ≈ -80)
+  // End: key is sole hero, centered higher (Y ≈ -95)
   
   masterTL.to(unlockSticky, {
     backgroundColor: HERO_COLORS[7],
-    duration: 0.12
-  }, 0.88);
+    duration: 0.08
+  }, 0.92);
   
   // Key drops to centered position
   masterTL.to(keyContainer, {
-    y: -80,
-    duration: 0.12,
+    y: -95,
+    duration: 0.08,
     ease: "power1.inOut"
-  }, 0.88);
+  }, 0.92);
   
   // Key reaches final scale
   masterTL.to(keyImage, {
     filter: 'brightness(1.15) saturate(1.2)',
     scale: 1.45,
-    duration: 0.12,
+    duration: 0.08,
     ease: "power1.inOut"
-  }, 0.88);
+  }, 0.92);
   
   // Unlocked text pushed down and out
   masterTL.to(heroTextUnlocked, {
     opacity: 0,
     y: 80,
-    duration: 0.12,
+    duration: 0.08,
     ease: "power1.inOut"
-  }, 0.88);
+  }, 0.92);
   
   masterTL.to(keyGlow, {
     opacity: CONFIG.GLOW_INNER_MAX,
     scale: 1.15,
-    duration: 0.12
-  }, 0.88);
+    duration: 0.08
+  }, 0.92);
   
   masterTL.to(keyGlowOuter, {
     opacity: CONFIG.GLOW_OUTER_MAX,
     scale: 1,
-    duration: 0.12
-  }, 0.9);
+    duration: 0.08
+  }, 0.94);
   
   masterTL.to(envAmbient, {
     opacity: CONFIG.AMBIENT_MAX,
-    duration: 0.12
-  }, 0.88);
+    duration: 0.08
+  }, 0.92);
   
   masterTL.to(envVignette, {
     opacity: 0,
-    duration: 0.1
-  }, 0.92);
+    duration: 0.08
+  }, 0.94);
   
   masterTL.to(keyShadow, {
     opacity: 0.55,
     scale: 1.2,
-    duration: 0.12
-  }, 0.88);
+    duration: 0.08
+  }, 0.92);
   
   fragsMid.forEach((frag, i) => {
     masterTL.to(frag, {
       opacity: CONFIG.FRAG_OPACITY_MID,
-      duration: 0.1
-    }, 0.9 + (i * 0.001));
+      duration: 0.06
+    }, 0.94 + (i * 0.001));
   });
   
   fragsNear.forEach((frag, i) => {
     masterTL.to(frag, {
       opacity: CONFIG.FRAG_OPACITY_NEAR,
-      duration: 0.1
-    }, 0.92 + (i * 0.001));
+      duration: 0.06
+    }, 0.96 + (i * 0.001));
   });
 }
 
