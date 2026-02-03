@@ -253,13 +253,18 @@ body {
   opacity: 0.6;
 }
 
+/* Nav spacer - pushes content below fixed nav */
+.nav-spacer {
+  height: var(--header-h);
+  flex-shrink: 0;
+}
+
 /* ========================================
    Hero / Unlock Section
 ======================================== */
 .unlock-section {
   position: relative;
   height: 450vh;
-  padding-top: var(--header-h);
   background: var(--color-locked);
   scroll-margin-top: var(--header-h);
 }
