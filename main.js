@@ -94,312 +94,317 @@ function initHeroUnlock() {
     ease: "power1.out"
   }, 0);
   
-  // Subtle background shift
   masterTL.to(unlockSticky, {
     backgroundColor: HERO_COLORS[1],
     duration: 0.15
   }, 0);
   
-  // ========== PHASE B: 15-35% — Knockaway #1 ==========
-  // Locked text fades up/out, key rises to push it away
-  // Key: scale 1.00 → 1.08, y 0 → -120
+  // ========== PHASE B: 15-32% — Knockaway #1 (higher peak) ==========
+  // Locked text fades up/out, key rises HIGH to clear space
+  // Key: scale 1.00 → 1.06, y 0 → -220 (higher than before)
   // Text: opacity 1 → 0, y 0 → -80
   
   masterTL.to(heroTextLocked, {
     opacity: 0,
     y: -80,
-    duration: 0.2,
+    duration: 0.17,
     ease: "power1.inOut"
   }, 0.15);
   
   masterTL.to(unlockSticky, {
     backgroundColor: HERO_COLORS[2],
-    duration: 0.2
+    duration: 0.17
   }, 0.15);
   
+  // Key rises HIGH to clear unlocked headline
   masterTL.to(keyContainer, {
-    y: -120,
-    duration: 0.2,
+    y: -220,
+    duration: 0.17,
     ease: "power1.inOut"
   }, 0.15);
   
   masterTL.to(keyImage, {
     filter: 'brightness(0.5) saturate(0.4)',
-    scale: 1.08,
-    duration: 0.2,
+    scale: 1.06,
+    duration: 0.17,
     ease: "power1.inOut"
   }, 0.15);
   
   masterTL.to(keyGlow, {
     opacity: 0.1,
     scale: 0.85,
-    duration: 0.2
+    duration: 0.17
   }, 0.2);
   
   masterTL.to(keyShadow, {
     opacity: 0.35,
-    duration: 0.2
+    duration: 0.17
   }, 0.2);
   
   // Far fragments start appearing
   fragsFar.forEach((frag, i) => {
     masterTL.to(frag, {
       opacity: CONFIG.FRAG_OPACITY_FAR * 0.3,
-      duration: 0.15
+      duration: 0.12
     }, 0.25 + (i * 0.002));
   });
   
-  // ========== PHASE C: 35-55% — Solo build (NO TEXT) ==========
-  // Key continues slow climb + slow growth
-  // Key: scale 1.08 → 1.16, y -120 → -180
-  // Glow builds gradually
+  // ========== PHASE C: 32-48% — Solo build (NO TEXT, key holds high) ==========
+  // Key stays near peak, slow growth
+  // Key: scale 1.06 → 1.12, y -220 → -230 (slight continued rise)
   
   masterTL.to(unlockSticky, {
     backgroundColor: HERO_COLORS[3],
-    duration: 0.2
-  }, 0.35);
+    duration: 0.16
+  }, 0.32);
   
+  // Key holds near peak, tiny continued rise
   masterTL.to(keyContainer, {
-    y: -180,
-    duration: 0.2,
+    y: -230,
+    duration: 0.16,
     ease: "sine.inOut"
-  }, 0.35);
+  }, 0.32);
   
   masterTL.to(keyImage, {
-    filter: 'brightness(0.7) saturate(0.6)',
-    scale: 1.16,
-    duration: 0.2,
+    filter: 'brightness(0.65) saturate(0.55)',
+    scale: 1.12,
+    duration: 0.16,
     ease: "sine.inOut"
-  }, 0.35);
+  }, 0.32);
   
   masterTL.to(keyGlow, {
-    opacity: 0.3,
-    scale: 0.95,
-    duration: 0.2
-  }, 0.35);
+    opacity: 0.25,
+    scale: 0.92,
+    duration: 0.16
+  }, 0.32);
   
   masterTL.to(keyGlowOuter, {
-    opacity: 0.15,
+    opacity: 0.12,
     scale: 0.8,
-    duration: 0.2
-  }, 0.4);
+    duration: 0.16
+  }, 0.36);
   
   masterTL.to(envAmbient, {
-    opacity: CONFIG.AMBIENT_MAX * 0.3,
-    duration: 0.2
-  }, 0.4);
+    opacity: CONFIG.AMBIENT_MAX * 0.25,
+    duration: 0.16
+  }, 0.36);
   
   masterTL.to(keyShadow, {
-    opacity: 0.4,
-    scale: 1.05,
-    duration: 0.2
-  }, 0.4);
+    opacity: 0.38,
+    scale: 1.02,
+    duration: 0.16
+  }, 0.36);
   
-  // More fragments
   fragsFar.forEach((frag, i) => {
     masterTL.to(frag, {
-      opacity: CONFIG.FRAG_OPACITY_FAR * 0.7,
-      duration: 0.15
-    }, 0.4 + (i * 0.002));
+      opacity: CONFIG.FRAG_OPACITY_FAR * 0.6,
+      duration: 0.12
+    }, 0.38 + (i * 0.002));
   });
   
   fragsMid.forEach((frag, i) => {
     masterTL.to(frag, {
-      opacity: CONFIG.FRAG_OPACITY_MID * 0.4,
-      duration: 0.15
-    }, 0.45 + (i * 0.002));
+      opacity: CONFIG.FRAG_OPACITY_MID * 0.3,
+      duration: 0.12
+    }, 0.42 + (i * 0.002));
   });
   
-  // ========== PHASE D: 55-72% — Unlocked text appears below ==========
-  // Key stays high, unlocked text fades in below
-  // Key: scale 1.16 → 1.22, y -180 → -170 (tiny drift)
+  // ========== PHASE D: 48-72% — Unlocked text appears, KEY HOLDS HIGH ==========
+  // Extended phase - key stays at peak while text breathes
+  // Key: scale 1.12 → 1.18, y -230 → -220 (tiny drift down, still high)
   // Text: opacity 0 → 1, y +30 → 0
   
   masterTL.to(unlockSticky, {
-    backgroundColor: HERO_COLORS[5],
-    duration: 0.17
-  }, 0.55);
+    backgroundColor: HERO_COLORS[4],
+    duration: 0.24
+  }, 0.48);
   
   // Nav background appears
   masterTL.to(nav, {
     onStart: () => nav.classList.add('scrolled'),
     onReverseComplete: () => nav.classList.remove('scrolled'),
     duration: 0.01
-  }, 0.55);
+  }, 0.48);
   
+  // Key holds high - minimal movement
   masterTL.to(keyContainer, {
-    y: -170,
-    duration: 0.17,
+    y: -220,
+    duration: 0.24,
     ease: "sine.inOut"
-  }, 0.55);
+  }, 0.48);
   
   masterTL.to(keyImage, {
-    filter: 'brightness(0.9) saturate(0.85)',
-    scale: 1.22,
-    duration: 0.17,
+    filter: 'brightness(0.85) saturate(0.8)',
+    scale: 1.18,
+    duration: 0.24,
     ease: "sine.inOut"
-  }, 0.55);
+  }, 0.48);
   
   masterTL.to(keyGlow, {
-    opacity: 0.5,
+    opacity: 0.45,
     scale: 1,
-    duration: 0.17
-  }, 0.55);
+    duration: 0.24
+  }, 0.48);
   
   masterTL.to(keyGlowOuter, {
-    opacity: 0.3,
-    scale: 0.9,
-    duration: 0.17
-  }, 0.58);
+    opacity: 0.25,
+    scale: 0.88,
+    duration: 0.24
+  }, 0.52);
   
   masterTL.to(envAmbient, {
-    opacity: CONFIG.AMBIENT_MAX * 0.6,
-    duration: 0.17
-  }, 0.55);
+    opacity: CONFIG.AMBIENT_MAX * 0.5,
+    duration: 0.24
+  }, 0.5);
   
-  // Unlocked text fades in below key
+  // Unlocked text fades in - has time to breathe
   masterTL.to(heroTextUnlocked, {
     opacity: 1,
     y: 0,
-    duration: 0.17,
+    duration: 0.2,
     ease: "power1.out"
-  }, 0.58);
+  }, 0.52);
   
-  // More fragments
   fragsFar.forEach((frag, i) => {
     masterTL.to(frag, {
-      opacity: CONFIG.FRAG_OPACITY_FAR,
-      duration: 0.12
-    }, 0.6 + (i * 0.001));
+      opacity: CONFIG.FRAG_OPACITY_FAR * 0.85,
+      duration: 0.15
+    }, 0.55 + (i * 0.001));
   });
   
   fragsMid.forEach((frag, i) => {
     masterTL.to(frag, {
-      opacity: CONFIG.FRAG_OPACITY_MID * 0.7,
-      duration: 0.12
-    }, 0.62 + (i * 0.001));
+      opacity: CONFIG.FRAG_OPACITY_MID * 0.6,
+      duration: 0.15
+    }, 0.58 + (i * 0.001));
   });
   
-  // ========== PHASE E: 72-92% — Knockaway #2 ==========
-  // Key grows and returns down, pushing unlocked text out
-  // Key: scale 1.22 → 1.34, y -170 → -40
+  // ========== PHASE E: 72-90% — Knockaway #2 (delayed descent) ==========
+  // Key finally descends, pushing unlocked text out
+  // Key: scale 1.18 → 1.32, y -220 → -30
   // Unlocked text: opacity 1 → 0, y 0 → +80
   
   masterTL.to(unlockSticky, {
     backgroundColor: HERO_COLORS[6],
-    duration: 0.2
+    duration: 0.18
   }, 0.72);
   
+  // Key descends toward center
   masterTL.to(keyContainer, {
-    y: -40,
-    duration: 0.2,
+    y: -30,
+    duration: 0.18,
     ease: "power1.inOut"
   }, 0.72);
   
   masterTL.to(keyImage, {
-    filter: 'brightness(1.1) saturate(1.1)',
-    scale: 1.34,
-    duration: 0.2,
+    filter: 'brightness(1.05) saturate(1.05)',
+    scale: 1.32,
+    duration: 0.18,
     ease: "power1.inOut"
   }, 0.72);
   
   masterTL.to(keyGlow, {
-    opacity: CONFIG.GLOW_INNER_MAX * 0.9,
-    scale: 1.1,
-    duration: 0.2
+    opacity: CONFIG.GLOW_INNER_MAX * 0.85,
+    scale: 1.08,
+    duration: 0.18
   }, 0.72);
   
   masterTL.to(keyGlowOuter, {
-    opacity: CONFIG.GLOW_OUTER_MAX * 0.8,
-    scale: 0.95,
-    duration: 0.2
+    opacity: CONFIG.GLOW_OUTER_MAX * 0.75,
+    scale: 0.94,
+    duration: 0.18
   }, 0.75);
   
   masterTL.to(envAmbient, {
-    opacity: CONFIG.AMBIENT_MAX * 0.85,
-    duration: 0.2
+    opacity: CONFIG.AMBIENT_MAX * 0.8,
+    duration: 0.18
   }, 0.72);
   
   // Unlocked text pushed down and out
   masterTL.to(heroTextUnlocked, {
     opacity: 0,
     y: 80,
-    duration: 0.2,
+    duration: 0.18,
     ease: "power1.inOut"
   }, 0.72);
   
   masterTL.to(keyShadow, {
-    opacity: 0.5,
-    scale: 1.15,
-    duration: 0.2
+    opacity: 0.48,
+    scale: 1.12,
+    duration: 0.18
   }, 0.75);
   
-  // More fragments
   fragsMid.forEach((frag, i) => {
     masterTL.to(frag, {
-      opacity: CONFIG.FRAG_OPACITY_MID,
-      duration: 0.15
+      opacity: CONFIG.FRAG_OPACITY_MID * 0.9,
+      duration: 0.12
     }, 0.78 + (i * 0.001));
   });
   
   fragsNear.forEach((frag, i) => {
     masterTL.to(frag, {
-      opacity: CONFIG.FRAG_OPACITY_NEAR * 0.7,
-      duration: 0.15
+      opacity: CONFIG.FRAG_OPACITY_NEAR * 0.6,
+      duration: 0.12
     }, 0.8 + (i * 0.001));
   });
   
-  // ========== PHASE F: 92-100% — Settle / hero end ==========
+  // ========== PHASE F: 90-100% — Settle / hero end ==========
   // Key ends centered and dominant, no text
-  // Key: scale 1.34 → 1.38, y -40 → -20
+  // Key: scale 1.32 → 1.38, y -30 → -15
   
   masterTL.to(unlockSticky, {
     backgroundColor: HERO_COLORS[7],
-    duration: 0.08
-  }, 0.92);
+    duration: 0.1
+  }, 0.9);
   
   masterTL.to(keyContainer, {
-    y: -20,
-    duration: 0.08,
+    y: -15,
+    duration: 0.1,
     ease: "power1.out"
-  }, 0.92);
+  }, 0.9);
   
   masterTL.to(keyImage, {
     filter: 'brightness(1.15) saturate(1.2)',
     scale: 1.38,
-    duration: 0.08,
+    duration: 0.1,
     ease: "power1.out"
-  }, 0.92);
+  }, 0.9);
   
   masterTL.to(keyGlow, {
     opacity: CONFIG.GLOW_INNER_MAX,
     scale: 1.15,
-    duration: 0.08
-  }, 0.92);
+    duration: 0.1
+  }, 0.9);
   
   masterTL.to(keyGlowOuter, {
     opacity: CONFIG.GLOW_OUTER_MAX,
     scale: 1,
-    duration: 0.08
-  }, 0.94);
+    duration: 0.1
+  }, 0.92);
   
   masterTL.to(envAmbient, {
     opacity: CONFIG.AMBIENT_MAX,
-    duration: 0.08
-  }, 0.92);
+    duration: 0.1
+  }, 0.9);
   
   masterTL.to(envVignette, {
     opacity: 0,
-    duration: 0.08
-  }, 0.94);
+    duration: 0.1
+  }, 0.92);
   
   masterTL.to(keyShadow, {
     opacity: 0.55,
     scale: 1.2,
-    duration: 0.08
-  }, 0.92);
+    duration: 0.1
+  }, 0.9);
   
-  // Final fragments
+  fragsMid.forEach((frag, i) => {
+    masterTL.to(frag, {
+      opacity: CONFIG.FRAG_OPACITY_MID,
+      duration: 0.08
+    }, 0.92 + (i * 0.001));
+  });
+  
   fragsNear.forEach((frag, i) => {
     masterTL.to(frag, {
       opacity: CONFIG.FRAG_OPACITY_NEAR,
