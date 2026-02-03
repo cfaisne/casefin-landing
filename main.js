@@ -211,10 +211,10 @@ function initHeroUnlock() {
     duration: 0.2
   }, CONFIG.TEXT_FADE_START);
   
-  // Unlocked text fades in below key
+  // Unlocked text fades in below key - positioned lower
   masterTL.to(heroTextUnlocked, {
     opacity: 1,
-    y: 0,
+    y: 120,
     duration: 0.2
   }, CONFIG.TEXT_FADE_END);
   
@@ -247,9 +247,16 @@ function initHeroUnlock() {
     duration: 0.2
   }, CONFIG.BEAT_4);
   
-  // Key reaches full brightness
+  // Key reaches full brightness, goes higher, gets bigger
   masterTL.to(keyImage, {
     filter: 'brightness(1.15) saturate(1.25)',
+    scale: 1.35,
+    duration: 0.2
+  }, CONFIG.BEAT_4);
+  
+  // Key container moves up more
+  masterTL.to(keyContainer, {
+    y: -200,
     duration: 0.2
   }, CONFIG.BEAT_4);
   
