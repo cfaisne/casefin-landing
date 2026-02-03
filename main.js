@@ -100,7 +100,7 @@ function initHeroUnlock() {
   }, 0);
   
   // ========== B · 12-32% — Locked text exits, key rises ==========
-  // Key: y 0 → -230, scale 1.00 → 1.08
+  // Key: y 0 → -250, scale 1.00 → 1.08
   // Text: Locked fades out + drifts up (y 0 → -90)
   
   masterTL.to(heroTextLocked, {
@@ -116,7 +116,7 @@ function initHeroUnlock() {
   }, 0.12);
   
   masterTL.to(keyContainer, {
-    y: -230,
+    y: -250,
     duration: 0.2,
     ease: "power1.inOut"
   }, 0.12);
@@ -147,7 +147,7 @@ function initHeroUnlock() {
   });
   
   // ========== C · 32-60% — Key solo, very slow growth ==========
-  // Key: y -230 (HOLD), scale 1.08 → 1.18
+  // Key: y -250 (HOLD), scale 1.08 → 1.18
   // Text: none
   
   masterTL.to(unlockSticky, {
@@ -155,9 +155,9 @@ function initHeroUnlock() {
     duration: 0.28
   }, 0.32);
   
-  // Key HOLDS at -230
+  // Key HOLDS at -250
   masterTL.to(keyContainer, {
-    y: -230,
+    y: -250,
     duration: 0.28,
     ease: "sine.inOut"
   }, 0.32);
@@ -207,7 +207,7 @@ function initHeroUnlock() {
   });
   
   // ========== D · 60-78% — Unlocked text fades in, key stays fixed ==========
-  // Key: y -230 (LOCKED), scale 1.18 → 1.20, brightness/glow ramps
+  // Key: y -250 (LOCKED), scale 1.18 (HOLD), brightness/glow ramps
   // Text: Unlocked headline fades in below
   
   masterTL.to(unlockSticky, {
@@ -222,16 +222,16 @@ function initHeroUnlock() {
     duration: 0.01
   }, 0.6);
   
-  // Key stays LOCKED at -230
+  // Key stays LOCKED at -250, scale HOLDS at 1.18
   masterTL.to(keyContainer, {
-    y: -230,
+    y: -250,
     duration: 0.18,
     ease: "sine.inOut"
   }, 0.6);
   
   masterTL.to(keyImage, {
     filter: 'brightness(0.85) saturate(0.8)',
-    scale: 1.20,
+    scale: 1.18,
     duration: 0.18,
     ease: "sine.inOut"
   }, 0.6);
@@ -276,7 +276,7 @@ function initHeroUnlock() {
   });
   
   // ========== E · 78-88% — Extra "read second" ==========
-  // Key: y -230 (STILL LOCKED), scale 1.20 → 1.22, brightness continues
+  // Key: y -250 (STILL LOCKED), scale 1.18 (STILL HOLD), brightness continues
   // Text: Unlocked headline fully readable (no movement)
   
   masterTL.to(unlockSticky, {
@@ -284,16 +284,16 @@ function initHeroUnlock() {
     duration: 0.1
   }, 0.78);
   
-  // Key STILL at -230
+  // Key STILL at -250, scale STILL at 1.18
   masterTL.to(keyContainer, {
-    y: -230,
+    y: -250,
     duration: 0.1,
     ease: "sine.inOut"
   }, 0.78);
   
   masterTL.to(keyImage, {
     filter: 'brightness(0.95) saturate(0.95)',
-    scale: 1.22,
+    scale: 1.18,
     duration: 0.1,
     ease: "sine.inOut"
   }, 0.78);
@@ -336,7 +336,7 @@ function initHeroUnlock() {
   });
   
   // ========== F · 88-100% — Knockaway #2: key drops + grows, ends centered ==========
-  // Key: y -230 → -80, scale 1.22 → 1.45
+  // Key: y -250 → -80, scale 1.18 → 1.45
   // Text: Unlocked pushed down + out (y 0 → +80, opacity to 0)
   // End: key is sole hero, centered higher (Y ≈ -80)
   
