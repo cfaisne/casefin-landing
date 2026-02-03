@@ -78,338 +78,327 @@ function initHeroUnlock() {
     scrollTrigger: {
       trigger: unlockSection,
       start: 'top top',
-      end: 'bottom bottom',
-      scrub: 1.2
+      end: '+=4500',
+      scrub: 1.5,
+      pin: unlockSticky,
+      anticipatePin: 1
     }
   });
   
   // ========== A · 0-10% — Locked state ==========
-  // Key: scale 1.00, y 0
-  // Text: Locked fully visible
+  masterTL.addLabel("start", 0);
   
   masterTL.to(scrollIndicator, {
     opacity: 0,
     y: 10,
     duration: 0.1,
     ease: "power1.out"
-  }, 0);
+  }, "start");
   
   masterTL.to(unlockSticky, {
     backgroundColor: HERO_COLORS[1],
     duration: 0.1
-  }, 0);
+  }, "start");
   
-  // ========== B · 10-35% — Locked text exits, key rises (EXTENDED, SYNCED) ==========
-  // Key: y 0 → -250, scale 1.00 → 1.08
-  // Text: Locked fades out + drifts up (y 0 → -90)
-  // BOTH move at same pace over 25% of scroll
+  // ========== B · 10-35% — KNOCKAWAY #1 (synced label) ==========
+  masterTL.addLabel("knock1", 0.10);
   
-  masterTL.to(heroTextLocked, {
-    opacity: 0,
-    y: -90,
-    duration: 0.25,
-    ease: "power1.inOut"
-  }, 0.10);
-  
-  masterTL.to(unlockSticky, {
-    backgroundColor: HERO_COLORS[2],
-    duration: 0.25
-  }, 0.10);
-  
-  // Key rises in sync with text fade
+  // Key rises - synced with text
   masterTL.to(keyContainer, {
     y: -250,
     duration: 0.25,
     ease: "power1.inOut"
-  }, 0.10);
+  }, "knock1");
   
   masterTL.to(keyImage, {
     filter: 'brightness(0.5) saturate(0.4)',
     scale: 1.08,
     duration: 0.25,
     ease: "power1.inOut"
-  }, 0.10);
+  }, "knock1");
+  
+  // Locked text exits - synced with key (SAME duration, SAME start)
+  masterTL.to(heroTextLocked, {
+    opacity: 0,
+    y: -120,
+    duration: 0.25,
+    ease: "power1.inOut"
+  }, "knock1");
+  
+  masterTL.to(unlockSticky, {
+    backgroundColor: HERO_COLORS[2],
+    duration: 0.25
+  }, "knock1");
   
   masterTL.to(keyGlow, {
     opacity: 0.1,
     scale: 0.85,
     duration: 0.25
-  }, 0.15);
+  }, "knock1+=0.05");
   
   masterTL.to(keyShadow, {
     opacity: 0.35,
     duration: 0.25
-  }, 0.15);
+  }, "knock1+=0.05");
   
   fragsFar.forEach((frag, i) => {
     masterTL.to(frag, {
       opacity: CONFIG.FRAG_OPACITY_FAR * 0.3,
       duration: 0.2
-    }, 0.25 + (i * 0.002));
+    }, "knock1+=0.15");
   });
   
-  // ========== C · 35-58% — Key solo, very slow growth ==========
-  // Key: y -250 (HOLD), scale 1.08 → 1.18
-  // Text: none
+  // ========== C · 35-58% — Key solo, holds high ==========
+  masterTL.addLabel("solo", 0.35);
   
   masterTL.to(unlockSticky, {
     backgroundColor: HERO_COLORS[3],
     duration: 0.23
-  }, 0.35);
+  }, "solo");
   
-  // Key HOLDS at -250
   masterTL.to(keyContainer, {
     y: -250,
     duration: 0.23,
     ease: "sine.inOut"
-  }, 0.35);
+  }, "solo");
   
   masterTL.to(keyImage, {
     filter: 'brightness(0.7) saturate(0.6)',
     scale: 1.18,
     duration: 0.23,
     ease: "sine.inOut"
-  }, 0.35);
+  }, "solo");
   
   masterTL.to(keyGlow, {
     opacity: 0.3,
     scale: 0.95,
     duration: 0.23
-  }, 0.35);
+  }, "solo");
   
   masterTL.to(keyGlowOuter, {
     opacity: 0.15,
     scale: 0.82,
     duration: 0.23
-  }, 0.40);
+  }, "solo+=0.05");
   
   masterTL.to(envAmbient, {
     opacity: CONFIG.AMBIENT_MAX * 0.3,
     duration: 0.23
-  }, 0.40);
+  }, "solo+=0.05");
   
   masterTL.to(keyShadow, {
     opacity: 0.4,
     scale: 1.05,
     duration: 0.23
-  }, 0.42);
+  }, "solo+=0.07");
   
   fragsFar.forEach((frag, i) => {
     masterTL.to(frag, {
       opacity: CONFIG.FRAG_OPACITY_FAR * 0.7,
       duration: 0.18
-    }, 0.42 + (i * 0.002));
+    }, "solo+=0.07");
   });
   
   fragsMid.forEach((frag, i) => {
     masterTL.to(frag, {
       opacity: CONFIG.FRAG_OPACITY_MID * 0.4,
       duration: 0.18
-    }, 0.48 + (i * 0.002));
+    }, "solo+=0.13");
   });
   
-  // ========== D · 58-75% — Unlocked text fades in, key stays fixed ==========
-  // Key: y -250 (LOCKED), scale 1.18 (HOLD), brightness/glow ramps
-  // Text: Unlocked headline fades in below
+  // ========== D · 58-75% — Unlocked text fades in ==========
+  masterTL.addLabel("textIn", 0.58);
   
   masterTL.to(unlockSticky, {
     backgroundColor: HERO_COLORS[4],
     duration: 0.17
-  }, 0.58);
+  }, "textIn");
   
-  // Nav background appears
   masterTL.to(nav, {
     onStart: () => nav.classList.add('scrolled'),
     onReverseComplete: () => nav.classList.remove('scrolled'),
     duration: 0.01
-  }, 0.58);
+  }, "textIn");
   
-  // Key stays LOCKED at -250, scale HOLDS at 1.18
   masterTL.to(keyContainer, {
     y: -250,
     duration: 0.17,
     ease: "sine.inOut"
-  }, 0.58);
+  }, "textIn");
   
   masterTL.to(keyImage, {
     filter: 'brightness(0.85) saturate(0.8)',
     scale: 1.18,
     duration: 0.17,
     ease: "sine.inOut"
-  }, 0.58);
+  }, "textIn");
   
   masterTL.to(keyGlow, {
     opacity: 0.45,
     scale: 1,
     duration: 0.17
-  }, 0.58);
+  }, "textIn");
   
   masterTL.to(keyGlowOuter, {
     opacity: 0.25,
     scale: 0.88,
     duration: 0.17
-  }, 0.62);
+  }, "textIn+=0.04");
   
   masterTL.to(envAmbient, {
     opacity: CONFIG.AMBIENT_MAX * 0.5,
     duration: 0.17
-  }, 0.58);
+  }, "textIn");
   
-  // Unlocked text fades in below key
   masterTL.to(heroTextUnlocked, {
     opacity: 1,
     y: 0,
     duration: 0.17,
     ease: "power1.out"
-  }, 0.60);
+  }, "textIn+=0.02");
   
   fragsFar.forEach((frag, i) => {
     masterTL.to(frag, {
       opacity: CONFIG.FRAG_OPACITY_FAR * 0.9,
       duration: 0.12
-    }, 0.62 + (i * 0.001));
+    }, "textIn+=0.04");
   });
   
   fragsMid.forEach((frag, i) => {
     masterTL.to(frag, {
       opacity: CONFIG.FRAG_OPACITY_MID * 0.65,
       duration: 0.12
-    }, 0.65 + (i * 0.001));
+    }, "textIn+=0.07");
   });
   
-  // ========== E · 75-88% — Extra "read second" (EXTENDED) ==========
-  // Key: y -250 (STILL LOCKED), scale 1.18 (STILL HOLD), brightness continues
-  // Text: Unlocked headline fully readable (no movement)
+  // ========== E · 75-88% — Read time ==========
+  masterTL.addLabel("read", 0.75);
   
   masterTL.to(unlockSticky, {
     backgroundColor: HERO_COLORS[5],
     duration: 0.13
-  }, 0.75);
+  }, "read");
   
-  // Key STILL at -250, scale STILL at 1.18
   masterTL.to(keyContainer, {
     y: -250,
     duration: 0.13,
     ease: "sine.inOut"
-  }, 0.75);
+  }, "read");
   
   masterTL.to(keyImage, {
     filter: 'brightness(0.95) saturate(0.95)',
     scale: 1.18,
     duration: 0.13,
     ease: "sine.inOut"
-  }, 0.75);
+  }, "read");
   
   masterTL.to(keyGlow, {
     opacity: 0.55,
     scale: 1.05,
     duration: 0.13
-  }, 0.75);
+  }, "read");
   
   masterTL.to(keyGlowOuter, {
     opacity: 0.32,
     scale: 0.92,
     duration: 0.13
-  }, 0.78);
+  }, "read+=0.03");
   
   masterTL.to(envAmbient, {
     opacity: CONFIG.AMBIENT_MAX * 0.65,
     duration: 0.13
-  }, 0.75);
+  }, "read");
   
   masterTL.to(keyShadow, {
     opacity: 0.45,
     scale: 1.1,
     duration: 0.13
-  }, 0.78);
+  }, "read+=0.03");
   
   fragsMid.forEach((frag, i) => {
     masterTL.to(frag, {
       opacity: CONFIG.FRAG_OPACITY_MID * 0.8,
       duration: 0.1
-    }, 0.78 + (i * 0.001));
+    }, "read+=0.03");
   });
   
   fragsNear.forEach((frag, i) => {
     masterTL.to(frag, {
       opacity: CONFIG.FRAG_OPACITY_NEAR * 0.5,
       duration: 0.1
-    }, 0.82 + (i * 0.001));
+    }, "read+=0.07");
   });
   
-  // ========== F · 88-100% — Knockaway #2 (EXTENDED, SYNCED) ==========
-  // Key: y -250 → -95, scale 1.18 → 1.45
-  // Text: Unlocked pushed down + out (y 0 → +80, opacity to 0)
-  // BOTH move at same pace over 12% of scroll
+  // ========== F · 88-100% — KNOCKAWAY #2 (synced label) ==========
+  masterTL.addLabel("knock2", 0.88);
   
   masterTL.to(unlockSticky, {
     backgroundColor: HERO_COLORS[7],
     duration: 0.12
-  }, 0.88);
+  }, "knock2");
   
-  // Key drops to centered position - synced with text
+  // Key drops - synced with text
   masterTL.to(keyContainer, {
     y: -95,
     duration: 0.12,
     ease: "power1.inOut"
-  }, 0.88);
+  }, "knock2");
   
-  // Key reaches final scale
   masterTL.to(keyImage, {
     filter: 'brightness(1.15) saturate(1.2)',
     scale: 1.45,
     duration: 0.12,
     ease: "power1.inOut"
-  }, 0.88);
+  }, "knock2");
   
-  // Unlocked text pushed down and out - synced with key drop
+  // Unlocked text exits - synced with key (SAME duration, SAME start)
   masterTL.to(heroTextUnlocked, {
     opacity: 0,
     y: 80,
     duration: 0.12,
     ease: "power1.inOut"
-  }, 0.88);
+  }, "knock2");
   
   masterTL.to(keyGlow, {
     opacity: CONFIG.GLOW_INNER_MAX,
     scale: 1.15,
     duration: 0.12
-  }, 0.88);
+  }, "knock2");
   
   masterTL.to(keyGlowOuter, {
     opacity: CONFIG.GLOW_OUTER_MAX,
     scale: 1,
     duration: 0.12
-  }, 0.90);
+  }, "knock2+=0.02");
   
   masterTL.to(envAmbient, {
     opacity: CONFIG.AMBIENT_MAX,
     duration: 0.12
-  }, 0.88);
+  }, "knock2");
   
   masterTL.to(envVignette, {
     opacity: 0,
     duration: 0.1
-  }, 0.92);
+  }, "knock2+=0.04");
   
   masterTL.to(keyShadow, {
     opacity: 0.55,
     scale: 1.2,
     duration: 0.12
-  }, 0.88);
+  }, "knock2");
   
   fragsMid.forEach((frag, i) => {
     masterTL.to(frag, {
       opacity: CONFIG.FRAG_OPACITY_MID,
       duration: 0.1
-    }, 0.90 + (i * 0.001));
+    }, "knock2+=0.02");
   });
   
   fragsNear.forEach((frag, i) => {
     masterTL.to(frag, {
       opacity: CONFIG.FRAG_OPACITY_NEAR,
       duration: 0.1
-    }, 0.92 + (i * 0.001));
+    }, "knock2+=0.04");
   });
 }
 

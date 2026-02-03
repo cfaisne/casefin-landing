@@ -238,7 +238,8 @@ body {
 ======================================== */
 .unlock-section {
   position: relative;
-  height: 350vh;
+  height: auto;
+  min-height: 100vh;
 }
 
 .unlock-sticky {
