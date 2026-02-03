@@ -271,14 +271,15 @@ body {
 
 .unlock-sticky {
   position: sticky;
-  top: var(--header-h);
-  height: calc(100vh - var(--header-h));
-  height: calc(100svh - var(--header-h));
+  top: 0;
+  height: 100vh;
+  height: 100svh;
   width: 100%;
-  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding-top: var(--header-h);
+  box-sizing: border-box;
 }
 
 .unlock-container {
@@ -292,6 +293,7 @@ body {
   align-items: center;
   justify-content: center;
   padding: clamp(1rem, 3vw, 2rem);
+  overflow: visible;
 }
 
 .env-vignette {
