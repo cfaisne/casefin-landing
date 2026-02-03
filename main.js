@@ -78,10 +78,9 @@ function initHeroUnlock() {
     scrollTrigger: {
       trigger: unlockSection,
       start: 'top top',
-      end: '+=4500',
-      scrub: 1.5,
-      pin: unlockSticky,
-      anticipatePin: 1
+      end: 'bottom bottom',
+      scrub: 1.5
+      // NO pin - CSS sticky handles it
     }
   });
   

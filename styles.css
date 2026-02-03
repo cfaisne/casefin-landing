@@ -238,8 +238,8 @@ body {
 ======================================== */
 .unlock-section {
   position: relative;
-  height: auto;
-  min-height: 100vh;
+  height: 450vh;
+  background: var(--color-locked);
 }
 
 .unlock-sticky {
@@ -251,7 +251,6 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--color-locked);
 }
 
 .unlock-container {
@@ -277,8 +276,7 @@ body {
 
 .env-ambient {
   position: absolute;
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
+  inset: -10%;
   width: 120%; height: 120%;
   background: radial-gradient(ellipse 35% 40% at 50% 45%, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 40%, transparent 70%);
   opacity: 0;
