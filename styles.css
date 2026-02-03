@@ -352,7 +352,7 @@ body {
 
 .key-image {
   position: relative;
-  width: 280px;
+  width: 340px;
   height: auto;
   filter: brightness(0.4) saturate(0.3);
   transform-origin: center center;
