@@ -214,7 +214,7 @@ function initHeroUnlock() {
   // Unlocked text fades in below key - positioned lower
   masterTL.to(heroTextUnlocked, {
     opacity: 1,
-    y: 120,
+    y: 280,
     duration: 0.2
   }, CONFIG.TEXT_FADE_END);
   
@@ -256,7 +256,7 @@ function initHeroUnlock() {
   
   // Key container moves up more
   masterTL.to(keyContainer, {
-    y: -200,
+    y: -260,
     duration: 0.2
   }, CONFIG.BEAT_4);
   
