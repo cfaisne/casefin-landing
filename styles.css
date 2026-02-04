@@ -341,6 +341,44 @@ body {
   overflow: visible;
 }
 
+/* Faint horizontal timeline spine behind key */
+.timeline-spine {
+  position: absolute;
+  top: 50%;
+  left: 15%;
+  right: 15%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(184, 166, 122, 0.04) 15%,
+    rgba(184, 166, 122, 0.06) 35%,
+    transparent 48%,
+    transparent 52%,
+    rgba(184, 166, 122, 0.06) 65%,
+    rgba(184, 166, 122, 0.04) 85%,
+    transparent 100%
+  );
+  opacity: 0;
+  z-index: 1;
+}
+
+.timeline-spine-label {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 8px;
+  font-weight: 500;
+  color: rgba(184, 166, 122, 0.12);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.timeline-spine-label.left-1 { left: 18%; }
+.timeline-spine-label.left-2 { left: 28%; }
+.timeline-spine-label.right-1 { right: 28%; }
+.timeline-spine-label.right-2 { right: 18%; }
+
 /* ========================================
    UI-Inflected Background Fragments
    "Glimpses through frosted glass"
@@ -372,6 +410,22 @@ body {
 .ui-frag[data-depth="near"].scale-lg { transform: scale(1.05); }
 .ui-frag[data-depth="close"].scale-sm { transform: scale(0.95); }
 .ui-frag[data-depth="close"].scale-lg { transform: scale(1.1); }
+
+/* Subtle rotation variance to prevent wallpaper effect */
+.ui-frag.tilt-cw { transform: rotate(1.5deg); }
+.ui-frag.tilt-ccw { transform: rotate(-1.5deg); }
+.ui-frag[data-depth="far"].tilt-cw { transform: scale(0.72) rotate(2deg); }
+.ui-frag[data-depth="far"].tilt-ccw { transform: scale(0.72) rotate(-2deg); }
+.ui-frag[data-depth="mid"].tilt-cw { transform: scale(0.85) rotate(1.5deg); }
+.ui-frag[data-depth="mid"].tilt-ccw { transform: scale(0.85) rotate(-1.5deg); }
+.ui-frag[data-depth="near"].tilt-cw { transform: scale(0.95) rotate(1deg); }
+.ui-frag[data-depth="near"].tilt-ccw { transform: scale(0.95) rotate(-1deg); }
+
+/* Combined scale + tilt */
+.ui-frag.scale-sm.tilt-cw { transform: scale(0.85) rotate(1.5deg); }
+.ui-frag.scale-sm.tilt-ccw { transform: scale(0.85) rotate(-1.5deg); }
+.ui-frag.scale-lg.tilt-cw { transform: scale(1.12) rotate(1.5deg); }
+.ui-frag.scale-lg.tilt-ccw { transform: scale(1.12) rotate(-1.5deg); }
 
 
 /* ===== Partial Case Cards ===== */
@@ -517,17 +571,17 @@ body {
 .frag-grade {
   font-size: 14px;
   font-weight: 700;
-  color: rgba(184, 166, 122, 0.55);
+  color: rgba(184, 166, 122, 0.62);
   letter-spacing: -0.02em;
 }
 
-/* Score badges with denominator (8.6 / 10) - slightly brighter */
+/* Score badges with denominator (8.6 / 10) - slightly brighter than cards */
 .frag-score-badge {
   display: inline-flex;
   align-items: baseline;
   gap: 2px;
-  background: rgba(42, 40, 38, 0.65);
-  border: 1px solid rgba(184, 166, 122, 0.15);
+  background: rgba(46, 44, 40, 0.7);
+  border: 1px solid rgba(184, 166, 122, 0.18);
   border-radius: 6px;
   padding: 5px 10px;
 }
@@ -535,22 +589,22 @@ body {
 .frag-score-num {
   font-size: 16px;
   font-weight: 700;
-  color: rgba(184, 166, 122, 0.6);
+  color: rgba(184, 166, 122, 0.68);
   letter-spacing: -0.02em;
 }
 
 .frag-score-denom {
   font-size: 10px;
   font-weight: 500;
-  color: rgba(255, 255, 255, 0.3);
+  color: rgba(255, 255, 255, 0.35);
 }
 
-/* Version markers (v1, v2, Rescored) */
+/* Version markers (v1, v2, Rescored) - slightly brighter */
 .frag-version {
   font-size: 10px;
   font-weight: 600;
-  color: rgba(184, 166, 122, 0.5);
-  background: rgba(184, 166, 122, 0.08);
+  color: rgba(184, 166, 122, 0.58);
+  background: rgba(184, 166, 122, 0.1);
   padding: 3px 8px;
   border-radius: 4px;
   letter-spacing: 0.02em;
@@ -560,8 +614,8 @@ body {
 .frag-confidence {
   font-size: 9px;
   font-weight: 500;
-  color: rgba(255, 255, 255, 0.35);
-  background: rgba(255, 255, 255, 0.04);
+  color: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.05);
   padding: 4px 8px;
   border-radius: 4px;
   letter-spacing: 0.03em;

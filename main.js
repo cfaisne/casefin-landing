@@ -65,6 +65,7 @@ function initHeroUnlock() {
   const fragsMid = document.querySelectorAll('.ui-frag[data-depth="mid"]');
   const fragsNear = document.querySelectorAll('.ui-frag[data-depth="near"]');
   const fragsClose = document.querySelectorAll('.ui-frag[data-depth="close"]');
+  const timelineSpine = document.querySelector('.timeline-spine');
   
   // Initial states
   gsap.set(heroTextLocked, { opacity: 1, y: 0 });
@@ -76,6 +77,7 @@ function initHeroUnlock() {
   gsap.set(keyGlowOuter, { opacity: 0, scale: 0.6 });
   gsap.set(keyShadow, { opacity: 0.3 });
   gsap.set(allFrags, { opacity: 0 });
+  if (timelineSpine) gsap.set(timelineSpine, { opacity: 0 });
   
   const masterTL = gsap.timeline({
     scrollTrigger: {
@@ -164,6 +166,14 @@ function initHeroUnlock() {
       duration: 0.2
     }, "knock1+=0.15");
   });
+  
+  // Timeline spine fades in very subtly
+  if (timelineSpine) {
+    masterTL.to(timelineSpine, {
+      opacity: 1,
+      duration: 0.3
+    }, "knock1+=0.2");
+  }
   
   // ========== C · 35-58% — Key solo, holds high ==========
   masterTL.addLabel("solo", 0.35);
