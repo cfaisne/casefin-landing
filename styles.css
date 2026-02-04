@@ -1,5 +1,6 @@
 /* ========================================
-   I53 - Visual Elevation Pass
+   Direction C: Data Room Aesthetic
+   Dark continuum with UI-inflected panels
 ======================================== */
 
 /* Tiempos placeholder - replace with actual @font-face when files are uploaded */
@@ -11,40 +12,30 @@
   font-style: normal;
   font-display: swap;
 }
-@font-face {
-  font-family: 'Tiempos';
-  src: url('/fonts/TiemposHeadline-Semibold.woff2') format('woff2');
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
-}
 */
 
 :root {
-  --color-locked: #181818;
-  --color-unlocked: #262626;
+  --color-base: #1a1a1a;
+  --color-elevated: #1e1e1e;
+  --color-surface: #242424;
   
-  /* Header height for offset calculations */
   --header-h: 76px;
   
   /* Champagne gold palette */
   --gold: #C4A580;
-  --gold-light: #d4c9a8;
-  --gold-muted: #A8906C;
+  --gold-soft: rgba(196, 165, 128, 0.15);
+  --gold-glow: rgba(196, 165, 128, 0.08);
   --champagne: #C4A580;
+  
   --text-primary: #f5f1ed;
-  --text-secondary: rgba(245, 241, 237, 0.75);
-  --text-muted: rgba(245, 241, 237, 0.45);
+  --text-secondary: rgba(245, 241, 237, 0.7);
+  --text-muted: rgba(245, 241, 237, 0.4);
   
-  --glass-bg: rgba(255, 255, 255, 0.04);
-  --glass-bg-strong: rgba(255, 255, 255, 0.08);
-  --glass-border: rgba(255, 255, 255, 0.08);
-  --glass-border-gold: rgba(196, 165, 128, 0.2);
-  
-  /* Depth bands - atmospheric layering */
-  --depth-recessed: #232323;
-  --depth-neutral: #282828;
-  --depth-elevated: #2d2d2d;
+  /* Glass panel system */
+  --panel-bg: rgba(40, 38, 35, 0.65);
+  --panel-border: rgba(255, 255, 255, 0.04);
+  --panel-highlight: rgba(255, 255, 255, 0.06);
+  --panel-gold-highlight: rgba(196, 165, 128, 0.12);
   
   /* Typography */
   --font-headline: 'Tiempos', 'Source Serif Pro', Georgia, serif;
@@ -52,6 +43,7 @@
   --font-mono: 'JetBrains Mono', monospace;
   
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -61,7 +53,20 @@ body {
   color: var(--text-primary);
   line-height: 1.6;
   overflow-x: hidden;
-  background: var(--color-locked);
+  background: var(--color-base);
+}
+
+/* Noise texture overlay - applied to post-hero */
+.noise-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
 }
 
 /* ========================================
@@ -75,7 +80,7 @@ body {
   align-items: center;
   justify-content: space-between;
   padding: 1.25rem clamp(1.5rem, 3vw, 3rem);
-  background: var(--color-locked);
+  background: var(--color-base);
   border-bottom: 1px solid transparent;
   transition: background 0.4s ease, border-color 0.4s ease;
   height: var(--header-h);
@@ -904,66 +909,136 @@ body {
 .scroll-indicator { display: none; }
 
 /* ========================================
-   Post-Hero Gradient
+   Post-Hero: Dark Continuum
+   Maintains dark environment with depth
 ======================================== */
 .post-hero-gradient {
-  /* Warm parchment background - institutional, not startup */
   background: linear-gradient(
     180deg,
-    #262626 0%,
-    #3a3835 3%,
-    #5c5750 6%,
-    #8a8279 9%,
-    #b8b0a3 12%,
-    #d9d3c8 15%,
-    #e8e4db 18%,
-    #f0ece5 22%,
-    #f5f2ed 28%,
-    #f5f2ed 100%
+    var(--color-base) 0%,
+    #1c1c1c 50%,
+    var(--color-elevated) 100%
   );
-}
-
-/* ========================================
-   Dark Card System on Light Background
-   Institutional, Bloomberg-like aesthetic
-======================================== */
-.dark-card {
-  background: #1e1e1e;
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: 12px;
-  padding: clamp(2rem, 4vw, 2.5rem);
   position: relative;
-  color: var(--text-primary);
 }
 
-/* Subtle top edge highlight */
-.dark-card::before {
+/* Persistent UI fragment texture - continues hero motif */
+.post-hero-gradient::before {
   content: '';
   position: absolute;
   top: 0;
-  left: 10%;
-  right: 10%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(ellipse 80% 50% at 20% 30%, rgba(196, 165, 128, 0.015) 0%, transparent 50%),
+    radial-gradient(ellipse 60% 40% at 80% 70%, rgba(196, 165, 128, 0.01) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ========================================
+   Glass Panel System
+   UI-inflected surfaces with depth
+======================================== */
+.glass-panel {
+  background: var(--panel-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--panel-border);
+  border-radius: 16px;
+  padding: clamp(1.75rem, 4vw, 2.5rem);
+  position: relative;
+  color: var(--text-primary);
+  transition: transform 0.3s var(--ease-smooth), box-shadow 0.3s var(--ease-smooth);
+}
+
+/* Gold top-edge highlight */
+.glass-panel::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 8%;
+  right: 8%;
   height: 1px;
   background: linear-gradient(90deg,
     transparent 0%,
-    rgba(255, 255, 255, 0.08) 30%,
-    rgba(255, 255, 255, 0.1) 50%,
-    rgba(255, 255, 255, 0.08) 70%,
+    var(--panel-gold-highlight) 30%,
+    rgba(196, 165, 128, 0.18) 50%,
+    var(--panel-gold-highlight) 70%,
     transparent 100%
   );
   border-radius: 1px;
 }
 
-/* Unified section for Law Firms + Funders */
+/* Subtle inner glow */
+.glass-panel::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.02) 0%,
+    transparent 30%,
+    transparent 100%
+  );
+  pointer-events: none;
+}
+
+/* Hover state - subtle lift */
+.glass-panel:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+/* Panel with gold accent (for primary panels) */
+.glass-panel--gold {
+  border-color: rgba(196, 165, 128, 0.08);
+}
+
+.glass-panel--gold::before {
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(196, 165, 128, 0.2) 30%,
+    rgba(196, 165, 128, 0.3) 50%,
+    rgba(196, 165, 128, 0.2) 70%,
+    transparent 100%
+  );
+}
+
+/* ========================================
+   Audience Section - Data Room Tiles
+======================================== */
 .audience-section {
-  padding: clamp(4rem, 8vw, 6rem) clamp(1rem, 3vw, 3rem);
+  padding: clamp(5rem, 10vw, 8rem) clamp(1rem, 3vw, 3rem);
+  position: relative;
+  z-index: 1;
+}
+
+/* Section warm glow */
+.audience-section::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  height: 60%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(196, 165, 128, 0.025) 0%,
+    transparent 60%
+  );
+  pointer-events: none;
+  z-index: -1;
 }
 
 .audience-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: clamp(1.5rem, 3vw, 2rem);
-  max-width: 960px;
+  max-width: 1000px;
   margin: 0 auto;
 }
 
@@ -974,77 +1049,167 @@ body {
   }
 }
 
-/* Card content styling */
-.dark-card .pill {
-  font-family: var(--font-body);
-  margin-bottom: 1.25rem;
-  background: rgba(255, 255, 255, 0.04);
-  border-color: rgba(196, 165, 128, 0.2);
+/* Data room tile styling */
+.data-tile {
+  position: relative;
+  z-index: 1;
 }
 
-.dark-card h3 {
+/* Status badge in tile corner */
+.tile-status {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-body);
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(196, 165, 128, 0.8);
+  background: rgba(196, 165, 128, 0.08);
+  padding: 0.25rem 0.5rem 0.25rem 0.4rem;
+  border-radius: 4px;
+  border: 1px solid rgba(196, 165, 128, 0.12);
+}
+
+.tile-status::before {
+  content: '';
+  width: 5px;
+  height: 5px;
+  background: var(--champagne);
+  border-radius: 50%;
+  opacity: 0.8;
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+/* Mini case card preview - product artifact */
+.mini-case-card {
+  margin-top: 1.5rem;
+  padding: 0.75rem 1rem;
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.mini-case-card .case-score {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--champagne);
+  background: rgba(196, 165, 128, 0.1);
+  padding: 0.3rem 0.55rem;
+  border-radius: 4px;
+  border: 1px solid rgba(196, 165, 128, 0.15);
+}
+
+.mini-case-card .case-meta {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.mini-case-card .case-meta strong {
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+/* Panel content styling */
+.glass-panel .pill {
+  font-family: var(--font-body);
+  margin-bottom: 1.25rem;
+  background: rgba(255, 255, 255, 0.03);
+  border-color: rgba(196, 165, 128, 0.15);
+}
+
+.glass-panel h3 {
   font-family: var(--font-headline);
   font-size: clamp(1.2rem, 2.5vw, 1.4rem);
   font-weight: 500;
   letter-spacing: -0.01em;
   margin-bottom: 1.25rem;
   line-height: 1.35;
-  color: #f5f2ed;
+  color: var(--text-primary);
 }
 
-.dark-card .feature-list {
-  margin-bottom: 1.5rem;
+.glass-panel .feature-list {
+  margin-bottom: 1.25rem;
 }
 
-.dark-card .feature-list li {
-  font-size: 0.95rem;
-  margin-bottom: 0.65rem;
-  padding-left: 1.25rem;
-  color: rgba(245, 242, 237, 0.75);
+.glass-panel .feature-list li {
+  font-size: 0.88rem;
+  margin-bottom: 0.55rem;
+  padding-left: 1.1rem;
+  color: var(--text-secondary);
 }
 
-.dark-card .feature-list li::before {
+.glass-panel .feature-list li::before {
   width: 4px;
   height: 4px;
   background: var(--champagne);
-  opacity: 0.6;
+  opacity: 0.5;
 }
 
-.dark-card .section-tagline {
-  font-size: 0.88rem;
-  color: rgba(245, 242, 237, 0.5);
-  margin-top: 0.75rem;
+.glass-panel .section-tagline {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-style: italic;
 }
 
 /* ========================================
-   Bridge Section - Transition from hero
+   Bridge Section - Transition statement
 ======================================== */
 .bridge-section {
   padding: 5rem 3rem 4rem;
   text-align: center;
+  position: relative;
+  z-index: 1;
 }
 
 .bridge-text {
   max-width: 680px;
   margin: 0 auto;
-  font-size: 1.2rem;
-  color: #3d3a36;
-  line-height: 1.6;
+  font-size: 1.15rem;
+  color: var(--text-secondary);
+  line-height: 1.65;
   font-weight: 400;
 }
 
 /* ========================================
-   Content Sections - Light Background
+   Content Sections - Dark Environment
 ======================================== */
 .content-section {
-  padding: clamp(4rem, 8vw, 6rem) clamp(1rem, 3vw, 3rem);
+  padding: clamp(5rem, 10vw, 7rem) clamp(1rem, 3vw, 3rem);
   position: relative;
   scroll-margin-top: var(--header-h);
+  z-index: 1;
 }
 
-/* Remove divider on light background */
+/* Subtle section divider - scan line effect */
 .content-section::before {
-  display: none;
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(600px, 80%);
+  height: 1px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.03) 20%,
+    rgba(255, 255, 255, 0.05) 50%,
+    rgba(255, 255, 255, 0.03) 80%,
+    transparent 100%
+  );
 }
 
 .section-inner {
@@ -1054,37 +1219,50 @@ body {
   position: relative;
 }
 
-/* Dark text for light background sections */
+/* Section label - floats left on desktop */
+.section-label {
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  opacity: 0.6;
+  margin-bottom: 1rem;
+}
+
 .content-section h2 {
   font-family: var(--font-headline);
   font-size: clamp(1.5rem, 3vw, 2rem);
   font-weight: 500;
   letter-spacing: -0.015em;
   margin-bottom: 1.5rem;
-  line-height: 1.2;
-  color: #1e1e1e;
+  line-height: 1.25;
+  color: var(--text-primary);
 }
 
 .content-section .section-intro,
 .content-section .section-body {
-  color: #4a4640;
+  color: var(--text-secondary);
+  font-size: 1rem;
+  line-height: 1.65;
 }
 
 .content-section .section-tagline {
-  color: #6b665e;
+  color: var(--text-muted);
   font-style: italic;
 }
 
 .content-section .feature-list li {
-  color: #4a4640;
+  color: var(--text-secondary);
 }
 
 .content-section .feature-list li::before {
-  background: #1e1e1e;
-  opacity: 0.4;
+  background: var(--champagne);
+  opacity: 0.5;
 }
 
-/* Pills on light background */
+/* Pills in dark environment */
 .content-section .pill {
   font-family: var(--font-body);
   background: #1e1e1e;
@@ -1095,6 +1273,177 @@ body {
 .content-section .pill-icon {
   color: var(--champagne);
   opacity: 0.85;
+}
+
+/* ========================================
+   Security Section - Credential Panel
+======================================== */
+.security-section {
+  position: relative;
+}
+
+.security-section::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60%;
+  height: 80%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(196, 165, 128, 0.025) 0%,
+    transparent 60%
+  );
+  pointer-events: none;
+}
+
+.credential-panel {
+  background: rgba(40, 38, 35, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: 16px;
+  padding: clamp(2rem, 4vw, 3rem);
+  position: relative;
+}
+
+.credential-panel::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 8%;
+  right: 8%;
+  height: 1px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(196, 165, 128, 0.15) 20%,
+    rgba(196, 165, 128, 0.25) 50%,
+    rgba(196, 165, 128, 0.15) 80%,
+    transparent 100%
+  );
+}
+
+.credential-panel h3 {
+  font-family: var(--font-headline);
+  font-size: clamp(1.25rem, 3vw, 1.5rem);
+  font-weight: 500;
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+}
+
+.credential-panel .section-intro {
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+}
+
+/* Trust claims 2x2 grid */
+.trust-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+@media (max-width: 600px) {
+  .trust-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.trust-claim {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: 8px;
+}
+
+.trust-icon {
+  font-size: 1rem;
+  opacity: 0.8;
+}
+
+.trust-text {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.credential-panel .section-tagline {
+  margin-top: 1.5rem;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+/* ========================================
+   Editorial Module - What Is Section
+======================================== */
+.editorial-section {
+  position: relative;
+}
+
+.editorial-module {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+@media (max-width: 700px) {
+  .editorial-module {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+
+.editorial-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.editorial-number {
+  font-family: var(--font-body);
+  font-size: 2.5rem;
+  font-weight: 300;
+  color: var(--champagne);
+  opacity: 0.3;
+  line-height: 1;
+}
+
+.editorial-header h2 {
+  font-family: var(--font-headline);
+  font-size: clamp(1.35rem, 2.5vw, 1.75rem);
+  font-weight: 500;
+  color: var(--text-primary);
+  margin: 0;
+  line-height: 1.3;
+}
+
+.editorial-content {
+  border-left: 2px solid rgba(196, 165, 128, 0.15);
+  padding-left: 1.5rem;
+}
+
+.editorial-lead {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  line-height: 1.5;
+  margin-bottom: 1.25rem;
+}
+
+.editorial-details p {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.65;
+  margin-bottom: 0.75rem;
+}
+
+.editorial-details p:last-child {
+  margin-bottom: 0;
 }
 
 .content-section h2 {
@@ -1146,9 +1495,9 @@ body {
 }
 
 .section-body {
-  font-size: 1.05rem;
+  font-size: 1rem;
   color: var(--text-secondary);
-  line-height: 1.55;
+  line-height: 1.6;
   margin-bottom: 1.25rem;
 }
 
@@ -1157,18 +1506,35 @@ body {
   color: var(--text-muted);
   margin-top: 2rem;
   padding-top: 1.5rem;
-  border-top: 1px solid var(--glass-border);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 /* ========================================
-   How It Works - Pinned Steps in Dark Card
+   How It Works - Pipeline Visualization
 ======================================== */
 .how-it-works-section {
   min-height: 450vh;
   position: relative;
   scroll-margin-top: var(--header-h);
-  /* Light background continues */
-  background: #f5f2ed;
+  background: var(--color-base);
+}
+
+/* Subtle warm glow behind pipeline */
+.how-it-works-section::before {
+  content: '';
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70%;
+  height: 50%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(196, 165, 128, 0.02) 0%,
+    transparent 60%
+  );
+  pointer-events: none;
+  z-index: 0;
 }
 
 .how-it-works-container {
@@ -1180,11 +1546,12 @@ body {
   flex-direction: column;
   justify-content: center;
   padding: var(--header-h) clamp(1rem, 3vw, 3rem) 2rem;
+  z-index: 1;
 }
 
 .how-it-works-header {
-  max-width: 720px;
-  margin: 0 auto 2rem;
+  max-width: 800px;
+  margin: 0 auto 2.5rem;
   text-align: left;
   width: 100%;
   padding: 0 clamp(1rem, 3vw, 2rem);
@@ -1192,53 +1559,85 @@ body {
 
 .how-it-works-header .pill {
   font-family: var(--font-body);
-  background: #1e1e1e;
-  border-color: transparent;
-  color: rgba(196, 165, 128, 0.95);
+  background: rgba(255, 255, 255, 0.03);
+  border-color: rgba(196, 165, 128, 0.15);
+  color: var(--gold);
 }
 
 .how-it-works-header h2 {
   font-family: var(--font-headline);
-  font-size: 1.85rem;
+  font-size: clamp(1.5rem, 3vw, 2rem);
   font-weight: 500;
   letter-spacing: -0.01em;
   line-height: 1.25;
-  color: #1e1e1e;
+  color: var(--text-primary);
 }
 
+/* Pipeline container - glass panel */
 .steps-container {
-  max-width: 720px;
+  max-width: 800px;
   margin: 0 auto;
   width: 100%;
-  /* Dark card for steps */
-  background: #1e1e1e;
-  border-radius: 12px;
-  padding: clamp(1.5rem, 3vw, 2.5rem);
+  background: var(--panel-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--panel-border);
+  border-radius: 16px;
+  padding: clamp(2rem, 4vw, 3rem);
   position: relative;
 }
 
-/* Top edge highlight */
+/* Gold top edge */
 .steps-container::before {
   content: '';
   position: absolute;
   top: 0;
-  left: 10%;
-  right: 10%;
+  left: 8%;
+  right: 8%;
   height: 1px;
   background: linear-gradient(90deg,
     transparent 0%,
-    rgba(255, 255, 255, 0.08) 30%,
-    rgba(255, 255, 255, 0.1) 50%,
-    rgba(255, 255, 255, 0.08) 70%,
+    rgba(196, 165, 128, 0.15) 30%,
+    rgba(196, 165, 128, 0.25) 50%,
+    rgba(196, 165, 128, 0.15) 70%,
     transparent 100%
   );
+}
+
+/* Pipeline rail - gold connector line */
+.pipeline-rail {
+  position: absolute;
+  left: 28px;
+  top: 3.5rem;
+  bottom: 3.5rem;
+  width: 2px;
+  background: linear-gradient(
+    180deg,
+    rgba(196, 165, 128, 0.3) 0%,
+    rgba(196, 165, 128, 0.15) 50%,
+    rgba(196, 165, 128, 0.05) 100%
+  );
+  border-radius: 1px;
+}
+
+/* Progress indicator on rail */
+.pipeline-progress {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 0%;
+  background: var(--gold);
+  border-radius: 1px;
+  transition: height 0.4s var(--ease-smooth);
 }
 
 .step {
   display: flex;
   align-items: flex-start;
-  gap: 1.25rem;
-  padding: 1.5rem 0;
+  gap: 1.5rem;
+  padding: 1.25rem 0;
+  position: relative;
   opacity: 0.3;
   transform: scale(0.96);
   transition: opacity 0.4s ease, transform 0.4s ease;
@@ -1284,25 +1683,49 @@ body {
 }
 
 /* ========================================
-   CTA Section - Final call to action (dark card)
+   CTA Section - Controlled Access Moment
+   Vault door metaphor callback
 ======================================== */
 .section-cta {
   text-align: center;
-  padding: 5rem 3rem 6rem;
+  padding: 6rem 3rem 7rem;
   position: relative;
-  background: #f5f2ed;
+  background: var(--color-base);
+  z-index: 1;
+}
+
+/* Radial gold glow behind CTA */
+.section-cta::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60%;
+  height: 80%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(196, 165, 128, 0.04) 0%,
+    transparent 60%
+  );
+  pointer-events: none;
+  z-index: -1;
 }
 
 .section-cta .section-inner {
   text-align: center;
   position: relative;
-  /* Dark card for CTA */
-  background: #1e1e1e;
-  border-radius: 12px;
-  padding: clamp(2.5rem, 5vw, 3.5rem);
-  max-width: 640px;
+  /* Glass panel with gold accent */
+  background: var(--panel-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(196, 165, 128, 0.1);
+  border-radius: 20px;
+  padding: clamp(3rem, 6vw, 4rem);
+  max-width: 580px;
 }
 
+/* Gold top edge - stronger */
 .section-cta .section-inner::before {
   content: '';
   position: absolute;
@@ -1312,35 +1735,51 @@ body {
   height: 1px;
   background: linear-gradient(90deg,
     transparent 0%,
-    rgba(255, 255, 255, 0.08) 30%,
-    rgba(255, 255, 255, 0.1) 50%,
-    rgba(255, 255, 255, 0.08) 70%,
+    rgba(196, 165, 128, 0.25) 30%,
+    rgba(196, 165, 128, 0.4) 50%,
+    rgba(196, 165, 128, 0.25) 70%,
     transparent 100%
   );
 }
 
-.section-cta h2 {
-  font-family: var(--font-headline);
-  font-weight: 500;
-  color: #f5f2ed;
+/* Inner glow */
+.section-cta .section-inner::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  background: radial-gradient(
+    ellipse at center top,
+    rgba(196, 165, 128, 0.03) 0%,
+    transparent 50%
+  );
+  pointer-events: none;
 }
 
-.cta-inner h2 {
+.section-cta h2 {
+  font-family: var(--font-headline);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 500;
+  color: var(--text-primary);
   margin-bottom: 0.75rem;
+  position: relative;
+  z-index: 1;
 }
 
 .cta-subtext {
-  font-size: 1.05rem;
-  color: rgba(245, 242, 237, 0.7);
+  font-size: 1rem;
+  color: var(--text-secondary);
   margin-bottom: 2rem;
+  position: relative;
+  z-index: 1;
 }
 
 /* ========================================
-   Footer - Dark, matching nav
+   Footer
 ======================================== */
 .footer {
-  border-top: none;
-  background: #1e1e1e;
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
+  background: var(--color-base);
 }
 
 .footer-main {
