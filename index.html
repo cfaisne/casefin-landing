@@ -10,9 +10,6 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <!-- Subtle noise texture -->
-  <div class="noise-overlay" aria-hidden="true"></div>
-  
   <!-- Navigation -->
   <nav class="nav">
     <div class="nav-logo"><a href="index.html" style="text-decoration:none;color:inherit;">CaseFin</a></div>
@@ -863,17 +860,16 @@
       <p class="bridge-text">CaseFin replaces ad hoc outreach and uncontrolled sharing with a structured, permissioned path to serious engagement.</p>
     </div>
     
-    <!-- Audience Section - Data Room Tiles -->
+    <!-- Audience Section - Typography Forward -->
     <section id="audience" class="audience-section">
       <div class="audience-container">
         <div class="audience-grid">
           
-          <!-- For Law Firms Tile -->
-          <div class="glass-panel glass-panel--gold data-tile" id="law-firms">
-            <div class="tile-status">Active</div>
+          <!-- For Law Firms -->
+          <div class="audience-column" id="law-firms">
             <div class="pill">
               <svg class="pill-icon" viewBox="0 0 20 20" fill="currentColor">
-                <path d="M19.373 16.3262C19.7748 16.7297 19.9998 17.2781 20 17.8486C19.9998 18.419 19.7746 18.9667 19.373 19.3701L19.2158 19.5127C18.8345 19.8266 18.3548 20.0009 17.8574 20.001L17.6455 19.9902C17.225 19.9481 16.8259 19.7816 16.499 19.5127L16.3418 19.3701L10.0039 13.0039L11.1924 11.1504L13.0312 9.96094L19.373 16.3262ZM7.14355 17.125C7.33267 17.1251 7.51363 17.2018 7.64746 17.3359C7.78123 17.4703 7.85733 17.6528 7.85742 17.8428C7.85734 18.0328 7.78123 18.2152 7.64746 18.3496C7.52502 18.4724 7.36287 18.5438 7.19141 18.5557V18.5605H9.28613C9.47534 18.5606 9.65715 18.6363 9.79102 18.7705C9.92456 18.9049 9.99989 19.0875 10 19.2773L9.98633 19.418C9.95897 19.5558 9.89127 19.6844 9.79102 19.7852L9.68262 19.874C9.6048 19.9261 9.51748 19.9631 9.42578 19.9814L9.28613 19.9951H0.71582L0.575195 19.9805C0.483606 19.962 0.396093 19.926 0.318359 19.874L0.209961 19.7852C0.0762489 19.6508 0.000142503 19.4673 0 19.2773C0.000114488 19.0874 0.0763052 18.9049 0.209961 18.7705C0.310371 18.6698 0.437936 18.6017 0.575195 18.5742L0.71582 18.5605H2.81641V18.5557C2.64225 18.5454 2.47663 18.474 2.35254 18.3496C2.21903 18.2152 2.14364 18.0326 2.14355 17.8428C2.14365 17.653 2.21904 17.4703 2.35254 17.3359C2.48639 17.2018 2.66828 17.1251 2.85742 17.125H7.14355ZM12.1709 12.125L11.7246 12.8203L17.2979 18.417C17.4476 18.5673 17.6498 18.6513 17.8574 18.6514C18.0646 18.6513 18.2659 18.5676 18.416 18.417C18.5463 18.286 18.6281 18.1133 18.6465 17.9287L18.6504 17.8486C18.6503 17.6605 18.5846 17.48 18.4688 17.3379L18.416 17.2793L12.8457 11.6875L12.1709 12.125ZM10.0225 0.0126953C10.3398 -0.0211951 10.6609 0.016491 10.9619 0.123047C11.263 0.2297 11.5367 0.40342 11.7627 0.629883L15 3.87988C15.2255 4.10676 15.3976 4.38231 15.5039 4.68457C15.61 4.98665 15.648 5.30943 15.6143 5.62793L15.5752 5.86523C15.5235 6.09885 15.4331 6.32363 15.3076 6.52832L15.1709 6.72461C15.0243 6.91328 14.8476 7.07757 14.6465 7.20801L14.249 7.46582L10.291 10.0293L10.2285 10.0732C10.1693 10.1208 10.1176 10.1783 10.0762 10.2422L7.52441 14.2197L7.26855 14.6172C7.09536 14.8868 6.86282 15.1158 6.59082 15.2842L6.38086 15.3984C6.16503 15.5007 5.93271 15.5662 5.69434 15.5918L5.45605 15.6035C5.29696 15.6026 5.13839 15.584 4.9834 15.5479L4.75391 15.4805C4.45255 15.3736 4.17724 15.2005 3.95117 14.9736L0.71582 11.7236C0.546506 11.5535 0.405848 11.356 0.301758 11.1406L0.209961 10.9189C0.130264 10.6921 0.0891128 10.4533 0.0878906 10.2139L0.100586 9.97363C0.126134 9.73448 0.191272 9.50092 0.292969 9.28418L0.40625 9.07324C0.531999 8.86852 0.691177 8.68642 0.875977 8.53516L1.06934 8.39453L1.46582 8.13574L5.4248 5.57422C5.48892 5.53298 5.5461 5.48126 5.59375 5.42188L5.63867 5.35938L8.19238 1.38379L8.44824 0.986328C8.62151 0.716908 8.85403 0.488517 9.12598 0.320312C9.32987 0.194307 9.5534 0.103622 9.78613 0.0517578L10.0225 0.0126953Z"/>
+                <path d="M19.373 16.3262C19.7748 16.7297 19.9998 17.2781 20 17.8486C19.9998 18.419 19.7746 18.9667 19.373 19.3701L19.2158 19.5127C18.8345 19.8266 18.3548 20.0009 17.8574 20.001L17.6455 19.9902C17.225 19.9481 16.8259 19.7816 16.499 19.5127L16.3418 19.3701L10.0039 13.0039L11.1924 11.1504L13.0312 9.96094L19.373 16.3262ZM7.14355 17.125C7.33267 17.1251 7.51363 17.2018 7.64746 17.3359C7.78123 17.4703 7.85733 17.6528 7.85742 17.8428C7.85734 18.0328 7.78123 18.2152 7.64746 18.3496C7.52502 18.4724 7.36287 18.5438 7.19141 18.5557V18.5605H9.28613C9.47534 18.5606 9.65715 18.6363 9.79102 18.7705C9.92456 18.9049 9.99989 19.0875 10 19.2773L9.98633 19.418C9.95897 19.5558 9.89127 19.6844 9.79102 19.7852L9.68262 19.874C9.6048 19.9261 9.51748 19.9631 9.42578 19.9814L9.28613 19.9951H0.71582L0.575195 19.9805C0.483606 19.962 0.396093 19.926 0.318359 19.874L0.209961 19.7852C0.0762489 19.6508 0.000142503 19.4673 0 19.2773C0.000114488 19.0874 0.0763052 18.9049 0.209961 18.7705C0.310371 18.6698 0.437936 18.6017 0.575195 18.5742L0.71582 18.5605H2.81641V18.5557C2.64225 18.5454 2.47663 18.474 2.35254 18.3496C2.21903 18.2152 2.14364 18.0326 2.14355 17.8428C2.14365 17.653 2.21904 17.4703 2.35254 17.3359C2.48639 17.2018 2.66828 17.1251 2.85742 17.125H7.14355Z"/>
               </svg>
               <span>For Law Firms</span>
             </div>
@@ -884,21 +880,14 @@
               <li>Share sensitive materials only after intent is established</li>
               <li>Collaborate internally using a single source of truth</li>
             </ul>
-            <p class="section-tagline">Prepare once. Engage selectively. Move forward with confidence.</p>
-            <!-- Mini case card preview -->
-            <div class="mini-case-card">
-              <span class="case-score">8.4</span>
-              <span class="case-meta"><strong>Patent Infringement</strong> · $42M est. damages</span>
-            </div>
+            <p class="tagline">Prepare once. Engage selectively. Move forward with confidence.</p>
           </div>
           
-          <!-- For Funders Tile -->
-          <div class="glass-panel glass-panel--gold data-tile" id="funders">
-            <div class="tile-status">Active</div>
+          <!-- For Funders -->
+          <div class="audience-column" id="funders">
             <div class="pill">
               <svg class="pill-icon" viewBox="0 0 21 20" fill="currentColor">
-                <path d="M1.2304 17.7611H19.4273V17.1335C19.4273 16.7588 19.2145 16.5339 18.8352 16.5339H18.2431V6.42623H19.0573C19.5661 6.42623 19.8621 6.05152 19.8621 5.66745C19.8621 5.38641 19.7048 5.14286 19.3626 4.94614L11.4621 0.327869C11.0921 0.112413 10.7035 0 10.3242 0C9.94488 0 9.5471 0.112413 9.19558 0.327869L1.29515 4.94614C0.943611 5.14286 0.795594 5.38641 0.795594 5.66745C0.795594 6.05152 1.09162 6.42623 1.60044 6.42623H2.41454V16.5339H1.83171C1.45242 16.5339 1.2304 16.7588 1.2304 17.1335V17.7611ZM3.81145 16.5339V5.22717L9.96344 1.73302C10.0745 1.66745 10.204 1.62998 10.3242 1.62998C10.4445 1.62998 10.574 1.66745 10.6943 1.73302L16.8462 5.22717V16.5339H3.81145ZM0.740087 19.9906H19.9083C20.3154 19.9906 20.6576 19.644 20.6576 19.2318C20.6576 18.8196 20.3154 18.4825 19.9083 18.4825H0.740087C0.333039 18.4825 0 18.8196 0 19.2318C0 19.644 0.333039 19.9906 0.740087 19.9906Z"/>
-                <path d="M10.3426 13.952C11.9153 13.952 13.303 13.2214 13.303 11.6101C13.303 10.1956 12.1836 9.65227 10.9162 9.35249L10.0373 9.14641C9.23248 8.95906 8.54791 8.61245 8.54791 7.8443C8.54791 6.95436 9.49149 6.56093 10.3426 6.56093C11.2677 6.56093 11.8968 6.96374 12.1466 7.74126C12.2391 8.03165 12.4149 8.17216 12.6646 8.17216C12.8959 8.17216 13.1642 8.01292 13.1642 7.68505C13.1642 6.48598 11.647 5.63352 10.3426 5.63352C8.85319 5.63352 7.51179 6.47662 7.51179 7.92861C7.51179 9.3244 8.66817 9.84901 9.80609 10.13L10.6942 10.3361C11.5175 10.5329 12.2761 10.8326 12.2761 11.6944C12.2761 12.7155 11.3047 13.034 10.3704 13.034C9.3805 13.034 8.70517 12.7155 8.37214 11.8162C8.26112 11.5258 8.10386 11.4134 7.85408 11.4134C7.58579 11.4134 7.36377 11.5914 7.36377 11.9005C7.36377 11.9848 7.38227 12.0879 7.41003 12.1909C7.77081 13.4274 9.13072 13.952 10.3426 13.952ZM10.3334 15.0668C10.4999 15.0668 10.6387 14.9262 10.6387 14.7577V4.856C10.6387 4.67802 10.4999 4.54688 10.3334 4.54688C10.1668 4.54688 10.028 4.67802 10.028 4.856V14.7577C10.028 14.9262 10.1668 15.0668 10.3334 15.0668Z"/>
+                <path d="M1.2304 17.7611H19.4273V17.1335C19.4273 16.7588 19.2145 16.5339 18.8352 16.5339H18.2431V6.42623H19.0573C19.5661 6.42623 19.8621 6.05152 19.8621 5.66745C19.8621 5.38641 19.7048 5.14286 19.3626 4.94614L11.4621 0.327869C11.0921 0.112413 10.7035 0 10.3242 0C9.94488 0 9.5471 0.112413 9.19558 0.327869L1.29515 4.94614C0.943611 5.14286 0.795594 5.38641 0.795594 5.66745C0.795594 6.05152 1.09162 6.42623 1.60044 6.42623H2.41454V16.5339H1.83171C1.45242 16.5339 1.2304 16.7588 1.2304 17.1335V17.7611Z"/>
               </svg>
               <span>For Funders</span>
             </div>
@@ -909,19 +898,14 @@
               <li>Compare matters consistently across stages of evaluation</li>
               <li>Engage privately without cross-contamination or pressure</li>
             </ul>
-            <p class="section-tagline">Spend time where conviction is highest.</p>
-            <!-- Mini case card preview -->
-            <div class="mini-case-card">
-              <span class="case-score">7.9</span>
-              <span class="case-meta"><strong>Commercial Dispute</strong> · Stage 2 Review</span>
-            </div>
+            <p class="tagline">Spend time where conviction is highest.</p>
           </div>
           
         </div>
       </div>
     </section>
 
-    <!-- How It Works - Pipeline -->
+    <!-- How It Works -->
     <section id="how-it-works" class="how-it-works-section">
       <div class="how-it-works-container">
         <div class="how-it-works-header">
@@ -978,58 +962,31 @@
     <!-- Security & Trust - Dark Card -->
     <section id="security" class="content-section security-section">
       <div class="section-inner">
-        <div class="credential-panel glass-panel">
-          <div class="pill">
-            <svg class="pill-icon" viewBox="0 0 16 20" fill="currentColor">
-              <path d="M7.82577 19.9965C7.97645 19.9965 8.2213 19.9386 8.45674 19.8035C13.8152 16.7259 15.6516 15.4234 15.6516 11.902V4.52133C15.6516 3.5083 15.2278 3.18992 14.4273 2.8426C13.3161 2.36985 9.72808 1.04809 8.61683 0.65253C8.36257 0.5657 8.08946 0.507812 7.82577 0.507812C7.5621 0.507812 7.28899 0.584995 7.04414 0.65253C5.9329 0.980559 2.3355 2.3795 1.22425 2.8426C0.433196 3.18028 0 3.5083 0 4.52133V11.902C0 15.4234 1.84579 16.7162 7.19482 19.8035C7.43967 19.9386 7.6751 19.9965 7.82577 19.9965ZM7.82577 18.2503C7.6751 18.2503 7.52442 18.1924 7.24191 18.0187C2.89111 15.3173 1.49735 14.5261 1.49735 11.545V4.82041C1.49735 4.49238 1.55386 4.36696 1.81754 4.26084C3.24897 3.68196 6.02707 2.72682 7.44909 2.14795C7.59976 2.08042 7.72219 2.06112 7.82577 2.06112C7.92937 2.06112 8.05179 2.09006 8.20247 2.14795C9.62448 2.72682 12.3838 3.7495 13.8435 4.26084C14.0977 4.35731 14.1542 4.49238 14.1542 4.82041V11.545C14.1542 14.5261 12.7604 15.3076 8.40965 18.0187C8.13655 18.1924 7.97645 18.2503 7.82577 18.2503Z"/>
-              <path d="M7.84446 3.9375C6.13993 3.9375 4.77441 5.32678 4.77441 7.0827C4.77441 8.39481 5.53722 9.55256 6.75205 10.0253V14.8782C6.75205 15.0036 6.7803 15.0904 6.86506 15.1966L7.67494 16.0166C7.75028 16.1034 7.91979 16.1324 8.01397 16.0166L9.54898 14.4634C9.64316 14.3668 9.63374 14.2125 9.54898 14.116L8.59785 13.1512L9.89745 11.8295C9.99157 11.733 9.99157 11.5787 9.888 11.4821L8.59785 10.1411C10.0858 9.54291 10.9145 8.42376 10.9145 7.0827C10.9145 5.33644 9.54898 3.9375 7.84446 3.9375ZM7.84446 6.98622C7.35475 6.98622 6.95923 6.59066 6.95923 6.08897C6.95923 5.58728 7.35475 5.18207 7.84446 5.18207C8.33416 5.18207 8.72027 5.58728 8.72027 6.08897C8.72027 6.59066 8.33416 6.98622 7.84446 6.98622Z"/>
-            </svg>
-            <span>Security & Trust</span>
-          </div>
-          <h3>Built for discretion. Designed for credibility.</h3>
-          <p class="section-intro">Litigation finance requires sharing sensitive case details before trust is fully established. CaseFin is designed to make that possible without unnecessary exposure.</p>
-          
-          <!-- Trust claims grid -->
-          <div class="trust-grid">
-            <div class="trust-claim">
-              <span class="trust-icon">🔐</span>
-              <span class="trust-text">Permissioned access at every stage</span>
-            </div>
-            <div class="trust-claim">
-              <span class="trust-icon">📋</span>
-              <span class="trust-text">Full audit trails on all documents</span>
-            </div>
-            <div class="trust-claim">
-              <span class="trust-icon">🔒</span>
-              <span class="trust-text">Isolated evaluation by design</span>
-            </div>
-            <div class="trust-claim">
-              <span class="trust-icon">⚖️</span>
-              <span class="trust-text">AI assists, humans decide</span>
-            </div>
-          </div>
-          
-          <p class="section-tagline">CaseFin exists to bridge gaps, not expose them.</p>
+        <div class="pill">
+          <svg class="pill-icon" viewBox="0 0 16 20" fill="currentColor">
+            <path d="M7.82577 19.9965C7.97645 19.9965 8.2213 19.9386 8.45674 19.8035C13.8152 16.7259 15.6516 15.4234 15.6516 11.902V4.52133C15.6516 3.5083 15.2278 3.18992 14.4273 2.8426C13.3161 2.36985 9.72808 1.04809 8.61683 0.65253C8.36257 0.5657 8.08946 0.507812 7.82577 0.507812C7.5621 0.507812 7.28899 0.584995 7.04414 0.65253C5.9329 0.980559 2.3355 2.3795 1.22425 2.8426C0.433196 3.18028 0 3.5083 0 4.52133V11.902C0 15.4234 1.84579 16.7162 7.19482 19.8035C7.43967 19.9386 7.6751 19.9965 7.82577 19.9965Z"/>
+          </svg>
+          <span>Security & Trust</span>
         </div>
+        <h2>Built for discretion. Designed for credibility.</h2>
+        <p class="section-lead">Litigation finance requires sharing sensitive case details before trust is fully established. CaseFin is designed to make that possible without unnecessary exposure.</p>
+        <ul class="feature-list">
+          <li>Permissioned access at every stage of engagement</li>
+          <li>Secure document handling with full audit trails</li>
+          <li>Isolated evaluation environments by design</li>
+          <li>AI-assisted analysis that supports, not replaces, human judgment</li>
+        </ul>
+        <p class="tagline-muted">CaseFin exists to bridge gaps, not expose them.</p>
       </div>
     </section>
 
-    <!-- What Is Litigation Funding - Editorial Module -->
-    <section id="what-is-litigation-funding" class="content-section editorial-section">
+    <!-- What Is Litigation Funding -->
+    <section id="what-is-litigation-funding" class="content-section">
       <div class="section-inner">
-        <div class="editorial-module">
-          <div class="editorial-header">
-            <span class="editorial-number">01</span>
-            <h2>What Is Litigation Funding?</h2>
-          </div>
-          <div class="editorial-content">
-            <p class="editorial-lead">A financing arrangement in which a third party covers litigation expenses in exchange for a contingent return if the claim succeeds.</p>
-            <div class="editorial-details">
-              <p>Funding decisions are typically based on legal merits, damages, enforceability, and risk profile. Funders make investment decisions independently according to their own underwriting criteria.</p>
-              <p>Litigation funding is commonly used by law firms, corporate claimants, and insolvency professionals to manage risk, preserve capital, and allocate litigation costs more efficiently.</p>
-            </div>
-          </div>
-        </div>
+        <h2>What Is Litigation Funding?</h2>
+        <p class="section-lead">A financing arrangement in which a third party covers litigation expenses in exchange for a contingent return if the claim succeeds.</p>
+        <p>Funding decisions are typically based on legal merits, damages, enforceability, and risk profile. Funders make investment decisions independently according to their own underwriting criteria.</p>
+        <p>Litigation funding is commonly used by law firms, corporate claimants, and insolvency professionals to manage risk, preserve capital, and allocate litigation costs more efficiently.</p>
       </div>
     </section>
 

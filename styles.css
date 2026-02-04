@@ -1,6 +1,6 @@
 /* ========================================
-   Direction C: Data Room Aesthetic
-   Dark continuum with UI-inflected panels
+   Direction D: Light Professional
+   Dark hero → Clean, institutional content
 ======================================== */
 
 /* Tiempos placeholder - replace with actual @font-face when files are uploaded */
@@ -15,27 +15,32 @@
 */
 
 :root {
-  --color-base: #1a1a1a;
-  --color-elevated: #1e1e1e;
-  --color-surface: #242424;
+  /* Dark palette (hero, nav, footer) */
+  --color-dark: #1a1a1a;
+  --color-dark-elevated: #242424;
+  
+  /* Light palette (content) */
+  --color-light: #FAFAF8;
+  --color-light-alt: #F5F4F1;
+  --color-paper: #FFFFFF;
+  
+  /* Text on dark */
+  --text-on-dark: #f5f1ed;
+  --text-on-dark-secondary: rgba(245, 241, 237, 0.7);
+  --text-on-dark-muted: rgba(245, 241, 237, 0.4);
+  
+  /* Text on light */
+  --text-primary: #1a1a1a;
+  --text-secondary: #4a4744;
+  --text-muted: #8a8784;
+  
+  /* Accents */
+  --gold: #B8A078;
+  --gold-muted: rgba(184, 160, 120, 0.5);
+  --border-light: rgba(0, 0, 0, 0.08);
+  --border-dark: rgba(255, 255, 255, 0.08);
   
   --header-h: 76px;
-  
-  /* Champagne gold palette */
-  --gold: #C4A580;
-  --gold-soft: rgba(196, 165, 128, 0.15);
-  --gold-glow: rgba(196, 165, 128, 0.08);
-  --champagne: #C4A580;
-  
-  --text-primary: #f5f1ed;
-  --text-secondary: rgba(245, 241, 237, 0.7);
-  --text-muted: rgba(245, 241, 237, 0.4);
-  
-  /* Glass panel system */
-  --panel-bg: rgba(40, 38, 35, 0.65);
-  --panel-border: rgba(255, 255, 255, 0.04);
-  --panel-highlight: rgba(255, 255, 255, 0.06);
-  --panel-gold-highlight: rgba(196, 165, 128, 0.12);
   
   /* Typography */
   --font-headline: 'Tiempos', 'Source Serif Pro', Georgia, serif;
@@ -43,7 +48,6 @@
   --font-mono: 'JetBrains Mono', monospace;
   
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
-  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -53,24 +57,11 @@ body {
   color: var(--text-primary);
   line-height: 1.6;
   overflow-x: hidden;
-  background: var(--color-base);
-}
-
-/* Noise texture overlay - applied to post-hero */
-.noise-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 9999;
-  opacity: 0.025;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background: var(--color-light);
 }
 
 /* ========================================
-   Navigation
+   Navigation - Dark, anchors the page
 ======================================== */
 .nav {
   position: fixed;
@@ -80,17 +71,17 @@ body {
   align-items: center;
   justify-content: space-between;
   padding: 1.25rem clamp(1.5rem, 3vw, 3rem);
-  background: var(--color-base);
+  background: var(--color-dark);
   border-bottom: 1px solid transparent;
   transition: background 0.4s ease, border-color 0.4s ease;
   height: var(--header-h);
 }
 
 .nav.scrolled {
-  background: rgba(24, 24, 24, 0.95);
+  background: rgba(26, 26, 26, 0.97);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border-bottom-color: var(--glass-border-gold);
+  border-bottom-color: var(--border-dark);
 }
 
 .nav-logo { 
@@ -99,6 +90,7 @@ body {
   font-weight: 500; 
   letter-spacing: -0.02em; 
   flex: 1;
+  color: var(--text-on-dark);
 }
 
 .nav-links { 
@@ -111,14 +103,14 @@ body {
 }
 .nav-links a { 
   font-family: var(--font-body);
-  color: var(--text-secondary); 
+  color: var(--text-on-dark-secondary); 
   text-decoration: none; 
   font-size: 0.875rem; 
   font-weight: 450;
   transition: color 0.2s; 
   white-space: nowrap;
 }
-.nav-links a:hover { color: var(--text-primary); }
+.nav-links a:hover { color: var(--text-on-dark); }
 
 .nav-actions { 
   display: flex; 
@@ -128,14 +120,14 @@ body {
   justify-content: flex-end;
 }
 .btn-text { 
-  color: var(--text-secondary); 
+  color: var(--text-on-dark-secondary); 
   text-decoration: none; 
   font-size: 0.9rem; 
   padding: 0.5rem 0.75rem; 
   transition: color 0.2s; 
   white-space: nowrap;
 }
-.btn-text:hover { color: var(--text-primary); }
+.btn-text:hover { color: var(--text-on-dark); }
 
 /* Hide nav links on smaller screens */
 @media (max-width: 768px) {
@@ -144,25 +136,28 @@ body {
 }
 
 /* ========================================
-   Buttons
+   Buttons - Dark context (nav, hero, footer)
 ======================================== */
 .btn-primary {
   font-family: var(--font-body);
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background: var(--glass-bg);
+  background: rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(20px);
-  color: var(--text-primary);
+  color: var(--text-on-dark);
   text-decoration: none;
-  font-size: 0.9rem;
+  font-size: 0.875rem;
   font-weight: 500;
-  padding: 0.65rem 1.25rem;
-  border-radius: 8px;
-  border: 1px solid var(--glass-border-gold);
+  padding: 0.6rem 1.15rem;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
   transition: all 0.2s ease;
 }
-.btn-primary:hover { background: var(--glass-bg-strong); }
+.btn-primary:hover { 
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.18);
+}
 
 /* Lock icon cube container */
 .btn-icon-cube {
@@ -170,28 +165,31 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 24px;
-  height: 24px;
-  background: rgba(255, 255, 255, 0.12);
-  border-radius: 5px;
+  width: 22px;
+  height: 22px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
   flex-shrink: 0;
 }
 
 .btn-primary:hover .btn-icon-cube,
 .btn-cta:hover .btn-icon-cube {
-  background: rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.15);
 }
 
 .lock-icon {
   position: absolute;
+  color: var(--text-on-dark);
 }
 
 .lock-closed {
   opacity: 1;
+  transition: opacity 0.15s ease;
 }
 
 .lock-open {
   opacity: 0;
+  transition: opacity 0.15s ease;
 }
 
 .btn-primary:hover .lock-closed,
@@ -209,19 +207,18 @@ body {
   display: inline-flex;
   align-items: center;
   background: transparent;
-  backdrop-filter: blur(20px);
-  color: var(--text-secondary);
+  color: var(--text-on-dark-secondary);
   text-decoration: none;
-  font-size: 0.9rem;
+  font-size: 0.875rem;
   font-weight: 500;
-  padding: 0.65rem 1.25rem;
-  border-radius: 8px;
+  padding: 0.6rem 1.15rem;
+  border-radius: 6px;
   border: 1px solid rgba(255, 255, 255, 0.1);
   transition: all 0.2s ease;
 }
 .btn-secondary:hover { 
-  background: var(--glass-bg); 
-  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-on-dark);
   border-color: rgba(255, 255, 255, 0.15);
 }
 
@@ -909,118 +906,223 @@ body {
 .scroll-indicator { display: none; }
 
 /* ========================================
-   Post-Hero: Dark Continuum
-   Maintains dark environment with depth
+   Post-Hero: Light Professional
+   Clean institutional content area
 ======================================== */
 .post-hero-gradient {
-  background: linear-gradient(
-    180deg,
-    var(--color-base) 0%,
-    #1c1c1c 50%,
-    var(--color-elevated) 100%
-  );
+  background: var(--color-light);
   position: relative;
 }
 
-/* Persistent UI fragment texture - continues hero motif */
+/* Subtle warm vignette at edges */
 .post-hero-gradient::before {
   content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: 
-    radial-gradient(ellipse 80% 50% at 20% 30%, rgba(196, 165, 128, 0.015) 0%, transparent 50%),
-    radial-gradient(ellipse 60% 40% at 80% 70%, rgba(196, 165, 128, 0.01) 0%, transparent 50%);
-  pointer-events: none;
-  z-index: 0;
-}
-
-/* ========================================
-   Glass Panel System
-   UI-inflected surfaces with depth
-======================================== */
-.glass-panel {
-  background: var(--panel-bg);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid var(--panel-border);
-  border-radius: 16px;
-  padding: clamp(1.75rem, 4vw, 2.5rem);
-  position: relative;
-  color: var(--text-primary);
-  transition: transform 0.3s var(--ease-smooth), box-shadow 0.3s var(--ease-smooth);
-}
-
-/* Gold top-edge highlight */
-.glass-panel::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 8%;
-  right: 8%;
-  height: 1px;
-  background: linear-gradient(90deg,
-    transparent 0%,
-    var(--panel-gold-highlight) 30%,
-    rgba(196, 165, 128, 0.18) 50%,
-    var(--panel-gold-highlight) 70%,
-    transparent 100%
-  );
-  border-radius: 1px;
-}
-
-/* Subtle inner glow */
-.glass-panel::after {
-  content: '';
-  position: absolute;
   inset: 0;
-  border-radius: 16px;
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.02) 0%,
-    transparent 30%,
-    transparent 100%
+  background: radial-gradient(
+    ellipse 120% 80% at 50% 0%,
+    transparent 50%,
+    rgba(0, 0, 0, 0.015) 100%
   );
   pointer-events: none;
 }
 
-/* Hover state - subtle lift */
-.glass-panel:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+/* ========================================
+   Typography-Forward Content System
+   Let headlines and text carry hierarchy
+======================================== */
+
+/* Section container */
+.content-section {
+  padding: clamp(4rem, 8vw, 6rem) clamp(1.5rem, 4vw, 4rem);
+  position: relative;
 }
 
-/* Panel with gold accent (for primary panels) */
-.glass-panel--gold {
-  border-color: rgba(196, 165, 128, 0.08);
+.section-inner {
+  max-width: 680px;
+  margin: 0 auto;
 }
 
-.glass-panel--gold::before {
-  background: linear-gradient(90deg,
-    transparent 0%,
-    rgba(196, 165, 128, 0.2) 30%,
-    rgba(196, 165, 128, 0.3) 50%,
-    rgba(196, 165, 128, 0.2) 70%,
-    transparent 100%
-  );
+/* Section dividers - thin rules */
+.content-section + .content-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(400px, 60%);
+  height: 1px;
+  background: var(--border-light);
+}
+
+/* Headlines */
+.content-section h2 {
+  font-family: var(--font-headline);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  color: var(--text-primary);
+  margin-bottom: 1.25rem;
+}
+
+.content-section h3 {
+  font-family: var(--font-headline);
+  font-size: clamp(1.15rem, 2vw, 1.35rem);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.35;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+}
+
+/* Body text */
+.content-section p {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+}
+
+.content-section p:last-child {
+  margin-bottom: 0;
+}
+
+/* Lead paragraph */
+.section-lead {
+  font-size: 1.1rem;
+  line-height: 1.65;
+  color: var(--text-primary);
+  margin-bottom: 1.5rem;
+}
+
+/* Feature lists */
+.content-section .feature-list {
+  list-style: none;
+  margin: 1.5rem 0;
+}
+
+.content-section .feature-list li {
+  position: relative;
+  padding-left: 1.25rem;
+  margin-bottom: 0.75rem;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+.content-section .feature-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.65em;
+  width: 4px;
+  height: 4px;
+  background: var(--gold);
+  border-radius: 50%;
+}
+
+/* Pills/Tags on light */
+.content-section .pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.75rem;
+  background: var(--color-light-alt);
+  border: 1px solid var(--border-light);
+  border-radius: 4px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 1rem;
+}
+
+.content-section .pill-icon {
+  width: 12px;
+  height: 12px;
+  color: var(--gold);
 }
 
 /* ========================================
-   Audience Section - Data Room Tiles
+   Audience Section - Two Column Layout
 ======================================== */
 .audience-section {
-  padding: clamp(5rem, 10vw, 8rem) clamp(1rem, 3vw, 3rem);
-  position: relative;
-  z-index: 1;
+  padding: clamp(5rem, 10vw, 7rem) clamp(1.5rem, 4vw, 4rem);
+  background: var(--color-light);
 }
 
-/* Section warm glow */
-.audience-section::before {
+.audience-container {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.audience-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(2rem, 4vw, 3rem);
+}
+
+@media (max-width: 768px) {
+  .audience-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+}
+
+/* Audience columns - typography forward, not card-forward */
+.audience-column {
+  padding-top: 0.5rem;
+  border-top: 2px solid var(--text-primary);
+}
+
+.audience-column .pill {
+  margin-top: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.audience-column h3 {
+  font-family: var(--font-headline);
+  font-size: clamp(1.15rem, 2vw, 1.35rem);
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--text-primary);
+  margin-bottom: 1.25rem;
+}
+
+.audience-column .feature-list {
+  list-style: none;
+  margin: 0 0 1.25rem 0;
+}
+
+.audience-column .feature-list li {
+  position: relative;
+  padding-left: 1rem;
+  margin-bottom: 0.6rem;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: var(--text-secondary);
+}
+
+.audience-column .feature-list li::before {
   content: '';
   position: absolute;
-  top: 50%;
+  left: 0;
+  top: 0.6em;
+  width: 4px;
+  height: 4px;
+  background: var(--gold);
+  border-radius: 50%;
+}
+
+.audience-column .tagline {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-style: italic;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--border-light);
+}
   left: 50%;
   transform: translate(-50%, -50%);
   width: 80%;
@@ -1166,144 +1268,141 @@ body {
 }
 
 /* ========================================
-   Bridge Section - Transition statement
+   Bridge Section - Transition from hero
 ======================================== */
 .bridge-section {
-  padding: 5rem 3rem 4rem;
+  padding: clamp(4rem, 8vw, 5rem) clamp(1.5rem, 4vw, 4rem);
   text-align: center;
-  position: relative;
-  z-index: 1;
+  background: var(--color-light);
 }
 
 .bridge-text {
-  max-width: 680px;
+  max-width: 620px;
   margin: 0 auto;
-  font-size: 1.15rem;
+  font-size: 1.1rem;
   color: var(--text-secondary);
-  line-height: 1.65;
+  line-height: 1.7;
   font-weight: 400;
 }
 
 /* ========================================
-   Content Sections - Dark Environment
+   Content Sections - Light background
 ======================================== */
 .content-section {
-  padding: clamp(5rem, 10vw, 7rem) clamp(1rem, 3vw, 3rem);
+  padding: clamp(4rem, 8vw, 6rem) clamp(1.5rem, 4vw, 4rem);
   position: relative;
   scroll-margin-top: var(--header-h);
-  z-index: 1;
+  background: var(--color-light);
 }
 
-/* Subtle section divider - scan line effect */
-.content-section::before {
+/* Section divider - thin rule */
+.content-section + .content-section::before {
   content: '';
   position: absolute;
   top: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: min(600px, 80%);
+  width: min(400px, 60%);
   height: 1px;
-  background: linear-gradient(90deg,
-    transparent 0%,
-    rgba(255, 255, 255, 0.03) 20%,
-    rgba(255, 255, 255, 0.05) 50%,
-    rgba(255, 255, 255, 0.03) 80%,
-    transparent 100%
-  );
+  background: var(--border-light);
 }
 
 .section-inner {
-  max-width: 720px;
+  max-width: 680px;
   margin: 0 auto;
-  padding: 0 clamp(1rem, 3vw, 2rem);
-  position: relative;
-}
-
-/* Section label - floats left on desktop */
-.section-label {
-  font-family: var(--font-body);
-  font-size: 0.65rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--gold);
-  opacity: 0.6;
-  margin-bottom: 1rem;
 }
 
 .content-section h2 {
   font-family: var(--font-headline);
   font-size: clamp(1.5rem, 3vw, 2rem);
   font-weight: 500;
-  letter-spacing: -0.015em;
-  margin-bottom: 1.5rem;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.25rem;
   line-height: 1.25;
   color: var(--text-primary);
 }
 
-.content-section .section-intro,
-.content-section .section-body {
-  color: var(--text-secondary);
+.content-section p {
   font-size: 1rem;
-  line-height: 1.65;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
 }
 
-.content-section .section-tagline {
+.content-section p:last-child {
+  margin-bottom: 0;
+}
+
+.section-lead {
+  font-size: 1.1rem;
+  line-height: 1.65;
+  color: var(--text-primary);
+  margin-bottom: 1.25rem;
+}
+
+.tagline-muted {
+  font-size: 0.9rem;
   color: var(--text-muted);
   font-style: italic;
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-light);
+}
+
+.content-section .feature-list {
+  list-style: none;
+  margin: 1.5rem 0;
 }
 
 .content-section .feature-list li {
+  position: relative;
+  padding-left: 1.25rem;
+  margin-bottom: 0.65rem;
+  font-size: 0.95rem;
+  line-height: 1.6;
   color: var(--text-secondary);
 }
 
 .content-section .feature-list li::before {
-  background: var(--champagne);
-  opacity: 0.5;
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.6em;
+  width: 4px;
+  height: 4px;
+  background: var(--gold);
+  border-radius: 50%;
 }
 
-/* Pills in dark environment */
+/* Pills on light background */
 .content-section .pill {
-  font-family: var(--font-body);
-  background: #1e1e1e;
-  border-color: transparent;
-  color: rgba(196, 165, 128, 0.95);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.75rem;
+  background: var(--color-light-alt);
+  border: 1px solid var(--border-light);
+  border-radius: 4px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 1rem;
 }
 
 .content-section .pill-icon {
-  color: var(--champagne);
-  opacity: 0.85;
+  width: 12px;
+  height: 12px;
+  color: var(--gold);
 }
 
 /* ========================================
-   Security Section - Credential Panel
+   Security Section
 ======================================== */
 .security-section {
-  position: relative;
+  /* No special styling needed - uses content-section defaults */
 }
-
-.security-section::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 60%;
-  height: 80%;
-  background: radial-gradient(
-    ellipse at center,
-    rgba(196, 165, 128, 0.025) 0%,
-    transparent 60%
-  );
-  pointer-events: none;
-}
-
-.credential-panel {
-  background: rgba(40, 38, 35, 0.65);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.04);
-  border-radius: 16px;
   padding: clamp(2rem, 4vw, 3rem);
   position: relative;
 }
@@ -1510,31 +1609,13 @@ body {
 }
 
 /* ========================================
-   How It Works - Pipeline Visualization
+   How It Works - Light background, clean steps
 ======================================== */
 .how-it-works-section {
   min-height: 450vh;
   position: relative;
   scroll-margin-top: var(--header-h);
-  background: var(--color-base);
-}
-
-/* Subtle warm glow behind pipeline */
-.how-it-works-section::before {
-  content: '';
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 70%;
-  height: 50%;
-  background: radial-gradient(
-    ellipse at center,
-    rgba(196, 165, 128, 0.02) 0%,
-    transparent 60%
-  );
-  pointer-events: none;
-  z-index: 0;
+  background: var(--color-light);
 }
 
 .how-it-works-container {
@@ -1545,22 +1626,35 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: var(--header-h) clamp(1rem, 3vw, 3rem) 2rem;
-  z-index: 1;
+  padding: var(--header-h) clamp(1.5rem, 4vw, 4rem) 2rem;
 }
 
 .how-it-works-header {
-  max-width: 800px;
+  max-width: 680px;
   margin: 0 auto 2.5rem;
   text-align: left;
   width: 100%;
-  padding: 0 clamp(1rem, 3vw, 2rem);
 }
 
 .how-it-works-header .pill {
-  font-family: var(--font-body);
-  background: rgba(255, 255, 255, 0.03);
-  border-color: rgba(196, 165, 128, 0.15);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.75rem;
+  background: var(--color-light-alt);
+  border: 1px solid var(--border-light);
+  border-radius: 4px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 1rem;
+}
+
+.how-it-works-header .pill-icon {
+  width: 12px;
+  height: 12px;
   color: var(--gold);
 }
 
@@ -1568,54 +1662,79 @@ body {
   font-family: var(--font-headline);
   font-size: clamp(1.5rem, 3vw, 2rem);
   font-weight: 500;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
   line-height: 1.25;
   color: var(--text-primary);
 }
 
-/* Pipeline container - glass panel */
+/* Steps container - clean, no heavy styling */
 .steps-container {
-  max-width: 800px;
+  max-width: 680px;
   margin: 0 auto;
   width: 100%;
-  background: var(--panel-bg);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid var(--panel-border);
-  border-radius: 16px;
-  padding: clamp(2rem, 4vw, 3rem);
   position: relative;
+  padding-left: 2.5rem;
 }
 
-/* Gold top edge */
+/* Vertical timeline line */
 .steps-container::before {
   content: '';
   position: absolute;
-  top: 0;
-  left: 8%;
-  right: 8%;
-  height: 1px;
-  background: linear-gradient(90deg,
-    transparent 0%,
-    rgba(196, 165, 128, 0.15) 30%,
-    rgba(196, 165, 128, 0.25) 50%,
-    rgba(196, 165, 128, 0.15) 70%,
-    transparent 100%
-  );
+  left: 8px;
+  top: 0.5rem;
+  bottom: 0.5rem;
+  width: 1px;
+  background: var(--border-light);
 }
 
-/* Pipeline rail - gold connector line */
-.pipeline-rail {
+.step {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25rem;
+  padding: 1rem 0;
+  position: relative;
+  opacity: 0.35;
+  transition: opacity 0.4s ease;
+}
+
+.step.active {
+  opacity: 1;
+}
+
+.step-number {
   position: absolute;
-  left: 28px;
-  top: 3.5rem;
-  bottom: 3.5rem;
-  width: 2px;
-  background: linear-gradient(
-    180deg,
-    rgba(196, 165, 128, 0.3) 0%,
-    rgba(196, 165, 128, 0.15) 50%,
-    rgba(196, 165, 128, 0.05) 100%
+  left: -2.5rem;
+  flex-shrink: 0;
+  width: 17px;
+  height: 17px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0;
+  background: var(--color-light);
+  border: 2px solid var(--border-light);
+  border-radius: 50%;
+  transition: all 0.4s ease;
+}
+
+.step.active .step-number {
+  background: var(--gold);
+  border-color: var(--gold);
+}
+
+.step-content h3 {
+  font-family: var(--font-headline);
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+  color: var(--text-primary);
+}
+
+.step-content p {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
   );
   border-radius: 1px;
 }
@@ -1683,107 +1802,55 @@ body {
 }
 
 /* ========================================
-   CTA Section - Controlled Access Moment
-   Vault door metaphor callback
+   CTA Section - Clean, centered
 ======================================== */
 .section-cta {
   text-align: center;
-  padding: 6rem 3rem 7rem;
-  position: relative;
-  background: var(--color-base);
-  z-index: 1;
-}
-
-/* Radial gold glow behind CTA */
-.section-cta::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 60%;
-  height: 80%;
-  background: radial-gradient(
-    ellipse at center,
-    rgba(196, 165, 128, 0.04) 0%,
-    transparent 60%
-  );
-  pointer-events: none;
-  z-index: -1;
+  padding: clamp(5rem, 10vw, 7rem) clamp(1.5rem, 4vw, 4rem);
+  background: var(--color-light);
 }
 
 .section-cta .section-inner {
   text-align: center;
-  position: relative;
-  /* Glass panel with gold accent */
-  background: var(--panel-bg);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(196, 165, 128, 0.1);
-  border-radius: 20px;
-  padding: clamp(3rem, 6vw, 4rem);
-  max-width: 580px;
-}
-
-/* Gold top edge - stronger */
-.section-cta .section-inner::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 10%;
-  right: 10%;
-  height: 1px;
-  background: linear-gradient(90deg,
-    transparent 0%,
-    rgba(196, 165, 128, 0.25) 30%,
-    rgba(196, 165, 128, 0.4) 50%,
-    rgba(196, 165, 128, 0.25) 70%,
-    transparent 100%
-  );
-}
-
-/* Inner glow */
-.section-cta .section-inner::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: 20px;
-  background: radial-gradient(
-    ellipse at center top,
-    rgba(196, 165, 128, 0.03) 0%,
-    transparent 50%
-  );
-  pointer-events: none;
+  max-width: 520px;
 }
 
 .section-cta h2 {
   font-family: var(--font-headline);
   font-size: clamp(1.5rem, 3vw, 2rem);
   font-weight: 500;
+  letter-spacing: -0.02em;
   color: var(--text-primary);
   margin-bottom: 0.75rem;
-  position: relative;
-  z-index: 1;
 }
 
 .cta-subtext {
   font-size: 1rem;
   color: var(--text-secondary);
   margin-bottom: 2rem;
-  position: relative;
-  z-index: 1;
+}
+
+/* CTA button - dark on light */
+.section-cta .btn-cta {
+  background: var(--color-dark);
+  color: var(--text-on-dark);
+  border-color: var(--color-dark);
+}
+
+.section-cta .btn-cta:hover {
+  background: var(--color-dark-elevated);
 }
 
 /* ========================================
-   Footer
+   Footer - Dark, bookends the page
 ======================================== */
 .footer {
-  border-top: 1px solid rgba(255, 255, 255, 0.04);
-  background: var(--color-base);
+  background: var(--color-dark);
+  border-top: none;
 }
 
 .footer-main {
-  padding: 3rem 3rem 2rem;
+  padding: 3rem clamp(1.5rem, 4vw, 4rem) 2rem;
 }
 
 .footer-inner {
