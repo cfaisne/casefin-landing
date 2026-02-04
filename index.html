@@ -57,16 +57,16 @@
         <!-- ===== LEFT SIDE ===== -->
         
         <!-- BACKGROUND LAYER - Left (heavily blurred, dense) -->
-        <div class="ui-frag scale-sm" data-depth="far" style="top:-4%;left:-14%">
+        <div class="ui-frag scale-sm" data-depth="far" class="edge-fade" style="top:-4%;left:-14%">
           <div class="frag-card-partial">
             <div class="frag-card-row"><span class="frag-pill">Patent Infringement</span><span class="frag-score">8.6</span></div>
             <div class="frag-card-title">Morrison v. TechCorp…</div>
             <div class="frag-card-value">$52M</div>
-            <div class="frag-card-row"><span class="frag-tag">REVIEW</span><span class="frag-date">Q3 2026</span></div>
+            <div class="frag-card-row"><span class="frag-tag review">REVIEW</span><span class="frag-date">Q3 2026</span></div>
           </div>
         </div>
         
-        <div class="ui-frag" data-depth="far" style="top:8%;left:-12%">
+        <div class="ui-frag" data-depth="far" class="edge-fade" style="top:8%;left:-12%">
           <div class="frag-card-partial">
             <div class="frag-card-row"><span class="frag-pill">Arbitration</span><span class="frag-score">7.4</span></div>
             <div class="frag-card-title">Huang Industries v.…</div>
@@ -89,7 +89,7 @@
             <div class="frag-card-row"><span class="frag-pill">ICC</span><span class="frag-score">6.8</span></div>
             <div class="frag-card-title">GlobalTrade GmbH v.…</div>
             <div class="frag-card-value">€18M</div>
-            <div class="frag-card-row"><span class="frag-tag">REVIEW</span><span class="frag-date">24 mo</span></div>
+            <div class="frag-card-row"><span class="frag-tag review">REVIEW</span><span class="frag-date">24 mo</span></div>
           </div>
         </div>
         
@@ -107,11 +107,11 @@
             <div class="frag-card-row"><span class="frag-pill">LCIA</span><span class="frag-score">7.9</span></div>
             <div class="frag-card-title">Sterling Partners v.…</div>
             <div class="frag-card-value">£28M</div>
-            <div class="frag-card-row"><span class="frag-tag">REVIEW</span></div>
+            <div class="frag-card-row"><span class="frag-tag review">REVIEW</span></div>
           </div>
         </div>
         
-        <div class="ui-frag scale-sm" data-depth="far" style="top:76%;left:-10%">
+        <div class="ui-frag scale-sm" data-depth="far" class="edge-fade" style="top:76%;left:-10%">
           <div class="frag-card-partial">
             <div class="frag-card-row"><span class="frag-pill">Patent Infringement</span><span class="frag-score">8.8</span></div>
             <div class="frag-card-title">Vertex IP Holdings v.…</div>
@@ -125,7 +125,7 @@
             <div class="frag-card-row"><span class="frag-pill">Arbitration</span><span class="frag-score">7.2</span></div>
             <div class="frag-card-title">Nordic Shipping v.…</div>
             <div class="frag-card-value">€22M</div>
-            <div class="frag-card-row"><span class="frag-tag">REVIEW</span></div>
+            <div class="frag-card-row"><span class="frag-tag review">REVIEW</span></div>
           </div>
         </div>
         
@@ -157,7 +157,7 @@
           <div class="frag-card-partial frag-card-small">
             <div class="frag-card-title">Kensington v. Allied…</div>
             <div class="frag-card-value">$18M</div>
-            <div class="frag-card-row"><span class="frag-tag">REVIEW</span></div>
+            <div class="frag-card-row"><span class="frag-tag review">REVIEW</span></div>
           </div>
         </div>
         
@@ -181,7 +181,7 @@
           <div class="frag-card-partial frag-card-small">
             <div class="frag-card-title">Nordic Energy AS v.…</div>
             <div class="frag-card-value">£15M</div>
-            <div class="frag-card-row"><span class="frag-tag">REVIEW</span></div>
+            <div class="frag-card-row"><span class="frag-tag review">REVIEW</span></div>
           </div>
         </div>
         
@@ -197,7 +197,7 @@
           <div class="frag-card-partial frag-card-small">
             <div class="frag-card-title">TechVenture LLC v.…</div>
             <div class="frag-card-value">$8.5M</div>
-            <div class="frag-card-row"><span class="frag-tag">REVIEW</span></div>
+            <div class="frag-card-row"><span class="frag-tag review">REVIEW</span></div>
           </div>
         </div>
         
@@ -221,7 +221,7 @@
           <div class="frag-card-partial frag-card-small">
             <div class="frag-card-title">Summit Corp v.…</div>
             <div class="frag-card-value">€19M</div>
-            <div class="frag-card-row"><span class="frag-tag">REVIEW</span></div>
+            <div class="frag-card-row"><span class="frag-tag review">REVIEW</span></div>
           </div>
         </div>
         
@@ -350,7 +350,7 @@
             <div class="frag-card-row"><span class="frag-pill">Arbitration</span><span class="frag-score">8.4</span></div>
             <div class="frag-card-title">Rhine Capital v.…</div>
             <div class="frag-card-value">€38M</div>
-            <div class="frag-card-row"><span class="frag-tag">REVIEW</span><span class="frag-date">18 mo</span></div>
+            <div class="frag-card-row"><span class="frag-tag review">REVIEW</span><span class="frag-date">18 mo</span></div>
           </div>
         </div>
         
@@ -418,20 +418,40 @@
           <div class="frag-score-badge"><span class="frag-score-num">7.6</span><span class="frag-score-denom">/ 10</span></div>
         </div>
         
+        <!-- Version progression cluster - off-center, below midpoint -->
+        <div class="ui-frag" data-depth="mid" style="top:58%;left:8%">
+          <div class="version-progression">
+            <div class="version-step">
+              <div class="frag-version">v1</div>
+              <span class="frag-score-num">7.1</span>
+            </div>
+            <span class="version-arrow">→</span>
+            <div class="version-step">
+              <div class="frag-version">v2</div>
+              <span class="frag-score-num">8.6</span>
+            </div>
+            <span class="version-arrow">→</span>
+            <div class="version-step">
+              <div class="frag-version">v3</div>
+              <span class="frag-score-num">9.1</span>
+            </div>
+          </div>
+        </div>
+        
         
         <!-- ===== RIGHT SIDE ===== -->
         
         <!-- BACKGROUND LAYER - Right (heavily blurred, dense) -->
-        <div class="ui-frag" data-depth="far" style="top:-3%;right:-14%">
+        <div class="ui-frag" data-depth="far" class="edge-fade" style="top:-3%;right:-14%">
           <div class="frag-card-partial">
             <div class="frag-card-row"><span class="frag-pill">Class Action</span><span class="frag-score">8.8</span></div>
             <div class="frag-card-title">In re Automotive…</div>
             <div class="frag-card-value">$95M</div>
-            <div class="frag-card-row"><span class="frag-tag">REVIEW</span><span class="frag-date">Q4 2026</span></div>
+            <div class="frag-card-row"><span class="frag-tag review">REVIEW</span><span class="frag-date">Q4 2026</span></div>
           </div>
         </div>
         
-        <div class="ui-frag scale-lg" data-depth="far" style="top:9%;right:-12%">
+        <div class="ui-frag scale-lg" data-depth="far" class="edge-fade" style="top:9%;right:-12%">
           <div class="frag-card-partial">
             <div class="frag-card-row"><span class="frag-pill">LCIA</span><span class="frag-score">7.6</span></div>
             <div class="frag-card-title">Thames Capital v.…</div>
@@ -463,7 +483,7 @@
             <div class="frag-card-row"><span class="frag-pill">E.D. Texas</span><span class="frag-score">7.2</span></div>
             <div class="frag-card-title">Lone Star Patents v.…</div>
             <div class="frag-card-value">$38M</div>
-            <div class="frag-card-row"><span class="frag-tag">REVIEW</span><span class="frag-date">Jun 2026</span></div>
+            <div class="frag-card-row"><span class="frag-tag review">REVIEW</span><span class="frag-date">Jun 2026</span></div>
           </div>
         </div>
         
@@ -472,7 +492,7 @@
             <div class="frag-card-row"><span class="frag-pill">Arbitration</span><span class="frag-score">8.1</span></div>
             <div class="frag-card-title">Pacific Rim Corp v.…</div>
             <div class="frag-card-value">€32M</div>
-            <div class="frag-card-row"><span class="frag-tag">REVIEW</span></div>
+            <div class="frag-card-row"><span class="frag-tag review">REVIEW</span></div>
           </div>
         </div>
         
@@ -485,7 +505,7 @@
           </div>
         </div>
         
-        <div class="ui-frag scale-lg" data-depth="far" style="top:91%;right:-13%">
+        <div class="ui-frag scale-lg" data-depth="far" class="edge-fade" style="top:91%;right:-13%">
           <div class="frag-card-partial">
             <div class="frag-card-row"><span class="frag-pill">LCIA</span><span class="frag-score">7.8</span></div>
             <div class="frag-card-title">Edinburgh Partners v.…</div>
@@ -522,7 +542,7 @@
           <div class="frag-card-partial frag-card-small">
             <div class="frag-card-title">Evergreen v. Atlas…</div>
             <div class="frag-card-value">$22M</div>
-            <div class="frag-card-row"><span class="frag-tag">REVIEW</span></div>
+            <div class="frag-card-row"><span class="frag-tag review">REVIEW</span></div>
           </div>
         </div>
         
@@ -546,7 +566,7 @@
           <div class="frag-card-partial frag-card-small">
             <div class="frag-card-title">Crown Energy v.…</div>
             <div class="frag-card-value">£18M</div>
-            <div class="frag-card-row"><span class="frag-tag">REVIEW</span></div>
+            <div class="frag-card-row"><span class="frag-tag review">REVIEW</span></div>
           </div>
         </div>
         
@@ -562,7 +582,7 @@
           <div class="frag-card-partial frag-card-small">
             <div class="frag-card-title">Phoenix Labs v.…</div>
             <div class="frag-card-value">$12M</div>
-            <div class="frag-card-row"><span class="frag-tag">REVIEW</span></div>
+            <div class="frag-card-row"><span class="frag-tag review">REVIEW</span></div>
           </div>
         </div>
         
@@ -586,7 +606,7 @@
           <div class="frag-card-partial frag-card-small">
             <div class="frag-card-title">Nova Partners v.…</div>
             <div class="frag-card-value">€16M</div>
-            <div class="frag-card-row"><span class="frag-tag">REVIEW</span></div>
+            <div class="frag-card-row"><span class="frag-tag review">REVIEW</span></div>
           </div>
         </div>
         
@@ -702,7 +722,7 @@
           <div class="frag-card-partial frag-card-small">
             <div class="frag-card-title">ERISA Class v.…</div>
             <div class="frag-card-value">€18M</div>
-            <div class="frag-card-row"><span class="frag-tag">REVIEW</span></div>
+            <div class="frag-card-row"><span class="frag-tag review">REVIEW</span></div>
           </div>
         </div>
         

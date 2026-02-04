@@ -397,6 +397,42 @@ body {
 .ui-frag[data-depth="near"] { filter: blur(1.4px); transform: scale(0.95); }
 .ui-frag[data-depth="close"] { filter: blur(0.6px); transform: scale(1.02); }
 
+/* Far-edge elements get reduced opacity for natural vignette */
+.ui-frag.edge-fade {
+  opacity: 0.9 !important; /* Applied after animation, reduces final opacity by ~10% */
+}
+
+/* Version progression cluster */
+.version-progression {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  filter: blur(2px);
+}
+
+.version-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.version-step .frag-version {
+  font-size: 9px;
+  padding: 2px 6px;
+}
+
+.version-step .frag-score-num {
+  font-size: 11px;
+  color: rgba(184, 166, 122, 0.5);
+}
+
+.version-arrow {
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.15);
+  margin: 0 2px;
+}
+
 /* Scale variance classes */
 .ui-frag.scale-sm { transform: scale(0.85); }
 .ui-frag.scale-lg { transform: scale(1.12); }
@@ -523,9 +559,24 @@ body {
   letter-spacing: 0.03em;
 }
 
-.frag-tag.funded {
+/* Green tint: Funded / Qualified / Closed */
+.frag-tag.funded,
+.frag-tag.qualified,
+.frag-tag.closed {
   color: rgba(107, 155, 122, 0.6);
   background: rgba(107, 155, 122, 0.1);
+}
+
+/* Amber tint: Review / Moderate */
+.frag-tag.review {
+  color: rgba(184, 156, 100, 0.55);
+  background: rgba(184, 156, 100, 0.08);
+}
+
+/* Muted gray: Initial / Draft */
+.frag-tag.initial {
+  color: rgba(150, 150, 150, 0.45);
+  background: rgba(150, 150, 150, 0.06);
 }
 
 .frag-date {
