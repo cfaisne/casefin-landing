@@ -299,7 +299,6 @@ body {
 .unlock-container {
   position: relative;
   width: 100%;
-  max-width: 1200px;
   margin: auto;
   display: flex;
   flex-direction: column;
@@ -330,72 +329,22 @@ body {
   z-index: 1;
 }
 
-/* Data fragments */
+/* Data fragments - extend beyond container for soft edge clipping */
 .data-environment {
   position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
+  top: -5%; 
+  left: -10%;
+  width: 120%; 
+  height: 110%;
   pointer-events: none;
   z-index: 2;
-  overflow: hidden;
+  overflow: visible;
 }
 
 /* ========================================
    UI-Inflected Background Fragments
    "Glimpses through frosted glass"
 ======================================== */
-
-/* Edge fade masks - feathered gradients */
-.data-environment::before,
-.data-environment::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 15%;
-  z-index: 5;
-  pointer-events: none;
-}
-.data-environment::before {
-  left: 0;
-  background: linear-gradient(90deg, 
-    rgba(26, 26, 26, 1) 0%,
-    rgba(26, 26, 26, 0.8) 30%,
-    rgba(26, 26, 26, 0.4) 60%,
-    rgba(26, 26, 26, 0) 100%
-  );
-}
-.data-environment::after {
-  right: 0;
-  background: linear-gradient(270deg, 
-    rgba(26, 26, 26, 1) 0%,
-    rgba(26, 26, 26, 0.8) 30%,
-    rgba(26, 26, 26, 0.4) 60%,
-    rgba(26, 26, 26, 0) 100%
-  );
-}
-
-/* Top and bottom edge fades */
-.data-environment {
-  -webkit-mask-image: linear-gradient(
-    to bottom,
-    transparent 0%,
-    rgba(0,0,0,0.3) 3%,
-    rgba(0,0,0,1) 10%,
-    rgba(0,0,0,1) 90%,
-    rgba(0,0,0,0.3) 97%,
-    transparent 100%
-  );
-  mask-image: linear-gradient(
-    to bottom,
-    transparent 0%,
-    rgba(0,0,0,0.3) 3%,
-    rgba(0,0,0,1) 10%,
-    rgba(0,0,0,1) 90%,
-    rgba(0,0,0,0.3) 97%,
-    transparent 100%
-  );
-}
 
 .ui-frag {
   position: absolute;
