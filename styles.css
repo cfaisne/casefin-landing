@@ -875,75 +875,107 @@ body {
    Post-Hero Gradient
 ======================================== */
 .post-hero-gradient {
-  /* Subtle continuous luminance - removed harsh stops */
-  background: #272727;
+  /* Smooth gradient - lightens then returns to nav-matching */
+  background: linear-gradient(
+    180deg,
+    #262626 0%,
+    #292929 20%,
+    #2c2c2c 40%,
+    #2c2c2c 60%,
+    #292929 80%,
+    #262626 100%
+  );
 }
 
 /* ========================================
-   Depth Band System - Atmospheric Layering
-   Alternating recessed/elevated sections
+   Frosted Gold Card System
+   Subtle warmth, minimal blur, selective use
 ======================================== */
-
-/* Recessed band - slightly darker, feels set back */
-.depth-recessed {
-  background: #232323;
+.frosted-card {
+  background: rgba(48, 45, 40, 0.6);
+  border: 1px solid rgba(196, 165, 128, 0.1);
+  border-radius: 16px;
+  padding: clamp(2rem, 4vw, 2.5rem);
   position: relative;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
-/* Elevated band - slightly lighter, feels closer */
-.depth-elevated {
-  background: #2b2b2b;
-  position: relative;
-}
-
-/* Ambient glow for key sections - very subtle radial light */
-.depth-glow {
-  position: relative;
-}
-.depth-glow::before {
+/* Very subtle warm inner glow - top-left corner */
+.frosted-card::before {
   content: '';
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 80%;
-  height: 60%;
-  background: radial-gradient(
-    ellipse at center,
-    rgba(196, 165, 128, 0.02) 0%,
-    transparent 70%
+  inset: 0;
+  border-radius: 16px;
+  background: linear-gradient(
+    135deg,
+    rgba(196, 165, 128, 0.04) 0%,
+    transparent 35%,
+    transparent 100%
   );
   pointer-events: none;
-  z-index: 0;
 }
 
-/* Card grid layout */
-.card-grid {
+/* Unified section for Law Firms + Funders */
+.audience-section {
+  padding: clamp(5rem, 10vw, 8rem) clamp(1rem, 3vw, 3rem);
+}
+
+.audience-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: clamp(1.5rem, 3vw, 2rem);
-  max-width: 1100px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+  max-width: 1000px;
   margin: 0 auto;
-  padding: 0 clamp(1rem, 3vw, 2rem);
 }
 
-.card-grid-3 {
-  grid-template-columns: repeat(3, 1fr);
-}
-
-@media (max-width: 900px) {
-  .card-grid-3 {
+@media (max-width: 800px) {
+  .audience-grid {
     grid-template-columns: 1fr;
+    gap: 2rem;
   }
+}
+
+/* Card content styling */
+.frosted-card .pill {
+  margin-bottom: 1.25rem;
+}
+
+.frosted-card h3 {
+  font-size: clamp(1.2rem, 2.5vw, 1.4rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.25rem;
+  line-height: 1.3;
+}
+
+.frosted-card .feature-list {
+  margin-bottom: 1.5rem;
+}
+
+.frosted-card .feature-list li {
+  font-size: 0.95rem;
+  margin-bottom: 0.65rem;
+  padding-left: 1.25rem;
+}
+
+.frosted-card .feature-list li::before {
+  width: 4px;
+  height: 4px;
+  opacity: 0.5;
+}
+
+.frosted-card .section-tagline {
+  font-size: 0.9rem;
+  margin-top: 1rem;
 }
 
 /* ========================================
    Bridge Section - Transition from hero
 ======================================== */
 .bridge-section {
-  padding: 7rem 3rem 6rem;
+  padding: 6rem 3rem 5rem;
   text-align: center;
-  background: #262626;
 }
 
 .bridge-text {
@@ -956,21 +988,12 @@ body {
 }
 
 /* ========================================
-   Content Sections - Depth Band Layout
+   Content Sections
 ======================================== */
 .content-section {
-  padding: clamp(5rem, 10vw, 8rem) clamp(1rem, 3vw, 3rem);
+  padding: clamp(4rem, 8vw, 6rem) clamp(1rem, 3vw, 3rem);
   position: relative;
   scroll-margin-top: var(--header-h);
-}
-
-/* Alternating depth bands via nth-child */
-.content-section:nth-child(odd) {
-  background: #252525;
-}
-
-.content-section:nth-child(even) {
-  background: #2a2a2a;
 }
 
 /* Soft section divider - subtle line */
@@ -996,7 +1019,6 @@ body {
   margin: 0 auto;
   padding: 0 clamp(1rem, 3vw, 2rem);
   position: relative;
-  /* Remove card styling - let depth bands do the work */
 }
 
 .content-section h2 {
@@ -1069,26 +1091,6 @@ body {
   min-height: 450vh;
   position: relative;
   scroll-margin-top: var(--header-h);
-  /* Distinct depth band */
-  background: #232323;
-}
-
-/* Subtle ambient glow behind steps */
-.how-it-works-section::before {
-  content: '';
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 60%;
-  height: 50%;
-  background: radial-gradient(
-    ellipse at center,
-    rgba(196, 165, 128, 0.015) 0%,
-    transparent 60%
-  );
-  pointer-events: none;
-  z-index: 0;
 }
 
 .how-it-works-container {
@@ -1100,7 +1102,6 @@ body {
   flex-direction: column;
   justify-content: center;
   padding: var(--header-h) clamp(1rem, 3vw, 3rem) 2rem;
-  z-index: 1;
 }
 
 .how-it-works-header {
@@ -1180,32 +1181,13 @@ body {
 ======================================== */
 .section-cta {
   text-align: center;
-  padding: 8rem 3rem 7rem;
-  background: #2a2a2a;
+  padding: 6rem 3rem 5rem;
   position: relative;
-}
-
-/* Subtle warm glow behind CTA */
-.section-cta::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 50%;
-  height: 60%;
-  background: radial-gradient(
-    ellipse at center,
-    rgba(196, 165, 128, 0.02) 0%,
-    transparent 60%
-  );
-  pointer-events: none;
 }
 
 .section-cta .section-inner {
   text-align: center;
   position: relative;
-  z-index: 1;
 }
 
 .cta-inner h2 {
@@ -1223,7 +1205,7 @@ body {
 ======================================== */
 .footer {
   border-top: 1px solid rgba(255, 255, 255, 0.04);
-  background: #1e1e1e;
+  background: #262626;
 }
 
 .footer-main {
