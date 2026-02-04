@@ -22,6 +22,11 @@
   --glass-border: rgba(255, 255, 255, 0.08);
   --glass-border-gold: rgba(196, 165, 128, 0.2);
   
+  /* Depth bands - atmospheric layering */
+  --depth-recessed: #232323;
+  --depth-neutral: #282828;
+  --depth-elevated: #2d2d2d;
+  
   --font-main: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
@@ -250,14 +255,13 @@ body {
   align-items: center;
   gap: 0.5rem;
   padding: 0.5rem 1rem;
-  background: rgba(45, 43, 41, 0.7);
-  backdrop-filter: blur(16px);
-  border: 1px solid rgba(184, 166, 122, 0.12);
-  border-radius: 12px;
+  background: rgba(40, 38, 36, 0.8);
+  border: 1px solid rgba(196, 165, 128, 0.15);
+  border-radius: 10px;
   font-size: 0.75rem;
   font-weight: 500;
-  color: rgba(184, 166, 122, 0.85);
-  margin-bottom: 1.25rem;
+  color: rgba(196, 165, 128, 0.9);
+  margin-bottom: 1.5rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
 }
@@ -265,7 +269,7 @@ body {
 .pill-icon {
   width: 14px;
   height: 14px;
-  opacity: 0.7;
+  opacity: 0.75;
   color: var(--champagne);
 }
 
@@ -871,77 +875,46 @@ body {
    Post-Hero Gradient
 ======================================== */
 .post-hero-gradient {
-  /* Subtle luminance increase: ~8-10% brighter than hero */
-  background: linear-gradient(
-    180deg,
-    #262626 0%,
-    #282828 8%,
-    #2a2a2a 18%,
-    #2c2c2c 30%,
-    #2d2d2d 45%,
-    #2e2e2e 60%,
-    #2f2f2f 75%,
-    #303030 88%,
-    #313131 100%
-  );
+  /* Subtle continuous luminance - removed harsh stops */
+  background: #272727;
 }
 
 /* ========================================
-   Surface Card System
-   Frosted dark cards that resemble in-product UI
+   Depth Band System - Atmospheric Layering
+   Alternating recessed/elevated sections
 ======================================== */
-.surface-card {
-  background: rgba(45, 43, 41, 0.6);
-  border: 1px solid rgba(255, 255, 255, 0.04);
-  border-radius: 12px;
-  padding: clamp(2rem, 4vw, 3rem);
+
+/* Recessed band - slightly darker, feels set back */
+.depth-recessed {
+  background: #232323;
   position: relative;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
 }
 
-/* Subtle inner glow */
-.surface-card::before {
+/* Elevated band - slightly lighter, feels closer */
+.depth-elevated {
+  background: #2b2b2b;
+  position: relative;
+}
+
+/* Ambient glow for key sections - very subtle radial light */
+.depth-glow {
+  position: relative;
+}
+.depth-glow::before {
   content: '';
   position: absolute;
-  inset: 0;
-  border-radius: 12px;
-  padding: 1px;
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.03) 0%,
-    transparent 50%,
-    transparent 100%
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  height: 60%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(196, 165, 128, 0.02) 0%,
+    transparent 70%
   );
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
   pointer-events: none;
-}
-
-/* Card with status indicator */
-.surface-card[data-status]::after {
-  content: attr(data-status);
-  position: absolute;
-  top: 1.5rem;
-  right: 1.5rem;
-  font-size: 9px;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  padding: 4px 10px;
-  border-radius: 4px;
-}
-
-.surface-card[data-status="active"]::after {
-  color: rgba(107, 155, 122, 0.8);
-  background: rgba(107, 155, 122, 0.12);
-}
-
-.surface-card[data-status="secure"]::after {
-  color: rgba(184, 166, 122, 0.7);
-  background: rgba(184, 166, 122, 0.1);
+  z-index: 0;
 }
 
 /* Card grid layout */
@@ -965,11 +938,12 @@ body {
 }
 
 /* ========================================
-   Bridge Section
+   Bridge Section - Transition from hero
 ======================================== */
 .bridge-section {
-  padding: 6rem 3rem 5rem;
+  padding: 7rem 3rem 6rem;
   text-align: center;
+  background: #262626;
 }
 
 .bridge-text {
@@ -982,46 +956,47 @@ body {
 }
 
 /* ========================================
-   Content Sections - Card-based Layout
+   Content Sections - Depth Band Layout
 ======================================== */
 .content-section {
-  padding: clamp(3rem, 6vw, 5rem) clamp(1rem, 3vw, 3rem);
+  padding: clamp(5rem, 10vw, 8rem) clamp(1rem, 3vw, 3rem);
   position: relative;
   scroll-margin-top: var(--header-h);
 }
 
-/* Remove old divider, we'll use cards instead */
+/* Alternating depth bands via nth-child */
+.content-section:nth-child(odd) {
+  background: #252525;
+}
+
+.content-section:nth-child(even) {
+  background: #2a2a2a;
+}
+
+/* Soft section divider - subtle line */
 .content-section::before {
-  display: none;
-}
-
-.section-inner {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: clamp(2rem, 4vw, 3rem);
-  /* Card surface styling */
-  background: rgba(45, 43, 41, 0.5);
-  border: 1px solid rgba(255, 255, 255, 0.04);
-  border-radius: 16px;
-  position: relative;
-}
-
-/* Subtle top highlight on cards */
-.section-inner::before {
   content: '';
   position: absolute;
   top: 0;
-  left: 20%;
-  right: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(500px, 60%);
   height: 1px;
   background: linear-gradient(90deg, 
     transparent 0%, 
-    rgba(255, 255, 255, 0.06) 30%, 
-    rgba(255, 255, 255, 0.08) 50%,
-    rgba(255, 255, 255, 0.06) 70%, 
+    rgba(255, 255, 255, 0.04) 30%, 
+    rgba(255, 255, 255, 0.05) 50%,
+    rgba(255, 255, 255, 0.04) 70%, 
     transparent 100%
   );
-  border-radius: 1px;
+}
+
+.section-inner {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 clamp(1rem, 3vw, 2rem);
+  position: relative;
+  /* Remove card styling - let depth bands do the work */
 }
 
 .content-section h2 {
@@ -1091,9 +1066,29 @@ body {
    How It Works - Pinned Steps
 ======================================== */
 .how-it-works-section {
-  min-height: 450vh; /* Increased for slower scroll */
+  min-height: 450vh;
   position: relative;
   scroll-margin-top: var(--header-h);
+  /* Distinct depth band */
+  background: #232323;
+}
+
+/* Subtle ambient glow behind steps */
+.how-it-works-section::before {
+  content: '';
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60%;
+  height: 50%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(196, 165, 128, 0.015) 0%,
+    transparent 60%
+  );
+  pointer-events: none;
+  z-index: 0;
 }
 
 .how-it-works-container {
@@ -1105,11 +1100,12 @@ body {
   flex-direction: column;
   justify-content: center;
   padding: var(--header-h) clamp(1rem, 3vw, 3rem) 2rem;
+  z-index: 1;
 }
 
 .how-it-works-header {
-  max-width: 800px;
-  margin: 0 auto 2rem;
+  max-width: 720px;
+  margin: 0 auto 2.5rem;
   text-align: left;
   width: 100%;
   padding: 0 clamp(1rem, 3vw, 2rem);
@@ -1123,39 +1119,19 @@ body {
 }
 
 .steps-container {
-  max-width: 800px;
+  max-width: 720px;
   margin: 0 auto;
   width: 100%;
-  /* Card surface */
-  background: rgba(45, 43, 41, 0.45);
-  border: 1px solid rgba(255, 255, 255, 0.04);
-  border-radius: 16px;
-  padding: clamp(1.5rem, 3vw, 2.5rem);
+  padding: clamp(1rem, 3vw, 2rem);
   position: relative;
-}
-
-/* Top highlight */
-.steps-container::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 15%;
-  right: 15%;
-  height: 1px;
-  background: linear-gradient(90deg, 
-    transparent 0%, 
-    rgba(255, 255, 255, 0.05) 30%, 
-    rgba(255, 255, 255, 0.07) 50%,
-    rgba(255, 255, 255, 0.05) 70%, 
-    transparent 100%
-  );
+  /* No card - let depth band work */
 }
 
 .step {
   display: flex;
   align-items: flex-start;
   gap: 1.25rem;
-  padding: 1.25rem 0;
+  padding: 1.5rem 0;
   opacity: 0.3;
   transform: scale(0.96);
   transition: opacity 0.4s ease, transform 0.4s ease;
@@ -1200,18 +1176,36 @@ body {
 }
 
 /* ========================================
-   CTA Section
+   CTA Section - Final call to action
 ======================================== */
 .section-cta {
   text-align: center;
-  padding: 6rem 3rem 5rem;
+  padding: 8rem 3rem 7rem;
+  background: #2a2a2a;
+  position: relative;
+}
+
+/* Subtle warm glow behind CTA */
+.section-cta::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+  height: 60%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(196, 165, 128, 0.02) 0%,
+    transparent 60%
+  );
+  pointer-events: none;
 }
 
 .section-cta .section-inner {
   text-align: center;
-  /* Slightly more prominent card for CTA */
-  background: rgba(48, 46, 43, 0.55);
-  border-color: rgba(184, 166, 122, 0.08);
+  position: relative;
+  z-index: 1;
 }
 
 .cta-inner h2 {
@@ -1228,9 +1222,8 @@ body {
    Footer
 ======================================== */
 .footer {
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
-  background: rgba(28, 28, 28, 0.8);
-  margin-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
+  background: #1e1e1e;
 }
 
 .footer-main {
@@ -1346,23 +1339,23 @@ body {
   
   .key-image { width: clamp(180px, 50vw, 280px); }
   
-  .content-section { padding: 2.5rem 1rem; }
+  .content-section { padding: 4rem 1.5rem; }
   .content-section h2 { font-size: 1.5rem; }
   .section-inner { 
-    padding: 1.5rem; 
-    border-radius: 12px;
+    padding: 0 1rem;
   }
   
   .how-it-works-container { padding: var(--header-h) 1rem 2rem; }
   .how-it-works-header { padding: 0 0.5rem; }
   .how-it-works-header h2 { font-size: 1.35rem; }
   .steps-container { 
-    padding: 1.25rem; 
-    border-radius: 12px;
+    padding: 1rem;
   }
   
-  .bridge-section { padding: 4rem 1.5rem 3rem; }
+  .bridge-section { padding: 5rem 1.5rem 4rem; }
   .bridge-text { font-size: 1.1rem; }
+  
+  .section-cta { padding: 5rem 1.5rem 4rem; }
   
   .footer-main { padding: 2rem 1.5rem; }
   .footer-columns { 
