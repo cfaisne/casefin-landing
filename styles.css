@@ -509,7 +509,7 @@ body {
   align-items: center;
   justify-content: center;
   background: rgba(42, 40, 38, 0.6);
-  border: 1px solid rgba(184, 166, 122, 0.1);
+  border: 1px solid rgba(184, 166, 122, 0.12);
   border-radius: 6px;
   padding: 6px 10px;
 }
@@ -517,16 +517,78 @@ body {
 .frag-grade {
   font-size: 14px;
   font-weight: 700;
-  color: rgba(184, 166, 122, 0.5);
+  color: rgba(184, 166, 122, 0.55);
   letter-spacing: -0.02em;
 }
 
+/* Score badges with denominator (8.6 / 10) - slightly brighter */
+.frag-score-badge {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 2px;
+  background: rgba(42, 40, 38, 0.65);
+  border: 1px solid rgba(184, 166, 122, 0.15);
+  border-radius: 6px;
+  padding: 5px 10px;
+}
+
+.frag-score-num {
+  font-size: 16px;
+  font-weight: 700;
+  color: rgba(184, 166, 122, 0.6);
+  letter-spacing: -0.02em;
+}
+
+.frag-score-denom {
+  font-size: 10px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+/* Version markers (v1, v2, Rescored) */
+.frag-version {
+  font-size: 10px;
+  font-weight: 600;
+  color: rgba(184, 166, 122, 0.5);
+  background: rgba(184, 166, 122, 0.08);
+  padding: 3px 8px;
+  border-radius: 4px;
+  letter-spacing: 0.02em;
+}
+
+/* Confidence labels (Moderate, High confidence) */
+.frag-confidence {
+  font-size: 9px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.04);
+  padding: 4px 8px;
+  border-radius: 4px;
+  letter-spacing: 0.03em;
+}
+
 /* Score depth opacity */
-.ui-frag[data-depth="edge"] .frag-score-block { opacity: 0.2; }
-.ui-frag[data-depth="far"] .frag-score-block { opacity: 0.35; }
-.ui-frag[data-depth="mid"] .frag-score-block { opacity: 0.5; }
-.ui-frag[data-depth="near"] .frag-score-block { opacity: 0.65; }
-.ui-frag[data-depth="close"] .frag-score-block { opacity: 0.8; }
+.ui-frag[data-depth="edge"] .frag-score-block,
+.ui-frag[data-depth="edge"] .frag-score-badge { opacity: 0.18; }
+.ui-frag[data-depth="far"] .frag-score-block,
+.ui-frag[data-depth="far"] .frag-score-badge { opacity: 0.32; }
+.ui-frag[data-depth="mid"] .frag-score-block,
+.ui-frag[data-depth="mid"] .frag-score-badge { opacity: 0.5; }
+.ui-frag[data-depth="near"] .frag-score-block,
+.ui-frag[data-depth="near"] .frag-score-badge { opacity: 0.68; }
+.ui-frag[data-depth="close"] .frag-score-block,
+.ui-frag[data-depth="close"] .frag-score-badge { opacity: 0.8; }
+
+.ui-frag[data-depth="edge"] .frag-version,
+.ui-frag[data-depth="edge"] .frag-confidence { opacity: 0.15; }
+.ui-frag[data-depth="far"] .frag-version,
+.ui-frag[data-depth="far"] .frag-confidence { opacity: 0.28; }
+.ui-frag[data-depth="mid"] .frag-version,
+.ui-frag[data-depth="mid"] .frag-confidence { opacity: 0.45; }
+.ui-frag[data-depth="near"] .frag-version,
+.ui-frag[data-depth="near"] .frag-confidence { opacity: 0.6; }
+.ui-frag[data-depth="close"] .frag-version,
+.ui-frag[data-depth="close"] .frag-confidence { opacity: 0.75; }
 
 
 /* ===== Progress Bars ===== */
