@@ -341,94 +341,167 @@ body {
 }
 
 /* ========================================
-   Abstract UI Fragments - Shapes before text
+   Abstract Data Environment
+   "A controlled, global, permissioned repository"
 ======================================== */
-.ui-fragment {
+
+/* ===== Architectural Data Surfaces ===== */
+/* Modular panels suggesting depth, ordered not floating */
+.data-surface {
   position: absolute;
+  background: linear-gradient(
+    135deg,
+    rgba(45, 42, 38, 0.4) 0%,
+    rgba(38, 36, 32, 0.2) 100%
+  );
+  border: 1px solid rgba(184, 166, 122, 0.03);
   opacity: 0;
+}
+
+.data-surface[data-depth="edge"] { 
+  filter: blur(8px); 
+  opacity: 0;
+}
+.data-surface[data-depth="far"] { 
+  filter: blur(5px); 
+  border-color: rgba(184, 166, 122, 0.04);
+}
+.data-surface[data-depth="mid"] { 
+  filter: blur(3px); 
+  border-color: rgba(184, 166, 122, 0.05);
+}
+.data-surface[data-depth="near"] { 
+  filter: blur(1.5px); 
+  border-color: rgba(184, 166, 122, 0.06);
+}
+.data-surface[data-depth="close"] { 
+  filter: blur(0.5px); 
+  border-color: rgba(184, 166, 122, 0.07);
+}
+
+
+/* ===== Glimpsed Data - Currency & Numbers ===== */
+/* Scattered, not aligned, suggesting magnitude */
+.data-glimpse {
+  position: absolute;
   font-family: var(--font-main);
-}
-
-/* Depth-based blur - varied for organic feel */
-.ui-fragment[data-depth="edge"] { filter: blur(10px); transform: scale(0.45); }
-.ui-fragment[data-depth="far"] { filter: blur(7px); transform: scale(0.6); }
-.ui-fragment[data-depth="mid"] { filter: blur(4px); transform: scale(0.75); }
-.ui-fragment[data-depth="near"] { filter: blur(2px); transform: scale(0.88); }
-.ui-fragment[data-depth="close"] { filter: blur(0.8px); transform: scale(1); }
-
-/* ===== Fragment Type 1: Simplified Case Card ===== */
-.frag-card {
-  background: rgba(38, 38, 38, 0.6);
-  border: 1px solid rgba(255, 255, 255, 0.04);
-  border-radius: 10px;
-  padding: 14px 18px;
-  min-width: 140px;
-}
-.frag-card-title {
-  font-size: 11px;
   font-weight: 500;
-  color: rgba(255, 255, 255, 0.25);
-  margin-bottom: 8px;
-  letter-spacing: 0.01em;
+  letter-spacing: -0.02em;
+  color: rgba(184, 166, 122, 0.25);
+  opacity: 0;
 }
-.frag-card-value {
+
+.data-glimpse[data-depth="edge"] { 
+  filter: blur(6px); 
+  font-size: 14px;
+  color: rgba(184, 166, 122, 0.08);
+}
+.data-glimpse[data-depth="far"] { 
+  filter: blur(4px); 
+  font-size: 16px;
+  color: rgba(184, 166, 122, 0.12);
+}
+.data-glimpse[data-depth="mid"] { 
+  filter: blur(2.5px); 
   font-size: 18px;
-  font-weight: 600;
-  color: rgba(184, 166, 122, 0.4);
-  letter-spacing: -0.02em;
+  color: rgba(184, 166, 122, 0.18);
 }
-/* Text fades more than container */
-.ui-fragment[data-depth="edge"] .frag-card { opacity: 0.12; }
-.ui-fragment[data-depth="edge"] .frag-card-title { opacity: 0.3; }
-.ui-fragment[data-depth="edge"] .frag-card-value { opacity: 0.4; }
-
-.ui-fragment[data-depth="far"] .frag-card { opacity: 0.18; }
-.ui-fragment[data-depth="far"] .frag-card-title { opacity: 0.4; }
-.ui-fragment[data-depth="far"] .frag-card-value { opacity: 0.5; }
-
-.ui-fragment[data-depth="mid"] .frag-card { opacity: 0.28; }
-.ui-fragment[data-depth="mid"] .frag-card-title { opacity: 0.5; }
-.ui-fragment[data-depth="mid"] .frag-card-value { opacity: 0.6; }
-
-.ui-fragment[data-depth="near"] .frag-card { opacity: 0.38; }
-.ui-fragment[data-depth="near"] .frag-card-title { opacity: 0.55; }
-.ui-fragment[data-depth="near"] .frag-card-value { opacity: 0.65; }
-
-.ui-fragment[data-depth="close"] .frag-card { opacity: 0.5; }
-.ui-fragment[data-depth="close"] .frag-card-title { opacity: 0.6; }
-.ui-fragment[data-depth="close"] .frag-card-value { opacity: 0.7; }
-
-/* ===== Fragment Type 2: Value Figures ===== */
-.frag-value {
+.data-glimpse[data-depth="near"] { 
+  filter: blur(1.5px); 
   font-size: 22px;
-  font-weight: 600;
-  color: rgba(184, 166, 122, 0.35);
-  letter-spacing: -0.02em;
+  color: rgba(184, 166, 122, 0.25);
 }
-.ui-fragment[data-depth="edge"] .frag-value { font-size: 14px; opacity: 0.1; }
-.ui-fragment[data-depth="far"] .frag-value { font-size: 16px; opacity: 0.18; }
-.ui-fragment[data-depth="mid"] .frag-value { font-size: 20px; opacity: 0.28; }
-.ui-fragment[data-depth="near"] .frag-value { font-size: 24px; opacity: 0.4; }
-.ui-fragment[data-depth="close"] .frag-value { font-size: 28px; opacity: 0.55; }
+.data-glimpse[data-depth="close"] { 
+  filter: blur(0.8px); 
+  font-size: 26px;
+  color: rgba(184, 166, 122, 0.32);
+}
 
-/* ===== Fragment Type 3: Status Signals ===== */
-.frag-status {
+/* Smaller data - percentages, dates */
+.data-glimpse.data-small {
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  color: rgba(255, 255, 255, 0.12);
+}
+.data-glimpse.data-small[data-depth="edge"] { font-size: 9px; color: rgba(255, 255, 255, 0.05); }
+.data-glimpse.data-small[data-depth="far"] { font-size: 10px; color: rgba(255, 255, 255, 0.08); }
+.data-glimpse.data-small[data-depth="mid"] { font-size: 11px; color: rgba(255, 255, 255, 0.12); }
+.data-glimpse.data-small[data-depth="near"] { font-size: 12px; color: rgba(255, 255, 255, 0.16); }
+.data-glimpse.data-small[data-depth="close"] { font-size: 13px; color: rgba(255, 255, 255, 0.2); }
+
+
+/* ===== Glimpsed Terms - Legal/Finance vocabulary ===== */
+/* Very low opacity, suggesting meaning not conveying it */
+.data-term {
+  position: absolute;
+  font-family: var(--font-main);
   font-size: 10px;
-  font-weight: 700;
-  color: rgba(255, 255, 255, 0.3);
-  letter-spacing: 0.12em;
+  font-weight: 500;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
-  padding: 6px 12px;
-  background: rgba(255, 255, 255, 0.03);
-  border-radius: 4px;
+  color: rgba(255, 255, 255, 0.08);
+  opacity: 0;
 }
-.ui-fragment[data-depth="edge"] .frag-status { font-size: 8px; opacity: 0.08; }
-.ui-fragment[data-depth="far"] .frag-status { font-size: 9px; opacity: 0.15; }
-.ui-fragment[data-depth="mid"] .frag-status { font-size: 10px; opacity: 0.25; }
-.ui-fragment[data-depth="near"] .frag-status { font-size: 11px; opacity: 0.35; }
-.ui-fragment[data-depth="close"] .frag-status { font-size: 12px; opacity: 0.45; }
 
-/* Legacy styles removed - using simplified 3-type system */
+.data-term[data-depth="edge"] { 
+  filter: blur(5px); 
+  font-size: 8px;
+  color: rgba(255, 255, 255, 0.03);
+}
+.data-term[data-depth="far"] { 
+  filter: blur(3px); 
+  font-size: 9px;
+  color: rgba(255, 255, 255, 0.05);
+}
+.data-term[data-depth="mid"] { 
+  filter: blur(2px); 
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.08);
+}
+.data-term[data-depth="near"] { 
+  filter: blur(1px); 
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.12);
+}
+.data-term[data-depth="close"] { 
+  filter: blur(0.5px); 
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.16);
+}
+
+
+/* ===== Architectural Lines ===== */
+/* Subtle horizontal order, not a grid */
+.data-line {
+  position: absolute;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(184, 166, 122, 0.06) 20%,
+    rgba(184, 166, 122, 0.04) 80%,
+    transparent 100%
+  );
+  opacity: 0;
+}
+
+.data-line[data-depth="edge"] { 
+  filter: blur(3px);
+  background: linear-gradient(90deg, transparent 0%, rgba(184, 166, 122, 0.02) 50%, transparent 100%);
+}
+.data-line[data-depth="far"] { 
+  filter: blur(2px);
+  background: linear-gradient(90deg, transparent 0%, rgba(184, 166, 122, 0.04) 50%, transparent 100%);
+}
+.data-line[data-depth="mid"] { 
+  filter: blur(1px);
+  background: linear-gradient(90deg, transparent 0%, rgba(184, 166, 122, 0.06) 50%, transparent 100%);
+}
+.data-line[data-depth="near"] { 
+  filter: blur(0.5px);
+  background: linear-gradient(90deg, transparent 0%, rgba(184, 166, 122, 0.08) 50%, transparent 100%);
+}
 
 /* Key */
 .key-container {

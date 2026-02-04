@@ -58,13 +58,21 @@ function initHeroUnlock() {
   const keyGlowOuter = document.querySelector('.key-glow-outer');
   const keyShadow = document.querySelector('.key-shadow');
   
-  // 5 depth levels: edge (most blurred) -> far -> mid -> near -> close (clearest)
-  const fragsEdge = document.querySelectorAll('.data-fragment[data-depth="edge"], .ui-fragment[data-depth="edge"]');
-  const fragsFar = document.querySelectorAll('.data-fragment[data-depth="far"], .ui-fragment[data-depth="far"]');
-  const fragsMid = document.querySelectorAll('.data-fragment[data-depth="mid"], .ui-fragment[data-depth="mid"]');
-  const fragsNear = document.querySelectorAll('.data-fragment[data-depth="near"], .ui-fragment[data-depth="near"]');
-  const fragsClose = document.querySelectorAll('.data-fragment[data-depth="close"], .ui-fragment[data-depth="close"]');
-  const allFrags = document.querySelectorAll('.data-fragment, .ui-fragment');
+  // Abstract data environment elements
+  const dataElements = document.querySelectorAll('.data-surface, .data-glimpse, .data-term, .data-line');
+  const elementsEdge = document.querySelectorAll('[data-depth="edge"]');
+  const elementsFar = document.querySelectorAll('[data-depth="far"]');
+  const elementsMid = document.querySelectorAll('[data-depth="mid"]');
+  const elementsNear = document.querySelectorAll('[data-depth="near"]');
+  const elementsClose = document.querySelectorAll('[data-depth="close"]');
+  
+  // Legacy support
+  const fragsFar = elementsFar;
+  const fragsMid = elementsMid;
+  const fragsNear = elementsNear;
+  const fragsEdge = elementsEdge;
+  const fragsClose = elementsClose;
+  const allFrags = dataElements;
   
   // Initial states
   gsap.set(heroTextLocked, { opacity: 1, y: 0 });
@@ -75,7 +83,7 @@ function initHeroUnlock() {
   gsap.set(keyGlow, { opacity: 0, scale: 0.8 });
   gsap.set(keyGlowOuter, { opacity: 0, scale: 0.6 });
   gsap.set(keyShadow, { opacity: 0.3 });
-  gsap.set(allFrags, { opacity: 0 });
+  gsap.set(dataElements, { opacity: 0 });
   
   const masterTL = gsap.timeline({
     scrollTrigger: {
