@@ -58,9 +58,12 @@ function initHeroUnlock() {
   const keyGlowOuter = document.querySelector('.key-glow-outer');
   const keyShadow = document.querySelector('.key-shadow');
   
+  // 5 depth levels: edge (most blurred) -> far -> mid -> near -> close (clearest)
+  const fragsEdge = document.querySelectorAll('.data-fragment[data-depth="edge"], .ui-fragment[data-depth="edge"]');
   const fragsFar = document.querySelectorAll('.data-fragment[data-depth="far"], .ui-fragment[data-depth="far"]');
   const fragsMid = document.querySelectorAll('.data-fragment[data-depth="mid"], .ui-fragment[data-depth="mid"]');
   const fragsNear = document.querySelectorAll('.data-fragment[data-depth="near"], .ui-fragment[data-depth="near"]');
+  const fragsClose = document.querySelectorAll('.data-fragment[data-depth="close"], .ui-fragment[data-depth="close"]');
   const allFrags = document.querySelectorAll('.data-fragment, .ui-fragment');
   
   // Initial states
@@ -147,6 +150,14 @@ function initHeroUnlock() {
     duration: 0.25
   }, "knock1+=0.05");
   
+  // Edge fragments appear first (edges of screen)
+  fragsEdge.forEach((frag, i) => {
+    masterTL.to(frag, {
+      opacity: CONFIG.FRAG_OPACITY_FAR * 0.2,
+      duration: 0.2
+    }, "knock1+=0.1");
+  });
+  
   fragsFar.forEach((frag, i) => {
     masterTL.to(frag, {
       opacity: CONFIG.FRAG_OPACITY_FAR * 0.3,
@@ -197,6 +208,14 @@ function initHeroUnlock() {
     scale: 1.05,
     duration: 0.23
   }, "solo+=0.07");
+  
+  // Edge-to-center reveal: edge first, then far, then mid
+  fragsEdge.forEach((frag, i) => {
+    masterTL.to(frag, {
+      opacity: CONFIG.FRAG_OPACITY_FAR * 0.5,
+      duration: 0.18
+    }, "solo+=0.05");
+  });
   
   fragsFar.forEach((frag, i) => {
     masterTL.to(frag, {
@@ -271,6 +290,14 @@ function initHeroUnlock() {
     ease: "none"
   }, "textIn+=0.06");
   
+  // Edge-to-center reveal continues
+  fragsEdge.forEach((frag, i) => {
+    masterTL.to(frag, {
+      opacity: CONFIG.FRAG_OPACITY_FAR * 0.7,
+      duration: 0.12
+    }, "textIn+=0.02");
+  });
+  
   fragsFar.forEach((frag, i) => {
     masterTL.to(frag, {
       opacity: CONFIG.FRAG_OPACITY_FAR * 0.9,
@@ -283,6 +310,13 @@ function initHeroUnlock() {
       opacity: CONFIG.FRAG_OPACITY_MID * 0.65,
       duration: 0.12
     }, "textIn+=0.07");
+  });
+  
+  fragsNear.forEach((frag, i) => {
+    masterTL.to(frag, {
+      opacity: CONFIG.FRAG_OPACITY_NEAR * 0.3,
+      duration: 0.12
+    }, "textIn+=0.1");
   });
   
   // ========== E · 75-88% — Read time ==========
@@ -329,6 +363,21 @@ function initHeroUnlock() {
     duration: 0.13
   }, "read+=0.03");
   
+  // Continue edge-to-center: edge/far at full, mid/near increasing, close appearing
+  fragsEdge.forEach((frag, i) => {
+    masterTL.to(frag, {
+      opacity: CONFIG.FRAG_OPACITY_FAR * 0.85,
+      duration: 0.1
+    }, "read");
+  });
+  
+  fragsFar.forEach((frag, i) => {
+    masterTL.to(frag, {
+      opacity: CONFIG.FRAG_OPACITY_FAR,
+      duration: 0.1
+    }, "read+=0.02");
+  });
+  
   fragsMid.forEach((frag, i) => {
     masterTL.to(frag, {
       opacity: CONFIG.FRAG_OPACITY_MID * 0.8,
@@ -341,6 +390,13 @@ function initHeroUnlock() {
       opacity: CONFIG.FRAG_OPACITY_NEAR * 0.5,
       duration: 0.1
     }, "read+=0.07");
+  });
+  
+  fragsClose.forEach((frag, i) => {
+    masterTL.to(frag, {
+      opacity: CONFIG.FRAG_OPACITY_NEAR * 0.3,
+      duration: 0.1
+    }, "read+=0.1");
   });
   
   // ========== F · 88-100% — KNOCKAWAY #2 (synced label) ==========
@@ -407,6 +463,21 @@ function initHeroUnlock() {
     duration: 0.12
   }, "knock2");
   
+  // Full reveal - all layers at max, edge-to-center complete
+  fragsEdge.forEach((frag, i) => {
+    masterTL.to(frag, {
+      opacity: CONFIG.FRAG_OPACITY_FAR,
+      duration: 0.1
+    }, "knock2");
+  });
+  
+  fragsFar.forEach((frag, i) => {
+    masterTL.to(frag, {
+      opacity: CONFIG.FRAG_OPACITY_FAR,
+      duration: 0.1
+    }, "knock2+=0.01");
+  });
+  
   fragsMid.forEach((frag, i) => {
     masterTL.to(frag, {
       opacity: CONFIG.FRAG_OPACITY_MID,
@@ -419,6 +490,13 @@ function initHeroUnlock() {
       opacity: CONFIG.FRAG_OPACITY_NEAR,
       duration: 0.1
     }, "knock2+=0.04");
+  });
+  
+  fragsClose.forEach((frag, i) => {
+    masterTL.to(frag, {
+      opacity: CONFIG.FRAG_OPACITY_NEAR,
+      duration: 0.1
+    }, "knock2+=0.06");
   });
 }
 
