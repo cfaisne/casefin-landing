@@ -18,7 +18,7 @@
   /* Dark palette (hero, nav, footer) */
   --color-dark: #1a1a1a;
   --color-dark-elevated: #242424;
-  --color-locked: #181818;
+  --color-locked: #1a1a1a;
   --color-unlocked: #262626;
   
   /* Light palette (content) */
@@ -833,7 +833,7 @@ body {
   position: relative;
   width: clamp(200px, 30vw, 340px);
   height: auto;
-  filter: brightness(0.4) saturate(0.3);
+  filter: brightness(0.15) saturate(0.2);
   transform-origin: center center;
 }
 
@@ -879,12 +879,13 @@ body {
   letter-spacing: -0.02em;
   margin-bottom: 1.25rem;
   line-height: 1.1;
+  color: var(--text-on-dark);
 }
 
 .hero-body {
   font-family: var(--font-body);
   font-size: clamp(1rem, 1.5vw, 1.15rem);
-  color: var(--text-secondary);
+  color: var(--text-on-dark-secondary);
   line-height: 1.65;
   margin-bottom: 1rem;
 }
@@ -892,7 +893,7 @@ body {
 .hero-tagline {
   font-family: var(--font-body);
   font-size: clamp(0.7rem, 1vw, 0.85rem);
-  color: var(--text-muted);
+  color: var(--text-on-dark-muted);
   font-weight: 500;
   letter-spacing: 0.05em;
   text-transform: uppercase;
