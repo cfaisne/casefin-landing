@@ -58,10 +58,10 @@ function initHeroUnlock() {
   const keyGlowOuter = document.querySelector('.key-glow-outer');
   const keyShadow = document.querySelector('.key-shadow');
   
-  const fragsFar = document.querySelectorAll('.data-fragment[data-depth="far"]');
-  const fragsMid = document.querySelectorAll('.data-fragment[data-depth="mid"]');
-  const fragsNear = document.querySelectorAll('.data-fragment[data-depth="near"]');
-  const allFrags = document.querySelectorAll('.data-fragment');
+  const fragsFar = document.querySelectorAll('.data-fragment[data-depth="far"], .ui-fragment[data-depth="far"]');
+  const fragsMid = document.querySelectorAll('.data-fragment[data-depth="mid"], .ui-fragment[data-depth="mid"]');
+  const fragsNear = document.querySelectorAll('.data-fragment[data-depth="near"], .ui-fragment[data-depth="near"]');
+  const allFrags = document.querySelectorAll('.data-fragment, .ui-fragment');
   
   // Initial states
   gsap.set(heroTextLocked, { opacity: 1, y: 0 });
