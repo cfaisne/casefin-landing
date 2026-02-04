@@ -2,9 +2,6 @@
    I53 - Visual Elevation Pass
 ======================================== */
 
-/* Font imports */
-@import url('https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@0,400;0,600;0,700;1,400&display=swap');
-
 /* Tiempos placeholder - replace with actual @font-face when files are uploaded */
 /* 
 @font-face {
@@ -51,9 +48,8 @@
   
   /* Typography */
   --font-headline: 'Tiempos', 'Source Serif Pro', Georgia, serif;
-  --font-body: 'Source Serif Pro', Georgia, serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
-  --font-ui: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -109,7 +105,7 @@ body {
   gap: clamp(1.5rem, 3vw, 2.5rem);
 }
 .nav-links a { 
-  font-family: var(--font-ui);
+  font-family: var(--font-body);
   color: var(--text-secondary); 
   text-decoration: none; 
   font-size: 0.875rem; 
@@ -146,7 +142,7 @@ body {
    Buttons
 ======================================== */
 .btn-primary {
-  font-family: var(--font-ui);
+  font-family: var(--font-body);
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
@@ -204,7 +200,7 @@ body {
 }
 
 .btn-secondary {
-  font-family: var(--font-ui);
+  font-family: var(--font-body);
   display: inline-flex;
   align-items: center;
   background: transparent;
@@ -225,7 +221,7 @@ body {
 }
 
 .btn-cta {
-  font-family: var(--font-ui);
+  font-family: var(--font-body);
   display: inline-flex;
   align-items: center;
   gap: 0.75rem;
@@ -283,7 +279,7 @@ body {
    Pills
 ======================================== */
 .pill {
-  font-family: var(--font-ui);
+  font-family: var(--font-body);
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
@@ -889,7 +885,7 @@ body {
 }
 
 .hero-tagline {
-  font-family: var(--font-ui);
+  font-family: var(--font-body);
   font-size: clamp(0.7rem, 1vw, 0.85rem);
   color: var(--text-muted);
   font-weight: 500;
@@ -980,7 +976,7 @@ body {
 
 /* Card content styling */
 .dark-card .pill {
-  font-family: var(--font-ui);
+  font-family: var(--font-body);
   margin-bottom: 1.25rem;
   background: rgba(255, 255, 255, 0.04);
   border-color: rgba(196, 165, 128, 0.2);
@@ -1090,7 +1086,7 @@ body {
 
 /* Pills on light background */
 .content-section .pill {
-  font-family: var(--font-ui);
+  font-family: var(--font-body);
   background: #1e1e1e;
   border-color: transparent;
   color: rgba(196, 165, 128, 0.95);
@@ -1195,7 +1191,7 @@ body {
 }
 
 .how-it-works-header .pill {
-  font-family: var(--font-ui);
+  font-family: var(--font-body);
   background: #1e1e1e;
   border-color: transparent;
   color: rgba(196, 165, 128, 0.95);
