@@ -18,6 +18,8 @@
   /* Dark palette (hero, nav, footer) */
   --color-dark: #1a1a1a;
   --color-dark-elevated: #242424;
+  --color-locked: #181818;
+  --color-unlocked: #262626;
   
   /* Light palette (content) */
   --color-light: #FAFAF8;
@@ -37,6 +39,7 @@
   /* Accents */
   --gold: #B8A078;
   --gold-muted: rgba(184, 160, 120, 0.5);
+  --champagne: #C4A580;
   --border-light: rgba(0, 0, 0, 0.08);
   --border-dark: rgba(255, 255, 255, 0.08);
   
@@ -81,7 +84,7 @@ body {
   background: rgba(26, 26, 26, 0.97);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border-bottom-color: var(--border-dark);
+  border-bottom-color: rgba(184, 160, 103, 0.25);
 }
 
 .nav-logo { 
