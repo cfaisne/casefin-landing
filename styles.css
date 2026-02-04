@@ -352,26 +352,26 @@ body {
   font-family: var(--font-main);
 }
 
-/* Depth-based blur and opacity */
-.ui-frag[data-depth="edge"] { filter: blur(6px); transform: scale(0.7); }
-.ui-frag[data-depth="far"] { filter: blur(4px); transform: scale(0.8); }
-.ui-frag[data-depth="mid"] { filter: blur(2.5px); transform: scale(0.88); }
-.ui-frag[data-depth="near"] { filter: blur(1.2px); transform: scale(0.94); }
-.ui-frag[data-depth="close"] { filter: blur(0.5px); transform: scale(1); }
+/* Depth-based blur and opacity - more differentiated tiers */
+.ui-frag[data-depth="edge"] { filter: blur(8px); transform: scale(0.6); }
+.ui-frag[data-depth="far"] { filter: blur(5px); transform: scale(0.72); }
+.ui-frag[data-depth="mid"] { filter: blur(2.8px); transform: scale(0.85); }
+.ui-frag[data-depth="near"] { filter: blur(1.4px); transform: scale(0.95); }
+.ui-frag[data-depth="close"] { filter: blur(0.6px); transform: scale(1.02); }
 
 /* Scale variance classes */
 .ui-frag.scale-sm { transform: scale(0.85); }
-.ui-frag.scale-lg { transform: scale(1.1); }
-.ui-frag[data-depth="edge"].scale-sm { transform: scale(0.6); }
-.ui-frag[data-depth="edge"].scale-lg { transform: scale(0.8); }
-.ui-frag[data-depth="far"].scale-sm { transform: scale(0.7); }
-.ui-frag[data-depth="far"].scale-lg { transform: scale(0.9); }
-.ui-frag[data-depth="mid"].scale-sm { transform: scale(0.78); }
-.ui-frag[data-depth="mid"].scale-lg { transform: scale(0.98); }
-.ui-frag[data-depth="near"].scale-sm { transform: scale(0.85); }
-.ui-frag[data-depth="near"].scale-lg { transform: scale(1.02); }
-.ui-frag[data-depth="close"].scale-sm { transform: scale(0.92); }
-.ui-frag[data-depth="close"].scale-lg { transform: scale(1.08); }
+.ui-frag.scale-lg { transform: scale(1.12); }
+.ui-frag[data-depth="edge"].scale-sm { transform: scale(0.5); }
+.ui-frag[data-depth="edge"].scale-lg { transform: scale(0.72); }
+.ui-frag[data-depth="far"].scale-sm { transform: scale(0.62); }
+.ui-frag[data-depth="far"].scale-lg { transform: scale(0.85); }
+.ui-frag[data-depth="mid"].scale-sm { transform: scale(0.75); }
+.ui-frag[data-depth="mid"].scale-lg { transform: scale(0.95); }
+.ui-frag[data-depth="near"].scale-sm { transform: scale(0.88); }
+.ui-frag[data-depth="near"].scale-lg { transform: scale(1.05); }
+.ui-frag[data-depth="close"].scale-sm { transform: scale(0.95); }
+.ui-frag[data-depth="close"].scale-lg { transform: scale(1.1); }
 
 
 /* ===== Partial Case Cards ===== */
