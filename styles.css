@@ -875,120 +875,132 @@ body {
    Post-Hero Gradient
 ======================================== */
 .post-hero-gradient {
-  /* Smooth gradient - lightens then returns to nav-matching */
+  /* Warm parchment background - institutional, not startup */
   background: linear-gradient(
     180deg,
     #262626 0%,
-    #292929 20%,
-    #2c2c2c 40%,
-    #2c2c2c 60%,
-    #292929 80%,
-    #262626 100%
+    #3a3835 3%,
+    #5c5750 6%,
+    #8a8279 9%,
+    #b8b0a3 12%,
+    #d9d3c8 15%,
+    #e8e4db 18%,
+    #f0ece5 22%,
+    #f5f2ed 28%,
+    #f5f2ed 100%
   );
 }
 
 /* ========================================
-   Frosted Gold Card System
-   Subtle warmth, minimal blur, selective use
+   Dark Card System on Light Background
+   Institutional, Bloomberg-like aesthetic
 ======================================== */
-.frosted-card {
-  background: rgba(48, 45, 40, 0.6);
-  border: 1px solid rgba(196, 165, 128, 0.1);
-  border-radius: 16px;
+.dark-card {
+  background: #1e1e1e;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
   padding: clamp(2rem, 4vw, 2.5rem);
   position: relative;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  color: var(--text-primary);
 }
 
-/* Very subtle warm inner glow - top-left corner */
-.frosted-card::before {
+/* Subtle top edge highlight */
+.dark-card::before {
   content: '';
   position: absolute;
-  inset: 0;
-  border-radius: 16px;
-  background: linear-gradient(
-    135deg,
-    rgba(196, 165, 128, 0.04) 0%,
-    transparent 35%,
+  top: 0;
+  left: 10%;
+  right: 10%;
+  height: 1px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.08) 30%,
+    rgba(255, 255, 255, 0.1) 50%,
+    rgba(255, 255, 255, 0.08) 70%,
     transparent 100%
   );
-  pointer-events: none;
+  border-radius: 1px;
 }
 
 /* Unified section for Law Firms + Funders */
 .audience-section {
-  padding: clamp(5rem, 10vw, 8rem) clamp(1rem, 3vw, 3rem);
+  padding: clamp(4rem, 8vw, 6rem) clamp(1rem, 3vw, 3rem);
 }
 
 .audience-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: clamp(1.5rem, 3vw, 2.5rem);
-  max-width: 1000px;
+  gap: clamp(1.5rem, 3vw, 2rem);
+  max-width: 960px;
   margin: 0 auto;
 }
 
 @media (max-width: 800px) {
   .audience-grid {
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: 1.5rem;
   }
 }
 
 /* Card content styling */
-.frosted-card .pill {
+.dark-card .pill {
   margin-bottom: 1.25rem;
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(196, 165, 128, 0.2);
 }
 
-.frosted-card h3 {
-  font-size: clamp(1.2rem, 2.5vw, 1.4rem);
+.dark-card h3 {
+  font-size: clamp(1.15rem, 2.5vw, 1.35rem);
   font-weight: 600;
   letter-spacing: -0.02em;
   margin-bottom: 1.25rem;
   line-height: 1.3;
+  color: #f5f2ed;
 }
 
-.frosted-card .feature-list {
+.dark-card .feature-list {
   margin-bottom: 1.5rem;
 }
 
-.frosted-card .feature-list li {
-  font-size: 0.95rem;
-  margin-bottom: 0.65rem;
+.dark-card .feature-list li {
+  font-size: 0.92rem;
+  margin-bottom: 0.6rem;
   padding-left: 1.25rem;
+  color: rgba(245, 242, 237, 0.75);
 }
 
-.frosted-card .feature-list li::before {
+.dark-card .feature-list li::before {
   width: 4px;
   height: 4px;
-  opacity: 0.5;
+  background: var(--champagne);
+  opacity: 0.6;
 }
 
-.frosted-card .section-tagline {
-  font-size: 0.9rem;
-  margin-top: 1rem;
+.dark-card .section-tagline {
+  font-size: 0.88rem;
+  color: rgba(245, 242, 237, 0.5);
+  margin-top: 0.75rem;
 }
 
 /* ========================================
    Bridge Section - Transition from hero
 ======================================== */
 .bridge-section {
-  padding: 6rem 3rem 5rem;
+  padding: 5rem 3rem 4rem;
   text-align: center;
 }
 
 .bridge-text {
   max-width: 680px;
   margin: 0 auto;
-  font-size: 1.25rem;
-  color: var(--text-secondary);
+  font-size: 1.2rem;
+  color: #3d3a36;
   line-height: 1.6;
   font-weight: 400;
 }
 
 /* ========================================
-   Content Sections
+   Content Sections - Light Background
 ======================================== */
 .content-section {
   padding: clamp(4rem, 8vw, 6rem) clamp(1rem, 3vw, 3rem);
@@ -996,22 +1008,9 @@ body {
   scroll-margin-top: var(--header-h);
 }
 
-/* Soft section divider - subtle line */
+/* Remove divider on light background */
 .content-section::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: min(500px, 60%);
-  height: 1px;
-  background: linear-gradient(90deg, 
-    transparent 0%, 
-    rgba(255, 255, 255, 0.04) 30%, 
-    rgba(255, 255, 255, 0.05) 50%,
-    rgba(255, 255, 255, 0.04) 70%, 
-    transparent 100%
-  );
+  display: none;
 }
 
 .section-inner {
@@ -1019,6 +1018,46 @@ body {
   margin: 0 auto;
   padding: 0 clamp(1rem, 3vw, 2rem);
   position: relative;
+}
+
+/* Dark text for light background sections */
+.content-section h2 {
+  font-size: clamp(1.5rem, 3vw, 1.85rem);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+  color: #1e1e1e;
+}
+
+.content-section .section-intro,
+.content-section .section-body {
+  color: #4a4640;
+}
+
+.content-section .section-tagline {
+  color: #6b665e;
+}
+
+.content-section .feature-list li {
+  color: #4a4640;
+}
+
+.content-section .feature-list li::before {
+  background: #1e1e1e;
+  opacity: 0.4;
+}
+
+/* Pills on light background */
+.content-section .pill {
+  background: #1e1e1e;
+  border-color: transparent;
+  color: rgba(196, 165, 128, 0.95);
+}
+
+.content-section .pill-icon {
+  color: var(--champagne);
+  opacity: 0.85;
 }
 
 .content-section h2 {
@@ -1085,12 +1124,14 @@ body {
 }
 
 /* ========================================
-   How It Works - Pinned Steps
+   How It Works - Pinned Steps in Dark Card
 ======================================== */
 .how-it-works-section {
   min-height: 450vh;
   position: relative;
   scroll-margin-top: var(--header-h);
+  /* Light background continues */
+  background: #f5f2ed;
 }
 
 .how-it-works-container {
@@ -1106,10 +1147,16 @@ body {
 
 .how-it-works-header {
   max-width: 720px;
-  margin: 0 auto 2.5rem;
+  margin: 0 auto 2rem;
   text-align: left;
   width: 100%;
   padding: 0 clamp(1rem, 3vw, 2rem);
+}
+
+.how-it-works-header .pill {
+  background: #1e1e1e;
+  border-color: transparent;
+  color: rgba(196, 165, 128, 0.95);
 }
 
 .how-it-works-header h2 {
@@ -1117,15 +1164,35 @@ body {
   font-weight: 600;
   letter-spacing: -0.02em;
   line-height: 1.3;
+  color: #1e1e1e;
 }
 
 .steps-container {
   max-width: 720px;
   margin: 0 auto;
   width: 100%;
-  padding: clamp(1rem, 3vw, 2rem);
+  /* Dark card for steps */
+  background: #1e1e1e;
+  border-radius: 12px;
+  padding: clamp(1.5rem, 3vw, 2.5rem);
   position: relative;
-  /* No card - let depth band work */
+}
+
+/* Top edge highlight */
+.steps-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 10%;
+  right: 10%;
+  height: 1px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.08) 30%,
+    rgba(255, 255, 255, 0.1) 50%,
+    rgba(255, 255, 255, 0.08) 70%,
+    transparent 100%
+  );
 }
 
 .step {
@@ -1177,17 +1244,43 @@ body {
 }
 
 /* ========================================
-   CTA Section - Final call to action
+   CTA Section - Final call to action (dark card)
 ======================================== */
 .section-cta {
   text-align: center;
-  padding: 6rem 3rem 5rem;
+  padding: 5rem 3rem 6rem;
   position: relative;
+  background: #f5f2ed;
 }
 
 .section-cta .section-inner {
   text-align: center;
   position: relative;
+  /* Dark card for CTA */
+  background: #1e1e1e;
+  border-radius: 12px;
+  padding: clamp(2.5rem, 5vw, 3.5rem);
+  max-width: 640px;
+}
+
+.section-cta .section-inner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 10%;
+  right: 10%;
+  height: 1px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.08) 30%,
+    rgba(255, 255, 255, 0.1) 50%,
+    rgba(255, 255, 255, 0.08) 70%,
+    transparent 100%
+  );
+}
+
+.section-cta h2 {
+  color: #f5f2ed;
 }
 
 .cta-inner h2 {
@@ -1195,17 +1288,17 @@ body {
 }
 
 .cta-subtext {
-  font-size: 1.1rem;
-  color: var(--text-secondary);
-  margin-bottom: 2.5rem;
+  font-size: 1.05rem;
+  color: rgba(245, 242, 237, 0.7);
+  margin-bottom: 2rem;
 }
 
 /* ========================================
-   Footer
+   Footer - Dark, matching nav
 ======================================== */
 .footer {
-  border-top: 1px solid rgba(255, 255, 255, 0.04);
-  background: #262626;
+  border-top: none;
+  background: #1e1e1e;
 }
 
 .footer-main {
