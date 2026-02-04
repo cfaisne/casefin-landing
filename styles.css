@@ -250,13 +250,13 @@ body {
   align-items: center;
   gap: 0.5rem;
   padding: 0.5rem 1rem;
-  background: var(--glass-bg);
+  background: rgba(45, 43, 41, 0.7);
   backdrop-filter: blur(16px);
-  border: 1px solid var(--glass-border);
+  border: 1px solid rgba(184, 166, 122, 0.12);
   border-radius: 12px;
   font-size: 0.75rem;
   font-weight: 500;
-  color: var(--text-secondary);
+  color: rgba(184, 166, 122, 0.85);
   margin-bottom: 1.25rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
@@ -265,7 +265,8 @@ body {
 .pill-icon {
   width: 14px;
   height: 14px;
-  opacity: 0.6;
+  opacity: 0.7;
+  color: var(--champagne);
 }
 
 /* Nav spacer - pushes content below fixed nav */
@@ -870,27 +871,104 @@ body {
    Post-Hero Gradient
 ======================================== */
 .post-hero-gradient {
+  /* Subtle luminance increase: ~8-10% brighter than hero */
   background: linear-gradient(
     180deg,
     #262626 0%,
-    #262626 5%,
-    #252525 12%,
-    #242424 20%,
-    #232323 30%,
-    #222222 42%,
-    #212121 55%,
-    #1f1f1f 68%,
-    #1d1d1d 80%,
-    #1b1b1b 90%,
-    #181818 100%
+    #282828 8%,
+    #2a2a2a 18%,
+    #2c2c2c 30%,
+    #2d2d2d 45%,
+    #2e2e2e 60%,
+    #2f2f2f 75%,
+    #303030 88%,
+    #313131 100%
   );
+}
+
+/* ========================================
+   Surface Card System
+   Frosted dark cards that resemble in-product UI
+======================================== */
+.surface-card {
+  background: rgba(45, 43, 41, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: 12px;
+  padding: clamp(2rem, 4vw, 3rem);
+  position: relative;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* Subtle inner glow */
+.surface-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  padding: 1px;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.03) 0%,
+    transparent 50%,
+    transparent 100%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Card with status indicator */
+.surface-card[data-status]::after {
+  content: attr(data-status);
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 4px;
+}
+
+.surface-card[data-status="active"]::after {
+  color: rgba(107, 155, 122, 0.8);
+  background: rgba(107, 155, 122, 0.12);
+}
+
+.surface-card[data-status="secure"]::after {
+  color: rgba(184, 166, 122, 0.7);
+  background: rgba(184, 166, 122, 0.1);
+}
+
+/* Card grid layout */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: clamp(1.5rem, 3vw, 2rem);
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 clamp(1rem, 3vw, 2rem);
+}
+
+.card-grid-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+@media (max-width: 900px) {
+  .card-grid-3 {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* ========================================
    Bridge Section
 ======================================== */
 .bridge-section {
-  padding: 5rem 3rem 4rem;
+  padding: 6rem 3rem 5rem;
   text-align: center;
 }
 
@@ -904,30 +982,46 @@ body {
 }
 
 /* ========================================
-   Content Sections
+   Content Sections - Card-based Layout
 ======================================== */
 .content-section {
-  padding: clamp(4rem, 8vw, 7rem) clamp(1rem, 3vw, 3rem);
+  padding: clamp(3rem, 6vw, 5rem) clamp(1rem, 3vw, 3rem);
   position: relative;
   scroll-margin-top: var(--header-h);
 }
 
-/* Soft section divider */
+/* Remove old divider, we'll use cards instead */
 .content-section::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: min(600px, 80%);
-  height: 1px;
-  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.06) 30%, rgba(255,255,255,0.06) 70%, transparent 100%);
+  display: none;
 }
 
 .section-inner {
-  max-width: 720px;
+  max-width: 800px;
   margin: 0 auto;
-  padding: 0 clamp(1rem, 3vw, 2rem);
+  padding: clamp(2rem, 4vw, 3rem);
+  /* Card surface styling */
+  background: rgba(45, 43, 41, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: 16px;
+  position: relative;
+}
+
+/* Subtle top highlight on cards */
+.section-inner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 20%;
+  right: 20%;
+  height: 1px;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(255, 255, 255, 0.06) 30%, 
+    rgba(255, 255, 255, 0.08) 50%,
+    rgba(255, 255, 255, 0.06) 70%, 
+    transparent 100%
+  );
+  border-radius: 1px;
 }
 
 .content-section h2 {
@@ -969,7 +1063,7 @@ body {
   height: 5px;
   background: var(--champagne);
   border-radius: 50%;
-  opacity: 0.5;
+  opacity: 0.6;
 }
 
 .section-tagline {
@@ -1014,10 +1108,11 @@ body {
 }
 
 .how-it-works-header {
-  max-width: 720px;
-  margin: 0 auto 3rem;
+  max-width: 800px;
+  margin: 0 auto 2rem;
   text-align: left;
   width: 100%;
+  padding: 0 clamp(1rem, 3vw, 2rem);
 }
 
 .how-it-works-header h2 {
@@ -1028,9 +1123,32 @@ body {
 }
 
 .steps-container {
-  max-width: 720px;
+  max-width: 800px;
   margin: 0 auto;
   width: 100%;
+  /* Card surface */
+  background: rgba(45, 43, 41, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: 16px;
+  padding: clamp(1.5rem, 3vw, 2.5rem);
+  position: relative;
+}
+
+/* Top highlight */
+.steps-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 15%;
+  right: 15%;
+  height: 1px;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(255, 255, 255, 0.05) 30%, 
+    rgba(255, 255, 255, 0.07) 50%,
+    rgba(255, 255, 255, 0.05) 70%, 
+    transparent 100%
+  );
 }
 
 .step {
@@ -1058,8 +1176,8 @@ body {
   font-size: 0.9rem;
   font-weight: 600;
   color: var(--champagne);
-  background: var(--glass-bg);
-  border: 1px solid var(--glass-border);
+  background: rgba(38, 36, 34, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: 50%;
   transition: all 0.4s ease;
 }
@@ -1086,7 +1204,14 @@ body {
 ======================================== */
 .section-cta {
   text-align: center;
-  padding: 8rem 3rem 6rem;
+  padding: 6rem 3rem 5rem;
+}
+
+.section-cta .section-inner {
+  text-align: center;
+  /* Slightly more prominent card for CTA */
+  background: rgba(48, 46, 43, 0.55);
+  border-color: rgba(184, 166, 122, 0.08);
 }
 
 .cta-inner h2 {
@@ -1103,7 +1228,9 @@ body {
    Footer
 ======================================== */
 .footer {
-  border-top: 1px solid var(--glass-border);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  background: rgba(28, 28, 28, 0.8);
+  margin-top: 2rem;
 }
 
 .footer-main {
@@ -1219,11 +1346,23 @@ body {
   
   .key-image { width: clamp(180px, 50vw, 280px); }
   
-  .content-section { padding: 4rem 1.5rem; }
+  .content-section { padding: 2.5rem 1rem; }
   .content-section h2 { font-size: 1.5rem; }
+  .section-inner { 
+    padding: 1.5rem; 
+    border-radius: 12px;
+  }
   
-  .how-it-works-container { padding: var(--header-h) 1.5rem 2rem; }
+  .how-it-works-container { padding: var(--header-h) 1rem 2rem; }
+  .how-it-works-header { padding: 0 0.5rem; }
   .how-it-works-header h2 { font-size: 1.35rem; }
+  .steps-container { 
+    padding: 1.25rem; 
+    border-radius: 12px;
+  }
+  
+  .bridge-section { padding: 4rem 1.5rem 3rem; }
+  .bridge-text { font-size: 1.1rem; }
   
   .footer-main { padding: 2rem 1.5rem; }
   .footer-columns { 
