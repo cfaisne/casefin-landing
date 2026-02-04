@@ -341,167 +341,235 @@ body {
 }
 
 /* ========================================
-   Abstract Data Environment
-   "A controlled, global, permissioned repository"
+   UI-Inflected Background Fragments
+   "Glimpses through frosted glass"
 ======================================== */
 
-/* ===== Architectural Data Surfaces ===== */
-/* Modular panels suggesting depth, ordered not floating */
-.data-surface {
+.ui-frag {
   position: absolute;
-  background: linear-gradient(
-    135deg,
-    rgba(45, 42, 38, 0.4) 0%,
-    rgba(38, 36, 32, 0.2) 100%
-  );
-  border: 1px solid rgba(184, 166, 122, 0.03);
   opacity: 0;
-}
-
-.data-surface[data-depth="edge"] { 
-  filter: blur(8px); 
-  opacity: 0;
-}
-.data-surface[data-depth="far"] { 
-  filter: blur(5px); 
-  border-color: rgba(184, 166, 122, 0.04);
-}
-.data-surface[data-depth="mid"] { 
-  filter: blur(3px); 
-  border-color: rgba(184, 166, 122, 0.05);
-}
-.data-surface[data-depth="near"] { 
-  filter: blur(1.5px); 
-  border-color: rgba(184, 166, 122, 0.06);
-}
-.data-surface[data-depth="close"] { 
-  filter: blur(0.5px); 
-  border-color: rgba(184, 166, 122, 0.07);
-}
-
-
-/* ===== Glimpsed Data - Currency & Numbers ===== */
-/* Scattered, not aligned, suggesting magnitude */
-.data-glimpse {
-  position: absolute;
   font-family: var(--font-main);
+}
+
+/* Depth-based blur and opacity */
+.ui-frag[data-depth="edge"] { filter: blur(6px); transform: scale(0.7); }
+.ui-frag[data-depth="far"] { filter: blur(4px); transform: scale(0.8); }
+.ui-frag[data-depth="mid"] { filter: blur(2.5px); transform: scale(0.88); }
+.ui-frag[data-depth="near"] { filter: blur(1.2px); transform: scale(0.94); }
+.ui-frag[data-depth="close"] { filter: blur(0.5px); transform: scale(1); }
+
+
+/* ===== Partial Case Cards ===== */
+.frag-card-partial {
+  background: rgba(42, 40, 38, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 8px;
+  padding: 12px 14px;
+  min-width: 160px;
+  max-width: 180px;
+}
+
+.frag-card-small {
+  min-width: 120px;
+  max-width: 140px;
+  padding: 10px 12px;
+}
+
+.frag-card-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.frag-card-title {
+  font-size: 11px;
   font-weight: 500;
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.frag-card-value {
+  font-size: 15px;
+  font-weight: 600;
+  color: rgba(184, 166, 122, 0.6);
   letter-spacing: -0.02em;
-  color: rgba(184, 166, 122, 0.25);
-  opacity: 0;
+  margin-bottom: 6px;
 }
 
-.data-glimpse[data-depth="edge"] { 
-  filter: blur(6px); 
-  font-size: 14px;
-  color: rgba(184, 166, 122, 0.08);
-}
-.data-glimpse[data-depth="far"] { 
-  filter: blur(4px); 
-  font-size: 16px;
-  color: rgba(184, 166, 122, 0.12);
-}
-.data-glimpse[data-depth="mid"] { 
-  filter: blur(2.5px); 
-  font-size: 18px;
-  color: rgba(184, 166, 122, 0.18);
-}
-.data-glimpse[data-depth="near"] { 
-  filter: blur(1.5px); 
-  font-size: 22px;
-  color: rgba(184, 166, 122, 0.25);
-}
-.data-glimpse[data-depth="close"] { 
-  filter: blur(0.8px); 
-  font-size: 26px;
-  color: rgba(184, 166, 122, 0.32);
-}
-
-/* Smaller data - percentages, dates */
-.data-glimpse.data-small {
-  font-size: 11px;
-  font-weight: 400;
-  letter-spacing: 0.02em;
-  color: rgba(255, 255, 255, 0.12);
-}
-.data-glimpse.data-small[data-depth="edge"] { font-size: 9px; color: rgba(255, 255, 255, 0.05); }
-.data-glimpse.data-small[data-depth="far"] { font-size: 10px; color: rgba(255, 255, 255, 0.08); }
-.data-glimpse.data-small[data-depth="mid"] { font-size: 11px; color: rgba(255, 255, 255, 0.12); }
-.data-glimpse.data-small[data-depth="near"] { font-size: 12px; color: rgba(255, 255, 255, 0.16); }
-.data-glimpse.data-small[data-depth="close"] { font-size: 13px; color: rgba(255, 255, 255, 0.2); }
-
-
-/* ===== Glimpsed Terms - Legal/Finance vocabulary ===== */
-/* Very low opacity, suggesting meaning not conveying it */
-.data-term {
-  position: absolute;
-  font-family: var(--font-main);
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.08);
-  opacity: 0;
-}
-
-.data-term[data-depth="edge"] { 
-  filter: blur(5px); 
+.frag-pill {
   font-size: 8px;
-  color: rgba(255, 255, 255, 0.03);
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.05);
+  padding: 2px 6px;
+  border-radius: 3px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
 }
-.data-term[data-depth="far"] { 
-  filter: blur(3px); 
-  font-size: 9px;
-  color: rgba(255, 255, 255, 0.05);
-}
-.data-term[data-depth="mid"] { 
-  filter: blur(2px); 
-  font-size: 10px;
-  color: rgba(255, 255, 255, 0.08);
-}
-.data-term[data-depth="near"] { 
-  filter: blur(1px); 
+
+.frag-score {
   font-size: 11px;
-  color: rgba(255, 255, 255, 0.12);
-}
-.data-term[data-depth="close"] { 
-  filter: blur(0.5px); 
-  font-size: 12px;
-  color: rgba(255, 255, 255, 0.16);
+  font-weight: 600;
+  color: rgba(184, 166, 122, 0.5);
 }
 
-
-/* ===== Architectural Lines ===== */
-/* Subtle horizontal order, not a grid */
-.data-line {
-  position: absolute;
-  height: 1px;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgba(184, 166, 122, 0.06) 20%,
-    rgba(184, 166, 122, 0.04) 80%,
-    transparent 100%
-  );
-  opacity: 0;
+.frag-tag {
+  font-size: 8px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.04);
+  padding: 2px 5px;
+  border-radius: 3px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
 }
 
-.data-line[data-depth="edge"] { 
-  filter: blur(3px);
-  background: linear-gradient(90deg, transparent 0%, rgba(184, 166, 122, 0.02) 50%, transparent 100%);
+.frag-tag.funded {
+  color: rgba(107, 155, 122, 0.6);
+  background: rgba(107, 155, 122, 0.1);
 }
-.data-line[data-depth="far"] { 
-  filter: blur(2px);
-  background: linear-gradient(90deg, transparent 0%, rgba(184, 166, 122, 0.04) 50%, transparent 100%);
+
+.frag-date {
+  font-size: 9px;
+  color: rgba(255, 255, 255, 0.25);
 }
-.data-line[data-depth="mid"] { 
-  filter: blur(1px);
-  background: linear-gradient(90deg, transparent 0%, rgba(184, 166, 122, 0.06) 50%, transparent 100%);
+
+/* Card depth opacity */
+.ui-frag[data-depth="edge"] .frag-card-partial { opacity: 0.25; }
+.ui-frag[data-depth="far"] .frag-card-partial { opacity: 0.4; }
+.ui-frag[data-depth="mid"] .frag-card-partial { opacity: 0.55; }
+.ui-frag[data-depth="near"] .frag-card-partial { opacity: 0.7; }
+.ui-frag[data-depth="close"] .frag-card-partial { opacity: 0.8; }
+
+
+/* ===== Document Rows ===== */
+.frag-doc-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(42, 40, 38, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: 5px;
+  padding: 6px 10px;
+  min-width: 140px;
 }
-.data-line[data-depth="near"] { 
-  filter: blur(0.5px);
-  background: linear-gradient(90deg, transparent 0%, rgba(184, 166, 122, 0.08) 50%, transparent 100%);
+
+.frag-doc-icon {
+  width: 14px;
+  height: 16px;
+  background: rgba(100, 140, 180, 0.2);
+  border-radius: 2px;
+  flex-shrink: 0;
 }
+
+.frag-doc-name {
+  font-size: 9px;
+  font-family: var(--font-mono);
+  color: rgba(255, 255, 255, 0.4);
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.frag-doc-meta {
+  font-size: 8px;
+  color: rgba(255, 255, 255, 0.2);
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+/* Doc row depth opacity */
+.ui-frag[data-depth="edge"] .frag-doc-row { opacity: 0.2; }
+.ui-frag[data-depth="far"] .frag-doc-row { opacity: 0.35; }
+.ui-frag[data-depth="mid"] .frag-doc-row { opacity: 0.5; }
+.ui-frag[data-depth="near"] .frag-doc-row { opacity: 0.65; }
+.ui-frag[data-depth="close"] .frag-doc-row { opacity: 0.75; }
+
+
+/* ===== Score Blocks & Grades ===== */
+.frag-score-block {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(42, 40, 38, 0.6);
+  border: 1px solid rgba(184, 166, 122, 0.1);
+  border-radius: 6px;
+  padding: 6px 10px;
+}
+
+.frag-grade {
+  font-size: 14px;
+  font-weight: 700;
+  color: rgba(184, 166, 122, 0.5);
+  letter-spacing: -0.02em;
+}
+
+/* Score depth opacity */
+.ui-frag[data-depth="edge"] .frag-score-block { opacity: 0.2; }
+.ui-frag[data-depth="far"] .frag-score-block { opacity: 0.35; }
+.ui-frag[data-depth="mid"] .frag-score-block { opacity: 0.5; }
+.ui-frag[data-depth="near"] .frag-score-block { opacity: 0.65; }
+.ui-frag[data-depth="close"] .frag-score-block { opacity: 0.8; }
+
+
+/* ===== Progress Bars ===== */
+.frag-progress {
+  width: 80px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.frag-progress-fill {
+  height: 100%;
+  background: rgba(184, 166, 122, 0.4);
+  border-radius: 2px;
+}
+
+/* Progress depth opacity */
+.ui-frag[data-depth="edge"] .frag-progress { opacity: 0.15; }
+.ui-frag[data-depth="far"] .frag-progress { opacity: 0.3; }
+.ui-frag[data-depth="mid"] .frag-progress { opacity: 0.45; }
+.ui-frag[data-depth="near"] .frag-progress { opacity: 0.6; }
+.ui-frag[data-depth="close"] .frag-progress { opacity: 0.75; }
+
+
+/* ===== Timeline / Posture Pills ===== */
+.frag-timeline {
+  font-size: 9px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.04);
+  padding: 4px 8px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+/* Timeline depth opacity */
+.ui-frag[data-depth="edge"] .frag-timeline { opacity: 0.15; }
+.ui-frag[data-depth="far"] .frag-timeline { opacity: 0.3; }
+.ui-frag[data-depth="mid"] .frag-timeline { opacity: 0.45; }
+.ui-frag[data-depth="near"] .frag-timeline { opacity: 0.6; }
+.ui-frag[data-depth="close"] .frag-timeline { opacity: 0.75; }
+
+
+/* ===== Value Figures ===== */
+.frag-value {
+  font-size: 18px;
+  font-weight: 600;
+  color: rgba(184, 166, 122, 0.4);
+  letter-spacing: -0.02em;
+}
+
+.ui-frag[data-depth="edge"] .frag-value { font-size: 14px; opacity: 0.15; }
+.ui-frag[data-depth="far"] .frag-value { font-size: 16px; opacity: 0.28; }
+.ui-frag[data-depth="mid"] .frag-value { font-size: 18px; opacity: 0.42; }
+.ui-frag[data-depth="near"] .frag-value { font-size: 22px; opacity: 0.55; }
+.ui-frag[data-depth="close"] .frag-value { font-size: 26px; opacity: 0.68; }
 
 /* Key */
 .key-container {
