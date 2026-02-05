@@ -1943,7 +1943,6 @@ body {
   transform: translate(-50%, -50%);
   width: 36px;
   height: auto;
-  color: #C4A580;
   opacity: 0.7;
   animation: centerPulse 4s ease-in-out infinite;
 }
