@@ -1990,27 +1990,29 @@ body {
 
 .orbital-icon svg { display: block; }
 
-.icon-folder { color: #7F6E5B; opacity: 0.7; }
-.icon-folder svg { width: 20px; height: 20px; margin: -10px 0 0 -10px; }
+/* Champagne icons */
+.icon-champagne { color: #C4A580; opacity: 0.7; }
+.icon-champagne svg { width: 20px; height: 20px; margin: -10px 0 0 -10px; }
 
-.icon-dollar { color: #C4A580; opacity: 0.7; }
-.icon-dollar svg { width: 20px; height: 20px; margin: -10px 0 0 -10px; }
+/* Charcoal-muted icons */
+.icon-muted { color: #7F6E5B; opacity: 0.7; }
+.icon-muted svg { width: 20px; height: 20px; margin: -10px 0 0 -10px; }
 
-/* Inner orbit */
-.folder-1 { animation: orbit1 24s linear infinite; }
-.folder-2 { animation: orbit1 24s linear infinite; animation-delay: -12s; }
+/* Inner orbit - 2 icons */
+.orb-inner-1 { animation: orbit1 24s linear infinite; }
+.orb-inner-2 { animation: orbit1 24s linear infinite; animation-delay: -12s; }
 
-/* Middle orbit */
-.dollar-1 { animation: orbit2 36s linear infinite; }
-.folder-3 { animation: orbit2 36s linear infinite; animation-delay: -12s; }
-.dollar-2 { animation: orbit2 36s linear infinite; animation-delay: -24s; }
+/* Middle orbit - 3 icons */
+.orb-mid-1 { animation: orbit2 36s linear infinite; }
+.orb-mid-2 { animation: orbit2 36s linear infinite; animation-delay: -12s; }
+.orb-mid-3 { animation: orbit2 36s linear infinite; animation-delay: -24s; }
 
-/* Outer orbit */
-.dollar-3 { animation: orbit3 50s linear infinite; opacity: 0.55; }
-.folder-4 { animation: orbit3 50s linear infinite; animation-delay: -16.7s; opacity: 0.55; }
-.dollar-4 { animation: orbit3 50s linear infinite; animation-delay: -33.3s; opacity: 0.55; }
+/* Outer orbit - 3 icons */
+.orb-outer-1 { animation: orbit3 50s linear infinite; opacity: 0.55; }
+.orb-outer-2 { animation: orbit3 50s linear infinite; animation-delay: -16.7s; opacity: 0.55; }
+.orb-outer-3 { animation: orbit3 50s linear infinite; animation-delay: -33.3s; opacity: 0.55; }
 
-.dollar-3 svg, .folder-4 svg, .dollar-4 svg {
+.orb-outer-1 svg, .orb-outer-2 svg, .orb-outer-3 svg {
   width: 16px; height: 16px; margin: -8px 0 0 -8px;
 }
 
@@ -2032,12 +2034,10 @@ body {
 @keyframes centerPulse {
   0%, 100% { 
     opacity: 0.55; 
-    transform: translate(-50%, -50%) scale(1);
     filter: drop-shadow(0 0 4px rgba(196, 165, 128, 0.05));
   }
   50% { 
     opacity: 0.9; 
-    transform: translate(-50%, -50%) scale(1.08);
     filter: drop-shadow(0 0 18px rgba(196, 165, 128, 0.35)) drop-shadow(0 0 40px rgba(196, 165, 128, 0.12));
   }
 }
@@ -2063,11 +2063,11 @@ body {
   
   .orbital-center-key { width: 28px; }
   
-  .icon-folder svg, .icon-dollar svg {
+  .icon-champagne svg, .icon-muted svg {
     width: 16px; height: 16px; margin: -8px 0 0 -8px;
   }
   
-  .dollar-3 svg, .folder-4 svg, .dollar-4 svg {
+  .orb-outer-1 svg, .orb-outer-2 svg, .orb-outer-3 svg {
     width: 13px; height: 13px; margin: -6.5px 0 0 -6.5px;
   }
 }
