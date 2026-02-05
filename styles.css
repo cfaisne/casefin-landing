@@ -1908,16 +1908,23 @@ body {
   z-index: 1;
 }
 
-.orbital-center {
+/* Center key */
+.orbital-center-key {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 8px;
-  height: 8px;
-  background: var(--gold);
-  border-radius: 50%;
-  box-shadow: 0 0 20px rgba(184, 160, 120, 0.4);
+  width: 32px;
+  height: auto;
+  color: var(--gold);
+  opacity: 0.35;
+  animation: centerPulse 4s ease-in-out infinite;
+}
+
+.orbital-center-key svg {
+  width: 100%;
+  height: auto;
+  display: block;
 }
 
 /* Orbit rings */
@@ -1931,136 +1938,123 @@ body {
 }
 
 .orbit-1 {
-  width: 120px;
-  height: 120px;
+  width: 140px;
+  height: 140px;
 }
 
 .orbit-2 {
-  width: 240px;
-  height: 240px;
+  width: 260px;
+  height: 260px;
 }
 
 .orbit-3 {
-  width: 380px;
-  height: 380px;
+  width: 400px;
+  height: 400px;
 }
 
-/* Orbiting dots */
-.orbital-dot {
+/* Orbiting icons */
+.orbital-icon {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 6px;
-  height: 6px;
-  background: var(--gold);
-  border-radius: 50%;
-  opacity: 0.6;
   transform-origin: center center;
 }
 
-.orbital-dot .dot-label {
-  position: absolute;
-  top: -18px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-family: var(--font-mono);
-  font-size: 9px;
-  color: var(--text-muted);
-  white-space: nowrap;
-  opacity: 0;
-  transition: opacity 0.3s ease;
+.orbital-icon svg {
+  display: block;
 }
 
-.orbital-dot:hover .dot-label {
-  opacity: 1;
+/* Folder icons — muted charcoal */
+.icon-folder {
+  color: rgba(45, 40, 35, 0.2);
 }
 
-/* Inner orbit - fastest */
-.dot-1 {
-  animation: orbit1 12s linear infinite;
+.icon-folder svg {
+  width: 18px;
+  height: 18px;
+  margin: -9px 0 0 -9px;
 }
 
-.dot-2 {
-  animation: orbit1 12s linear infinite;
-  animation-delay: -6s;
+/* Dollar icons — muted gold */
+.icon-dollar {
+  color: rgba(184, 160, 120, 0.3);
 }
 
-/* Middle orbit */
-.dot-3 {
-  animation: orbit2 20s linear infinite;
+.icon-dollar svg {
+  width: 18px;
+  height: 18px;
+  margin: -9px 0 0 -9px;
 }
 
-.dot-4 {
-  animation: orbit2 20s linear infinite;
-  animation-delay: -10s;
+/* Inner orbit – folders (cases arriving) */
+.folder-1 {
+  animation: orbit1 14s linear infinite;
 }
 
-.dot-5 {
-  animation: orbit2 20s linear infinite;
-  animation-delay: -5s;
+.folder-2 {
+  animation: orbit1 14s linear infinite;
+  animation-delay: -7s;
 }
 
-/* Outer orbit - slowest */
-.dot-6 {
-  animation: orbit3 30s linear infinite;
-  opacity: 0.4;
+/* Middle orbit – mixed */
+.dollar-1 {
+  animation: orbit2 22s linear infinite;
 }
 
-.dot-7 {
-  animation: orbit3 30s linear infinite;
-  animation-delay: -15s;
-  opacity: 0.3;
-  width: 4px;
-  height: 4px;
+.folder-3 {
+  animation: orbit2 22s linear infinite;
+  animation-delay: -7.3s;
 }
 
-.dot-8 {
-  animation: orbit3 30s linear infinite;
-  animation-delay: -22s;
-  opacity: 0.25;
-  width: 4px;
-  height: 4px;
+.dollar-2 {
+  animation: orbit2 22s linear infinite;
+  animation-delay: -14.6s;
+}
+
+/* Outer orbit – capital at scale */
+.dollar-3 {
+  animation: orbit3 32s linear infinite;
+  opacity: 0.7;
+}
+
+.folder-4 {
+  animation: orbit3 32s linear infinite;
+  animation-delay: -10.7s;
+  opacity: 0.7;
+}
+
+.dollar-4 {
+  animation: orbit3 32s linear infinite;
+  animation-delay: -21.3s;
+  opacity: 0.7;
+}
+
+/* Outer orbit icons slightly smaller */
+.dollar-3 svg, .folder-4 svg, .dollar-4 svg {
+  width: 15px;
+  height: 15px;
+  margin: -7.5px 0 0 -7.5px;
 }
 
 @keyframes orbit1 {
-  from {
-    transform: rotate(0deg) translateX(60px) rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg) translateX(60px) rotate(-360deg);
-  }
+  from { transform: rotate(0deg) translateX(70px) rotate(0deg); }
+  to { transform: rotate(360deg) translateX(70px) rotate(-360deg); }
 }
 
 @keyframes orbit2 {
-  from {
-    transform: rotate(0deg) translateX(120px) rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg) translateX(120px) rotate(-360deg);
-  }
+  from { transform: rotate(0deg) translateX(130px) rotate(0deg); }
+  to { transform: rotate(360deg) translateX(130px) rotate(-360deg); }
 }
 
 @keyframes orbit3 {
-  from {
-    transform: rotate(0deg) translateX(190px) rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg) translateX(190px) rotate(-360deg);
-  }
+  from { transform: rotate(0deg) translateX(200px) rotate(0deg); }
+  to { transform: rotate(360deg) translateX(200px) rotate(-360deg); }
 }
 
-/* Pulse animation for center */
+/* Center pulse */
 @keyframes centerPulse {
-  0%, 100% {
-    box-shadow: 0 0 20px rgba(184, 160, 120, 0.3);
-  }
-  50% {
-    box-shadow: 0 0 30px rgba(184, 160, 120, 0.5);
-  }
-}
-
-.orbital-center {
-  animation: centerPulse 4s ease-in-out infinite;
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.45; }
 }
 
 /* CTA button - dark on light */
@@ -2077,22 +2071,34 @@ body {
 /* Responsive */
 @media (max-width: 600px) {
   .orbital-system {
-    width: 350px;
-    height: 350px;
+    width: 360px;
+    height: 360px;
   }
   
   .orbit-3 {
-    width: 280px;
-    height: 280px;
+    width: 300px;
+    height: 300px;
+  }
+  
+  .orbital-center-key {
+    width: 24px;
+  }
+
+  .icon-folder svg, .icon-dollar svg {
+    width: 14px;
+    height: 14px;
+    margin: -7px 0 0 -7px;
+  }
+  
+  .dollar-3 svg, .folder-4 svg, .dollar-4 svg {
+    width: 12px;
+    height: 12px;
+    margin: -6px 0 0 -6px;
   }
   
   @keyframes orbit3 {
-    from {
-      transform: rotate(0deg) translateX(140px) rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg) translateX(140px) rotate(-360deg);
-    }
+    from { transform: rotate(0deg) translateX(150px) rotate(0deg); }
+    to { transform: rotate(360deg) translateX(150px) rotate(-360deg); }
   }
   
   .cta-card {
