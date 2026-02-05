@@ -1050,62 +1050,51 @@ body {
 }
 
 /* ========================================
-   Audience Section - Two Column Layout
+   Audience Section - Two Column on light
 ======================================== */
 .audience-section {
-  padding: clamp(5rem, 10vw, 7rem) clamp(1.5rem, 4vw, 4rem);
+  padding: clamp(4rem, 8vw, 6rem) clamp(1.5rem, 4vw, 4rem);
   background: var(--color-light);
 }
 
-.audience-container {
-  max-width: 960px;
-  margin: 0 auto;
+.audience-section .section-inner {
+  max-width: 900px;
 }
 
 .audience-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: clamp(2rem, 4vw, 3rem);
+  gap: clamp(3rem, 5vw, 4rem);
 }
 
 @media (max-width: 768px) {
   .audience-grid {
     grid-template-columns: 1fr;
-    gap: 2.5rem;
+    gap: 3rem;
   }
 }
 
-/* Audience columns - typography forward, not card-forward */
-.audience-column {
-  padding-top: 0.5rem;
-  border-top: 2px solid var(--text-primary);
-}
-
-.audience-column .pill {
-  margin-top: 1.25rem;
-  margin-bottom: 1rem;
-}
-
-.audience-column h3 {
+.audience-column h2 {
   font-family: var(--font-headline);
-  font-size: clamp(1.15rem, 2vw, 1.35rem);
+  font-size: clamp(1.25rem, 2.5vw, 1.5rem);
   font-weight: 500;
-  line-height: 1.4;
+  letter-spacing: -0.02em;
+  line-height: 1.35;
   color: var(--text-primary);
   margin-bottom: 1.25rem;
 }
 
 .audience-column .feature-list {
   list-style: none;
-  margin: 0 0 1.25rem 0;
+  margin: 0 0 1.5rem 0;
 }
 
 .audience-column .feature-list li {
   position: relative;
-  padding-left: 1rem;
+  padding-left: 1.25rem;
   margin-bottom: 0.6rem;
-  font-size: 0.9rem;
-  line-height: 1.55;
+  font-size: 0.95rem;
+  line-height: 1.6;
   color: var(--text-secondary);
 }
 
@@ -1118,14 +1107,6 @@ body {
   height: 4px;
   background: var(--gold);
   border-radius: 50%;
-}
-
-.audience-column .tagline {
-  font-size: 0.85rem;
-  color: var(--text-muted);
-  font-style: italic;
-  padding-top: 0.75rem;
-  border-top: 1px solid var(--border-light);
 }
   left: 50%;
   transform: translate(-50%, -50%);
