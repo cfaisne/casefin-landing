@@ -1842,35 +1842,27 @@ body {
 }
 
 /* ========================================
-   CTA Section - Card with Orbital Animation
+   CTA Section - Full-width band, split layout
 ======================================== */
 .section-cta {
-  text-align: center;
-  padding: clamp(5rem, 10vw, 7rem) clamp(1.5rem, 4vw, 4rem);
-  background: var(--color-light);
-}
-
-.section-cta .section-inner {
-  max-width: 100%;
-  display: flex;
-  justify-content: center;
-}
-
-.cta-card {
-  position: relative;
-  max-width: 580px;
-  width: 100%;
-  padding: 4rem 3rem 3rem;
   background: var(--color-light-alt);
-  border: 1px solid var(--border-light);
-  border-radius: 8px;
-  text-align: center;
-  overflow: hidden;
+  border-top: 1px solid var(--border-light);
+  border-bottom: 1px solid var(--border-light);
 }
 
-.cta-content {
-  position: relative;
-  z-index: 2;
+.cta-band {
+  display: flex;
+  align-items: center;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: clamp(3.5rem, 8vw, 5rem) clamp(1.5rem, 4vw, 4rem);
+  gap: clamp(2rem, 5vw, 4rem);
+}
+
+/* Left: text + button */
+.cta-text {
+  flex: 1;
+  min-width: 0;
 }
 
 .cta-lead {
@@ -1881,19 +1873,55 @@ body {
   letter-spacing: 0.01em;
 }
 
-.cta-card h2 {
+.cta-text h2 {
   font-family: var(--font-headline);
-  font-size: clamp(1.5rem, 3vw, 1.85rem);
+  font-size: clamp(1.6rem, 3vw, 2.1rem);
   font-weight: 500;
   letter-spacing: -0.02em;
   color: var(--text-primary);
   margin-bottom: 0.5rem;
 }
 
-.cta-card .cta-subtext {
+.cta-subtext {
   font-size: 0.95rem;
   color: var(--text-secondary);
   margin-bottom: 1.75rem;
+  line-height: 1.6;
+}
+
+/* CTA button - scaled up version of nav btn-primary */
+.btn-cta-band {
+  font-size: 0.95rem;
+  padding: 0.7rem 1.25rem 0.7rem 1.5rem;
+  gap: 0.6rem;
+  border-radius: 8px;
+  background: rgba(26, 26, 26, 0.9);
+  border-color: rgba(255, 255, 255, 0.08);
+  color: var(--text-on-dark);
+}
+
+.btn-cta-band:hover {
+  background: rgba(26, 26, 26, 1);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.btn-cta-band .btn-icon-cube {
+  width: 26px;
+  height: 26px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+}
+
+.btn-cta-band:hover .btn-icon-cube {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* Right: orbital */
+.cta-orbital-wrapper {
+  position: relative;
+  width: 420px;
+  height: 420px;
+  flex-shrink: 0;
 }
 
 /* Orbital System */
@@ -1902,10 +1930,9 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 500px;
-  height: 500px;
+  width: 420px;
+  height: 420px;
   pointer-events: none;
-  z-index: 1;
 }
 
 /* Center key */
@@ -1914,7 +1941,7 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 32px;
+  width: 36px;
   height: auto;
   color: var(--gold);
   opacity: 0.35;
@@ -1932,25 +1959,14 @@ body {
   position: absolute;
   top: 50%;
   left: 50%;
-  border: 1px solid rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(0, 0, 0, 0.05);
   border-radius: 50%;
   transform: translate(-50%, -50%);
 }
 
-.orbit-1 {
-  width: 140px;
-  height: 140px;
-}
-
-.orbit-2 {
-  width: 260px;
-  height: 260px;
-}
-
-.orbit-3 {
-  width: 400px;
-  height: 400px;
-}
+.orbit-1 { width: 120px; height: 120px; }
+.orbit-2 { width: 230px; height: 230px; }
+.orbit-3 { width: 360px; height: 360px; }
 
 /* Orbiting icons */
 .orbital-icon {
@@ -1960,149 +1976,86 @@ body {
   transform-origin: center center;
 }
 
-.orbital-icon svg {
-  display: block;
-}
+.orbital-icon svg { display: block; }
 
-/* Folder icons — muted charcoal */
-.icon-folder {
-  color: rgba(45, 40, 35, 0.2);
-}
+.icon-folder { color: rgba(45, 40, 35, 0.22); }
+.icon-folder svg { width: 20px; height: 20px; margin: -10px 0 0 -10px; }
 
-.icon-folder svg {
-  width: 18px;
-  height: 18px;
-  margin: -9px 0 0 -9px;
-}
+.icon-dollar { color: rgba(184, 160, 120, 0.35); }
+.icon-dollar svg { width: 20px; height: 20px; margin: -10px 0 0 -10px; }
 
-/* Dollar icons — muted gold */
-.icon-dollar {
-  color: rgba(184, 160, 120, 0.3);
-}
+/* Inner orbit */
+.folder-1 { animation: orbit1 14s linear infinite; }
+.folder-2 { animation: orbit1 14s linear infinite; animation-delay: -7s; }
 
-.icon-dollar svg {
-  width: 18px;
-  height: 18px;
-  margin: -9px 0 0 -9px;
-}
+/* Middle orbit */
+.dollar-1 { animation: orbit2 22s linear infinite; }
+.folder-3 { animation: orbit2 22s linear infinite; animation-delay: -7.3s; }
+.dollar-2 { animation: orbit2 22s linear infinite; animation-delay: -14.6s; }
 
-/* Inner orbit – folders (cases arriving) */
-.folder-1 {
-  animation: orbit1 14s linear infinite;
-}
+/* Outer orbit */
+.dollar-3 { animation: orbit3 32s linear infinite; opacity: 0.7; }
+.folder-4 { animation: orbit3 32s linear infinite; animation-delay: -10.7s; opacity: 0.7; }
+.dollar-4 { animation: orbit3 32s linear infinite; animation-delay: -21.3s; opacity: 0.7; }
 
-.folder-2 {
-  animation: orbit1 14s linear infinite;
-  animation-delay: -7s;
-}
-
-/* Middle orbit – mixed */
-.dollar-1 {
-  animation: orbit2 22s linear infinite;
-}
-
-.folder-3 {
-  animation: orbit2 22s linear infinite;
-  animation-delay: -7.3s;
-}
-
-.dollar-2 {
-  animation: orbit2 22s linear infinite;
-  animation-delay: -14.6s;
-}
-
-/* Outer orbit – capital at scale */
-.dollar-3 {
-  animation: orbit3 32s linear infinite;
-  opacity: 0.7;
-}
-
-.folder-4 {
-  animation: orbit3 32s linear infinite;
-  animation-delay: -10.7s;
-  opacity: 0.7;
-}
-
-.dollar-4 {
-  animation: orbit3 32s linear infinite;
-  animation-delay: -21.3s;
-  opacity: 0.7;
-}
-
-/* Outer orbit icons slightly smaller */
 .dollar-3 svg, .folder-4 svg, .dollar-4 svg {
-  width: 15px;
-  height: 15px;
-  margin: -7.5px 0 0 -7.5px;
+  width: 16px; height: 16px; margin: -8px 0 0 -8px;
 }
 
 @keyframes orbit1 {
-  from { transform: rotate(0deg) translateX(70px) rotate(0deg); }
-  to { transform: rotate(360deg) translateX(70px) rotate(-360deg); }
+  from { transform: rotate(0deg) translateX(60px) rotate(0deg); }
+  to { transform: rotate(360deg) translateX(60px) rotate(-360deg); }
 }
 
 @keyframes orbit2 {
-  from { transform: rotate(0deg) translateX(130px) rotate(0deg); }
-  to { transform: rotate(360deg) translateX(130px) rotate(-360deg); }
+  from { transform: rotate(0deg) translateX(115px) rotate(0deg); }
+  to { transform: rotate(360deg) translateX(115px) rotate(-360deg); }
 }
 
 @keyframes orbit3 {
-  from { transform: rotate(0deg) translateX(200px) rotate(0deg); }
-  to { transform: rotate(360deg) translateX(200px) rotate(-360deg); }
+  from { transform: rotate(0deg) translateX(180px) rotate(0deg); }
+  to { transform: rotate(360deg) translateX(180px) rotate(-360deg); }
 }
 
-/* Center pulse */
 @keyframes centerPulse {
   0%, 100% { opacity: 0.3; }
   50% { opacity: 0.45; }
 }
 
-/* CTA button - dark on light */
-.section-cta .btn-cta {
-  background: var(--color-dark);
-  color: var(--text-on-dark);
-  border-color: var(--color-dark);
-}
-
-.section-cta .btn-cta:hover {
-  background: var(--color-dark-elevated);
-}
-
 /* Responsive */
-@media (max-width: 600px) {
+@media (max-width: 900px) {
+  .cta-band {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .cta-orbital-wrapper {
+    width: 320px;
+    height: 320px;
+  }
+  
   .orbital-system {
-    width: 360px;
-    height: 360px;
+    width: 320px;
+    height: 320px;
   }
   
-  .orbit-3 {
-    width: 300px;
-    height: 300px;
-  }
+  .orbit-3 { width: 280px; height: 280px; }
   
-  .orbital-center-key {
-    width: 24px;
-  }
-
+  .orbital-center-key { width: 28px; }
+  
   .icon-folder svg, .icon-dollar svg {
-    width: 14px;
-    height: 14px;
-    margin: -7px 0 0 -7px;
+    width: 16px; height: 16px; margin: -8px 0 0 -8px;
   }
   
   .dollar-3 svg, .folder-4 svg, .dollar-4 svg {
-    width: 12px;
-    height: 12px;
-    margin: -6px 0 0 -6px;
+    width: 13px; height: 13px; margin: -6.5px 0 0 -6.5px;
   }
-  
+}
+
+@media (max-width: 900px) {
   @keyframes orbit3 {
-    from { transform: rotate(0deg) translateX(150px) rotate(0deg); }
-    to { transform: rotate(360deg) translateX(150px) rotate(-360deg); }
-  }
-  
-  .cta-card {
-    padding: 3rem 1.5rem 2.5rem;
+    from { transform: rotate(0deg) translateX(140px) rotate(0deg); }
+    to { transform: rotate(360deg) translateX(140px) rotate(-360deg); }
   }
 }
 
