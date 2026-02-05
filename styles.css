@@ -1819,33 +1819,35 @@ body {
    Briefing Section - Memo style
 ======================================== */
 .briefing-section {
-  padding-top: clamp(2.5rem, 5vw, 3rem);
-  padding-bottom: clamp(3rem, 6vw, 4rem);
+  padding-top: clamp(2rem, 4vw, 2.5rem);
+  padding-bottom: clamp(2.5rem, 5vw, 3rem);
   border-top: 1px solid var(--border-light);
+  background: rgba(0, 0, 0, 0.015);
 }
 
 .briefing-inner {
-  max-width: 540px;
+  max-width: 480px;
 }
 
 .briefing-heading {
-  font-family: var(--font-headline);
-  font-size: clamp(1.1rem, 2vw, 1.25rem);
-  font-weight: 500;
-  letter-spacing: -0.01em;
-  color: var(--text-secondary);
-  margin-bottom: 1.25rem;
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
 }
 
 .briefing-body {
-  max-width: 540px;
+  max-width: 480px;
 }
 
 .briefing-body p {
-  margin-bottom: 1.25rem;
-  line-height: 1.8;
+  margin-bottom: 1rem;
+  line-height: 1.75;
   color: var(--text-muted);
-  font-size: 0.9rem;
+  font-size: 0.85rem;
 }
 
 .briefing-body p:last-child {
@@ -1853,9 +1855,10 @@ body {
 }
 
 .briefing-section .section-lead {
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   color: var(--text-secondary);
   font-weight: 450;
+  margin-bottom: 1rem;
 }
 
 .briefing-section h2 {
