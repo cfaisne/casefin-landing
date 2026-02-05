@@ -1253,21 +1253,40 @@ body {
 }
 
 /* ========================================
-   Bridge Section - Transition from hero
+   Bridge Section - Thesis Card
 ======================================== */
 .bridge-section {
-  padding: clamp(4rem, 8vw, 5rem) clamp(1.5rem, 4vw, 4rem);
-  text-align: center;
+  padding: clamp(4rem, 8vw, 6rem) clamp(1.5rem, 4vw, 4rem);
+  display: flex;
+  justify-content: center;
   background: var(--color-light);
 }
 
+.bridge-card {
+  max-width: 680px;
+  padding: 1.5rem 2.25rem;
+  background: var(--color-light-alt);
+  border: 1px solid var(--border-light);
+  border-radius: 6px;
+  text-align: center;
+}
+
+.bridge-label {
+  display: block;
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.75rem;
+}
+
 .bridge-text {
-  max-width: 620px;
-  margin: 0 auto;
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   color: var(--text-secondary);
   line-height: 1.7;
-  font-weight: 400;
+  font-weight: 450;
+  margin: 0;
 }
 
 /* ========================================
@@ -1960,8 +1979,9 @@ body {
     padding: 1rem;
   }
   
-  .bridge-section { padding: 5rem 1.5rem 4rem; }
-  .bridge-text { font-size: 1.1rem; }
+  .bridge-section { padding: 3.5rem 1.5rem; }
+  .bridge-card { padding: 1.25rem 1.5rem; }
+  .bridge-text { font-size: 1rem; }
   
   .section-cta { padding: 5rem 1.5rem 4rem; }
   
