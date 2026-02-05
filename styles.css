@@ -1914,6 +1914,13 @@ body {
   line-height: 1.6;
 }
 
+.cta-eligibility {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-top: 1rem;
+  letter-spacing: 0.01em;
+}
+
 /* CTA button - scaled up version of nav btn-primary */
 .btn-cta-band {
   font-size: 0.95rem;
