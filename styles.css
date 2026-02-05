@@ -1977,10 +1977,10 @@ body {
 
 .orbital-icon svg { display: block; }
 
-.icon-folder { color: #7F6E5B; }
+.icon-folder { color: #7F6E5B; opacity: 0.7; }
 .icon-folder svg { width: 20px; height: 20px; margin: -10px 0 0 -10px; }
 
-.icon-dollar { color: #C4A580; }
+.icon-dollar { color: #C4A580; opacity: 0.7; }
 .icon-dollar svg { width: 20px; height: 20px; margin: -10px 0 0 -10px; }
 
 /* Inner orbit */
@@ -1993,9 +1993,9 @@ body {
 .dollar-2 { animation: orbit2 22s linear infinite; animation-delay: -14.6s; }
 
 /* Outer orbit */
-.dollar-3 { animation: orbit3 32s linear infinite; opacity: 0.7; }
-.folder-4 { animation: orbit3 32s linear infinite; animation-delay: -10.7s; opacity: 0.7; }
-.dollar-4 { animation: orbit3 32s linear infinite; animation-delay: -21.3s; opacity: 0.7; }
+.dollar-3 { animation: orbit3 32s linear infinite; opacity: 0.55; }
+.folder-4 { animation: orbit3 32s linear infinite; animation-delay: -10.7s; opacity: 0.55; }
+.dollar-4 { animation: orbit3 32s linear infinite; animation-delay: -21.3s; opacity: 0.55; }
 
 .dollar-3 svg, .folder-4 svg, .dollar-4 svg {
   width: 16px; height: 16px; margin: -8px 0 0 -8px;
