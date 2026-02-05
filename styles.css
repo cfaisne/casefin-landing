@@ -928,15 +928,15 @@ body {
   position: relative;
 }
 
-/* Subtle warm vignette at edges - barely perceptible */
+/* Subtle warm vignette at edges */
 .post-hero-gradient::before {
   content: '';
   position: absolute;
   inset: 0;
   background: radial-gradient(
     ellipse 120% 80% at 50% 0%,
-    transparent 60%,
-    rgba(0, 0, 0, 0.008) 100%
+    transparent 50%,
+    rgba(0, 0, 0, 0.015) 100%
   );
   pointer-events: none;
 }
@@ -957,16 +957,16 @@ body {
   margin: 0 auto;
 }
 
-/* Section dividers - minimal, let spacing carry transition */
+/* Section dividers - thin rules */
 .content-section + .content-section::before {
   content: '';
   position: absolute;
   top: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: min(300px, 40%);
+  width: min(400px, 60%);
   height: 1px;
-  background: rgba(0, 0, 0, 0.04);
+  background: var(--border-light);
 }
 
 /* Headlines */
@@ -1118,6 +1118,18 @@ body {
   background: var(--gold);
   border-radius: 50%;
 }
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  height: 60%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(196, 165, 128, 0.025) 0%,
+    transparent 60%
+  );
+  pointer-events: none;
+  z-index: -1;
+}
 
 .audience-grid {
   display: grid;
@@ -1263,7 +1275,7 @@ body {
 .bridge-card {
   max-width: 680px;
   padding: 1.5rem 2.25rem;
-  background: transparent;
+  background: var(--color-light-alt);
   border: 1px solid var(--border-light);
   border-radius: 6px;
   text-align: center;
@@ -1271,11 +1283,10 @@ body {
 
 .bridge-label {
   display: block;
-  font-size: 0.65rem;
+  font-size: 0.7rem;
   font-weight: 600;
   color: var(--gold);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.04em;
   margin-bottom: 0.75rem;
 }
 
@@ -1297,16 +1308,16 @@ body {
   background: var(--color-light);
 }
 
-/* Section divider - minimal, let spacing carry transition */
+/* Section divider - thin rule */
 .content-section + .content-section::before {
   content: '';
   position: absolute;
   top: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: min(300px, 40%);
+  width: min(400px, 60%);
   height: 1px;
-  background: rgba(0, 0, 0, 0.04);
+  background: var(--border-light);
 }
 
 .section-inner {
@@ -1418,9 +1429,9 @@ body {
   height: 1px;
   background: linear-gradient(90deg,
     transparent 0%,
-    rgba(196, 165, 128, 0.06) 20%,
-    rgba(196, 165, 128, 0.1) 50%,
-    rgba(196, 165, 128, 0.06) 80%,
+    rgba(196, 165, 128, 0.15) 20%,
+    rgba(196, 165, 128, 0.25) 50%,
+    rgba(196, 165, 128, 0.15) 80%,
     transparent 100%
   );
 }
@@ -1524,13 +1535,13 @@ body {
 }
 
 .editorial-content {
-  border-left: 2px solid rgba(196, 165, 128, 0.08);
+  border-left: 2px solid rgba(196, 165, 128, 0.15);
   padding-left: 1.5rem;
 }
 
 .editorial-lead {
   font-size: 1.1rem;
-  font-weight: 550;
+  font-weight: 500;
   color: var(--text-primary);
   line-height: 1.5;
   margin-bottom: 1.25rem;
@@ -1678,7 +1689,7 @@ body {
   padding-left: 2.5rem;
 }
 
-/* Vertical timeline line - nearly invisible, let numbering carry sequence */
+/* Vertical timeline line - subtle */
 .steps-container::before {
   content: '';
   position: absolute;
@@ -1686,7 +1697,7 @@ body {
   top: 1.5rem;
   bottom: 1.5rem;
   width: 1px;
-  background: rgba(0, 0, 0, 0.025);
+  background: rgba(0, 0, 0, 0.06);
 }
 
 .step {
@@ -1736,6 +1747,9 @@ body {
   font-size: 0.9rem;
   color: var(--text-secondary);
   line-height: 1.5;
+}
+  );
+  border-radius: 1px;
 }
 
 /* Progress indicator on rail */
@@ -1953,7 +1967,6 @@ body {
 }
 
 /* Center key */
-/* Center key - static ambient presence */
 .orbital-center-key {
   position: absolute;
   top: 50%;
@@ -1962,7 +1975,8 @@ body {
   width: 36px;
   height: auto;
   opacity: 0.7;
-  filter: drop-shadow(0 0 8px rgba(196, 165, 128, 0.12));
+  animation: centerPulse 3.5s ease-in-out infinite;
+  filter: drop-shadow(0 0 0px rgba(196, 165, 128, 0));
 }
 
 .orbital-center-key svg {
@@ -1971,12 +1985,12 @@ body {
   display: block;
 }
 
-/* Orbit rings - barely visible guides */
+/* Orbit rings */
 .orbit-ring {
   position: absolute;
   top: 50%;
   left: 50%;
-  border: 1px solid rgba(0, 0, 0, 0.025);
+  border: 1px solid rgba(0, 0, 0, 0.05);
   border-radius: 50%;
   transform: translate(-50%, -50%);
 }
@@ -2003,28 +2017,28 @@ body {
 .icon-muted { color: #7F6E5B; opacity: 0.7; }
 .icon-muted svg { width: 20px; height: 20px; margin: -10px 0 0 -10px; }
 
-/* Inner orbit - 4 icons (slower, more ambient) */
-.orb-inner-1 { animation: orbit1 32s linear infinite; }
-.orb-inner-2 { animation: orbit1 32s linear infinite; animation-delay: -8s; }
-.orb-inner-3 { animation: orbit1 32s linear infinite; animation-delay: -16s; }
-.orb-inner-4 { animation: orbit1 32s linear infinite; animation-delay: -24s; }
+/* Inner orbit - 4 icons */
+.orb-inner-1 { animation: orbit1 24s linear infinite; }
+.orb-inner-2 { animation: orbit1 24s linear infinite; animation-delay: -6s; }
+.orb-inner-3 { animation: orbit1 24s linear infinite; animation-delay: -12s; }
+.orb-inner-4 { animation: orbit1 24s linear infinite; animation-delay: -18s; }
 
 /* Middle orbit - 6 icons */
-.orb-mid-1 { animation: orbit2 48s linear infinite; }
-.orb-mid-2 { animation: orbit2 48s linear infinite; animation-delay: -8s; }
-.orb-mid-3 { animation: orbit2 48s linear infinite; animation-delay: -16s; }
-.orb-mid-4 { animation: orbit2 48s linear infinite; animation-delay: -24s; }
-.orb-mid-5 { animation: orbit2 48s linear infinite; animation-delay: -32s; }
-.orb-mid-6 { animation: orbit2 48s linear infinite; animation-delay: -40s; }
+.orb-mid-1 { animation: orbit2 36s linear infinite; }
+.orb-mid-2 { animation: orbit2 36s linear infinite; animation-delay: -6s; }
+.orb-mid-3 { animation: orbit2 36s linear infinite; animation-delay: -12s; }
+.orb-mid-4 { animation: orbit2 36s linear infinite; animation-delay: -18s; }
+.orb-mid-5 { animation: orbit2 36s linear infinite; animation-delay: -24s; }
+.orb-mid-6 { animation: orbit2 36s linear infinite; animation-delay: -30s; }
 
 /* Outer orbit - 7 icons */
-.orb-outer-1 { animation: orbit3 65s linear infinite; opacity: 0.55; }
-.orb-outer-2 { animation: orbit3 65s linear infinite; animation-delay: -9s; opacity: 0.55; }
-.orb-outer-3 { animation: orbit3 65s linear infinite; animation-delay: -19s; opacity: 0.55; }
-.orb-outer-4 { animation: orbit3 65s linear infinite; animation-delay: -28s; opacity: 0.55; }
-.orb-outer-5 { animation: orbit3 65s linear infinite; animation-delay: -37s; opacity: 0.55; }
-.orb-outer-6 { animation: orbit3 65s linear infinite; animation-delay: -47s; opacity: 0.55; }
-.orb-outer-7 { animation: orbit3 65s linear infinite; animation-delay: -56s; opacity: 0.55; }
+.orb-outer-1 { animation: orbit3 50s linear infinite; opacity: 0.55; }
+.orb-outer-2 { animation: orbit3 50s linear infinite; animation-delay: -7s; opacity: 0.55; }
+.orb-outer-3 { animation: orbit3 50s linear infinite; animation-delay: -14s; opacity: 0.55; }
+.orb-outer-4 { animation: orbit3 50s linear infinite; animation-delay: -21s; opacity: 0.55; }
+.orb-outer-5 { animation: orbit3 50s linear infinite; animation-delay: -29s; opacity: 0.55; }
+.orb-outer-6 { animation: orbit3 50s linear infinite; animation-delay: -36s; opacity: 0.55; }
+.orb-outer-7 { animation: orbit3 50s linear infinite; animation-delay: -43s; opacity: 0.55; }
 
 .orb-outer-1 svg, .orb-outer-2 svg, .orb-outer-3 svg, .orb-outer-4 svg, .orb-outer-5 svg, .orb-outer-6 svg, .orb-outer-7 svg {
   width: 16px; height: 16px; margin: -8px 0 0 -8px;
@@ -2045,7 +2059,16 @@ body {
   to { transform: rotate(360deg) translateX(180px) rotate(-360deg); }
 }
 
-/* centerPulse keyframes removed - using static ambient glow instead */
+@keyframes centerPulse {
+  0%, 100% { 
+    opacity: 0.55; 
+    filter: drop-shadow(0 0 4px rgba(196, 165, 128, 0.05));
+  }
+  50% { 
+    opacity: 0.9; 
+    filter: drop-shadow(0 0 18px rgba(196, 165, 128, 0.35)) drop-shadow(0 0 40px rgba(196, 165, 128, 0.12));
+  }
+}
 
 /* Responsive */
 @media (max-width: 900px) {
@@ -2189,8 +2212,8 @@ body {
 .footer-disclosure p {
   font-size: 0.8rem;
   color: var(--text-muted);
-  line-height: 1.6;
-  margin-bottom: 0.75rem;
+  line-height: 1.8;
+  margin-bottom: 1rem;
 }
 
 .footer-disclosure p:last-child {
