@@ -1842,7 +1842,7 @@ body {
 }
 
 /* ========================================
-   CTA Section - Card motif
+   CTA Section - Card with Orbital Animation
 ======================================== */
 .section-cta {
   text-align: center;
@@ -1857,12 +1857,20 @@ body {
 }
 
 .cta-card {
-  max-width: 520px;
-  padding: 2.5rem 3rem;
+  position: relative;
+  max-width: 580px;
+  width: 100%;
+  padding: 4rem 3rem 3rem;
   background: var(--color-light-alt);
   border: 1px solid var(--border-light);
   border-radius: 8px;
   text-align: center;
+  overflow: hidden;
+}
+
+.cta-content {
+  position: relative;
+  z-index: 2;
 }
 
 .cta-lead {
@@ -1888,6 +1896,173 @@ body {
   margin-bottom: 1.75rem;
 }
 
+/* Orbital System */
+.orbital-system {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 500px;
+  height: 500px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.orbital-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 8px;
+  height: 8px;
+  background: var(--gold);
+  border-radius: 50%;
+  box-shadow: 0 0 20px rgba(184, 160, 120, 0.4);
+}
+
+/* Orbit rings */
+.orbit-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.orbit-1 {
+  width: 120px;
+  height: 120px;
+}
+
+.orbit-2 {
+  width: 240px;
+  height: 240px;
+}
+
+.orbit-3 {
+  width: 380px;
+  height: 380px;
+}
+
+/* Orbiting dots */
+.orbital-dot {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 6px;
+  height: 6px;
+  background: var(--gold);
+  border-radius: 50%;
+  opacity: 0.6;
+  transform-origin: center center;
+}
+
+.orbital-dot .dot-label {
+  position: absolute;
+  top: -18px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--text-muted);
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.orbital-dot:hover .dot-label {
+  opacity: 1;
+}
+
+/* Inner orbit - fastest */
+.dot-1 {
+  animation: orbit1 12s linear infinite;
+}
+
+.dot-2 {
+  animation: orbit1 12s linear infinite;
+  animation-delay: -6s;
+}
+
+/* Middle orbit */
+.dot-3 {
+  animation: orbit2 20s linear infinite;
+}
+
+.dot-4 {
+  animation: orbit2 20s linear infinite;
+  animation-delay: -10s;
+}
+
+.dot-5 {
+  animation: orbit2 20s linear infinite;
+  animation-delay: -5s;
+}
+
+/* Outer orbit - slowest */
+.dot-6 {
+  animation: orbit3 30s linear infinite;
+  opacity: 0.4;
+}
+
+.dot-7 {
+  animation: orbit3 30s linear infinite;
+  animation-delay: -15s;
+  opacity: 0.3;
+  width: 4px;
+  height: 4px;
+}
+
+.dot-8 {
+  animation: orbit3 30s linear infinite;
+  animation-delay: -22s;
+  opacity: 0.25;
+  width: 4px;
+  height: 4px;
+}
+
+@keyframes orbit1 {
+  from {
+    transform: rotate(0deg) translateX(60px) rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg) translateX(60px) rotate(-360deg);
+  }
+}
+
+@keyframes orbit2 {
+  from {
+    transform: rotate(0deg) translateX(120px) rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg) translateX(120px) rotate(-360deg);
+  }
+}
+
+@keyframes orbit3 {
+  from {
+    transform: rotate(0deg) translateX(190px) rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg) translateX(190px) rotate(-360deg);
+  }
+}
+
+/* Pulse animation for center */
+@keyframes centerPulse {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(184, 160, 120, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(184, 160, 120, 0.5);
+  }
+}
+
+.orbital-center {
+  animation: centerPulse 4s ease-in-out infinite;
+}
+
 /* CTA button - dark on light */
 .section-cta .btn-cta {
   background: var(--color-dark);
@@ -1897,6 +2072,32 @@ body {
 
 .section-cta .btn-cta:hover {
   background: var(--color-dark-elevated);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .orbital-system {
+    width: 350px;
+    height: 350px;
+  }
+  
+  .orbit-3 {
+    width: 280px;
+    height: 280px;
+  }
+  
+  @keyframes orbit3 {
+    from {
+      transform: rotate(0deg) translateX(140px) rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg) translateX(140px) rotate(-360deg);
+    }
+  }
+  
+  .cta-card {
+    padding: 3rem 1.5rem 2.5rem;
+  }
 }
 
 /* ========================================
