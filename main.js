@@ -89,7 +89,7 @@ function initHeroUnlock() {
     }
   });
   
-  // ========== A · 0-10% — Locked state ==========
+  // ========== A · 0-10% - Locked state ==========
   masterTL.addLabel("start", 0);
   
   masterTL.to(scrollIndicator, {
@@ -104,7 +104,7 @@ function initHeroUnlock() {
     duration: 0.1
   }, "start");
   
-  // ========== B · 10-35% — KNOCKAWAY #1 (synced label) ==========
+  // ========== B · 10-35% - KNOCKAWAY #1 (synced label) ==========
   masterTL.addLabel("knock1", 0.10);
   
   // Key rises - synced with text
@@ -175,7 +175,7 @@ function initHeroUnlock() {
     }, "knock1+=0.2");
   }
   
-  // ========== C · 35-58% — Key solo, holds high ==========
+  // ========== C · 35-58% - Key solo, holds high ==========
   masterTL.addLabel("solo", 0.35);
   
   masterTL.to(unlockSticky, {
@@ -241,7 +241,7 @@ function initHeroUnlock() {
     }, "solo+=0.13");
   });
   
-  // ========== D · 58-75% — Unlocked text fades in AFTER key holds ==========
+  // ========== D · 58-75% - Unlocked text fades in AFTER key holds ==========
   masterTL.addLabel("textIn", 0.58);
   
   masterTL.to(unlockSticky, {
@@ -329,7 +329,7 @@ function initHeroUnlock() {
     }, "textIn+=0.1");
   });
   
-  // ========== E · 75-88% — Read time ==========
+  // ========== E · 75-88% - Read time ==========
   masterTL.addLabel("read", 0.75);
   
   masterTL.to(unlockSticky, {
@@ -409,7 +409,7 @@ function initHeroUnlock() {
     }, "read+=0.1");
   });
   
-  // ========== F · 88-100% — KNOCKAWAY #2 (synced label) ==========
+  // ========== F · 88-100% - KNOCKAWAY #2 (synced label) ==========
   masterTL.addLabel("knock2", 0.88);
   
   masterTL.to(unlockSticky, {
