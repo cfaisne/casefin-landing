@@ -1680,15 +1680,15 @@ body {
   padding-left: 2.5rem;
 }
 
-/* Vertical timeline line */
+/* Vertical timeline line - subtle */
 .steps-container::before {
   content: '';
   position: absolute;
   left: 8px;
-  top: 0.5rem;
-  bottom: 0.5rem;
+  top: 1.5rem;
+  bottom: 1.5rem;
   width: 1px;
-  background: var(--border-light);
+  background: rgba(0, 0, 0, 0.06);
 }
 
 .step {
@@ -1806,7 +1806,43 @@ body {
 }
 
 /* ========================================
-   CTA Section - Clean, centered
+   Briefing Section - Memo style
+======================================== */
+.briefing-section {
+  padding-top: clamp(3rem, 6vw, 4rem);
+  padding-bottom: clamp(4rem, 8vw, 5rem);
+}
+
+.briefing-inner {
+  max-width: 580px;
+}
+
+.briefing-body {
+  max-width: 540px;
+}
+
+.briefing-body p {
+  margin-bottom: 1.25rem;
+  line-height: 1.8;
+}
+
+.briefing-body p:last-child {
+  margin-bottom: 0;
+}
+
+.briefing-section .section-lead {
+  font-size: 1.05rem;
+  color: var(--text-primary);
+  font-weight: 450;
+}
+
+.briefing-section h2 {
+  font-size: clamp(1.35rem, 2.5vw, 1.6rem);
+  margin-bottom: 1.5rem;
+}
+
+/* ========================================
+   CTA Section - Card motif
 ======================================== */
 .section-cta {
   text-align: center;
@@ -1815,23 +1851,41 @@ body {
 }
 
 .section-cta .section-inner {
-  text-align: center;
-  max-width: 520px;
+  max-width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
-.section-cta h2 {
+.cta-card {
+  max-width: 520px;
+  padding: 2.5rem 3rem;
+  background: var(--color-light-alt);
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  text-align: center;
+}
+
+.cta-lead {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.01em;
+}
+
+.cta-card h2 {
   font-family: var(--font-headline);
-  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-size: clamp(1.5rem, 3vw, 1.85rem);
   font-weight: 500;
   letter-spacing: -0.02em;
   color: var(--text-primary);
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.5rem;
 }
 
-.cta-subtext {
-  font-size: 1rem;
+.cta-card .cta-subtext {
+  font-size: 0.95rem;
   color: var(--text-secondary);
-  margin-bottom: 2rem;
+  margin-bottom: 1.75rem;
 }
 
 /* CTA button - dark on light */
@@ -1983,7 +2037,8 @@ body {
   .bridge-card { padding: 1.25rem 1.5rem; }
   .bridge-text { font-size: 1rem; }
   
-  .section-cta { padding: 5rem 1.5rem 4rem; }
+  .section-cta { padding: 4rem 1.5rem 3rem; }
+  .cta-card { padding: 2rem 1.5rem; }
   
   .footer-main { padding: 2rem 1.5rem; }
   .footer-columns { 
