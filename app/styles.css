@@ -46,8 +46,8 @@
   --header-h: 76px;
   
   /* Typography */
-  --font-headline: 'Tiempos', 'Source Serif Pro', Georgia, serif;
-  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-headline: var(--font-source-serif), 'Source Serif Pro', Georgia, serif;
+  --font-body: var(--font-inter), 'Inter', -apple-system, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
   
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
@@ -1118,6 +1118,18 @@ body {
   background: var(--gold);
   border-radius: 50%;
 }
+.audience-column .feature-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.6em;
+  width: 4px;
+  height: 4px;
+  background: var(--gold);
+  border-radius: 50%;
+}
+
+.audience-section::before {
   left: 50%;
   transform: translate(-50%, -50%);
   width: 80%;
@@ -1416,6 +1428,7 @@ body {
 .security-section {
   /* No special styling needed - uses content-section defaults */
 }
+.credential-panel {
   padding: clamp(2rem, 4vw, 3rem);
   position: relative;
 }
@@ -1748,9 +1761,7 @@ body {
   color: var(--text-secondary);
   line-height: 1.5;
 }
-  );
-  border-radius: 1px;
-}
+
 
 /* Progress indicator on rail */
 .pipeline-progress {
@@ -2374,6 +2385,7 @@ body {
   .legal-page h1 { font-size: 1.75rem; }
 }
 
+}
 /* Disclosure page specific */
 .disclosure-section p {
   font-size: 1.05rem;
