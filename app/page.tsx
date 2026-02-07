@@ -1,10 +1,34 @@
 'use client'
 
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
+import { useSearchParams, useRouter } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
+import RequestAccessModal from './components/RequestAccessModal'
 
 export default function HomePage() {
+const searchParams = useSearchParams()
+const router = useRouter()
+const [isModalOpen, setIsModalOpen] = useState(false)
+
+// Open modal if ?access=1 in URL
+useEffect(() => {
+  if (searchParams.get('access') === '1') {
+    setIsModalOpen(true)
+  }
+}, [searchParams])
+
+// Custom open/close handlers
+const openModal = () => {
+  setIsModalOpen(true)
+  router.replace('/?access=1', { scroll: false })
+}
+
+const closeModal = () => {
+  setIsModalOpen(false)
+  router.replace('/', { scroll: false })
+}
+
   useEffect(() => {
     // Dynamically import GSAP to avoid SSR issues
     const initAnimations = async () => {
@@ -398,7 +422,9 @@ export default function HomePage() {
 
   {/*  Navigation  */}
   <nav className="nav">
-    <div className="nav-logo"><a href="/" style={{ textDecoration: 'none', color: 'inherit' }}>CaseFin</a></div>
+    <a href="/" className="logo">
+      <Image src="/key-iwordmark.svg" alt="CaseFin" width={120} height={32} />
+    </a>
     <div className="nav-links">
       <a href="/">Home</a>
       <a href="/product">Product</a>
@@ -406,7 +432,7 @@ export default function HomePage() {
     </div>
     <div className="nav-actions">
       <a href="#" className="btn-text">Login</a>
-      <a href="#" className="btn-primary">
+      <button className="btn-primary" onClick={openModal}>
         Request Access
         <span className="btn-icon-cube">
           <svg className="lock-icon lock-closed" width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -416,7 +442,7 @@ export default function HomePage() {
             <path fillRule="evenodd" clipRule="evenodd" d="M12 2C9.238 2 7 4.238 7 7V10H6.6C5.72 10 5 10.72 5 11.6V18.6C5 19.92 6.08 21 7.4 21H16.6C17.92 21 19 19.92 19 18.6V11.6C19 10.72 18.28 10 17.4 10H9V7C9 5.342 10.342 4 12 4C13.304 4 14.416 4.836 14.829 6H17C16.5 3.75 14.47 2 12 2ZM12 12.25C11.6023 12.2496 11.2164 12.3846 10.9057 12.6329C10.5951 12.8811 10.3782 13.2278 10.2909 13.6157C10.2036 14.0037 10.251 14.4098 10.4253 14.7672C10.5996 15.1246 10.8905 15.412 11.25 15.582V18C11.25 18.1989 11.329 18.3897 11.4697 18.5303C11.6103 18.671 11.8011 18.75 12 18.75C12.1989 18.75 12.3897 18.671 12.5303 18.5303C12.671 18.3897 12.75 18.1989 12.75 18V15.582C13.1095 15.412 13.4004 15.1246 13.5747 14.7672C13.749 14.4098 13.7964 14.0037 13.7091 13.6157C13.6218 13.2278 13.4049 12.8811 13.0943 12.6329C12.7836 12.3846 12.3977 12.2496 12 12.25Z" fill="currentColor" fillOpacity="0.9"/>
           </svg>
         </span>
-      </a>
+      </button>
     </div>
   </nav>
 
@@ -1206,7 +1232,7 @@ export default function HomePage() {
           <h1 className="hero-headline">Access changes everything.</h1>
           <p className="hero-body">From private preparation to structured evaluation, cases move forward with clarity, control, and intent on both sides.</p>
           <div className="hero-cta">
-            <a href="#" className="btn-primary">
+            <button className="btn-primary" onClick={openModal}>
               Request Access
               <span className="btn-icon-cube">
                 <svg className="lock-icon lock-closed" width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1216,7 +1242,7 @@ export default function HomePage() {
                   <path fillRule="evenodd" clipRule="evenodd" d="M12 2C9.238 2 7 4.238 7 7V10H6.6C5.72 10 5 10.72 5 11.6V18.6C5 19.92 6.08 21 7.4 21H16.6C17.92 21 19 19.92 19 18.6V11.6C19 10.72 18.28 10 17.4 10H9V7C9 5.342 10.342 4 12 4C13.304 4 14.416 4.836 14.829 6H17C16.5 3.75 14.47 2 12 2ZM12 12.25C11.6023 12.2496 11.2164 12.3846 10.9057 12.6329C10.5951 12.8811 10.3782 13.2278 10.2909 13.6157C10.2036 14.0037 10.251 14.4098 10.4253 14.7672C10.5996 15.1246 10.8905 15.412 11.25 15.582V18C11.25 18.1989 11.329 18.3897 11.4697 18.5303C11.6103 18.671 11.8011 18.75 12 18.75C12.1989 18.75 12.3897 18.671 12.5303 18.5303C12.671 18.3897 12.75 18.1989 12.75 18V15.582C13.1095 15.412 13.4004 15.1246 13.5747 14.7672C13.749 14.4098 13.7964 14.0028 13.7091 13.6157C13.6218 13.2278 13.4049 12.8811 13.0943 12.6329C12.7836 12.3846 12.3977 12.2496 12 12.25Z" fill="currentColor" fillOpacity="0.9"/>
                 </svg>
               </span>
-            </a>
+            </button>
             <a href="/product" className="btn-secondary">Learn More</a>
           </div>
         </div>
@@ -1386,7 +1412,7 @@ export default function HomePage() {
         <div className="cta-text">
           <h2>Request access to CaseFin.</h2>
           <p className="cta-subtext">A controlled environment for disciplined litigation finance.</p>
-          <a href="#" className="btn-primary btn-on-light">
+          <button className="btn-primary btn-on-light" onClick={openModal}>
             Request Access
             <span className="btn-icon-cube">
               <svg className="lock-icon lock-closed" width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1396,19 +1422,13 @@ export default function HomePage() {
                 <path fillRule="evenodd" clipRule="evenodd" d="M12 2C9.238 2 7 4.238 7 7V10H6.6C5.72 10 5 10.72 5 11.6V18.6C5 19.92 6.08 21 7.4 21H16.6C17.92 21 19 19.92 19 18.6V11.6C19 10.72 18.28 10 17.4 10H9V7C9 5.342 10.342 4 12 4C13.304 4 14.416 4.836 14.829 6H17C16.5 3.75 14.47 2 12 2ZM12 12.25C11.6023 12.2496 11.2164 12.3846 10.9057 12.6329C10.5951 12.8811 10.3782 13.2278 10.2909 13.6157C10.2036 14.0037 10.251 14.4098 10.4253 14.7672C10.5996 15.1246 10.8905 15.412 11.25 15.582V18C11.25 18.1989 11.329 18.3897 11.4697 18.5303C11.6103 18.671 11.8011 18.75 12 18.75C12.1989 18.75 12.3897 18.671 12.5303 18.5303C12.671 18.3897 12.75 18.1989 12.75 18V15.582C13.1095 15.412 13.4004 15.1246 13.5747 14.7672C13.749 14.4098 13.7964 14.0037 13.7091 13.6157C13.6218 13.2278 13.4049 12.8811 13.0943 12.6329C12.7836 12.3846 12.3977 12.2496 12 12.25Z" fill="currentColor" fillOpacity="0.9"/>
               </svg>
             </span>
-          </a>
+          </button>
           <p className="cta-eligibility">Access is granted selectively. We'll follow up to confirm fit.</p>
         </div>
         <div className="cta-orbital-wrapper">
           <div className="orbital-system">
             <div className="orbital-center-key">
-              <svg width="274" height="543" viewBox="0 0 274 543" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M180.322 466.38C180.322 468.476 186.38 467.857 192.322 467.857H197.851C199.561 467.857 201.255 468.476 201.255 466.38V458.793V455.5C201.255 455.224 201.479 455 201.755 455H230.903C232.613 455 234 456.698 234 458.793V477.138V480.432C234 480.708 233.776 480.932 233.5 480.932H215.745C209.514 480.932 205.745 480.676 205.745 482.771V489.971V498.2C205.745 500.295 209.514 499.899 215.745 499.899H233.5C233.776 499.899 234 500.123 234 500.399V503.693V523.206C234 525.302 232.612 527.001 230.901 527L204.35 526.982L201.756 526.985C201.479 526.985 201.255 526.761 201.255 526.485V515.696C201.255 513.601 199.986 513.629 198.276 513.629H186.5C180.558 513.629 180.322 513.601 180.322 515.696V523.192V526.5C180.322 526.776 180.098 527 179.822 527H163.099C161.388 527.001 160 525.302 160 523.207V458.793C160 456.698 161.387 455 163.097 455H185.771H180.822C180.546 455 180.322 455.224 180.322 455.5V466.38Z" fill="#C4A580"/>
-                <path d="M200.997 258C200.93 258.047 174.674 276.469 162.997 296.11V536H109.997V294.485C97.892 275.469 73.0696 258.052 72.9961 258H200.997Z" fill="#C4A580"/>
-                <rect x="103" y="295" width="68" height="37" rx="5" fill="#7F6E5B"/>
-                <path d="M136.701 37.5C191.479 37.5002 235.901 81.9202 235.901 136.734C235.901 191.548 191.479 235.969 136.701 235.969C81.9224 235.969 37.4997 191.549 37.4998 136.734C37.4999 81.9201 81.9227 37.5 136.701 37.5Z" stroke="#C4A580" strokeWidth="75"/>
-                <path d="M110 536H163L161 543H113L110 536Z" fill="#928372"/>
-              </svg>
+              <Image src="/key-i.svg" alt="" width={40} height={80} />
             </div>
             <div className="orbit-ring orbit-1"></div>
             <div className="orbit-ring orbit-2"></div>
@@ -1443,7 +1463,9 @@ export default function HomePage() {
       <div className="footer-main">
         <div className="footer-inner footer-columns">
           <div className="footer-brand">
-            <div className="footer-logo"><a href="/" style={{ textDecoration: 'none', color: 'inherit' }}>CaseFin</a></div>
+            <a href="/" className="logo">
+              <Image src="/key-iwordmark.svg" alt="CaseFin" width={120} height={32} />
+            </a>
             <p className="footer-tagline">Infrastructure for disciplined litigation finance.</p>
           </div>
           <div className="footer-col">
@@ -1486,7 +1508,7 @@ export default function HomePage() {
   
   
   
-
+    <RequestAccessModal isOpen={isModalOpen} onClose={closeModal} />
     </>
   )
 }
