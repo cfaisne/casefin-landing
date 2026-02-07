@@ -6,6 +6,8 @@ import Link from 'next/link'
 import Image from 'next/image'
 import RequestAccessModal from './components/RequestAccessModal'
 
+export const dynamic = 'force-dynamic'
+
 export default function HomePage() {
 const searchParams = useSearchParams()
 const router = useRouter()
