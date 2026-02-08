@@ -2305,13 +2305,15 @@ body {
   text-align: center;
   align-items: center;
 }
-
-.hero-section {
-  min-height: auto;
-  height: auto;
-  padding-bottom: 1rem;
+.footer-disclosure { 
+  padding: 2rem 1.5rem; 
+  width: 100%;
+  box-sizing: border-box;
 }
-
+.footer-bottom { 
+  padding: 1.25rem 1.5rem; 
+}
+  
   .data-fragment[data-depth="far"] { display: none; }
   .data-fragment[data-depth="mid"] { opacity: 0.5; }
 }
