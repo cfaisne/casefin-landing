@@ -10,12 +10,31 @@ export default function HomePage() {
   const [isModalOpen, setIsModalOpen] = useState(false)
 
   useEffect(() => {
-    // Dynamically import GSAP to avoid SSR issues
-    const initAnimations = async () => {
-      const gsap = (await import('gsap')).default
-      const { ScrollTrigger } = await import('gsap/ScrollTrigger')
-      
-      gsap.registerPlugin(ScrollTrigger)
+  const initAnimations = async () => {
+    const gsap = (await import('gsap')).default
+    const { ScrollTrigger } = await import('gsap/ScrollTrigger')
+    gsap.registerPlugin(ScrollTrigger)
+
+    const isMobile = window.innerWidth <= 768
+
+    // Hero animation (same for both)
+    // ... your hero animation code ...
+
+    // How It Works - shorter scroll on mobile
+    const howItWorksSection = document.querySelector('.how-it-works-section')
+    if (howItWorksSection) {
+      ScrollTrigger.create({
+        trigger: howItWorksSection,
+        start: 'top top',
+        end: isMobile ? '+=150%' : '+=300%', // Shorter on mobile
+        pin: !isMobile, // Disable pinning on mobile
+        scrub: 1,
+        // ... rest of config
+      })
+    }
+
+    // Refresh on resize
+    ScrollTrigger.refresh()
       
       // Configuration
       const HERO_COLORS = [
@@ -386,7 +405,6 @@ export default function HomePage() {
         })
       }
     }
-    
     initAnimations()
     
     return () => {
