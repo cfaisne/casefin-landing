@@ -1,35 +1,13 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-import { useSearchParams, useRouter } from 'next/navigation'
+import { useEffect, useState, Suspense } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import RequestAccessModal from './components/RequestAccessModal'
-
-export const dynamic = 'force-dynamic'
+import ModalTrigger from './components/ModalTrigger'
 
 export default function HomePage() {
-const searchParams = useSearchParams()
-const router = useRouter()
-const [isModalOpen, setIsModalOpen] = useState(false)
-
-// Open modal if ?access=1 in URL
-useEffect(() => {
-  if (searchParams.get('access') === '1') {
-    setIsModalOpen(true)
-  }
-}, [searchParams])
-
-// Custom open/close handlers
-const openModal = () => {
-  setIsModalOpen(true)
-  router.replace('/?access=1', { scroll: false })
-}
-
-const closeModal = () => {
-  setIsModalOpen(false)
-  router.replace('/', { scroll: false })
-}
+  const [isModalOpen, setIsModalOpen] = useState(false)
 
   useEffect(() => {
     // Dynamically import GSAP to avoid SSR issues
@@ -434,7 +412,7 @@ const closeModal = () => {
     </div>
     <div className="nav-actions">
       <a href="#" className="btn-text">Login</a>
-      <button className="btn-primary" onClick={openModal}>
+      <button className="btn-primary" onClick={() => setIsModalOpen(true)}>
         Request Access
         <span className="btn-icon-cube">
           <svg className="lock-icon lock-closed" width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1234,7 +1212,7 @@ const closeModal = () => {
           <h1 className="hero-headline">Access changes everything.</h1>
           <p className="hero-body">From private preparation to structured evaluation, cases move forward with clarity, control, and intent on both sides.</p>
           <div className="hero-cta">
-            <button className="btn-primary" onClick={openModal}>
+            <button className="btn-primary" onClick={() => setIsModalOpen(true)}>
               Request Access
               <span className="btn-icon-cube">
                 <svg className="lock-icon lock-closed" width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1414,7 +1392,7 @@ const closeModal = () => {
         <div className="cta-text">
           <h2>Request access to CaseFin.</h2>
           <p className="cta-subtext">A controlled environment for disciplined litigation finance.</p>
-          <button className="btn-primary btn-on-light" onClick={openModal}>
+          <button className="btn-primary btn-on-light" onClick={() => setIsModalOpen(true)}>
             Request Access
             <span className="btn-icon-cube">
               <svg className="lock-icon lock-closed" width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1509,8 +1487,10 @@ const closeModal = () => {
 
   
   
-  
-    <RequestAccessModal isOpen={isModalOpen} onClose={closeModal} />
+    <Suspense fallback={null}>
+      <ModalTrigger onOpenModal={() => setIsModalOpen(true)} />
+    </Suspense>
+    <RequestAccessModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </>
   )
 }
