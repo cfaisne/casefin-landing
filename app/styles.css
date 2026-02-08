@@ -14,6 +14,11 @@
 }
 */
 
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
 :root {
   /* Dark palette (hero, nav, footer) */
   --color-dark: #1a1a1a;
@@ -2285,33 +2290,28 @@ body {
   .cta-card { padding: 2rem 1.5rem; }
   
 .footer-main { 
-  padding: 2rem 1.5rem; 
-  overflow-x: hidden;
+  padding: 2rem 1rem; 
 }
 .footer-columns { 
   flex-direction: column;
-  gap: 2rem;
+  gap: 1.5rem;
   width: 100%;
 }
-.footer-brand { 
-  width: 100%; 
-  text-align: center;
-  margin-bottom: 0.5rem;
-}
+.footer-brand,
 .footer-col { 
   width: 100%;
-  align-items: center;
+  min-width: 0;
+  flex: none;
   text-align: center;
+  align-items: center;
 }
-.footer-disclosure { 
-  padding: 2rem 1.5rem; 
-  width: 100%;
-  box-sizing: border-box;
+
+.hero-section {
+  min-height: auto;
+  height: auto;
+  padding-bottom: 1rem;
 }
-.footer-bottom { 
-  padding: 1.25rem 1.5rem; 
-}
-  
+
   .data-fragment[data-depth="far"] { display: none; }
   .data-fragment[data-depth="mid"] { opacity: 0.5; }
 }
